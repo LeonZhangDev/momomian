@@ -1,0 +1,1 @@
+var e=`2026-11-02-global-consistency-v21`;export{e as t};
