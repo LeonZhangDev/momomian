@@ -1,0 +1,604 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>RAG：RAG的趋势探讨 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="feishu-b182165a33"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>先看懂有证据的问答流程</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-8f059f0e81/" data-record-id="feishu-8f059f0e81">RAG：RAG全局总览</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-0cd4965f06/" data-record-id="tencent-010-0cd4965f06">RAG从入门到精通：一、概览：Overview（RAG是什么？）</a><a href="/momomian/lessons/tencent-005-013/" data-record-id="tencent-005-013">RAG 与知识检索</a></details></div></details><details><summary>向量、相似度、Embedding与存储选择</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-47ea400dcb/" data-record-id="tencent-005-012-47ea400dcb">向量数据库</a><a href="/momomian/lessons/feishu-b92e147637/" data-record-id="feishu-b92e147637">RAG：嵌入向量</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5a4b641084/" data-record-id="feishu-5a4b641084">RAG：常见的向量数据库</a></details></div></details><details><summary>向量度量、精确基线与近似索引</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae/" data-record-id="tencent-005-012-cc43dc69ae">实例 · 示例</a><a href="/momomian/lessons/tencent-005-012-047e0786f8/" data-record-id="tencent-005-012-047e0786f8">向量数据库：向量索引算法</a></div></details><details><summary>解析、分块、索引与增量更新</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-eb81779983/" data-record-id="tencent-010-eb81779983">RAG从入门到精通：一、概览：Indexing（索引构建：把知识装进&quot;大脑&quot;）</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9cbff4d14e/" data-record-id="feishu-9cbff4d14e">RAG：RAG的重要步骤</a><a href="/momomian/lessons/tencent-010-c20603cd5a/" data-record-id="tencent-010-c20603cd5a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧4：实时更新知识库</a><a href="/momomian/lessons/tencent-010-c20603cd5a-d7d573/" data-record-id="tencent-010-c20603cd5a-d7d573">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧4：实时更新知识库</a></details></div></details><details><summary>Chroma文档、查询、过滤和本地嵌入</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-52f14f/" data-record-id="tencent-005-012-cc43dc69ae-52f14f">向量数据库：向量索引算法 · 示例</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-1e5ee5/" data-record-id="tencent-005-012-cc43dc69ae-1e5ee5">向量数据库：向量索引算法 · 示例（2）</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-a20751/" data-record-id="tencent-005-012-cc43dc69ae-a20751">向量数据库：向量索引算法 · 示例（3）</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-fadb19/" data-record-id="tencent-005-012-cc43dc69ae-fadb19">向量数据库：向量索引算法 · 示例（4）</a></div></details><details><summary>pgvector接入和距离排序</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-793733/" data-record-id="tencent-005-012-cc43dc69ae-793733">向量数据库：向量索引算法 · 示例（5）</a></div></details><details><summary>召回、混合检索、RRF与重排</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-f863748d94/" data-record-id="tencent-010-f863748d94">RAG从入门到精通：一、概览：Retrieval（检索：快速找到相关知识）</a><a href="/momomian/lessons/tencent-010-febc1d8abe/" data-record-id="tencent-010-febc1d8abe">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧1：多路召回策略</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-2115728a6e/" data-record-id="tencent-010-2115728a6e">RAG从入门到精通：二、RAG查询优化策略：RAG-Fusion - 多查询结果融合策略</a><a href="/momomian/lessons/tencent-010-f203ebd20b/" data-record-id="tencent-010-f203ebd20b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：RRF算法详解（Reciprocal Rank Fusion）</a><a href="/momomian/lessons/tencent-010-c7f149de51/" data-record-id="tencent-010-c7f149de51">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Re-ranking重排</a><a href="/momomian/lessons/tencent-010-febc1d8abe-2f4e01/" data-record-id="tencent-010-febc1d8abe-2f4e01">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧1：多路召回策略</a></details></div></details><details><summary>上下文、引用与答案边界</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-8fd3bcfcc0/" data-record-id="tencent-010-8fd3bcfcc0">RAG从入门到精通：一、概览：4.Generation（生成：基于知识产生答案）</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-cb8199459d/" data-record-id="tencent-010-cb8199459d">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🔥 难题2：上下文窗口限制</a></details></div></details><details><summary>实现基础RAG并核对结果</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-007/" data-record-id="tencent-011-007">RAG 与知识检索</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-512fe4609f/" data-record-id="tencent-010-512fe4609f">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🛠️ 完整代码实现</a><a href="/momomian/lessons/tencent-010-eeb178258e/" data-record-id="tencent-010-eeb178258e">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🎯 运行效果示例</a><a href="/momomian/lessons/tencent-010-eeb178258e-74ac6b/" data-record-id="tencent-010-eeb178258e-74ac6b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🎯 运行效果示例</a></details></div></details><details><summary>LangChain检索—格式化—生成最短链</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-010-cc43dc69ae-ba689a/" data-record-id="tencent-013-010-cc43dc69ae-ba689a">LangChain 制作智能体：核心组件详解 · 示例</a></div></details><details><summary>Dify知识库：分块、词面信号与检索评测</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-018-5387de5f7e/" data-record-id="tencent-013-018-5387de5f7e">Dify 入门教程：知识库（RAG）：让 AI 回答你的私有数据</a></div></details><details><summary>先诊断，再选择查询优化</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-9f630938c4/" data-record-id="tencent-010-9f630938c4">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🔥 难题1：检索不准确（最核心的痛点）</a><a href="/momomian/lessons/tencent-010-f46bf0e47b/" data-record-id="tencent-010-f46bf0e47b">RAG从入门到精通：二、RAG查询优化策略：Multi Query - 多查询策略</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-6dabb90a5b/" data-record-id="tencent-010-6dabb90a5b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Retrieval检索优化策略</a><a href="/momomian/lessons/tencent-010-2e46a4d6b5/" data-record-id="tencent-010-2e46a4d6b5">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧2：查询改写</a><a href="/momomian/lessons/tencent-010-2e46a4d6b5-ed5154/" data-record-id="tencent-010-2e46a4d6b5-ed5154">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧2：查询改写</a><a href="/momomian/lessons/tencent-010-f2a65b8cb0/" data-record-id="tencent-010-f2a65b8cb0">RAG从入门到精通：二、RAG查询优化策略：Decomposition - 问题分解策略</a></details></div></details><details><summary>抽象问题、HyDE与查询路由</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-4db1a2ea03/" data-record-id="tencent-010-4db1a2ea03">RAG从入门到精通：二、RAG查询优化策略：Step Back问答回退策略</a><a href="/momomian/lessons/tencent-010-eeaa7a9fda/" data-record-id="tencent-010-eeaa7a9fda">RAG从入门到精通：二、RAG查询优化策略：HyDE（假设性文档嵌入）</a><a href="/momomian/lessons/tencent-010-7f91e97d0b/" data-record-id="tencent-010-7f91e97d0b">RAG从入门到精通：三、路由优化和问题构建策略</a></details></div></details><details><summary>多表示、RAPTOR与ColBERT</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-56cafff398/" data-record-id="tencent-010-56cafff398">RAG从入门到精通：一、传统RAG索引的痛点</a><a href="/momomian/lessons/tencent-010-2279c2d079/" data-record-id="tencent-010-2279c2d079">RAG从入门到精通：二、Multi-representation Indexing（多表示索引）</a><a href="/momomian/lessons/tencent-010-da6b45ec59/" data-record-id="tencent-010-da6b45ec59">RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索）</a><a href="/momomian/lessons/tencent-010-425203d49f/" data-record-id="tencent-010-425203d49f">RAG从入门到精通：四、ColBERT（Token级别上下文检索）</a><a href="/momomian/lessons/tencent-010-bed182a5f1/" data-record-id="tencent-010-bed182a5f1">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：TM2C2算法：RRF的进化版</a></details></div></details><details><summary>Agentic、Graph、CRAG与Self-RAG</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-2ba396d889/" data-record-id="feishu-2ba396d889">RAG：RAG进阶</a><a href="/momomian/lessons/tencent-010-a48b31b24a/" data-record-id="tencent-010-a48b31b24a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：CRAG：纠错检索增强生成</a><a href="/momomian/lessons/tencent-010-2e1383ef6a/" data-record-id="tencent-010-2e1383ef6a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Self-RAG：自反思检索增强生成</a></details></div></details><details><summary>Agent按需检索与检索预算</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-015-cc43dc69ae-421c0a/" data-record-id="tencent-005-015-cc43dc69ae-421c0a">Agent 架构：架构二：规划 + 执行（Plan &amp; Execute） · 示例（4）</a></div></details><details><summary>GraphRAG原理、测试数据、配置与索引产物</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-013-241302f4a9/" data-record-id="tencent-013-013-241302f4a9">GraphRAG 入门教程：什么是 GraphRAG</a><a href="/momomian/lessons/tencent-013-013-9080a076a6/" data-record-id="tencent-013-013-9080a076a6">GraphRAG 入门教程：初始化工作区</a><a href="/momomian/lessons/tencent-013-013-85715ff48e/" data-record-id="tencent-013-013-85715ff48e">GraphRAG 入门教程：准备测试文档</a><a href="/momomian/lessons/tencent-013-013-cc43dc69ae/" data-record-id="tencent-013-013-cc43dc69ae">GraphRAG 入门教程：准备测试文档 · 示例</a><a href="/momomian/lessons/tencent-013-013-05db982f3a/" data-record-id="tencent-013-013-05db982f3a">GraphRAG 入门教程：开始索引</a></div></details><details><summary>GraphRAG查询模式、来源核查与抽取Prompt调优</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-013-cc43dc69ae-a77b6c/" data-record-id="tencent-013-013-cc43dc69ae-a77b6c">GraphRAG 入门教程：开始索引 · 示例</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-013-10cc00de17/" data-record-id="tencent-013-013-10cc00de17">GraphRAG 入门教程：Prompt 自动调优</a></details></div></details><details><summary>GraphRAG版本字段、恢复调优及资料索引</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-013-31f13d3717/" data-record-id="tencent-013-013-31f13d3717">GraphRAG 入门教程：完整 settings.yaml 字段说明</a><a href="/momomian/lessons/tencent-013-013-45a6d115fd/" data-record-id="tencent-013-013-45a6d115fd">GraphRAG 入门教程：常见问题</a><a href="/momomian/lessons/tencent-013-013-743a19f0bd/" data-record-id="tencent-013-013-743a19f0bd">GraphRAG 入门教程：延伸阅读</a></details></div></details><details><summary>检索选型、维护和模型迁移</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-005-012-f1f54e5e10/" data-record-id="tencent-005-012-f1f54e5e10">向量数据库：选型建议与最佳实践</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-b6bc07/" data-record-id="tencent-005-012-cc43dc69ae-b6bc07">向量数据库：选型建议与最佳实践 · 示例</a></details></div></details><details open><summary>长上下文、检索与Grep怎样选</summary><div class="lesson-nav"><details open><summary>补充与参考</summary><a href="/momomian/lessons/feishu-b182165a33/" class="current" aria-current="page" data-record-id="feishu-b182165a33">RAG：RAG的趋势探讨</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=rag">RAG 与知识检索</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">参考 · 按需查阅</p><h1 data-pagefind-meta="title">RAG：RAG的趋势探讨</h1><div class="lesson-meta"><span>约 22 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：长上下文、检索与Grep怎样选 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="feishu-b182165a33" data-task-title="RAG：RAG的趋势探讨" data-task-href="/lessons/feishu-b182165a33/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>本次官方资料支持Claude Code采用glob/grep按需取文档，但未逐字核验Boris访谈的Voyage历史、“vibes”及安全引语，也未核验Raj实验原始设置。</p><p>90%、5GB/10万文件、2–5倍token及100倍成本缺少可复核实验，不能据此制定生产阈值。</p><p>ripgrep --index的适用发行版本尚未确认，不能将提案、开发分支与本机已安装版本混为一谈。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">RAG 与知识检索 / 长上下文、检索与Grep怎样选</p><a class="text-link" href="/momomian/path/?topic=rag&amp;unit=unit-rag-a512db27">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>先限定RAG所指范围，再按精确符号、语义、字段过滤和全局比较选择检索候选。</li><li>用代码中的未知函数名或需求到实现映射举出grep不能直接保证命中的情况。</li><li>比较检索与长上下文时记录召回、答案支持、总延迟和总成本，不用未注明范围的倍率代替测量。</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">RAG：RAG的趋势探讨</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">给定编码Agent改用grep查文件，只能说明检索方式改变，不能说它不再获取外部信息。</p><a class="text-link" href="#src-feishu-doxcnNt8nskJPWRQy5FaJKh9h6g">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 1 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>1 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><a class="text-link" href="/momomian/practice/?lesson=feishu-b182165a33#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h3 id="section-1"><span>16.9 RAG的趋势探讨</span></h3>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9vC4UrsUhFXxLya9LnQDzf"></a></span>
+<p><span>在2026年，我相信大家听过很多论调和讨论：</span><strong>RAG已死</strong><span>。</span><strong>我们现在Agent都不用RAG了</strong><span>。包括还有各种面试题：</span><strong>为什么ClaudeCode不用RAG了？你设计Agent架构的时候，到底要不要用RAG（</strong><span>202606滴滴面试真题）。包括还有一些你和面试官聊天的时候的讨论：</span><strong>你如何看待RAG的趋势，你觉得现在还需要不需要RAG？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncBy58YqWe5rMTlUsuVtxxh"></a></span>
+<p><span>今天这个小节，我想全面，客观的来帮助大家分析一下这个问题。大家不要背答案，而是真的去理解，去思考，去看看我说的是不是这么一回事？有了自己的思考，对于上面的各种问题的回答其实也是自然而然就知道如何回答了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKq00XkTkKeseKNTobOOHWh"></a></span>
+<p><span>本文参考的资料为：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncMjHHTXytC8X9gqlRfcs3J"></a></span>
+<ol>
+<li><strong>长上下文视角</strong><span>——《</span><span><span><a href="https://www.youtube.com/watch?v=UabBYexBD4k&#x26;t=35s" target="_blank" rel="noopener noreferrer"><span>Is RAG still needed? Choosing the best approach for LLMs</span></a></span></span><span>》（YT视频）</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7d0q3zxsDBIxVxhdDWla4e"></a></span>
+<ol start="2">
+<li><strong>结构化数据视角</strong><span>——《</span><span><span><a href="https://www.youtube.com/watch?v=60G93MXT4DI&#x26;t=124s" target="_blank" rel="noopener noreferrer"><span>Why the best AI coding tools abandoned RAG (and what they use instead) / Is RAG Dead?</span></a></span></span><span>》（YT视频）</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnX2BKfPN8Iw0MxCnUFqJEgd"></a></span>
+<ol start="3">
+<li><strong>系统作者视角</strong><span>——Boris Cherny(Claude Code 核心作者)在 Latent Space 播客的访谈</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1f5qjJHGGFjkvnNXI2ptoc"></a></span>
+<ol start="4">
+<li><strong>Harness 工程视角</strong><span>——飞书「大模型笔记」</span><span><span><a href="/momomian/lessons/feishu-87f52c1d95/#src-feishu-doxcnoRvBt3HPRP4L6PsFmOBoaf"><span>2.4.1 Retrieval 章节</span></a></span></span><span>(检索工具谱系 + Agentic RAG 实验)</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnl9hC8IW0f6R3Al48A1HARh"></a></span>
+<p><span>注意，其实我并不是说大家一定要去看对应的视频，为了严谨性我列出来源。笔记已经总结了上面的资料的各个方面的要点，已经是比较全面的了。看懂了笔记和我的视频，可以不用再去专门看上面的视频了。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnU2sY90V5jFg97N2PxIMnrc"></a></span>
+<h4 id="section-2"><span>16.9.1 背景 - 先把RAG这个词说清楚</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDbM83yXfb0VlAfnN6AgCob"></a></span>
+<p><strong>RAG 是什么?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2fYChFHsdPe0vqNhGfv3yh"></a></span>
+<p><span>RAG = </span><strong>R</strong><span>etrieval </span><strong>A</strong><span>ugmented </span><strong>G</strong><span>eneration(检索增强生成)。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzGcJu8syaIVXwXH7xWGQaf"></a></span>
+<p><span>它要解决的是 LLM 的一个根本缺陷:</span><strong>模型被冻结在训练时刻</strong><span>——它不知道 5 分钟前发生的事,更不知道你的私有数据、内部 wiki、专有代码库。要让模型「知道」这些,就必须解决</span><strong>上下文注入(context injection)</strong><span>:在正确的时间,把正确的数据放进模型的上下文窗口。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVkwnqe7vKVFhxt0dJa9x6c"></a></span>
+<p><span>经典(传统)RAG 的管线是:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn790B8RWRHpZJOgBc6LrNRc"></a></span>
+<pre><code class="language-text">文档 → 切块(chunking) → embedding 模型编码成向量 → 存入向量数据库
+用户提问 → query 向量化 → 语义搜索(semantic search)召回最相关的若干 chunk → 注入上下文窗口 → 生成答案
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcna6w9YBuO0syhZ1zJUbjFxh"></a></span>
+<p><strong>关键澄清:大家吵的RAG 已死,死的是哪个 RAG?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZl4NUOK3wptgJ9cKek5ZSf"></a></span>
+<p><span>这是全篇最重要的区分,不厘清就会全程鸡同鸭讲:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNt8nskJPWRQy5FaJKh9h6g"></a></span>
+<ul>
+<li><strong>传统 RAG / 语义搜索</strong><span>:指切块 + embedding + 向量库 + 语义召回这套</span><strong>具体管线</strong><span>。现状是在</span><strong>部分场景</strong><span>(尤其编程)被替代。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMpkwihuwddLKuoX3cc4o1g"></a></span>
+<ul>
+<li><strong>广义 RAG</strong><span>:指</span><strong>任何</strong><span>把外部信息拉进上下文的检索行为(grep、BM25、向量搜索、web 搜索都算)。现状是不可能死,是所有 Agent 的地基。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBRfbs9aE5Ri1NuA7hQXFnf"></a></span>
+<ul>
+<li><strong>RAG 的本意</strong><span> 就是抓取任何外部信息,拉进 LLM 上下文,增强它的回答。所以广义上,agent 用 grep 翻代码、用工具查数据库,</span><strong>本质都是 RAG</strong><span>,只是没有向量库那一套。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcntxfDix33qXWAHa53ocMRFh"></a></span>
+<ul>
+<li><span>网上RAG is dead的暴论,几乎都在偷换概念:用</span><strong>传统 RAG 在编程场景被淘汰</strong><span>这个局部事实,去论证</span><strong>RAG 整体过时</strong><span>这个错误结论。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjoJt2mSnCdfE8knqi5opfe"></a></span>
+<ul>
+<li><span>更进一步:</span><strong>Agentic RAG(智能体检索)本身仍然是 RAG</strong><span>,只是把一次性检索换成了模型自己迭代地、多轮地检索。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcncKwnD90wyCYh3Bj1g81nGc"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVAU4QdrmtisUXh3rWGy4Kb"></a></span>
+<p><strong>一句话定调</strong><span>:讨论RAG 是否过时,只有把范围收缩到</span><strong>传统的、切块 + 向量库的语义搜索管线</strong><span>才有意义。广义 RAG(检索)永远不会过时。</span></p>
+</blockquote>
+<div id="src-feishu-doxcnjSsGi4jKiRujFhJUgC2TbM"><img src="/momomian/assets/1b3108c0ad06c81bd2d5.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNQvILJXVT7wweNUjGctsTU"></a></span>
+<h4 id="section-3"><span>16.9.2 四个思维点</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMfcD0jykhaCBCZfM7jMdkU"></a></span>
+<p><span>咱们可以先不讨论结论，先从4个方面去思考，我想思考清楚了这四个思维点，那么结论也呼之欲出。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPuMP4jZI5MS5bQwoi3frpg"></a></span>
+<h4 id="section-4"><span>16.9.2.1 大家说的RAG已死，死的是什么？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQXG8AvcBQLiwbnPGqrWeRv"></a></span>
+<ul>
+<li><span>RAG 已死是一个被 LinkedIn / X 放大的</span><strong>伪命题</strong><span>。视频作者直言:这个叙事大部分不成立,只是</span><strong>在编程这个特定场景</strong><span>有一点点为真。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnv45sPoFrEjzABptq809jif"></a></span>
+<ul>
+<li><span>Klein 原创者 Nick Pash 甚至把盲目上 RAG 的风气称为</span><strong>mind virus(思维病毒)</strong><span>:2023–2024 年,只要 agent 需要搜索,大家就无脑套语义相似 + 向量库,严重过度工程化。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrIFwgsL4BUnGmnMp24rOkg"></a></span>
+<ul>
+<li><span>但反过来,把传统 RAG 在编程被淘汰推广成RAG 全面过时,是同一枚硬币的另一面错误。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaF40A8eIF2SYSXJVoJ5APd"></a></span>
+<ul>
+<li><span>Harness 视角给出了最精准的定性:</span><strong>Agentic RAG 本身就是 RAG</strong><span>,只是把一次检索换成迭代检索。所以从范式上讲,RAG 根本没被取代,而是</span><strong>换了形态继续存在</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLqcNPPPRLlnJkyXbEm6dHf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1H9H1sd5WiAzsqI51jec8g"></a></span>
+<p><strong>小结</strong><span>:与其问RAG 死没死,不如问</span><strong>在我的场景里,那套沉重的切块 + 向量库管线还有必要吗?</strong><span>——这才是能回答的问题。</span></p>
+</blockquote>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGcS6liWyN8aPprGo3sZt1g"></a></span>
+<h4 id="section-5"><span>16.9.2.2 数据的结构化程度</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGuIHaGJfuvxtmJo3fxLzee"></a></span>
+<p><span>传统 RAG 唯一真正值钱的超能力,是处理</span><strong>自然语言的模糊性</strong><span>——找到意思相近但字面不同的内容。判断要不要它,就看你的数据需不需要这个超能力。而数据需不需要,取决于它的</span><strong>结构化程度</strong><span>。所以先要把结构化和非结构化这两个词说清楚。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL2HNHVImt1Ps8vCBVUnXvR"></a></span>
+<p><strong>什么是非结构化数据?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXROssl3KPAvMQPygbKrxHc"></a></span>
+<p><span>指</span><strong>没有固定组织形式、以自然语言为主</strong><span>的数据——散落在 Google Drive、SharePoint、Confluence、wiki、SQL 里的海量文本。它的三个核心特征:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlhIR0aMSh0OvPZjB1ExkIb"></a></span>
+<ol>
+<li><strong>语言是模糊的</strong><span>:同一个意思有无数种表达,同义词、近义词、指代、隐喻满天飞。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyc7PRPipdkdXr3pBCWR8Ah"></a></span>
+<ol start="2">
+<li><strong>靠概念含义而非字面组织</strong><span>:你想找的东西,常常和文档里的字面写法对不上——需要按意思相近来找,而不是按字一样来找。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3cldzvaE4x5stMFOW9tfne"></a></span>
+<ol start="3">
+<li><strong>没有天然的导航结构</strong><span>:一份文档可能埋在成千上万份文档里,没有文件路径、语法这类现成地图帮你定位。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7w1SsBLXhWWqA5aahBsVIg"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>Embedding是语义检索的一种候选，与词法检索及查询改写比较后选用，不能据此断言不可替代。</p><details><summary>查看解释与参考资料</summary><p>跨同义词并不要求唯一使用向量：查询扩展、受控词表、混合检索也能提供候选；向量检索本身也可能漏召回。</p><p><a href="https://www.anthropic.com/research/contextual-retrieval" target="_blank" rel="noopener noreferrer">Anthropic：Contextual Retrieval与混合检索 ↗</a></p></details></aside><p><span>这类数据里,你想要的信息可能</span><strong>藏在几千甚至几百万份文档中</strong><span>,而且</span><strong>字面上根本没出现你搜的词</strong><span>。要跨同义词、跨概念把它们捞出来,就必须靠 embedding 捕捉语义相似。</span><strong>这正是传统 RAG 不可替代的场景。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnizIUTJdFYDJHm75XWgdeyf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcncOVAEsE3bQAQu86sMvHSIc"></a></span>
+<p><strong>什么是结构化数据?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSmmYt3eW20t643woxPMdEH"></a></span>
+<p><span>指</span><strong>有精确语法、精确标识符、且自带组织结构</strong><span>的数据,代码是最典型的例子。它的三个核心特征:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNG6vvRep5k043qjkiPZy7c"></a></span>
+<ol>
+<li><strong>拼写/标识符是精确的</strong><span>:能正常运行的代码,函数名、变量名一定拼写精确——</span><span><span><span>getUserProfile</span></span></span><span> 全项目就叫这个,不存在另一种说法。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnE4S10TP9wadoPrrJtIqUCd"></a></span>
+<ol start="2">
+<li><strong>不依赖语义近似</strong><span>:你要找的东西字面就是确定的,不需要靠同义词或概念含义去猜,关键词/正则(grep、ripgrep)就能精确命中。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXv7Cn83iVjmoUJ2WPCgkI0"></a></span>
+<ol start="3">
+<li><strong>自带导航结构</strong><span>:文件夹、路径、架构本身就是现成地图,agent 用文件导航工具逐层 hone in 即可,不需要语义帮它理解大概在讲什么。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfzaL9jAmjIRfNeeZd56yJe"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>已知标识符时可优先评估精确搜索；未知符号、跨概念定位及结构化记录问答仍可使用词法、语义、SQL或混合检索。</p><details><summary>查看解释与参考资料</summary><p>数据有结构不意味着查询已知精确标识。代码需求定位、行为解释和SQL查记录都可以成为检索增强生成的一部分。</p></details></aside><p><span>这类数据用精确匹配又快又准,再套一层语义搜索反而更不准、还多一堆维护负担。</span><strong>所以结构化数据不用 RAG。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHBUxySbJywEvRlD9SvX94d"></a></span>
+<p><span>两类数据的选型对比如下:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7toKPv9W3OwlQgr8PKn7Dg"></a></span>
+<ul>
+<li><strong>非结构化数据</strong><span>:特征是自然语言、模糊有歧义,同义词/指代多,靠概念含义组织,无天然导航结构,信息埋在海量文档里。</span><strong>该用传统 RAG(语义搜索)</strong><span>——因为靠 embedding 捕捉概念相似,才能跨同义词、跨字面把埋藏的内容召回。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5OQIzCC3TREG9tNJKiHlIb"></a></span>
+<ul>
+<li><strong>结构化数据</strong><span>:特征是精确标识符、语法确定,字面即确定、无需猜意思,自带文件/路径/架构结构。</span><strong>不用 RAG,用 grep / 文件导航</strong><span>——因为字面就是确定的,精确匹配又快又准,再上语义反而更差且要维护索引。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZoihFWadU2qrBhP2F3mGfe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnw9cruwur4V02OSlcl3bXXe"></a></span>
+<p><strong>经典例子——川菜</strong><span>:在知识库里搜川菜有哪些,库里那几段可能只写了麻婆豆腐,花椒配辣椒,麻辣鲜香,</span><strong>完全没有出现川菜两个字</strong><span>。关键词搜索按字面逐字匹配,搜川菜根本匹配不到这些段落,一条都召回不了;只有靠 embedding 的语义相似,才能认出麻婆豆腐，水煮鱼在意思上就是川菜,把这些段落召回。这就是非结构化数据离不开 RAG 的原因。</span></p>
+<div id="src-feishu-doxcnrKqY5GX1DWxR8aw9QtQ08e"><section class="lesson-readable-figure" data-readable-figure="/assets/48aa4210b760a1e76fcc.png"><h3>字面命中与语义相关</h3><p>用同一个问题观察两种检索各自容易找到什么。</p><div class="lesson-figure-table"><table><thead><tr><th scope="col">方式</th><th scope="col">容易找到的内容</th><th scope="col">可能漏掉或误收</th></tr></thead><tbody><tr><td>关键词</td><td>出现相同词或短语的片段</td><td>改写、同义表达可能漏掉</td></tr><tr><td>语义检索</td><td>表达不同但主题相近的片段</td><td>相反结论也可能很相似</td></tr></tbody></table></div><p><strong>代入一个例子：</strong>问题是“怎样取消订单”，资料写“撤销购买”：关键词可能漏掉，语义检索可能找到。但“不可撤销”也相关，仍需读清否定条件。</p><p class="small muted">语义相似度不是事实正确概率。检索前后的权限和版本检查仍然需要。</p><details><summary>查看原图</summary><img src="/momomian/assets/48aa4210b760a1e76fcc.png" alt="关键词检索与语义检索的对照漫画" loading="lazy" decoding="async"></details></section></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnE1lf7hpxSG9lrRuooRngif"></a></span>
+<p><strong>为什么代码(结构化)不用 RAG</strong><span>,三条:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7yd0Tj3I52MfybwONrUWFc"></a></span>
+<ol>
+<li><aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>已知精确标识符并确认搜索范围时，grep通常是有效起点；需求到实现、别名和跨仓库依赖仍需补充策略。</p><details><summary>查看解释与参考资料</summary><p>这要求已知正确字符串、文件在搜索范围内且未被忽略等前提；它不能保证所有代码查询的相关证据均被找回。</p></details></aside><strong>精确,不需要猜意思</strong><span>:能跑的代码拼写一定精确,</span><span><span><span>getUserProfile</span></span></span><span> 全项目就叫这个 → grep 直接 100% 命中,再上语义搜索反而更不准。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLX3TCK74EUb8S6aXW45ORw"></a></span>
+<ol start="2">
+<li><strong>自带组织结构</strong><span>:文件夹、路径、架构就是现成地图,agent 逐层导航即可,不需要语义帮它理解大概在讲什么。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDwumGsem0XJHABy91lXnTf"></a></span>
+<ol start="3">
+<li><strong>索引维护是负担</strong><span>:代码改动极频繁,向量索引很快漂移失同步;而普通文档几个月不变,索引好维护。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhEjsQwN7VGL5pdKmv4FMLf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxJmn04sOyzQPR4t3n0F78c"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>按精确匹配、词法相关、语义相似、字段过滤等查询能力比较，可以组合使用，不能仅按该顺序推断更强或更贵。</p><details><summary>查看解释与参考资料</summary><p>这些工具不是按能力和成本单调递增的档位。结构化数据库、BM25和向量索引解决不同问题，资源成本也取决于部署和负载。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><strong>检索工具是一条谱系,不是二选一</strong><span>(Harness 视角补充): </span><span><span><span>grep(词法/精确)</span></span></span><span> → </span><span><span><span>BM25(词法/倒排)</span></span></span><span> → </span><span><span><span>embedding(语义)</span></span></span><span> → </span><span><span><span>结构化 DB(带 metadata)</span></span></span><span> 从左到右,能力更强但成本更高。</span><strong>能用轻的就不上重的。</strong></p></details>
+</blockquote>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjEOLuJw7tUjHLPn2UFAoUg"></a></span>
+<h4 id="section-6"><span>16.9.2.3 规模 vs 上下文窗口</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLiPyzDNd1Arjs29XG3W89f"></a></span>
+<p><span>传统 RAG 的第二个对手不是 grep,而是</span><strong>百万 token 的长上下文</strong><span>(直接把文档全塞进去,不做检索)。二者各有胜场:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHFo51Xn4tAf7wUd4Geszpe"></a></span>
+<p><strong>长上下文赢在简单——三个理由:</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPBPTB4ANxA6oZvB83TpqTc"></a></span>
+<ol>
+<li><strong>砍掉基础设施(no-stack stack)</strong><span>:不需要切块策略、embedding 模型、向量库、reranker、同步逻辑——少了一堆会坏的环节。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcngSKrKk8OXMHFR3bCd28Qie"></a></span>
+<ol start="2">
+<li><strong>没有检索彩票</strong><span>:语义搜索是概率性的,可能</span><strong>静默失败(silent failure)</strong><span>——答案在库里,但没被召回,模型压根没看到。长上下文让模型看到全部,不存在这个失败点。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaIyCTToSrX7iTghwSozZ7c"></a></span>
+<ol start="3">
+<li><aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>数据能装入预算时可评估完整上下文；超出预算时可用条目级覆盖检查、分层检索或摘要组织全局对比，并单独检验遗漏。</p><details><summary>查看解释与参考资料</summary><p>完整上下文可以减少遗漏检索这一步，但不是全局比较的唯一实现；分层汇总、需求条目遍历和图谱报告也可组织覆盖。</p><p><a href="https://microsoft.github.io/graphrag/query/overview/" target="_blank" rel="noopener noreferrer">Microsoft GraphRAG：全局检索 ↗</a></p></details></aside><strong>整本书问题</strong><span>:RAG 只能检索</span><strong>存在的内容</strong><span>,无法回答</span><strong>缺了什么</strong><span>。比如对比需求文档和发布说明,哪些安全需求被遗漏了——RAG 只能召回零散片段,看不到两份文档之间的空缺;长上下文把两份文档整体喂进去才能做这种全局对比。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWa7SDBnoeyOusRwOvWWwDv"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcns68W2kpjymE3cHzaJU3a7c"></a></span>
+<p><strong>但 RAG 依然不可替代——三个理由:</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGuznpcedcQqLrxGkE01RNT"></a></span>
+<ol>
+<li><strong>重复读取成本</strong><span>:长上下文每次查询都要重新处理整份文档(500 页 ≈ 250k token,每次都付这个税);RAG 只在建索引时处理一次。(prompt caching 能部分抵消静态数据,但动态数据仍要全额付费。)</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5sYiTpCocMtDiIqLudTJVf"></a></span>
+<ol start="2">
+<li><strong>大海捞针(needle in haystack)</strong><span>:上下文越长(50 万+ token),模型注意力越</span><strong>被稀释</strong><span>,埋在中间的单段信息经常漏掉或幻觉;RAG 只给 top-k 相关块,</span><strong>降噪聚焦</strong><span>,反而更准。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQemFqdbHIiAbv1KpSJYhPf"></a></span>
+<ol start="3">
+<li><strong>无限数据集</strong><span>:企业数据是 TB / PB 级,百万 token 只是杯水车薪。要在无限数据里定位,</span><strong>必须有检索层</strong><span>先过滤到能塞进窗口的量。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIITvAGHzt3tmOGVXViPTlf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0CvHFmUesz08J2AbOwnNuf"></a></span>
+<p><strong>该视角的结论</strong><span>:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbPwX1U7aPmrVBj83HPYFsh"></a></span>
+<ul>
+<li><strong>有界数据 + 需要全局推理</strong><span>(分析单份合同、总结一本书)→ 用</span><strong>长上下文</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDF9ly7sBSRwWVEpJvQLbGw"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-6" data-course-correction="6"><p><strong>更正：</strong>按数据和查询组合对象存储、全文倒排、关系数据库、图或向量索引；RAG是检索与生成的流程，不能等同某一种仓库。</p><details><summary>查看解释与参考资料</summary><p>大规模数据需要可扩展存储与检索，但不等于唯一采用向量库；本文后续“唯一可行”表述同样需要这一限定。</p></details></aside><strong>无限的企业级知识</strong><span> → </span><strong>向量数据库(RAG)仍是唯一可行的仓库</strong><span>。</span></li>
+</ul>
+</blockquote>
+<div id="src-feishu-doxcno1ykcPaTFUTl7tTUdUqzoh"><section class="lesson-readable-figure" data-readable-figure="/assets/5a0ceb80e2bf2e870329.png"><h3>把全文放入，还是先找片段</h3><p>两条路径的取舍在于信息选择，而不只是长度。</p><div class="lesson-figure-table"><table><thead><tr><th scope="col">路径</th><th scope="col">简单例子</th><th scope="col">主要风险</th></tr></thead><tbody><tr><td>长上下文</td><td>把完整手册送入模型，再回答问题</td><td>输入多；关键条件仍可能被忽略</td></tr><tr><td>RAG</td><td>先从手册找相关条款，再带片段回答</td><td>证据可能没召回，或条款被切断</td></tr></tbody></table></div><p><strong>代入一个例子：</strong>一本手册有 100 节，问题只涉及第 6 节。检索能缩小阅读范围；若第 6 节引用第 90 节的例外条件，只拿一块就可能答错。</p><p class="small muted">用同一批问题比较证据召回、回答质量、费用和延迟。不能仅凭“输入更短”判断答案更好。</p><details><summary>查看原图</summary><img src="/momomian/assets/5a0ceb80e2bf2e870329.png" alt="长上下文与 Top-k 检索的取舍" loading="lazy" decoding="async"></details></section></div>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnB4KPHCAlP60xOa0yE7mJgc"></a></span>
+<h4 id="section-7"><span>16.9.2.4 工程成本与按需外挂</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSgHRU3th20U1vPpfFqzyTf"></a></span>
+<p><strong>Boris Cherny(Claude Code 核心作者)的第一手复盘</strong><span>:早期 Claude Code </span><strong>真的用过 RAG</strong><span>——用 Voyage embedding 给代码库建索引,但后来整个放弃,转向 agentic search(glob + grep 的常规代码搜索)。原因三条:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFxqy4hZduXMx1b6WWCPFqg"></a></span>
+<ol>
+<li><strong>性能</strong><span>:agentic search</span><strong>outperformed everything. By a lot.</strong><span>(全面碾压,大幅度)。他很坦诚地补充,这个判断主要是</span><strong>just vibes</strong><span>(内部凭感觉),也有一些内部 benchmark。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0nh84aegHv4KBQEW3wVw6b"></a></span>
+<ol start="2">
+<li><strong>索引复杂 + 代码漂移</strong><span>:RAG 需要建索引步骤,而</span><strong>the code drifts out of sync</strong><span>(代码不断变化,索引很快对不上)。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBODxwMLHr11e3Y1o5VQfvc"></a></span>
+<ol start="3">
+<li><strong>安全 / 责任</strong><span>(视频里普遍忽略的一条):索引必须</span><strong>存在某个地方</strong><span>,</span><strong>what if that provider gets hacked?</strong><span>(存索引的服务商被黑怎么办)——对公司是</span><strong>a lot of liability</strong><span>(巨大的责任风险)。Anthropic 不愿把敏感代码上传第三方。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJOkLSDtLbyYsgOaOPo7aVf"></a></span>
+<p><span>他对这个权衡的总结:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuz0XpTzgnZdl6KObeUKhnh"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLa6Cs6PUcn4KLzxF24qfLc"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-7" data-course-correction="7"><p><strong>更正：</strong>该选择可以减少索引存储相关的风险，仍需按实际产品、模型部署和工具权限审查数据访问边界。</p><details><summary>查看解释与参考资料</summary><p>即使作为访谈转述，也不能把减少第三方向量索引风险解释为消除所有风险。工具权限、代码传输和提示注入等边界仍需设计。</p><p><a href="https://www.anthropic.com/research/how-we-contain-claude" target="_blank" rel="noopener noreferrer">Anthropic：跨产品约束工具权限 ↗</a></p></details></aside><p><strong>at the cost of latency and tokens, you now have really awesome search without security downsides.</strong><span> (代价是牺牲一点延迟和 token,但换来极棒的搜索,且没有任何安全隐患。)</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4D9Oz1e6mm1TE3XPeWczmb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAwD033ffKriLVCW5XADG3c"></a></span>
+<p><strong>Harness 工程视角把这条思路一般化</strong><span>:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL0MM82ZblPk0rKjY3UvL5e"></a></span>
+<ul>
+<li><strong>不要把通用 AI 工具当万能工具</strong><span>。Claude Code 内置 grep,但 CC 是通用的,而你的业务是定制的——代码库可能 100GB、文档跨多仓库、查询带 metadata 过滤。这时通用工具会慢甚至搜不到。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8JrspfZGLwog4nLAMV0M1e"></a></span>
+<ul>
+<li><span>关键的实证:视频里 Raj 的实验中,</span><strong>Agentic + 纯 BM25</strong><span>反超了</span><strong>One-shot + embedding 切块</strong><span>。这说明随着模型变强,语义近似这层</span><strong>不一定非要靠 embedding</strong><span>,模型自己重写 query 就能补上。但这是</span><strong>embedding 从必选变可选</strong><span>,不是BM25 取代 embedding。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjI8nbTqz8yPaugEIBXZWye"></a></span>
+<ul>
+<li><span>所以最精准的定性是:</span><strong>RAG 没被取代,而是从默认必选降级成按需启用的一档。</strong></li>
+</ul>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEJd6QluDVVqThU38b5Bupe"></a></span>
+<h4 id="section-8"><span>16.9.3 总结&#x26;结论</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDgLRX3BioMiTpse4NwF2ad"></a></span>
+<p><strong>先把 RAG 的账算清楚——它的优点和缺点各是什么。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnT97vTILhefudNgCf80oThb"></a></span>
+<p><span>传统 RAG(切块 + embedding + 向量库)的</span><strong>核心优点</strong><span>有三:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb9PH5p160QdV9RfXfXpfmh"></a></span>
+<ol>
+<li><strong>能做语义搜索</strong><span>:靠 embedding 捕捉概念相似,能跨同义词、跨字面把埋在海量文档里、字面根本没出现搜索词的内容召回——这是 grep 这类字面匹配做不到的。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2EVWQFeVysMNy2DNUm7ftb"></a></span>
+<ol start="2">
+<li><strong>又快又省成本(核心优势)</strong><span>:预先切块 + 建索引,查询时只拉几个小 chunk,而不是把整个知识库/整份文档塞进上下文。这一个机制同时带来两个好处——</span></li>
+</ol>
+<div><div id="src-feishu-doxcnqlmbF7Z6y2LEJ68pkGAy54"><span>◦</span><div><strong>省成本</strong><span>:喂给模型的输入 token 大幅减少,大知识库下比让模型读整份文档或多轮 agentic 扫描便宜约 </span><strong>100 倍</strong><span>。</span></div></div><div id="src-feishu-doxcnmVMa8ZCd5K5iXB5ddXF5Td"><span>◦</span><div><strong>快 / 低延迟</strong><span>:检索直接走索引(向量 HNSW </span><span><span><span>O(log N)</span></span></span><span> / BM25 倒排 </span><span><span><span>O(K)</span></span></span><span>)秒级命中,加上塞进上下文的内容少、模型推理也快;相比让 agent 用 grep/cat 在海量非结构化文档里逐个遍历(视频原话:慢到爆、贵到爆),定向拉 chunk 快得多。</span></div></div><div id="src-feishu-doxcnZzmBxe8a6KUHIIHtPtMGTe"><span>◦</span><div><span>一句话:</span><strong>只取最相关的一点点,而不是处理全部——省的是钱,快的是这同一件事的另一面。</strong></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGtKPzhCdyhYQMf7xybs8OO"></a></span>
+<ol start="3">
+<li><strong>降噪聚焦</strong><span>:只返回 top-k 相关块,把大海捞针里的草堆先扔掉,给模型的是信号而非噪声,反而比长上下文全塞进去更准。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnn2YNHBSoQqQhgJxaY3KNsf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnodMxmYRGu1MOMZYX7c4X4c"></a></span>
+<p><span>它的</span><strong>核心缺点</strong><span>也有三:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1mj8J2oFUziDMags6yZRqg"></a></span>
+<ol>
+<li><strong>要维护一套重基础设施</strong><span>:切块策略、embedding 模型、向量库、reranker、同步逻辑——环节多、都可能坏;索引还会随源数据变化而漂移失同步,代码这种高频变动的数据尤其吃亏。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnecU3YMuMo3r9vswLZ8GN1f"></a></span>
+<ol start="2">
+<li><strong>检索是概率性的,会静默失败</strong><span>:语义召回不保证命中,答案可能就在库里却没被检索到,模型压根没看到——而它不会告诉你我没找到。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAB6qJf0FGfTaeMEcTrKWze"></a></span>
+<ol start="3">
+<li><strong>只能召回存在的片段,做不了全局推理</strong><span>:它给的是零散 chunk,回答不了两份文档之间缺了什么这类需要看全局的问题。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHciFDR6vEbQoDQIPozQkKf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnU8MWJqrXudKzW5cqCYeYUd"></a></span>
+<p><strong>再下结论——它在哪被取代、在哪没被取代。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLvPRB7U6jJ8lLxFckvZf3d"></a></span>
+<p><strong>传统 RAG 已在两类场景被更优方案取代:</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEyAc27Cx2KFA1RqFQIPPKc"></a></span>
+<ol>
+<li><strong>结构化数据(尤其代码)</strong><span>:字面精确、自带文件结构,</span><span><span><span>grep / 文件导航</span></span></span><span>又快又准还免维护,不需要语义那一层——Claude Code 弃用 RAG 正是这个原因(性能更好 + 无索引漂移 + 无安全负担)。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcndaNAy7GcYUFhsNdAfHykKd"></a></span>
+<ol start="2">
+<li><strong>有界 + 需全局推理的数据</strong><span>(单份合同、整本书对比):</span><span><span><span>长上下文</span></span></span><span>直接全塞进去,省掉整套检索栈,还避开了静默失败,反而更适合。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhL7nkk2fZfkTpI5036Rfaf"></a></span>
+<p><span>此外,即便需要语义,提供语义的活也</span><strong>不再由 embedding 独家承包</strong><span>:模型够强时,</span><span><span><span>Agentic + BM25</span></span></span><span>(模型自己重写 query,把语义翻译成关键词)也能达到甚至反超传统切块 RAG——所以 embedding </span><strong>从必选降为可选</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9bfX9cLkxuagdRFobjMh2c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6SxDdi345Fo6QRGF3kTC0c"></a></span>
+<p><strong>但传统 RAG 在这些场景仍不可替代</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWaHOf2shCeWv3Lbbu5KXJZ"></a></span>
+<ol>
+<li><strong>海量非结构化知识库</strong><span>(客服、法律、合规、企业 Wiki,乃至 TB/PB 级数据湖):长上下文只是杯水车薪,必须靠检索层先把数据过滤到能塞进窗口的量,向量库是目前唯一可行的仓库。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcntsZhfFM10BLTrv7h6E1Gfh"></a></span>
+<ol start="2">
+<li><aside class="lesson-clarification" id="lesson-clarification-8" data-course-correction="8"><p><strong>更正：</strong>离线索引可降低部分在线检索开销，但应分别测建库、更新、检索、重排和生成的成本及尾延迟；具体倍率与阈值需附实验条件。</p><details><summary>查看解释与参考资料</summary><p>毫秒级命中、固定低成本及唯一能满足预算均没有给出负载、索引规模、模型与测量范围；本文反复出现的2–5倍token和两个数量级成本也不能当通用指标。</p></details></aside><strong>延迟 / 成本有硬约束的生产环境</strong><span>:面向大量用户的语义问答系统、有明确延迟与成本 SLA(如高并发客服问答),既不能对每个 query 跑多轮 agentic 检索(太慢、2–5x token),也不能每次把知识库塞进长上下文(装不下、更贵)。预建索引的 RAG 一次检索、毫秒级命中、每查询成本固定且低——这时它是唯一能同时扛住并发与预算的方案。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVzbE123M7CEUDIVyeONong"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcntWhyqVxet9RYposUo0lHpc"></a></span>
+<p><strong>RAG 仍具显著优势(虽未到不可替代)的场景:</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSw8SpoaUyxjxzlK5m19hTb"></a></span>
+<p><strong>强依赖语义搜索、但同时在意成本与速度</strong><span>:这类任务 </span><span><span><span>Agentic + BM25</span></span></span><span> 确实能取得相同甚至更好的效果——所以谈不上不可替代。但 agentic 方案</span><strong>强依赖顶级模型能力</strong><span>(query 重写要够聪明才补得出语义),还要付出多轮迭代的 </span><strong>2–5x token 和更高延迟</strong><span>。相比之下,传统 RAG 把语义</span><strong>预先烧进索引</strong><span>,一次检索即得,</span><strong>更快、更省、且不挑模型</strong><span>(不需要 Opus/GPT-5 级也能跑)。所以当语义需求强,但你不愿为 agentic 买单时,RAG 虽非不可替代,仍是</span><strong>性价比更优的一档</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4yowOgMz804yqAjkDnVJWf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmOnhPagjGQdOzXjUEBK0SH"></a></span>
+<p><strong>一句话:</strong><span>传统 RAG 从默认必选降级为</span><strong>按需启用的一档</strong><span>——</span><strong>在小型/结构化/有界场景被 grep、长上下文、agentic 搜索取代</strong><span>;</span><strong>在海量非结构化、以及对延迟成本有硬约束的生产场景仍不可替代</strong><span>;即便在 agentic 可替代的语义场景,它也常因更快、更省、不挑模型而保有优势。而广义 RAG(检索)作为一切 Agent 的地基,永远不会过时。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOFAB82RexK58nbhB26bxBc"></a></span>
+<h4 id="section-9"><span>16.9.4 场景题小测试</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKdiY4ueqUmAvHY6YmZWBQh"></a></span>
+<p><span>我们上面讲了，狭义的RAG变成了按需取用，它只是Agent检索能力的一种实现方式。那么对于不同的场景，我们应该如何选择方案呢？这里给一些场景和选型策略供大家参考。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEvpmCZ4VKfEunPA4m0g79R"></a></span>
+<p><span>思路统一为三步——</span><strong>看数据结构化程度 → 看规模 → 看查询形态</strong><span>,能用轻的就不上重的。</span></p>
+<div id="src-feishu-doxcnz74iu8RGOks4M8hVuBH9Nc"><img src="/momomian/assets/f1ee4bd31e9277eb08ca.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbVP8lfAzJtnORoPiDtwK7d"></a></span>
+<p><strong>最佳实践清单</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOjR6LCq9e35OsmykKiPr6d"></a></span>
+<ol>
+<li><strong>默认 grep 起手</strong><span>:90% 的代码搜索靠 grep 就够,别一上来就上向量库。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIAXCE9Qh1tLekd1058ATxc"></a></span>
+<ol start="2">
+<li><strong>量级到了再加 BM25</strong><span>:代码库 >5GB 或 >10w 文件,包一个 Skill 封装 </span><span><span><span>ripgrep --index</span></span></span><span> 或 BM25 库。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwRmkfQs9kWxj4x8K15Vvfg"></a></span>
+<ol start="3">
+<li><strong>跨同义词才用 embedding</strong><span>:日常代码定位别用,跨语言 / 跨概念查找才上语义搜索。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1dN2USLjQIxut8S0NG4C8f"></a></span>
+<ol start="4">
+<li><strong>模型够强就上 Agentic RAG</strong><span>:让模型自己重写 query、按文件级迭代,比预切 chunk 更准(代价 2–5x token)。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQ5ji44tMre9WGZlJl6Vkjc"></a></span>
+<ol start="5">
+<li><strong>文件级 > chunk 级</strong><span>:能不切块就不切块,整文件交给模型,避免上下文撕裂。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKrRTuFNhcqsuJfRTU6zHCf"></a></span>
+<ol start="6">
+<li><strong>需要 metadata join 才迁数据库</strong><span>:纯文本搜索别上 DB。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnczKI5LRCLEcETop9flWMmd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnj1P4OfrlYG2yka3VEF1gVf"></a></span>
+<p><strong>Q:我在做一个 coding agent,要在中小代码库里定位函数/改代码,用什么?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRKiQ3UEnp8OrbVnNutqbwe"></a></span>
+<p><span>A:用 </span><span><span><span>grep / ripgrep</span></span></span><span>,不建任何索引。代码是结构化数据,字面精确,grep 现扫就 100% 命中且免维护;本地项目规模不大,线性扫盘足够快。这正是 Claude Code 的选择。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCY3eeT5KGvK25X9IGFDubb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqBqcXNQDXA4rQiFKUmwQSh"></a></span>
+<p><strong>Q:代码库超大(比如 100GB、上千万文件),grep 扫盘太慢了怎么办?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngKgZuusoN9IUe6Yduuks8g"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-9" data-course-correction="9"><p><strong>更正：</strong>倒排索引可避免每次扫描全文，但实际复杂度与posting列表、查询和实现有关，应在目标规模与并发下测量。</p><details><summary>查看解释与参考资料</summary><p>BM25是相关性评分方法，检索开销还取决于倒排表长度、查询词、剪枝策略、过滤与候选数，不能概括为与语料规模无关。</p><p><a href="https://www.elastic.co/docs/solutions/search/ranking" target="_blank" rel="noopener noreferrer">Elastic：BM25与全文检索评分 ↗</a></p></details></aside><p><span>A:加一层 </span><span><span><span>BM25 倒排索引</span></span></span><span>(包成 Skill 挂给 agent)。它查询 O(K)、与库大小无关,解决 grep 线性扫盘的慢;仍是词法匹配,不碰 embedding。这是规模把你从零索引推到轻索引,不是因为需要语义。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS3UQdjazplT8F7HLGOXpgc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQ1aqlfLJ0EJsmO0WeKQWqe"></a></span>
+<p><strong>Q:要查用户鉴权相关的代码,但关键词散在 auth / login / session / jwt 里,grep 搜不全?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1SC3ktvjEVxAnHDedd4n8d"></a></span>
+<p><span>A:这是跨同义词/跨概念的查找,字面匹配天然漏召回,有两条路都能走,按模型强度 vs 成本/延迟权衡:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJdKG9B8jaB8BR7zCrrFQDf"></a></span>
+<ul>
+<li><strong><span><span>embedding 语义搜索</span></span></strong><span>:预建向量库,靠向量捕捉概念相似,一次召回稳定拿到结果,查询快、单次成本低——适合成本/延迟敏感或高频查询。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSViFZEbOzSMpmpr14RFQEc"></a></span>
+<ul>
+<li><strong><span><span>Agentic + grep/BM25</span></span></strong><span>:让模型自己把用户鉴权重写成 </span><span><span><span>auth|login|session|jwt</span></span></span><span> 一组关键词、多轮迭代搜。省掉建索引,但要求模型能力够强,且多轮迭代 token 和延迟更高。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcngp3jYNqskPlyBW5J40WQae"></a></span>
+<p><span>注意:日常精确定位(已知函数名)别用这两种,grep 直接命中就好。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJ8h9M6YWiV09M23bASOWZd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMXEfg5fJOzGAYURM84CRoc"></a></span>
+<p><strong>Q:要分析一份合同、或对比两份文档找出遗漏了什么,用 RAG 吗?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkcoEI1jaXWzez73p5sBJyg"></a></span>
+<p><span>A:不唯一,看数据量和关联复杂度选:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnz9iLVa7YHKn4Ah7p2Cmucd"></a></span>
+<ul>
+<li><strong>数据塞得下 → </strong><strong><span><span>长上下文</span></span></strong><strong>直接全塞进去</strong><span>:需要全局推理,让模型看到全貌才能发现文档之间的空缺,还省掉检索栈、避开静默失败。这是有界数据的首选。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWnjTHN6Nk4XIWkcrgaFX6g"></a></span>
+<ul>
+<li><strong>数据太大塞不下 → 仍要 </strong><strong><span><span>RAG</span></span></strong><strong> 先过滤</strong><span>:普通向量 RAG 只给零散 chunk 容易看不到全局,可退而用它把范围缩到能塞进窗口的量再做对比。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnac6DOSC6W2oiaRqO5srUxe"></a></span>
+<ul>
+<li><strong>实体/条款间有复杂关联 → </strong><strong><span><span>GraphRAG</span></span></strong><span>:先把文档抽成实体-关系图,用图结构显式建立这条需求 ↔ 那条发布说明的关联,比纯向量召回更能支撑缺了什么这类跨文档推理。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvEgxzscY7ybyQeV9eh82Bb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVvh4iiBoBEdtlB2F6qNXpb"></a></span>
+<p><strong>Q:要给公司几十万份客服/法律/Wiki 文档做问答系统,用什么?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnajvD70PEkNqaYoPqMH5Jrh"></a></span>
+<p><span>A:标准 </span><span><span><span>传统 RAG</span></span></span><span>(切块 + embedding + 向量库)。典型的海量非结构化数据:字面对不上、靠概念含义组织、塞不进上下文——必须靠语义检索 + top-k 降噪,这是 RAG 的主场。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTCahx0kLDRQrsK08C0Bmuh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXFYh6ZzTRBF597ifEB9Leg"></a></span>
+<p><strong>Q:企业数据到了 TB / PB 级,长上下文完全装不下,怎么办?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjgU0A3tooxx6miJbvovDbb"></a></span>
+<p><span>A:必须有 </span><span><span><span>RAG 检索层</span></span></span><span>。百万 token 在这种量级只是杯水车薪,得先用向量检索把数据过滤到能塞进窗口的量;向量库是目前唯一可行的仓库。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnm7dk0sITzmMRp3jWZGlbQe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOvIvmN0gEgZaS1qB3CcygL"></a></span>
+<p><strong>Q:查询需要按作者过滤 + 按提交时间排序 + 按路径匹配这种带条件的检索?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZEdW2g178uiaUHLDXFo6Zc"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-10" data-course-correction="10"><p><strong>更正：</strong>按字段过滤、排序和JOIN的具体需求选择支持这些能力的引擎；向量或全文检索可与元数据过滤组合，JOIN只在需要关联多个数据集合时引入。</p><details><summary>查看解释与参考资料</summary><p>向量检索产品可以带元数据过滤和排序能力，正文将相似计算与完整产品能力混为一谈；字段过滤也不必然需要JOIN。</p><p><a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener noreferrer">pgvector：关系条件与向量检索 ↗</a></p></details></aside><p><span>A:上 </span><span><span><span>结构化 DB / metadata 索引</span></span></span><span>(可与 RAG 混合)。这已经不是找相关内容而是按字段筛选 join,grep 和向量都做不了,需要数据库式的字段过滤。纯文本搜索则别上 DB。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjqVfo5201K3Za7ItKJWFRb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnT7vfyVVrJ8uTYeAqp43Gwf"></a></span>
+<p><strong>Q:模型够强(Opus / GPT-5 级)、预算也够,想要最好的检索质量?</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYiUtoenJHMPApHNKIAcdnf"></a></span>
+<p><span>A:上 </span><span><span><span>Agentic RAG</span></span></span><span>——让模型自己重写 query、按文件级迭代检索,底层用 BM25 / embedding / 混合都行,坚持文件级 > chunk 级避免上下文撕裂。代价是多花 2–5x token 和延迟,换来更高准确率。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvPVW33eV28YZZBN4zqDLgA"></a></span>
+<h4 id="section-10"><span>16.9.5 面试题</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvLCBjodz5k5fI5MZXrbbag"></a></span>
+<p><span>希望大家能真的理解上面说的，有自己的思考。那么如果从这些维度想清楚了，下面的面试问题的答案其实就非常明显了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5fN1kOMwPt9zrLgy2a32Fu"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMbtmXJTOCRZ0ghI0kbreZe"></a></span>
+<h4 id="section-11"><span>16.9.5.1 Q1:你认为 RAG 过时了吗?</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoLgw5yrehko2OyH5pFO5Tf"></a></span>
+<p><strong>A:我的判断是——传统 RAG 在部分场景被降级,但整体没有过时,更准确地说是换了形态。回答这个问题,必须先厘清在讨论哪个 RAG。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0NffH6TdZpcVfJcHjCsXvf"></a></span>
+<p><span>大家喊RAG 已死时,死的是</span><strong>切块 + embedding + 向量库 + 语义召回这套传统管线</strong><span>;而 RAG 的本意是把外部信息检索进上下文,这个</span><strong>广义 RAG 是所有 Agent 的地基,不可能死</strong><span>。连 Agentic RAG 本身也仍然是 RAG,只是把一次检索变成迭代检索。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnErZ49hwOE4RaO0vJJvFJBg"></a></span>
+<p><span>传统 RAG 确实在退位,有两股力量:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuDAdsEMefx79LjiHSjsVGb"></a></span>
+<ul>
+<li><strong>一是长上下文</strong><span>:百万 token 窗口让有界数据 + 全局推理的场景(如分析单份合同、对比两份文档找缺漏)可以直接把文档全塞进去,省掉整套检索基础设施,还避免了语义搜索的静默失败。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcngBUh3ximM3o8SEM4rkJaPc"></a></span>
+<ul>
+<li><strong>二是 Agentic 搜索</strong><span>:模型变强后,它能自己重写 query、多轮迭代检索,有实验(Raj)显示Agentic + 纯 BM25能反超One-shot + embedding 切块——说明语义近似这层不一定非靠 embedding。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN2cM98SJRkrhCAIhFQ784b"></a></span>
+<p><strong>但传统 RAG 在三类场景仍不可替代</strong><span>:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx9Gg8pmHV96LNm8i9o1KVh"></a></span>
+<ul>
+<li><strong>① 海量数据(企业 TB/PB 级)</strong><span>:这种量级下长上下文根本装不下,只是杯水车薪;而且如果不上 RAG、改用 agentic 现扫,面对无限数据每次查询都要海量扫描,</span><strong>速度会慢到不可用</strong><span>。必须靠检索层先把数据过滤到能塞进窗口的量,向量库是目前唯一可行的仓库。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOBNvFxe9og2kZ4UjEZMjce"></a></span>
+<ul>
+<li><strong>② 非结构化 + 跨同义词</strong><span>:内容靠概念含义组织、字面对不上,关键词根本搜不到,只有 embedding 捕捉概念相似才能召回。虽然Agentic + 语义检索(让模型自己重写 query)理论上也能达到,</span><strong>但这要求模型能力足够强,且多轮迭代的 token 成本和延迟都很高</strong><span>;用预建的 embedding 向量库,一次召回就能稳定拿到结果,更省更快。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEi1tDrIra62sKiSHJ3jOy5"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-11" data-course-correction="11"><p><strong>更正：</strong>按选定ANN实现及目标召回率评估查询开销，不为所有向量索引承诺O(log N)或必然命中。</p><details><summary>查看解释与参考资料</summary><p>近似最近邻不是单一算法，复杂度和召回取决于索引类型、参数、维度及数据分布，也不保证一次命中。</p></details></aside><strong>③ 成本 / 延迟敏感的场景</strong><span>:当你需要严格控制查询成本和响应速度时,</span><strong>事先建好索引</strong><span>的优势就出来了——切块 + 建索引只在离线做一次,查询时只拉 top-k 个小 chunk,近似最近邻 O(log N) 一次命中;相比每次都让模型读整份文档或多轮 agentic 扫描,</span><strong>延迟更低、单次查询成本可低约两个数量级</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcndUvTBGp1Y0fvaSDhglxKec"></a></span>
+<p><strong>所以结论是:RAG 从默认必选降级为按需启用的一档,而不是被淘汰。</strong><span> 判断要不要用,看三个条件:</span><strong>文档规模、查询是否需要跨同义词、以及对成本 / 延迟的要求。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuoz9Q4qqUtEP2a5og4UuRf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb5OSD2vZllyOHi8QbFV0Ef"></a></span>
+<h4 id="section-12"><span>16.9.5.2 Q2:你如何选择用不用 RAG?如何设计项目的检索模块?</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfjBsdl4FRDI5RTVI0c3nSd"></a></span>
+<p><strong>A:核心原则是——不要把通用工具当万能工具,而要按场景在检索谱系上选一档;能用轻的就不上重的。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4ErLtcSJxEvrsG0tO3ymzg"></a></span>
+<p><span>我会分三步走:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8CFXbbsQN1SU44K4FDkA3e"></a></span>
+<p><strong>第一步,看任务量级和查询形态。</strong><span> 先问两个问题:数据多大(单项目 / 超大代码库 / 企业级数据湖)?查询是纯文本、跨同义词、还是带字段过滤?</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp1XfLzmd4qumUCLaOEfS1b"></a></span>
+<p><strong>第二步,在检索谱系上选档。</strong><span> 检索工具从词法到语义是一条谱系,不是二选一,从轻到重依次是:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpEoVzrm1o8iVvm5ftZU0lf"></a></span>
+<ul>
+<li><strong>词法 · 精确(grep / ripgrep)</strong><span>:适用于结构化数据、中小代码库(默认起手,90% 够用)。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqKCP3MNcRnyqjcfXEeqdOh"></a></span>
+<ul>
+<li><strong>词法 · 倒排(BM25)</strong><span>:适用于超大代码库(>5GB / >10w 文件)。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcngYqayJsN5Lxd5COQZ9yBtf"></a></span>
+<ul>
+<li><strong>语义(embedding + 向量库)</strong><span>:适用于非结构化、跨语言 / 跨同义词。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYm6H76Z3tAVWdu5Nvi2wAf"></a></span>
+<ul>
+<li><strong>结构化(DB + metadata)</strong><span>:适用于需要 join 的场景(按 author 过滤、按时间排序)。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcndcKtdyK6pxWdeftEjLvCkh"></a></span>
+<p><span>具体判据:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0c9kX7LY2iT4G4Fexf2s5d"></a></span>
+<ul>
+<li><strong>默认 grep 起手</strong><span>;结构化数据 + 精确匹配,根本不用 RAG。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyJ3kXhYnCiA4dKPNANfpqd"></a></span>
+<ul>
+<li><strong>规模上去了加 BM25</strong><span>;跨同义词才上 embedding。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF9QCeLpIHiknOWzR3pJTgb"></a></span>
+<ul>
+<li><strong>有界数据 + 全局推理</strong><span> → 优先考虑长上下文,而非 RAG。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhYHI5t5Zj4jEm9uiAweJhh"></a></span>
+<ul>
+<li><strong>海量非结构化</strong><span> → 传统 RAG 是唯一可行仓库。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIRAgMSZv5Hm4THnxgmt7zd"></a></span>
+<ul>
+<li><strong>需要 metadata join</strong><span> → 结构化 DB + RAG 混合。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcncLuwPYhpAm5zXgfYIdOV7f"></a></span>
+<ul>
+<li><strong>模型够强 + 预算够</strong><span> → 上 Agentic RAG(底层 BM25 / embedding / 混合均可),让模型自己迭代,并坚持</span><strong>文件级 > chunk 级</strong><span>,避免上下文撕裂。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn71XJRKecBeFlW90BYiDgpb"></a></span>
+<p><strong>第三步,用 Skill / 工具封装,交给 agent 按需调用。</strong><span> 更前沿的做法是</span><strong>给 agent 同时配好精确搜索 + 语义搜索两种工具</strong><span>,让它根据具体 query 自己决定走哪条路——这就是桥接思路。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnENBV74MS68965ylzRsaKkc"></a></span>
+<p><span>一句话:</span><strong>检索模块的设计,本质是 harness 工程——agent 的能力上限不只取决于模型,更取决于你给它配的工具链。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1zdIdPQ6wIXFpXXdn0vsgg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpN3kbI3PiNLCwCFNLItNae"></a></span>
+<h4 id="section-13"><span>16.9.5.3 Q3:Claude Code 为什么不用 RAG?</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVO4djcmumVrJI7GWCNsEzg"></a></span>
+<p><strong>A:先纠正一个常见误解——不是不能用,而是核心不内置那套向量库管线。原因来自数据环境和工程权衡两方面,Claude Code 核心作者 Boris Cherny 给过第一手复盘。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnimGxYhguOB1VCTIaMTRQIf"></a></span>
+<p><strong>先说根本原因:决定用不用 RAG 的是数据环境,不是任务类型。</strong><span> Claude Code 虽然是通用 agent,但它面对的数据环境永远是</span><strong>本地文件系统 + 终端</strong><span>——有界(单个项目)、天然结构化(文件夹 / 路径 / 文件名)、可直接 grep。这种环境用 agentic search + 长上下文就够了。而 RAG 的刚需场景是海量 + 非结构化 + 无法直接导航的企业级知识库,Claude Code 的工作目录一条都不占。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLHsyHmpO17v9VIj4R6oAFf"></a></span>
+<p><strong>再说 Boris 的三条具体理由</strong><span>(早期 Claude Code 确实用过 Voyage embedding 建索引,后来放弃):</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEfLh8m1F9A5UxivQOxz2Rf"></a></span>
+<ol>
+<li><strong>性能</strong><span>:agentic search全面碾压,大幅度(他坦承主要凭内部 vibes,也有内部 benchmark)。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4rd1ya3luzwcrTxX5D8myg"></a></span>
+<ol start="2">
+<li><strong>代码漂移</strong><span>:代码改动极频繁,向量索引很快out of sync,维护成本高。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIbfWUXd9I2gcP6qzeGoFgz"></a></span>
+<ol start="3">
+<li><strong>安全 / 责任</strong><span>:索引要存在某处,服务商被黑就是巨大的责任风险,Anthropic 不愿上传敏感代码。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLFmm1mBEMWzMVs9UBcNNnb"></a></span>
+<p><span>他的总结:</span><strong>代价是延迟和 token,但换来极棒的搜索,且没有安全隐患。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCwojCRO76kkpl17tIIg2Mz"></a></span>
+<p><strong>补充两点让回答更完整</strong><span>:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJipNuiS7c1liMHDIjDH7Hh"></a></span>
+<ul>
+<li><span>代码是</span><strong>结构化</strong><span>数据,拼写精确、自带文件结构,grep 能精确命中,本就不需要 embedding 的语义近似超能力。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnScqGvhGFBFRLH1AvZJFQRd"></a></span>
+<ul>
+<li><span>Claude Code 不内置 RAG,</span><strong>不代表它做不了 RAG</strong><span>——它可以通过 MCP / 工具外挂一个语义检索能力。</span><strong>RAG 对它是按需外挂,不是出厂内置。</strong><span> 为了少数场景让所有用户默认背上索引复杂 + 漂移 + 安全责任这套包袱,不划算;核心保持精简,谁真需要谁再插上去。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDx2NoOLCW4XPV1U1UD338c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhTEWPdLuqB09uq1bPnMpG3"></a></span>
+<h4 id="section-14"><span>16.9.6 讲解视频</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzHrC5jNie19eIKQt4HXnCw"></a></span>
+<p><span><span><a href="https://www.bilibili.com/video/BV1YdMp6kEEf/?spm_id_from=333.1387.homepage.video_card.click&#x26;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer"></a><a href="https://www.bilibili.com/video/BV1YdMp6kEEf/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1YdMp6kEEf/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b</a></span></span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVbAhixOjVklrZC8b07PFrK"></a></span></div></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-topic" class="lesson-resource-group" aria-label="主题补充（选看）"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">主题补充（选看）</h3><p class="resource-scope">按课程标题关联，帮助补充原理；不对应本课的具体代码版本或每个知识点。</p><p class="resource-topic-link"><a class="text-link" href="/momomian/lessons/feishu-8f059f0e81/#lesson-resource-1">在主讲课复习此视频 →</a><span class="reading-meta">RAG：原理、实践和应用场景</span></p><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://adp.xindoo.xyz/chapters/Chapter%2014_%20Knowledge%20Retrieval%20(RAG)/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 14 章：知识检索（RAG） <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 入门</span><p>对照检索、上下文组织和生成链路，检查证据在哪里进入回答。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="feishu-b182165a33" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：RAG：RAG的趋势探讨。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-feishu-b182165a33-1","version":1,"type":"single","stage":"lesson","concept":"feishu-b182165a33","prompt":"本课讨论“RAG已死”前，为什么先区分传统与广义检索？","options":[{"id":"option-1","text":"避免把某种向量管线的取舍扩大成全部外部检索失效","reason":"传统切块向量召回是一条具体实现，广义讨论还包含grep、SQL等获取外部信息的方式；结论需先明确讨论范围。"},{"id":"option-2","text":"为了证明只要不用向量库就不可能检索信息","reason":"不用向量库仍可通过字面搜索、数据库或网络查询获取信息。"},{"id":"option-3","text":"因为任何检索方法的输入输出都完全一致","reason":"检索方法在数据结构和约束上不同，不能视为接口完全相同。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"避免把某种向量管线的取舍扩大成全部外部检索失效。","explanation":"传统切块向量召回是一条具体实现，广义讨论还包含grep、SQL等获取外部信息的方式；结论需先明确讨论范围。需要区分的是：不用向量库仍可通过字面搜索、数据库或网络查询获取信息。检索方法在数据结构和约束上不同，不能视为接口完全相同。","analysisSteps":["传统切块向量召回是一条具体实现，广义讨论还包含grep、SQL等获取外部信息的方式；结论需先明确讨论范围。","排除“为了证明只要不用向量库就不可能检索信息”：不用向量库仍可通过字面搜索、数据库或网络查询获取信息。","代入案例检查：给定编码Agent改用grep查文件，只能说明检索方式改变，不能说它不再获取外部信息。"],"workedExample":"给定编码Agent改用grep查文件，只能说明检索方式改变，不能说它不再获取外部信息。","evidence":{"quote":"义召回这套 具体管线 。现状是在 部分场景 (尤其","href":"/lessons/feishu-b182165a33/#src-feishu-doxcnNt8nskJPWRQy5FaJKh9h6g"},"misconception":"不用向量库仍可通过字面搜索、数据库或网络查询获取信息。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-b182165a33/#src-feishu-doxcnNt8nskJPWRQy5FaJKh9h6g"}]},{"id":"lx-feishu-b182165a33-2","version":1,"type":"single","stage":"lesson","concept":"feishu-b182165a33","prompt":"本课说模型不知道私有资料，系统首先要解决什么？","options":[{"id":"option-1","text":"在需要时把相关外部数据注入当前上下文","reason":"参数中没有的私有信息需要可用的数据访问和上下文组织，检索是实现方式之一；名称变化不能提供实际资料内容。"},{"id":"option-2","text":"只扩大上下文窗口，不提供可读取的私有资料","reason":"窗口是容量，内容仍需接入；空的大窗口不会自动知道私有知识。"},{"id":"option-3","text":"只附资料标题而不让模型读取相关正文","reason":"标题可能说明主题，但不足以支持正文事实与具体条款回答。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"在需要时把相关外部数据注入当前上下文。","explanation":"参数中没有的私有信息需要可用的数据访问和上下文组织，检索是实现方式之一；名称变化不能提供实际资料内容。易混点：窗口是容量，内容仍需接入；空的大窗口不会自动知道私有知识。标题可能说明主题，但不足以支持正文事实与具体条款回答。","analysisSteps":["参数中没有的私有信息需要可用的数据访问和上下文组织，检索是实现方式之一；名称变化不能提供实际资料内容。","排除“只扩大上下文窗口，不提供可读取的私有资料”：窗口是容量，内容仍需接入；空的大窗口不会自动知道私有知识。","用例检验：给定内部报销制度未公开，先检索相关条款并提供给回答步骤。"],"workedExample":"给定内部报销制度未公开，先检索相关条款并提供给回答步骤。","evidence":{"quote":"上下文注入(context injection)","href":"/lessons/feishu-b182165a33/#src-feishu-doxcnzGcJu8syaIVXwXH7xWGQaf"},"misconception":"窗口是容量，内容仍需接入；空的大窗口不会自动知道私有知识。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-b182165a33/#src-feishu-doxcnzGcJu8syaIVXwXH7xWGQaf"}]},{"id":"lx-feishu-b182165a33-3","version":1,"type":"single","stage":"lesson","concept":"feishu-b182165a33","prompt":"本课为何把数据结构化程度作为检索选型依据？","options":[{"id":"option-1","text":"明确表结构、代码标识或自然语言语义会影响合适查询方式","reason":"检索要匹配数据组织和问题需求，自然语言模糊表达与精确字段、符号查询适用的方式可能不同，应比较实际效果与成本。"},{"id":"option-2","text":"只要文档数量超过十篇就必须用同一种向量库","reason":"数量只是规模因素，不能单独替代数据形态和查询需求判断。"},{"id":"option-3","text":"数据结构只影响存储大小，与查询方式选择无关","reason":"字段、符号和自然语言的组织差异会影响精确查询或语义检索的适用性。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"明确表结构、代码标识或自然语言语义会影响合适查询方式。","explanation":"检索要匹配数据组织和问题需求，自然语言模糊表达与精确字段、符号查询适用的方式可能不同，应比较实际效果与成本。易混点：数量只是规模因素，不能单独替代数据形态和查询需求判断。字段、符号和自然语言的组织差异会影响精确查询或语义检索的适用性。","analysisSteps":["检索要匹配数据组织和问题需求，自然语言模糊表达与精确字段、符号查询适用的方式可能不同，应比较实际效果与成本。","排除“只要文档数量超过十篇就必须用同一种向量库”：数量只是规模因素，不能单独替代数据形态和查询需求判断。","用例检验：给定统计员工年龄可用字段聚合，查语义相近的政策解释可评估文本检索。"],"workedExample":"给定统计员工年龄可用字段聚合，查语义相近的政策解释可评估文本检索。","evidence":{"quote":"数据的结构化程度","href":"/lessons/feishu-b182165a33/#section-5"},"misconception":"数量只是规模因素，不能单独替代数据形态和查询需求判断。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-b182165a33/#section-5"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-b182165a33-1" disabled><legend><span class="quiet-tag">单选</span> 1. 本课讨论“RAG已死”前，为什么先区分传统与广义检索？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-b182165a33-1" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-1" value="option-1"><span>避免把某种向量管线的取舍扩大成全部外部检索失效</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-1" value="option-2"><span>为了证明只要不用向量库就不可能检索信息</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-1" value="option-3"><span>因为任何检索方法的输入输出都完全一致</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-b182165a33-2" disabled><legend><span class="quiet-tag">单选</span> 2. 本课说模型不知道私有资料，系统首先要解决什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-2" value="option-1"><span>在需要时把相关外部数据注入当前上下文</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-b182165a33-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-2" value="option-3"><span>只附资料标题而不让模型读取相关正文</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-2" value="option-2"><span>只扩大上下文窗口，不提供可读取的私有资料</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-b182165a33-3" disabled><legend><span class="quiet-tag">单选</span> 3. 本课为何把数据结构化程度作为检索选型依据？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-3" value="option-2"><span>只要文档数量超过十篇就必须用同一种向量库</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-3" value="option-3"><span>数据结构只影响存储大小，与查询方式选择无关</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-b182165a33-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-b182165a33-3" value="option-1"><span>明确表结构、代码标识或自然语言语义会影响合适查询方式</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-b182165a33">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="feishu-b182165a33" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构根据本课原文自动整理，术语通用释义与迁移问题为本站补充。它不代表逐课人工审定或原文代码已运行。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><div class="lesson-guide-prerequisites"><h3>建议先修</h3><ul><li><a href="/momomian/roadmap/#agent">手写 Agent 与记忆</a><span class="small muted"> · 先能解释这个单元的输入、输出与限制，再阅读「RAG：RAG的趋势探讨」。</span></li></ul></div><h3>这次阅读的目标</h3><ol><li>先限定RAG所指范围，再按精确符号、语义、字段过滤和全局比较选择检索候选。</li><li>用代码中的未知函数名或需求到实现映射举出grep不能直接保证命中的情况。</li><li>比较检索与长上下文时记录召回、答案支持、总延迟和总成本，不用未注明范围的倍率代替测量。</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>上下文窗口</dt><dd>单次模型处理所能容纳的信息范围。放进窗口的信息与存到外部数据库的信息不同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnzGcJu8syaIVXwXH7xWGQaf">回看本课上下文</a></span></dd></div><div><dt>RAG</dt><dd>先从资料中取回相关内容，再将检索结果作为生成回答的上下文；检索与回答依据应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn9vC4UrsUhFXxLya9LnQDzf">回看本课上下文</a></span></dd></div><div><dt>精排与召回</dt><dd>先取回候选再筛选或排序的过程。需要区分候选覆盖与最终结果的适用性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn1f5qjJHGGFjkvnNXI2ptoc">回看本课上下文</a></span></dd></div><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn9vC4UrsUhFXxLya9LnQDzf">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnzGcJu8syaIVXwXH7xWGQaf">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnLiPyzDNd1Arjs29XG3W89f">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnGuznpcedcQqLrxGkE01RNT">回看本课上下文</a></span></dd></div><div><dt>Embedding</dt><dd>将文本等对象表示为数值向量的方法，用于比较或检索；向量相近不自动证明事实正确。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn790B8RWRHpZJOgBc6LrNRc">回看本课上下文</a></span></dd></div><div><dt>Chunk</dt><dd>为索引和检索划分的内容片段。片段应保留必要上下文和来源，边界需要结合资料结构选择。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn790B8RWRHpZJOgBc6LrNRc">回看本课上下文</a></span></dd></div><div><dt>Top-k</dt><dd>按指定分数或顺序取前 k 个候选。候选数量、排序质量与回答可信度是不同问题。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn5sYiTpCocMtDiIqLudTJVf">回看本课上下文</a></span></dd></div><div><dt>Rerank</dt><dd>对已经召回的候选重新排序。重排只能处理进入候选集的内容，不能保证补回遗漏资料。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnPBPTB4ANxA6oZvB83TpqTc">回看本课上下文</a></span></dd></div><div><dt>MCP</dt><dd>连接模型应用与工具、资源等能力的协议。协议一致性不代替工具授权或业务安全检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnScqGvhGFBFRLH1AvZJFQRd">回看本课上下文</a></span></dd></div><div><dt>HTTP</dt><dd>客户端与服务端交换请求和响应的协议；方法、状态码、响应体和业务结果分别提供信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnzHrC5jNie19eIKQt4HXnCw">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnNG6vvRep5k043qjkiPZy7c">回看本课上下文</a></span></dd></div><div><dt>SQL</dt><dd>用于关系数据操作的语言。模型生成的查询也需要结构、权限、资源范围和结果检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnXROssl3KPAvMQPygbKrxHc">回看本课上下文</a></span></dd></div><div><dt>注意力</dt><dd>根据输入表示计算并汇总相关信息的机制。权重不是对模型所有行为的完整因果解释。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn5sYiTpCocMtDiIqLudTJVf">回看本课上下文</a></span></dd></div><div><dt>GPT</dt><dd>常用于生成任务的一类自回归语言模型家族；具体上下文、能力和接口取决于所用模型。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnSw8SpoaUyxjxzlK5m19hTb">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn1f5qjJHGGFjkvnNXI2ptoc">回看本课上下文</a></span></dd></div><div><dt>向量数据库与索引</dt><dd>组织向量并提供相似检索的系统或组件。是否支持元数据、持久化和更新取决于具体实现，需要分别核对。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn790B8RWRHpZJOgBc6LrNRc">回看本课上下文</a></span></dd></div><div><dt>命令行</dt><dd>通过文本命令操作程序的界面。先确认当前目录、输入参数和命令的实际副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnimGxYhguOB1VCTIaMTRQIf">回看本课上下文</a></span></dd></div><div><dt>长上下文视角</dt><dd>长上下文视角——《Is RAG still needed? Choosing the best approach for LLMs》（YT视频）<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcncMjHHTXytC8X9gqlRfcs3J">回看本课上下文</a></span></dd></div><div><dt>结构化数据视角</dt><dd>结构化数据视角——《Why the best AI coding tools abandoned RAG (and what they use instead) / Is RAG Dead?》（YT视频）<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn7d0q3zxsDBIxVxhdDWla4e">回看本课上下文</a></span></dd></div><div><dt>系统作者视角</dt><dd>系统作者视角——Boris Cherny(Claude Code 核心作者)在 Latent Space 播客的访谈<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnX2BKfPN8Iw0MxCnUFqJEgd">回看本课上下文</a></span></dd></div><div><dt>Harness 工程视角</dt><dd>Harness 工程视角——飞书「大模型笔记」2.4.1 Retrieval 章节(检索工具谱系 + Agentic RAG 实验)<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn1f5qjJHGGFjkvnNXI2ptoc">回看本课上下文</a></span></dd></div><div><dt>传统 RAG / 语义搜索</dt><dd>传统 RAG / 语义搜索:指切块 + embedding + 向量库 + 语义召回这套具体管线。现状是在部分场景(尤其编程)被替代。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnNt8nskJPWRQy5FaJKh9h6g">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>原文中的格式化示例或图示：背景 - 先把RAG这个词说清楚</h3><p class="small muted">这是保留格式的原文示例、伪代码或图示，不作为可执行代码。打开来源查看完整上下文。 <a href="#src-feishu-doxcn790B8RWRHpZJOgBc6LrNRc">打开完整来源段落</a></p><pre class="lesson-guide-example"><code>文档 → 切块(chunking) → embedding 模型编码成向量 → 存入向量数据库
+用户提问 → query 向量化 → 语义搜索(semantic search)召回最相关的若干 chunk → 注入上下文窗口 → 生成答案</code></pre><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-b182165a33-explain"><h3>1. RAG：RAG的趋势探讨 · 解释</h3><p>学习「RAG：RAG的趋势探讨」后，合上正文说明「RAG的趋势探讨」在解决什么问题。围绕原文“在2026年，我相信大家听过很多论调和讨论：RAG已死。我们现在Agent都不用RAG了。包括还有各种面试题：为什么ClaudeC…”复述一条具体关系，并区分已知与待确认的信息。</p><label class="lesson-task-field" for="task-lesson-card-feishu-b182165a33-explain">先写自己的回答<textarea id="task-lesson-card-feishu-b182165a33-explain" data-lesson-task-answer="lesson-card-feishu-b182165a33-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-b182165a33-explain">给一点提示</button><p class="lesson-task-hint" hidden>先回忆这一段：在2026年，我相信大家听过很多论调和讨论：RAG已死。我们现在Agent都不用RAG了。包括还有各种面试题：为什么ClaudeCode不用…</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：在2026年，我相信大家听过很多论调和讨论：RAG已死。我们现在Agent都不用RAG了。包括还有各种面试题：为什么ClaudeCode不用RAG了？你设计Agent架构的时候，到底要不要用RAG（202606滴滴面试真题）。包括还有一些你和面试官聊天的时候的讨论：你如何看待RAG的趋势，你觉得现在还需要不需要RAG？
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。</p><ul><li>指出「RAG的趋势探讨」讨论的对象或任务</li><li>复述原文中的一条具体关系：在2026年，我相信大家听过很多论调和讨论：RAG已死。我们现在Agent都不用RAG了。包括还有各种面试题：为什么ClaudeCode不用RAG了？你设计Agent架构的时候，到…</li><li>区分原文说法与自己尚未验证的推断</li></ul><a href="#src-feishu-doxcn9vC4UrsUhFXxLya9LnQDzf">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-b182165a33-explain">主要错因<select id="task-error-lesson-card-feishu-b182165a33-explain" data-lesson-task-error="lesson-card-feishu-b182165a33-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-b182165a33#lesson-card-feishu-b182165a33-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-b182165a33-apply"><h3>2. RAG：RAG的趋势探讨 · 条件</h3><p>把「RAG：RAG的趋势探讨」中的「背景 - 先把RAG这个词说清楚」放进一个具体使用场景：原文“RAG = Retrieval Augmented Generation(检索增强生成)。”提供了什么条件或步骤？再指出一种不能直接据此下结论的情况。</p><label class="lesson-task-field" for="task-lesson-card-feishu-b182165a33-apply">先写自己的回答<textarea id="task-lesson-card-feishu-b182165a33-apply" data-lesson-task-answer="lesson-card-feishu-b182165a33-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-b182165a33-apply">给一点提示</button><p class="lesson-task-hint" hidden>围绕「RAG = Retrieval Augmented Generation(检索增强生成)。」改变一个输入或适用条件。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：RAG = Retrieval Augmented Generation(检索增强生成)。
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。
+请把原文明确提供的条件与自己构造的反例分开；本课未给出的结果不能写成已验证事实。</p><ul><li>引用「背景 - 先把RAG这个词说清楚」的具体步骤或条件：RAG = Retrieval Augmented Generation(检索增强生成)。</li><li>写出一个与本课主题相关的使用场景</li><li>标明一个缺少信息或需要额外验证的判断</li></ul><a href="#src-feishu-doxcn2fYChFHsdPe0vqNhGfv3yh">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-b182165a33-apply">主要错因<select id="task-error-lesson-card-feishu-b182165a33-apply" data-lesson-task-error="lesson-card-feishu-b182165a33-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-b182165a33#lesson-card-feishu-b182165a33-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>原文提到「它要解决的是 LLM 的一个根本缺陷:模型被冻结在训练时刻——它不知道 5 分钟前发生的事,更不知道你的私有数据、内部 wiki、…」。如果这个条件不满足，会影响「RAG：RAG的趋势探讨」的哪一步？设计一个最小失败例子。</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>它要解决的是 LLM 的一个根本缺陷:模型被冻结在训练时刻——它不知道 5 分钟前发生的事,更不知道你的私有数据、内部 wiki、专有代码库。要让模型「知道」这些,就必须解决上下文注入(context injection):在正确的时间,把正确的数据放进模型的上下文窗口。</blockquote><ul><li>说明改变了哪个输入或条件</li><li>写出预期结果和验证方法</li><li>未运行时明确标注为待验证，不编造日志或指标</li></ul><a href="#src-feishu-doxcnzGcJu8syaIVXwXH7xWGQaf">回到原文依据</a></details><label class="lesson-task-field" for="boundary-feishu-b182165a33">写下最小失败输入、预期和验证方法<textarea id="boundary-feishu-b182165a33" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>将「RAG：RAG的趋势探讨」迁移到一份按日期更新的员工政策知识库：遇到“相似片段过期或互相冲突”时，你会怎样调整？以本课“在2026年，我相信大家听过很多论调和讨论：RAG已死。我们现在Agent都不用RAG了。包括还有各种面试题：为什么ClaudeC…”为依据，说明哪些信息能沿用，检查版本、检索覆盖和引用支持。</p><ul><li>指出本课中实际采用的一点：在2026年，我相信大家听过很多论调和讨论：RAG已死。我们现在Agent都不用RAG了。包括还有各种面试题：为什么ClaudeCode不用RAG了？…</li><li>说明新场景与原例子的差别</li><li>留下一个输入、预期结果和可复现的检查步骤</li></ul><label class="lesson-task-field" for="transfer-feishu-b182165a33">解释哪些能复用，哪些要重新验证<textarea id="transfer-feishu-b182165a33" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>不看原文说明「RAG的趋势探讨」的作用与适用范围</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>能引用本课的一条具体说明，并给出自己的例子</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>完成两次主动回忆并记录一个边界或失败问题</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>写下产物、验证方法和仍未确认的内容</span></label></fieldset><label class="lesson-task-field" for="artifact-feishu-b182165a33">产物、实际验证与未决问题<textarea id="artifact-feishu-b182165a33" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=feishu-b182165a33#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=feishu-b182165a33">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/path/"><small>返回课程</small><span>查看教学顺序</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1" class="nested">16.9 RAG的趋势探讨</a><a href="#section-2" class="nested">16.9.1 背景 - 先把RAG这个词说清楚</a><a href="#section-3" class="nested">16.9.2 四个思维点</a><a href="#section-4" class="nested">16.9.2.1 大家说的RAG已死，死的是什么？</a><a href="#section-5" class="nested">16.9.2.2 数据的结构化程度</a><a href="#section-6" class="nested">16.9.2.3 规模 vs 上下文窗口</a><a href="#section-7" class="nested">16.9.2.4 工程成本与按需外挂</a><a href="#section-8" class="nested">16.9.3 总结&amp;结论</a><a href="#section-9" class="nested">16.9.4 场景题小测试</a><a href="#section-10" class="nested">16.9.5 面试题</a><a href="#section-11" class="nested">16.9.5.1 Q1:你认为 RAG 过时了吗?</a><a href="#section-12" class="nested">16.9.5.2 Q2:你如何选择用不用 RAG?如何设计项目的检索模块?</a><a href="#section-13" class="nested">16.9.5.3 Q3:Claude Code 为什么不用 RAG?</a><a href="#section-14" class="nested">16.9.6 讲解视频</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

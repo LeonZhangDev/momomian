@@ -1,0 +1,610 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="tencent-009-001-4068b6076a"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>凭据存储、隔离、轮换与配置边界</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-004-d9532e9426/" data-record-id="tencent-011-004-d9532e9426">Python 智能体环境配置：API Key 管理</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-004-cc43dc69ae-35a9e3/" data-record-id="tencent-011-004-cc43dc69ae-35a9e3">客户端配置：环境覆盖与凭据轮换草图</a></details></div></details><details><summary>工具失败、退避、幂等和执行边界</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-002-9cb0db7500/" data-record-id="tencent-011-002-9cb0db7500">工具调用（Function Calling）：错误处理与重试机制</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-002-cc43dc69ae-b281bc/" data-record-id="tencent-011-002-cc43dc69ae-b281bc">工具调用（Function Calling）：错误处理与重试机制 · 示例</a></details></div></details><details><summary>模型和工具有界重试</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-006-005-003-b77bef2f33/" data-record-id="tencent-006-005-003-b77bef2f33">内置中间件：与提供商无关的中间件：工具重试</a><a href="/momomian/lessons/feishu-f3f66b964e/" data-record-id="feishu-f3f66b964e">Agent健壮性设计</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-006-005-003-5322c404b1/" data-record-id="tencent-006-005-003-5322c404b1">内置中间件：与提供商无关的中间件：模型重试</a></details></div></details><details><summary>失败重试、结构解析与总成本控制</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-008-cc43dc69ae-0c658e/" data-record-id="tencent-013-008-cc43dc69ae-0c658e">AI Workflow（AI 工作流）：主流框架与工具对比 · 示例（6）</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-008-cc43dc69ae-0b0fc3/" data-record-id="tencent-013-008-cc43dc69ae-0b0fc3">AI Workflow（AI 工作流）：主流框架与工具对比 · 示例（7）</a><a href="/momomian/lessons/tencent-013-008-581d93376d/" data-record-id="tencent-013-008-581d93376d">AI Workflow（AI 工作流）：最佳实践与常见陷阱</a></details></div></details><details open><summary>轮数、成本、性能与可观测性</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-009-001-4068b6076a/" class="current" aria-current="page" data-record-id="tencent-009-001-4068b6076a">开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-009-001-12939237a0/" data-record-id="tencent-009-001-12939237a0">开篇：深度理解Agent全链路内容：九、Agent性能优化与最佳实践</a></details></div></details><details><summary>create_agent人工审批适配</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-006-006-005/" data-record-id="tencent-006-006-005">人机回环</a></div></details><details><summary>Shell权限与多层护栏</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-006-005-003-1106bbb01c/" data-record-id="tencent-006-005-003-1106bbb01c">内置中间件：与提供商无关的中间件：Shell 工具</a><a href="/momomian/lessons/tencent-006-006-001/" data-record-id="tencent-006-006-001">护栏 (Guardrails)</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-011/" data-record-id="tencent-011-011">Agent 评估、安全与对齐</a></details></div></details><details><summary>文件权限与并发请求状态隔离</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-012-cc43dc69ae-7e07ae/" data-record-id="tencent-013-012-cc43dc69ae-7e07ae">Deep Agents 入门教程：常见问题 · 示例</a></details></div></details><details><summary>外部材料、扩展与宿主权限的信任边界</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-b54cafc5a5/" data-record-id="feishu-b54cafc5a5">开源框架解读 - Openclaw：安全风险</a></details></div></details><details><summary>Trace接入、组织和敏感数据处理</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-006-008-002/" data-record-id="tencent-006-008-002">可观测性 (Observability)</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-005-006/" data-record-id="tencent-007-005-006">LangSmith 可观测性</a></details></div></details><details><summary>Harness运行基础设施与工程检查单</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-8fd96156c7/" data-record-id="feishu-8fd96156c7">Harness Engineering：概念定义</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-7378cc7497/" data-record-id="feishu-7378cc7497">Harness Engineering</a><a href="/momomian/lessons/feishu-e7e5bc32fa/" data-record-id="feishu-e7e5bc32fa">Harness Engineering：Harness 工程实践要点</a></details></div></details><details><summary>Harness与Loop背景导读</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-016-aa1d324f40/" data-record-id="tencent-013-016-aa1d324f40">Loop Engineering（循环工程）</a><a href="/momomian/lessons/tencent-013-016-dfd0f98d33/" data-record-id="tencent-013-016-dfd0f98d33">Loop Engineering（循环工程）：Loop Engineering 的起源</a></details></div></details><details><summary>编码Agent护栏、反馈循环及触发信号</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-014/" data-record-id="tencent-013-014">Harness Engineering（驾驭工程）</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-016-45989910ec/" data-record-id="tencent-013-016-45989910ec">Loop Engineering（循环工程）：什么是 Loop Engineering</a><a href="/momomian/lessons/tencent-013-016-6f9d6c9693/" data-record-id="tencent-013-016-6f9d6c9693">Loop Engineering（循环工程）：Loop 的核心循环</a></details></div></details><details><summary>循环调度、只写TODO实验与失效诊断</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-016-e6dd422726/" data-record-id="tencent-013-016-e6dd422726">Loop Engineering（循环工程）：实例：每日 CI 故障分类 Loop（最小安全版本）</a><a href="/momomian/lessons/tencent-013-016-17db87305a/" data-record-id="tencent-013-016-17db87305a">Loop Engineering（循环工程）：Loop Engineering 的三大风险</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-016-cc43dc69ae/" data-record-id="tencent-013-016-cc43dc69ae">Loop Engineering（循环工程）：Loop 的核心循环 · 示例</a><a href="/momomian/lessons/tencent-013-016-12da3b0c91/" data-record-id="tencent-013-016-12da3b0c91">Loop Engineering（循环工程）：最佳实践总结</a></details></div></details><details><summary>部署对象、请求生命周期与Agent压力测试</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-c5267203b4/" data-record-id="feishu-c5267203b4">按需深入：后端与服务化：大模型前后端生命周期</a></div></details><details><summary>记忆数据库初始化与迁移</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-003-006-85a7bbf197/" data-record-id="tencent-007-003-006-85a7bbf197">记忆功能：预构建的记忆工具</a></details></div></details><details><summary>Dify容器环境与持久卷边界</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-018-c4b256ec54/" data-record-id="tencent-013-018-c4b256ec54">Dify 入门教程：安装与启动</a></div></details><details><summary>应用打包与托管部署验证</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-005-001/" data-record-id="tencent-007-005-001">应用结构</a><a href="/momomian/lessons/tencent-006-008-001/" data-record-id="tencent-006-008-001">部署 (Deployment)</a><a href="/momomian/lessons/tencent-007-005-005/" data-record-id="tencent-007-005-005">LangSmith 部署</a></div></details><details><summary>Dify成本口径与逐节点故障定位</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-018-9bc2e469d4/" data-record-id="tencent-013-018-9bc2e469d4">Dify 入门教程：费用与套餐</a><a href="/momomian/lessons/tencent-013-018-cc43dc69ae-16c641/" data-record-id="tencent-013-018-cc43dc69ae-16c641">Dify 入门教程：费用与套餐 · 示例</a></details></div></details><details><summary>容器、缓存、队列与服务拆分总览</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-012/" data-record-id="tencent-011-012">AI Agent 生产部署与工程化</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=engineering">可靠性、安全与部署</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">主题主讲与实践</p><h1 data-pagefind-meta="title">开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案</h1><div class="lesson-meta"><span>约 12 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：轮数、成本、性能与可观测性 · 主讲与实践</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="tencent-009-001-4068b6076a" data-task-title="开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案" data-task-href="/lessons/tencent-009-001-4068b6076a/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>含旧版 LangChain 导入路径。官方 v1 迁移说明已把传统 chains/retrievers 等移至 langchain-classic，并拆分集成包；本例确切依赖版本未锁定，复现前核对官方迁移说明，勿直接混用新旧代码。 <a href="https://docs.langchain.com/oss/python/migrate/langchain-v1" target="_blank" rel="noopener noreferrer">查看接口文档 ↗</a></p><p>旧 AgentExecutor 的 early_stopping_method=&#39;generate&#39; 取决于 agent 实现，不能保证所有 Runnable 都支持；费用表明确是假设，批量少调用不直接等于省 70%。推荐工具需解析 AIMessage；降级分支再次异常不会被同一 try 的其他 except 捕获。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">可靠性、安全与部署 / 轮数、成本、性能与可观测性</p><a class="text-link" href="/momomian/path/?topic=engineering&amp;unit=unit-engineering-e94fc7b9">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>分别限制循环、单次工具耗时和任务总预算</li><li>为重试、缓存、降级与费用预留设置可核查条件</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">即使只调用一次，工具也可能等待很久。任务总时限之外，还应给网络或工具调用配置自己的超时与取消机制；执行器轮间检查的时间预算不能一概保证中断正在运行的同步工具。</p><a class="text-link" href="#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 20 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>4 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><p>5 个选定片段未通过原样运行核验，请查看对应代码旁的修正版与限制。</p><p>其中 9 个片段需要补足上下文或修正，可能涉及缩进、占位内容或截断。请结合完整代码核对。</p><a class="text-link" href="/momomian/practice/?lesson=tencent-009-001-4068b6076a#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h2 id="section-1"><span>五、构建Agent的五大难点与解决方案</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-009-001-Q80LepSkFddch3PmHQyBVG"></a></span>
+<h3 id="section-2"><span>难点一：无限循环与任务卡死</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-009-001-QREG3G6ATs3u7ypsJcrKYC"></a></span>
+<h4 id="section-3"><span>问题描述</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-BhT9nP8LU8iegHUS9lvYPs"></a></span>
+<p><span>Agent可能陷入死循环：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-attgMR2l1UrAsqhRtoztvs"></a></span>
+<pre><code>Thought: 我需要搜索信息
+Action: Search("2024 AI")
+Observation: [搜索结果]
+
+Thought: 我需要搜索更详细的信息
+Action: Search("2024 AI详细")
+Observation: [搜索结果]
+
+Thought: 我需要搜索更详细的信息
+Action: Search("2024 AI更详细")
+...（永远循环）
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-2IlKIuBEpzZBF3FGi0nC5D"></a></span>
+<h4 id="section-4"><span>解决方案</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-HnCb0GKG7gvvuAPdSO9wMQ"></a></span>
+<p><strong>方案1：设置最大迭代次数</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO"></a></span>
+<pre><code>agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
+    max_iterations=10, # 最多执行10轮
+    max_execution_time=60, # 最多执行60秒
+    early_stopping_method="generate" # 超时时生成答案
+)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-a2TTKZVzvNs9gnysONloWh"></a></span>
+<p><strong>方案2：优化提示词，明确终止条件</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-82TDCHWf8fovIGMk8u2eYu"></a></span>
+<pre><code>prompt = """
+你必须在5步内完成任务。
+如果5步内无法完成，请给出"基于现有信息的最佳答案"。
+
+当前已经执行了{iterations}步。
+"""
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-StKrHiV9GQkPUYZg2eClJO"></a></span>
+<p><strong>方案3：实现智能终止判断</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-Pu6nfL3Zsock3eZzDH1k90"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>先确认存在三个可比较动作，再按工具名、规范化参数与观察检查重复；结合分页、轮询等场景判断是否真的无进展。</p><details><summary>查看解释与参考资料</summary><p>历史不足三条时也可能满足，例如只有一个动作就会停止；动作若是字典还不能直接放入 set。</p></details></aside><aside class="lesson-clarification" id="lesson-clarification-5" data-source-runtime-check="5"><p><strong>离线核验：</strong>离线核验未通过（IndentationError），没有取得结果通过证据。原片段未改写。</p><details class="lesson-runtime-correction" data-source-corrected-code="true"><summary>查看修正版与验证结果</summary><p>Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1：修正版通过7项断言。原缩进失配，且只做一次或两次相同行动也会被判定为重复三次。修正版恢复缩进并要求确有3条行动；仍需has_new_info，本次以合成布尔值检查进展。</p><pre><code class="language-python">def should_continue(agent_state):
+    last_3_actions = agent_state.history[-3:]
+    if len(last_3_actions) == 3 and len(set(last_3_actions)) == 1:
+        return False
+    if agent_state.iterations > 5 and not has_new_info(agent_state):
+        return False
+    return True</code></pre><p>本次核验输出：</p><pre><code>0/1/2条行动继续；连续3次相同停止；执行6步且无新信息停止。</code></pre></details></aside><pre><code>def should_continue(agent_state):
+ # 检查是否在重复相同的行动
+    last_3_actions = agent_state.history[-3:]
+ if len(set(last_3_actions)) == 1: # 最后3个动作都相同
+ return False # 终止
+
+ # 检查是否进展缓慢
+ if agent_state.iterations > 5 and not has_new_info(agent_state):
+ return False
+
+ return True
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-pZMdSavgyEF04YHFlx1XMW"></a></span>
+<h3 id="section-5"><span> 难点二：工具选择错误</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-009-001-pGM3SfZltmLD8PRJK9VPmu"></a></span>
+<h4 id="section-6"><span>问题描述</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-1D0J36orW9lbakWovjRxpF"></a></span>
+<pre><code>Agent选择了错误的工具：
+任务："计算2024年有多少天"
+
+错误选择：
+Action: WebSearch("2024年有多少天")  ❌ 不需要搜索
+
+正确选择：
+Action: Calculator("365 if not is_leap_year(2024) else 366")  ✅
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-4LD726HTcemn7yg3RsjOvD"></a></span>
+<h4 id="section-7"><span>根本原因</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-hlydWh5KP0xPFHihlDAY2R"></a></span>
+<ol start="11">
+<li><span>工具描述不清晰</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-009-001-1qxQ8pR1syCAWkBfrWk2d6"></a></span>
+<ol start="12">
+<li><span>Prompt没有给出使用规则</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-009-001-PrbhRpIgdh4xGqHMwZnuuo"></a></span>
+<ol start="13">
+<li><span>LLM对任务理解有偏差</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-009-001-EocVA9dLM2ftUHxYc0keRZ"></a></span>
+<h4 id="section-8"><span>解决方案</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-vZuS5D2XLN6LfTWqxYvrnN"></a></span>
+<p><strong>方案1：改进工具描述</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-7wQnyp5WiqIuSECEOxNWru"></a></span>
+<pre><code>❌ 不好的描述
+calculator_tool = Tool(
+    name="Calculator",
+    description="计算"
+)
+
+# ✅ 好的描述
+calculator_tool = Tool(
+    name="Calculator",
+    description="""
+    用于精确的数学计算。
+
+    适用场景：
+    - 算术运算（加减乘除）
+    - 数学函数（平方、开方、三角函数）
+    - 逻辑判断（比较大小）
+
+    输入格式：Python数学表达式字符串
+    示例："2 + 2", "sqrt(16)", "2024 % 4 == 0"
+
+    不适用场景：
+    - 需要最新数据（用Search）
+    - 需要上下文信息（用Memory）
+    """
+)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-jmwVU88EfpKNElZWyBn6in"></a></span>
+<p><strong>方案2：添加工具使用示例</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-fo23sIqc8MNtAjvyDOdZxo"></a></span>
+<pre><code>prompt = """
+工具使用示例：
+
+问题："今天的天气如何？"
+正确：Action: WeatherAPI("北京")
+错误：Action: Calculator("天气")  # 天气不是数学问题
+
+问题："2的100次方是多少？"
+正确：Action: Calculator("2**100")
+错误：Action: Search("2的100次方")  # 不需要搜索
+
+现在请处理：{input}
+"""
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-dkUmM2pb0PHs0XSWBl2VVm"></a></span>
+<p><strong>方案3：实现工具推荐系统</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-NyTQ0xaWJXD0wRBmLgBvVb"></a></span>
+<pre><code>def recommend_tool(task_description, available_tools):
+ """根据任务描述推荐工具"""
+ # 使用LLM分析任务
+    analysis = llm.invoke(f"""
+    任务：{task_description}
+
+    请分析这个任务需要：
+    1. 实时数据吗？→ 需要Search
+    2. 数学计算吗？→ 需要Calculator
+    3. 历史信息吗？→ 需要Memory
+
+    推荐工具（JSON格式）：
+    {{"recommended": ["tool1", "tool2"], "reason": "..."}}
+    """)
+
+ return analysis.recommended
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-MEWQpyGreWhqJbD3R2wUKz"></a></span>
+<h3 id="section-9"><span>难点三：上下文窗口溢出</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-009-001-9yYzxclE5ikSTTg1bEobdI"></a></span>
+<h4 id="section-10"><span>问题描述</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-BM9JcmQ7tYJRjgxXzpLXyb"></a></span>
+<p><span>长对话或复杂任务会导致：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-OfbtyiZ58Ls3YYQUoEotSe"></a></span>
+<pre><code>Prompt + 历史对话 + 工具描述 + 中间结果 = 超过Token限制
+
+GPT-4: 128K tokens
+Claude: 200K tokens
+
+一次复杂任务可能消耗50K+ tokens
+→ 超出限制或成本过高
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-uYKd3iGJsrM8yduBGuO3Ws"></a></span>
+<h4 id="section-11"><span>解决方案</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-tMPFgcQMsNV9iEncTTNIDG"></a></span>
+<p><strong>方案1：智能压缩上下文</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-OJN4tO2GKSJpHPcXBKDUxh"></a></span>
+<pre><code>from langchain.memory import ConversationSummaryBufferMemory
+
+memory = ConversationSummaryBufferMemory(
+    llm=llm,
+    max_token_limit=4000, # 保留最近4000 tokens
+    moving_summary_buffer="", # 旧的对话自动总结
+)
+
+# 效果：
+# 旧对话："用户询问了天气、新闻、股票...共20轮对话"
+# ↓ 总结为
+# "用户主要关心北京天气（晴）、今日新闻（AI发展）、股票（上涨）"
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-eU0C7UpHYE61fpoQNWN1a5"></a></span>
+<p><strong>方案2：分层记忆</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-0dBCkJdt3zsgFVD09ETQtk"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>将需要自动初始化的 def init(...) 写为 def __init__(...)，并补齐依赖；本课片段只能作为未完整实现的机制示例。</p><details><summary>查看解释与参考资料</summary><p>init 不会在 Python 实例化时自动运行；同课多个示例因此缺少 recent_memory、metrics、models 或 cache 等属性。</p></details></aside><aside class="lesson-clarification" id="lesson-clarification-8" data-source-runtime-check="8"><p><strong>离线核验：</strong>离线核验未通过（SyntaxError），没有取得结果通过证据。原片段未改写。</p><details class="lesson-runtime-correction" data-source-corrected-code="true"><summary>查看修正版与验证结果</summary><p>Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1：修正版通过5项断言。原init命名、方法体缩进和return位置有误。修正版恢复三层列表移动逻辑；仍需vectorstore和extract_key_info，本次均为纯内存桩，不验证真实向量召回或摘要质量。</p><pre><code class="language-python">class HierarchicalMemory:
+    def __init__(self):
+        self.recent_memory = []
+        self.mid_term_memory = []
+        self.long_term_memory = vectorstore
+    def add(self, message):
+        self.recent_memory.append(message)
+        if len(self.recent_memory) > 3:
+            old_message = self.recent_memory.pop(0)
+            key_info = extract_key_info(old_message)
+            self.mid_term_memory.append(key_info)
+        if len(self.mid_term_memory) > 10:
+            old_info = self.mid_term_memory.pop(0)
+            self.long_term_memory.add_texts([old_info])
+    def get_context(self, query):
+        recent = "\n".join(self.recent_memory)
+        mid = "\n".join(self.mid_term_memory)
+        relevant = self.long_term_memory.similarity_search(query, k=2)
+        return f"{recent}\n\n相关历史：{mid}\n{relevant}"</code></pre><p>本次核验输出：</p><pre><code>加入15条消息后，最近层3条、中期层10条、长期层2条；检索参数k=2。</code></pre></details></aside><pre><code>class HierarchicalMemory:
+ def init(self):
+        self.recent_memory = [] # 最近3轮，完整保留
+        self.mid_term_memory = [] # 中期10轮，保留关键信息
+        self.long_term_memory = vectorstore  # 长期，向量检索
+
+ def add(self, message):
+        self.recent_memory.append(message)
+
+ if len(self.recent_memory) > 3:
+ # 移到中期记忆，提取关键信息
+            old_message = self.recent_memory.pop(0)
+            key_info = extract_key_info(old_message)
+            self.mid_term_memory.append(key_info)
+
+ if len(self.mid_term_memory) > 10:
+ # 移到长期记忆，存入向量库
+            old_info = self.mid_term_memory.pop(0)
+            self.long_term_memory.add_texts([old_info])
+
+ def get_context(self, query):
+ # 组合三层记忆
+        recent = "\n".join(self.recent_memory)
+        mid = "\n".join(self.mid_term_memory)
+        relevant = self.long_term_memory.similarity_search(query, k=2)
+
+ return f"{recent}\n\n相关历史：{mid}\n{relevant}"
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-eRMmSrFcElqnH5gM2P4gOc"></a></span>
+<p><strong>方案3：动态工具加载</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-7cuoQOqsIDxiFMgvI5u858"></a></span>
+<pre><code>#不要一次性加载所有工具
+all_tools = {
+ "search": search_tool,
+ "calculator": calc_tool,
+ "database": db_tool,
+ "api": api_tool,
+ # ... 50个工具
+}
+
+# 根据任务动态选择工具
+def select_tools(task):
+ # 分析任务需要哪些类别的工具
+ if "搜索" in task or "查询" in task:
+ return [all_tools["search"]]
+ elif "计算" in task:
+ return [all_tools["calculator"]]
+ # ...
+
+ # 默认返回最常用的5个工具
+ return list(all_tools.values())[:5]
+
+# 创建Agent时只加载需要的工具
+tools = select_tools(user_input)
+agent = create_agent(llm, tools)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-LioXw2qCEfAemR7VTYHxkM"></a></span>
+<h3 id="section-12"><span>难点四：错误处理与鲁棒性</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-009-001-2CRoW7iqi5qkuiP05H6a50"></a></span>
+<h4 id="section-13"><span>问题描述</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-Ew7fHslx4PqtckkEGg7hNu"></a></span>
+<p><span>各种错误会导致Agent崩溃：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-hJkhNM6qMNpWsco7TUtEaZ"></a></span>
+<ul>
+<li><span>工具调用失败</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-009-001-qLyeubbc9n6UFyNrvj3el3"></a></span>
+<ul>
+<li><span>API超时</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-009-001-GpiNwpTPNfuLbvXUIUDCLT"></a></span>
+<ul>
+<li><span>返回格式错误</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-009-001-5zuEvQdGDPwBoezFh1Oll7"></a></span>
+<ul>
+<li><span>LLM输出异常</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-009-001-KRsRiprhx0xx1LjztHOPWN"></a></span>
+<h4 id="section-14"><span>解决方案</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-TD3hm7iQbplbmRKbGA01XZ"></a></span>
+<p><strong>方案1：工具层面的错误处理</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-JKOTKl8ho225XU4scDgu8f"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-6" data-source-runtime-check="6"><p><strong>离线核验：</strong>离线核验未通过（IndentationError），没有取得结果通过证据。原片段未改写。</p><details class="lesson-runtime-correction" data-source-corrected-code="true"><summary>查看修正版与验证结果</summary><p>Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1：修正版通过5项断言。原装饰器缩进失配。修正版恢复嵌套结构，保留3次尝试与2**attempt退避；仍需time和search_engine，分别使用时长记录桩和纯函数，不等待或联网。</p><pre><code class="language-python">def robust_tool(func):
+    """装饰器：让工具更健壮"""
+    def wrapper(*args, **kwargs):
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                result = func(*args, **kwargs)
+                return {"success": True, "data": result}
+            except TimeoutError:
+                if attempt == max_retries - 1:
+                    return {"success": False, "error": "工具执行超时，请尝试简化输入或使用其他工具"}
+                time.sleep(2 ** attempt)
+            except Exception as e:
+                return {"success": False, "error": f"工具执行失败：{str(e)}"}
+    return wrapper
+@robust_tool
+def search_tool(query):
+    return search_engine.query(query)</code></pre><p>本次核验输出：</p><pre><code>连续超时尝试3次，记录退避1秒、2秒；第二次成功可正常返回42。</code></pre></details></aside><pre><code>def robust_tool(func):
+ """装饰器：让工具更健壮"""
+ def wrapper(*args, **kwargs):
+        max_retries = 3
+ for attempt in range(max_retries):
+ try:
+                result = func(*args, **kwargs)
+ return {
+ "success": True,
+ "data": result
+ }
+ except TimeoutError:
+ if attempt == max_retries - 1:
+ return {
+ "success": False,
+ "error": "工具执行超时，请尝试简化输入或使用其他工具"
+ }
+                time.sleep(2 ** attempt) # 指数退避
+ except Exception as e:
+ return {
+ "success": False,
+ "error": f"工具执行失败：{str(e)}"
+ }
+ return wrapper
+
+@robust_tool
+def search_tool(query):
+ # 实际搜索逻辑
+ return search_engine.query(query)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-4zF4VRG6Rda9vAoUxCF1Ji"></a></span>
+<p><strong>方案2：Agent层面的降级策略</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-r1ClBXwqaaMBwuacbTS5cQ"></a></span>
+<pre><code>class RobustAgent:
+ def execute(self, task):
+ try:
+ # 尝试完整流程
+ return self.full_execution(task)
+ except AgentError:
+ # 降级：使用简化流程
+ return self.simplified_execution(task)
+ except Exception:
+ # 最终降级：直接用LLM回答
+ return self.fallback_execution(task)
+
+ def full_execution(self, task):
+ # ReAct完整循环，可能使用多个工具
+ return self.react_loop(task)
+
+ def simplified_execution(self, task):
+ # 简化版：只用一个最重要的工具
+        tool = self.select_best_tool(task)
+        result = tool.run(task)
+ return self.llm.summarize(result)
+
+ def fallback_execution(self, task):
+ # 保底：直接用LLM知识回答
+ return self.llm.invoke(f"请基于你的知识回答：{task}")
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-GT6aBuxMdlxZM3gOKHuiWC"></a></span>
+<p><strong>方案3：实时监控与告警</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-E2SqZZpu5tYwZeIWJPHFgI"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-7" data-source-runtime-check="7"><p><strong>离线核验：</strong>离线核验未通过（IndentationError），没有取得结果通过证据。原片段未改写。</p><details class="lesson-runtime-correction" data-source-corrected-code="true"><summary>查看修正版与验证结果</summary><p>Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1：修正版通过4项断言。原init不会自动初始化对象，且控制流缩进失配。修正版改为__init__并恢复分支；仍需send_alert，本次只记录内存告警，不联系外部系统。</p><pre><code class="language-python">import logging
+class AgentMonitor:
+    def __init__(self):
+        self.metrics = {"total_tasks": 0, "success": 0, "failures": 0, "avg_time": 0}
+    def log_execution(self, task, result, duration):
+        self.metrics["total_tasks"] += 1
+        if result["success"]:
+            self.metrics["success"] += 1
+        else:
+            self.metrics["failures"] += 1
+            logging.error(f"Task failed: {task}, Error: {result['error']}")
+        self.metrics["avg_time"] = (self.metrics["avg_time"] * (self.metrics["total_tasks"] - 1) + duration) / self.metrics["total_tasks"]
+        failure_rate = self.metrics["failures"] / self.metrics["total_tasks"]
+        if failure_rate > 0.3:
+            send_alert(f"Agent failure rate: {failure_rate:.2%}")</code></pre><p>本次核验输出：</p><pre><code>时长2/4秒的平均值为3；4个任务时平均5。失败率50%和33.33%告警，25%不新增告警。</code></pre></details></aside><pre><code>import logging
+
+class AgentMonitor:
+ def init(self):
+        self.metrics = {
+ "total_tasks": 0,
+ "success": 0,
+ "failures": 0,
+ "avg_time": 0,
+ }
+
+ def log_execution(self, task, result, duration):
+        self.metrics["total_tasks"] += 1
+
+ if result["success"]:
+            self.metrics["success"] += 1
+ else:
+            self.metrics["failures"] += 1
+            logging.error(f"Task failed: {task}, Error: {result['error']}")
+
+ # 计算平均时间
+        self.metrics["avg_time"] = (
+            self.metrics["avg_time"] * (self.metrics["total_tasks"] - 1) + duration
+ ) / self.metrics["total_tasks"]
+
+ # 告警
+        failure_rate = self.metrics["failures"] / self.metrics["total_tasks"]
+ if failure_rate > 0.3: # 失败率超过30%
+            send_alert(f"Agent failure rate: {failure_rate:.2%}")
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-23mL9VCFzv41L3epy9wagH"></a></span>
+<h3 id="section-15"><span>难点五：成本控制</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-009-001-LLXN6XXdGaBw04ahLjbFrl"></a></span>
+<h4 id="section-16"><span>问题描述</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-zvtVCErRIvGUE9bDybyzJt"></a></span>
+<p><span>Agent的成本可能很高：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-bFQ0AqKMEZ19TM4tOaMyT2"></a></span>
+<pre><code>一次复杂任务：
+10轮ReAct循环
+每轮2K tokens输入 + 500 tokens输出
+总计：(2000+500) * 10 = 25K tokens
+
+GPT-4价格（假设）：
+输入：$0.03 / 1K tokens
+输出：$0.06 / 1K tokens
+
+单次任务成本：
+输入：20K * 0.03 = $0.60
+输出：5K * 0.06 = $0.30
+总计：$0.90
+
+如果每天1000个任务 = $900/天 = $27,000/月
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-I42UeI75MkCenJm29PGLbZ"></a></span>
+<h4 id="section-17"><span>解决方案</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-009-001-tkRxNTWec7YYuAkln89uh2"></a></span>
+<p><strong>方案1：模型分级使用</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-xPEwCMXbHy3a0JsCxeUBvq"></a></span>
+<pre><code>class CostOptimizedAgent:
+ def init(self):
+        self.models = {
+ "cheap": ChatOpenAI(model="gpt-3.5-turbo"), # $0.002/1K
+ "standard": ChatOpenAI(model="gpt-4"), # $0.03/1K
+ "premium": ChatOpenAI(model="gpt-4-turbo"), # $0.01/1K
+ }
+
+ def select_model(self, task_complexity):
+ # 简单任务用便宜模型
+ if task_complexity &#x3C; 3:
+ return self.models["cheap"]
+ elif task_complexity &#x3C; 7:
+ return self.models["standard"]
+ else:
+ return self.models["premium"]
+
+ def estimate_complexity(self, task):
+ # 根据任务特征估计复杂度
+        factors = {
+ "num_steps": len(parse_steps(task)) * 2,
+ "need_tools": 3 if requires_tools(task) else 0,
+ "domain_specific": 2 if is_specialized(task) else 0,
+ }
+ return sum(factors.values())
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-p6RVxV7nRd66e8nEn2zqP7"></a></span>
+<p><strong>方案2：缓存机制</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-pamBefBPcBYAyGJOwzC69H"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>仅缓存允许复用的操作，并把时间、数据版本、身份权限等必要条件纳入键与过期策略；有副作用操作需独立幂等设计。</p><details><summary>查看解释与参考资料</summary><p>只按任务文本缓存天气会把不同日期、用户或数据版本混在一起；相同文字不意味着同一查询事实。</p></details></aside><aside class="lesson-clarification" id="lesson-clarification-9" data-source-runtime-check="9"><p><strong>离线核验：</strong>离线核验未通过（IndentationError），没有取得结果通过证据。原片段未改写。</p><details class="lesson-runtime-correction" data-source-corrected-code="true"><summary>查看修正版与验证结果</summary><p>Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1：修正版通过4项断言。原缩进、裸文字或语句边界有误，修正版恢复本课的有限控制流。仍需固定输入/时钟/随机数和纯内存对象；time/random导入重定向至测试桩，不等待、不读取终端、不调用模型。init不是构造器；无TTL/隔离，注释$0.05不是计费实测。</p><pre><code class="language-python">from functools import lru_cache
+import hashlib
+
+class CachedAgent:
+    def init(self):
+        self.cache = {}
+    def execute(self, task):
+        task_hash = hashlib.md5(task.encode()).hexdigest()
+        if task_hash in self.cache:
+            logging.info(f"Cache hit for task: {task[:50]}...")
+            return self.cache[task_hash]
+        result = self.agent.run(task)
+        self.cache[task_hash] = result
+        return result</code></pre><p>本次核验输出：</p><pre><code>相同任务只调用合成agent一次；不同任务单独执行。</code></pre></details></aside><pre><code>from functools import lru_cache
+import hashlib
+
+class CachedAgent:
+ def init(self):
+        self.cache = {}
+
+ def execute(self, task):
+ # 计算任务的哈希值
+        task_hash = hashlib.md5(task.encode()).hexdigest()
+
+ # 检查缓存
+ if task_hash in self.cache:
+            logging.info(f"Cache hit for task: {task[:50]}...")
+ return self.cache[task_hash]
+
+ # 执行任务
+        result = self.agent.run(task)
+
+ # 存入缓存
+        self.cache[task_hash] = result
+ return result
+
+# 效果：
+# 第一次："北京明天天气" → 调用LLM → 成本$0.05
+# 第二次："北京明天天气" → 从缓存读取 → 成本$0
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-1IIaqZsVogwqjVN4KaNi5U"></a></span>
+<p><strong>方案3：</strong><strong>批处理</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-jBN9HOdK4DbJaYaylLYXKH"></a></span>
+<pre><code>def batch_process(tasks):
+ """批量处理相似任务"""
+ # 将相似任务分组
+    groups = group_similar_tasks(tasks)
+
+    results = []
+ for group in groups:
+ # 一次性处理一组任务
+        batch_prompt = f"""
+        请处理以下{len(group)}个相似任务：
+ {"\n".join([f"{i+1}. {t}" for i, t in enumerate(group)])}
+
+        请输出JSON格式的结果列表。
+        """
+
+        batch_result = llm.invoke(batch_prompt)
+        results.extend(parse_batch_result(batch_result))
+
+ return results
+
+# 效果：
+# 单独处理10个任务：10次LLM调用
+# 批量处理10个任务：2-3次LLM调用（节省70%成本）
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-009-001-Iqrw8XMtjcQ4DDvlevWFqN"></a></span>
+<p><strong>方案4：设置预算限制</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-009-001-N78oiINmVdY0ClQ26Epxri"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>在共享预算中原子预留调用上界，执行期间扣减与校验，结束后按实际用量结算；明确每日周期、失败计费和取消策略。</p><details><summary>查看解释与参考资料</summary><p>执行前估算、执行后记账没有预留锁定或中途控制，估算偏低及并发均可超预算；today_spent 也不会自动跨日清零。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><pre><code>class BudgetControlledAgent:
+ def init(self, daily_budget_usd=10):
+        self.daily_budget = daily_budget_usd
+        self.today_spent = 0
+        self.task_count = 0
+
+ def execute(self, task):
+ # 检查预算
+        estimated_cost = self.estimate_cost(task)
+ if self.today_spent + estimated_cost > self.daily_budget:
+ return {
+ "success": False,
+ "message": f"预算不足。今日已用${self.today_spent:.2f}，预算${self.daily_budget}"
+ }
+
+ # 执行任务
+        result = self.agent.run(task)
+        actual_cost = self.calculate_cost(result.tokens_used)
+
+ # 更新统计
+        self.today_spent += actual_cost
+        self.task_count += 1
+
+        logging.info(f"Task {self.task_count}: Cost ${actual_cost:.4f}, Total ${self.today_spent:.2f}")
+
+ return result
+</code></pre></details>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-009-001-1gOqExzlDTqCObAEhR46Oa"></a></span></div><details class="notice" data-pagefind-ignore><summary>动手试一次 · 5 个配套例子</summary><p>这些完整教学代码已核对固定输入与结果，帮助理解本课主题；原文片段原有的上下文缺失或版本问题仍然存在。</p><ul><li><a class="text-link" href="/momomian/runnable-examples/?case=retry-backoff">超时后重试，次数到了就停 →</a><p class="small muted">用合成超时演示指数退避；记录等待秒数，测试时不真的等待。</p></li><li><a class="text-link" href="/momomian/runnable-examples/?case=agent-loop">走一遍“决策—工具—观察” →</a><p class="small muted">规则策略先发起乘法、读取结果再结束，同时检查轮次上限。</p></li><li><a class="text-link" href="/momomian/runnable-examples/?case=memory-window">保留最近两轮完整对话 →</a><p class="small muted">按问答对裁剪历史，避免只留下半轮对话。</p></li><li><a class="text-link" href="/momomian/runnable-examples/?case=vector-search">手算向量相似度并排序 →</a><p class="small muted">使用二维手写向量理解余弦相似度；没有调用嵌入模型。</p></li><li><a class="text-link" href="/momomian/runnable-examples/?case=token-budget">执行前先留出调用预算 →</a><p class="small muted">使用给定token数预留输入和最大输出预算，不估算费用。</p></li></ul></details></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-reading" class="lesson-resource-group" data-lesson-resource-anchor="section-1" aria-label="调用工具并核对结果"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">调用工具并核对结果</h3><p class="resource-scope">补充本课主题的原理。具体接口与运行条件仍需结合本课及所用版本核对。</p><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://adp.xindoo.xyz/chapters/Chapter%205_%20Tool%20Use/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 5 章：工具使用 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 入门</span><p>对照模型选择工具、程序执行工具、回传结果的职责。代码需按所用框架版本核对。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="tencent-009-001-4068b6076a" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-tencent-009-001-4068b6076a-1-r2","version":2,"type":"single","stage":"lesson","concept":"tencent-009-001-4068b6076a","prompt":"本课处理循环卡死，为什么同时考虑迭代次数和执行时间上限？","options":[{"id":"option-1","text":"分别约束步骤数量与实际耗时，形成停止边界","reason":"工具耗时不固定，只限轮数未必限制等待时间；双重边界控制资源消耗，停止时还需说明结果与未完成部分。"},{"id":"option-2","text":"迭代次数直接等同秒数，设置任意一项即可推算另一项","reason":"每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。"},{"id":"option-3","text":"有了时间上限就表示结果一定已经充分可靠","reason":"达到上限只说明应停止，不能证明信息充分或结论正确。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"分别约束步骤数量与实际耗时，形成停止边界。","explanation":"工具耗时不固定，只限轮数未必限制等待时间；双重边界控制资源消耗，停止时还需说明结果与未完成部分。易混点：每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。达到上限只说明应停止，不能证明信息充分或结论正确。","analysisSteps":["工具耗时不固定，只限轮数未必限制等待时间；双重边界控制资源消耗，停止时还需说明结果与未完成部分。","排除“迭代次数直接等同秒数，设置任意一项即可推算另一项”：每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。","用例检验：给定五次调用中一次长时间等待，时间预算能比单纯轮数更早触发退出。"],"workedExample":"即使只调用一次，工具也可能等待很久。任务总时限之外，还应给网络或工具调用配置自己的超时与取消机制；执行器轮间检查的时间预算不能一概保证中断正在运行的同步工具。","evidence":{"quote":"max_execution_time=60","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO"},"misconception":"每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO"}]},{"id":"lx-tencent-009-001-4068b6076a-2","version":1,"type":"single","stage":"lesson","concept":"tencent-009-001-4068b6076a","prompt":"Calculator 的好描述为何还要说明“不适用场景”？","options":[{"id":"option-1","text":"帮助模型区分精确计算、实时搜索等不同工具职责","reason":"适用与不适用边界能减少工具混选，输入格式和示例则帮助构造合法请求；描述引导选择但不会替代实现。"},{"id":"option-2","text":"让模型把任何天气问题都交给计算器","reason":"天气需实时数据，计算器无法仅凭算式获得当前天气。"},{"id":"option-3","text":"把工具实现代码完全替换成一段介绍","reason":"描述说明用途，仍需真实函数执行计算并返回结果。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"帮助模型区分精确计算、实时搜索等不同工具职责。","explanation":"适用与不适用边界能减少工具混选，输入格式和示例则帮助构造合法请求；描述引导选择但不会替代实现。需要区分的是：天气需实时数据，计算器无法仅凭算式获得当前天气。描述说明用途，仍需真实函数执行计算并返回结果。","analysisSteps":["适用与不适用边界能减少工具混选，输入格式和示例则帮助构造合法请求；描述引导选择但不会替代实现。","排除“让模型把任何天气问题都交给计算器”：天气需实时数据，计算器无法仅凭算式获得当前天气。","代入案例检查：给定问2的100次方选计算器，问今天降雨概率则选天气数据工具。"],"workedExample":"给定问2的100次方选计算器，问今天降雨概率则选天气数据工具。","evidence":{"quote":"== 0\" 不适用场景： - 需要最新数据（用Sea","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-7wQnyp5WiqIuSECEOxNWru"},"misconception":"天气需实时数据，计算器无法仅凭算式获得当前天气。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-7wQnyp5WiqIuSECEOxNWru"}]},{"id":"lx-tencent-009-001-4068b6076a-3","version":1,"type":"single","stage":"lesson","concept":"tencent-009-001-4068b6076a","prompt":"上下文溢出时，本课的动态工具加载解决哪类负担？","options":[{"id":"option-1","text":"只提供本任务相关工具，减少无关工具描述占用","reason":"大量工具说明会占输入空间，按任务选择工具有助于控制上下文，同时保留本任务需要的能力与信息。"},{"id":"option-2","text":"把用户核心问题删掉以保留全部工具介绍","reason":"删掉核心问题会丢失目标，应先处理无关内容。"},{"id":"option-3","text":"不读取工具结果，假定每次都成功","reason":"忽略结果会破坏行动反馈闭环，与压缩描述不是一回事。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"只提供本任务相关工具，减少无关工具描述占用。","explanation":"大量工具说明会占输入空间，按任务选择工具有助于控制上下文，同时保留本任务需要的能力与信息。需要区分的是：删掉核心问题会丢失目标，应先处理无关内容。忽略结果会破坏行动反馈闭环，与压缩描述不是一回事。","analysisSteps":["大量工具说明会占输入空间，按任务选择工具有助于控制上下文，同时保留本任务需要的能力与信息。","排除“把用户核心问题删掉以保留全部工具介绍”：删掉核心问题会丢失目标，应先处理无关内容。","代入案例检查：给定只需计算，先提供计算工具，无需把50种无关工具说明全部加入。"],"workedExample":"给定只需计算，先提供计算工具，无需把50种无关工具说明全部加入。","evidence":{"quote":"不要一次性加载所有工具","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-7cuoQOqsIDxiFMgvI5u858"},"misconception":"删掉核心问题会丢失目标，应先处理无关内容。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-7cuoQOqsIDxiFMgvI5u858"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-tencent-009-001-4068b6076a-1-r2" disabled><legend><span class="quiet-tag">单选</span> 1. 本课处理循环卡死，为什么同时考虑迭代次数和执行时间上限？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-1-r2" value="option-2"><span>迭代次数直接等同秒数，设置任意一项即可推算另一项</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-1-r2" value="option-1"><span>分别约束步骤数量与实际耗时，形成停止边界</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-009-001-4068b6076a-1-r2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-1-r2" value="option-3"><span>有了时间上限就表示结果一定已经充分可靠</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-009-001-4068b6076a-2" disabled><legend><span class="quiet-tag">单选</span> 2. Calculator 的好描述为何还要说明“不适用场景”？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-2" value="option-3"><span>把工具实现代码完全替换成一段介绍</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-009-001-4068b6076a-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-2" value="option-2"><span>让模型把任何天气问题都交给计算器</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-2" value="option-1"><span>帮助模型区分精确计算、实时搜索等不同工具职责</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-009-001-4068b6076a-3" disabled><legend><span class="quiet-tag">单选</span> 3. 上下文溢出时，本课的动态工具加载解决哪类负担？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-3" value="option-3"><span>不读取工具结果，假定每次都成功</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-009-001-4068b6076a-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-3" value="option-1"><span>只提供本任务相关工具，减少无关工具描述占用</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-3" value="option-2"><span>把用户核心问题删掉以保留全部工具介绍</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=tencent-009-001-4068b6076a">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>查看修订前的题目、草稿与作答记录</summary><p class="small muted">原题和旧记录按当时版本保留。上方补讲题单独记录，旧草稿不会被当成新题答案。</p><section class="lesson-course-quiz" id="lesson-original-question-history" data-course-quiz="tencent-009-001-4068b6076a" data-course-mode="dedicated" data-archived-course="true" aria-labelledby="lesson-original-question-history-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-original-question-history-title">修订前的题目与记录</h2><p class="small muted">这里只查看旧草稿和历史。旧题的答案与评分沿用提交时的版本，请以上方新题和当前讲解为准。</p></div></div><script type="application/json" data-course-questions>[{"id":"lx-tencent-009-001-4068b6076a-1","version":1,"type":"single","stage":"lesson","concept":"tencent-009-001-4068b6076a","prompt":"本课处理循环卡死，为什么同时考虑迭代次数和执行时间上限？","options":[{"id":"option-1","text":"分别约束步骤数量与实际耗时，形成停止边界","reason":"工具耗时不固定，只限轮数未必限制等待时间；双重边界控制资源消耗，停止时还需说明结果与未完成部分。"},{"id":"option-2","text":"迭代次数直接等同秒数，设置任意一项即可推算另一项","reason":"每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。"},{"id":"option-3","text":"有了时间上限就表示结果一定已经充分可靠","reason":"达到上限只说明应停止，不能证明信息充分或结论正确。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"分别约束步骤数量与实际耗时，形成停止边界。","explanation":"工具耗时不固定，只限轮数未必限制等待时间；双重边界控制资源消耗，停止时还需说明结果与未完成部分。易混点：每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。达到上限只说明应停止，不能证明信息充分或结论正确。","analysisSteps":["工具耗时不固定，只限轮数未必限制等待时间；双重边界控制资源消耗，停止时还需说明结果与未完成部分。","排除“迭代次数直接等同秒数，设置任意一项即可推算另一项”：每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。","用例检验：给定五次调用中一次长时间等待，时间预算能比单纯轮数更早触发退出。"],"workedExample":"给定五次调用中一次长时间等待，时间预算能比单纯轮数更早触发退出。","evidence":{"quote":"max_execution_time=60","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO"},"misconception":"每轮工具耗时不同，步骤与时间不是固定换算，需分别约束。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-009-001-4068b6076a/#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-tencent-009-001-4068b6076a-1" disabled><legend><span class="quiet-tag">单选</span> 1. 本课处理循环卡死，为什么同时考虑迭代次数和执行时间上限？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-1" value="option-1"><span>分别约束步骤数量与实际耗时，形成停止边界</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-1" value="option-2"><span>迭代次数直接等同秒数，设置任意一项即可推算另一项</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-009-001-4068b6076a-1" value="option-3"><span>有了时间上限就表示结果一定已经充分可靠</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-009-001-4068b6076a-1" value="unsure"><span>暂时不会，提交后看解析</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=tencent-009-001-4068b6076a">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section></details><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="tencent-009-001-4068b6076a" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构根据本课原文自动整理，术语通用释义与迁移问题为本站补充。它不代表逐课人工审定或原文代码已运行。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><div class="lesson-guide-prerequisites"><h3>建议先修</h3><ul><li><a href="/momomian/roadmap/#foundations">LLM 与 Agent 基础</a><span class="small muted"> · 先能解释这个单元的输入、输出与限制，再阅读「开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案」。</span></li></ul></div><h3>这次阅读的目标</h3><ol><li>分别限制循环、单次工具耗时和任务总预算</li><li>为重试、缓存、降级与费用预留设置可核查条件</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-BhT9nP8LU8iegHUS9lvYPs">回看本课上下文</a></span></dd></div><div><dt>上下文窗口</dt><dd>单次模型处理所能容纳的信息范围。放进窗口的信息与存到外部数据库的信息不同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-NyTQ0xaWJXD0wRBmLgBvVb">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-OfbtyiZ58Ls3YYQUoEotSe">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-a2TTKZVzvNs9gnysONloWh">回看本课上下文</a></span></dd></div><div><dt>超时</dt><dd>在设定时间内没有得到完成结果；它不单独证明远端操作没有执行。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO">回看本课上下文</a></span></dd></div><div><dt>记忆</dt><dd>为后续使用保留信息的机制。近期会话、跨会话偏好与操作审计的范围和用途应分开。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-7wQnyp5WiqIuSECEOxNWru">回看本课上下文</a></span></dd></div><div><dt>摘要</dt><dd>压缩原始信息的表达。压缩会取舍细节，需要对照任务所需事实、纠正和约束检查遗漏。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-OJN4tO2GKSJpHPcXBKDUxh">回看本课上下文</a></span></dd></div><div><dt>LangChain</dt><dd>模型、消息、工具等应用组件的框架生态。具体接口以课程标注版本和官方文档为准。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-OJN4tO2GKSJpHPcXBKDUxh">回看本课上下文</a></span></dd></div><div><dt>JSON</dt><dd>以对象、数组、字符串、数值等组成的数据交换格式。合法格式、符合约定结构和事实正确应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-NyTQ0xaWJXD0wRBmLgBvVb">回看本课上下文</a></span></dd></div><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-7cuoQOqsIDxiFMgvI5u858">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-Pu6nfL3Zsock3eZzDH1k90">回看本课上下文</a></span></dd></div><div><dt>缓存</dt><dd>保存可复用结果以减少重复工作。命中率、键的范围、失效与更新策略会影响正确性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-pamBefBPcBYAyGJOwzC69H">回看本课上下文</a></span></dd></div><div><dt>GPT</dt><dd>常用于生成任务的一类自回归语言模型家族；具体上下文、能力和接口取决于所用模型。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-OfbtyiZ58Ls3YYQUoEotSe">回看本课上下文</a></span></dd></div><div><dt>ReAct</dt><dd>把决策与动作、外部观察交替组织的一类 Agent 模式。外部轨迹与模型内部思考并不等同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-r1ClBXwqaaMBwuacbTS5cQ">回看本课上下文</a></span></dd></div><div><dt>精排与召回</dt><dd>先取回候选再筛选或排序的过程。需要区分候选覆盖与最终结果的适用性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-009-001-0dBCkJdt3zsgFVD09ETQtk">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>原文中的代码或配置：解决方案</h3><p class="small muted">原文节选，可能截断；代码未因此获得运行验证。打开来源查看完整上下文。 <a href="#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO">打开完整来源段落</a></p><pre class="lesson-guide-example"><code>agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
+    max_iterations=10, # 最多执行10轮
+    max_execution_time=60, # 最多执行60秒
+    early_stopping_method=&quot;generate&quot; # 超时时生成答案
+)</code></pre><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-009-001-4068b6076a-explain"><h3>1. 开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案 · 解释</h3><p>学习「开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案」后，合上正文说明「解决方案」在解决什么问题。围绕原文“agent_executor = AgentExecutor( agent=agent, tools=tools, max_ite…”复述一条具体关系，并区分已知与待确认的信息。</p><label class="lesson-task-field" for="task-lesson-card-tencent-009-001-4068b6076a-explain">先写自己的回答<textarea id="task-lesson-card-tencent-009-001-4068b6076a-explain" data-lesson-task-answer="lesson-card-tencent-009-001-4068b6076a-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-009-001-4068b6076a-explain">给一点提示</button><p class="lesson-task-hint" hidden>先回忆这一段：agent_executor = AgentExecutor( agent=agent, tools=tools, max_iteratio…</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：agent_executor = AgentExecutor( agent=agent, tools=tools, max_iterations=10, # 最多执行10轮 max_execution_time=60, # 最多执行60秒 early_stopping_method=&quot;generate&quot; # 超时时生成答案 )
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。</p><ul><li>指出「解决方案」讨论的对象或任务</li><li>复述原文中的一条具体关系：agent_executor = AgentExecutor( agent=agent, tools=tools, max_iterations=10, # 最多执行10轮 max…</li><li>区分原文说法与自己尚未验证的推断</li></ul><a href="#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-009-001-4068b6076a-explain">主要错因<select id="task-error-lesson-card-tencent-009-001-4068b6076a-explain" data-lesson-task-error="lesson-card-tencent-009-001-4068b6076a-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-009-001-4068b6076a#lesson-card-tencent-009-001-4068b6076a-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-009-001-4068b6076a-apply"><h3>2. 开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案 · 实现</h3><p>在「开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案」的「解决方案」代码中，AgentExecutor 如何接收输入或读取状态？指出一处会改变结果的调用，并说明你会怎样验证它。</p><label class="lesson-task-field" for="task-lesson-card-tencent-009-001-4068b6076a-apply">先写自己的回答<textarea id="task-lesson-card-tencent-009-001-4068b6076a-apply" data-lesson-task-answer="lesson-card-tencent-009-001-4068b6076a-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-009-001-4068b6076a-apply">给一点提示</button><p class="lesson-task-hint" hidden>先找 AgentExecutor 的调用位置、输入和紧随其后的结果处理。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">这是原文代码或配置阅读题，不代表代码已在本站运行。
+agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
+    max_iterations=10, # 最多执行10轮
+    max_execution_time=60, # 最多执行60秒
+    early_stopping_method=&quot;generate&quot; # 超时时生成答案
+)
+核对参数、返回/状态与外部副作用；原文没有给出的行为需用测试验证。</p><ul><li>能在来源代码定位 AgentExecutor</li><li>指出实际参数、状态或返回值中的至少一项</li><li>列出一个正常输入和一个失败/边界输入，并标明尚未执行的部分</li></ul><a href="#src-tencent-009-001-fkJTnCYoBDE5S9rSZTLVCO">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-009-001-4068b6076a-apply">主要错因<select id="task-error-lesson-card-tencent-009-001-4068b6076a-apply" data-lesson-task-error="lesson-card-tencent-009-001-4068b6076a-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-009-001-4068b6076a#lesson-card-tencent-009-001-4068b6076a-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>原文提到「方案1：工具层面的错误处理」。如果这个条件不满足，会影响「开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案」的哪一步？设计一个最小失败例子。</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>方案1：工具层面的错误处理</blockquote><ul><li>说明改变了哪个输入或条件</li><li>写出预期结果和验证方法</li><li>未运行时明确标注为待验证，不编造日志或指标</li></ul><a href="#src-tencent-009-001-TD3hm7iQbplbmRKbGA01XZ">回到原文依据</a></details><label class="lesson-task-field" for="boundary-tencent-009-001-4068b6076a">写下最小失败输入、预期和验证方法<textarea id="boundary-tencent-009-001-4068b6076a" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>将「开篇：深度理解Agent全链路内容：五、构建Agent的五大难点与解决方案」迁移到一个会查询并提交预约的助手：遇到“提交超时后用户再次点击”时，你会怎样调整？以本课“agent_executor = AgentExecutor( agent=agent, tools=tools, max_ite…”为依据，说明哪些信息能沿用，检查状态、外部结果、幂等和退出。</p><ul><li>指出本课中实际采用的一点：agent_executor = AgentExecutor( agent=agent, tools=tools, max_iterations=10…</li><li>说明新场景与原例子的差别</li><li>留下一个输入、预期结果和可复现的检查步骤</li></ul><label class="lesson-task-field" for="transfer-tencent-009-001-4068b6076a">解释哪些能复用，哪些要重新验证<textarea id="transfer-tencent-009-001-4068b6076a" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>不看原文说明「解决方案」的作用与适用范围</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>能指出示例的输入/状态/返回，并区分代码阅读与实际运行</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>完成两次主动回忆并记录一个边界或失败问题</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>写下产物、验证方法和仍未确认的内容</span></label></fieldset><label class="lesson-task-field" for="artifact-tencent-009-001-4068b6076a">产物、实际验证与未决问题<textarea id="artifact-tencent-009-001-4068b6076a" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=tencent-009-001-4068b6076a#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=tencent-009-001-4068b6076a">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/lessons/tencent-013-008-cc43dc69ae-0c658e/"><small>本主题 · 上一课</small><span>AI Workflow（AI 工作流）：主流框架与工具对比 · 示例（6）</span></a><a class="next-lesson" href="/momomian/lessons/tencent-006-006-005/" data-task-id="tencent-006-006-005" data-task-title="人机回环" data-task-step="阅读本课目标与例子"><small>本主题 · 下一课</small><span>人机回环</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1">五、构建Agent的五大难点与解决方案</a><a href="#section-2" class="nested">难点一：无限循环与任务卡死</a><a href="#section-3" class="nested">问题描述</a><a href="#section-4" class="nested">解决方案</a><a href="#section-5" class="nested">难点二：工具选择错误</a><a href="#section-6" class="nested">问题描述</a><a href="#section-7" class="nested">根本原因</a><a href="#section-8" class="nested">解决方案</a><a href="#section-9" class="nested">难点三：上下文窗口溢出</a><a href="#section-10" class="nested">问题描述</a><a href="#section-11" class="nested">解决方案</a><a href="#section-12" class="nested">难点四：错误处理与鲁棒性</a><a href="#section-13" class="nested">问题描述</a><a href="#section-14" class="nested">解决方案</a><a href="#section-15" class="nested">难点五：成本控制</a><a href="#section-16" class="nested">问题描述</a><a href="#section-17" class="nested">解决方案</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

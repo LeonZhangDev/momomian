@@ -1,0 +1,1237 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>更新记录 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="feishu-1ef7f04e21"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>资料使用、范围与笔记保存</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-78e2215c0d/" data-record-id="feishu-78e2215c0d">从这里开始：目标、路线与学习方法</a><a href="/momomian/lessons/feishu-668ca8fac1/" data-record-id="feishu-668ca8fac1">前言</a><a href="/momomian/lessons/feishu-aeeedb56a1/" data-record-id="feishu-aeeedb56a1">前言：问题说明</a><a href="/momomian/lessons/feishu-dd3749e358/" data-record-id="feishu-dd3749e358">前言：参考资料说明</a></details></div></details><details><summary>按背景选择应用主线和算法选修</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-d1b9f2c70c/" data-record-id="feishu-d1b9f2c70c">前言：大模型应用/算法学习路线</a><a href="/momomian/lessons/feishu-ab5c12af3e/" data-record-id="feishu-ab5c12af3e">学习顺序：应用起手 → 算法进阶</a><a href="/momomian/lessons/feishu-91cab59749/" data-record-id="feishu-91cab59749">学习路线</a></details></div></details><details><summary>资料使用与维护记录</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-058fc79ccf/" data-record-id="feishu-058fc79ccf">应用核心：Agent 与 RAG</a><a href="/momomian/lessons/feishu-f77fb5fc13/" data-record-id="feishu-f77fb5fc13">RAG</a></details></div></details><details><summary>论文阅读导航与跨主题研究参考</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-a5dbe7d281/" data-record-id="feishu-a5dbe7d281">专题阅读与文档维护</a></details></div></details><details open><summary>历史趋势与资料维护</summary><div class="lesson-nav"><details open><summary>补充与参考</summary><a href="/momomian/lessons/tencent-009-001-18864600fe/" data-record-id="tencent-009-001-18864600fe">开篇：深度理解Agent全链路内容：十、未来展望：Agent的发展趋势</a><a href="/momomian/lessons/feishu-1ef7f04e21/" class="current" aria-current="page" data-record-id="feishu-1ef7f04e21">更新记录</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=help">学习帮助与维护</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">参考 · 按需查阅</p><h1 data-pagefind-meta="title">更新记录</h1><div class="lesson-meta"><span>约 24 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：历史趋势与资料维护 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="feishu-1ef7f04e21" data-task-title="更新记录" data-task-href="/lessons/feishu-1ef7f04e21/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>日志中的星数增长纪录、热点频率与个人项目进度是历史记录或作者判断，本次未逐项核验其外部事实。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">学习帮助与维护 / 历史趋势与资料维护</p><a class="text-link" href="/momomian/path/?topic=help&amp;unit=unit-help-39025628">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>从连续日期日志追踪一套面试资料的问题、答案和视频是否分别完成</li><li>将复盘暴露的知识缺口定位到后续章节更新，说明更新补充了什么依据</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">更新记录</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">给定想复习该面试，先看到题目，再检查后续日期是否补了答案。</p><a class="text-link" href="#src-feishu-doxcnwIt4m5mcl6BayYmeOfYBuh">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><div class="prose" id="lesson-source-body"><div class="source-heading"><span>2 更新记录</span></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAEkUKdnrR9QOpNN8sTzgye"></a></span>
+<p><span>2025/12/07 </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuRdQwWEBciLnSviTIydZsg"></a></span>
+<p><span>1. 学习路线中增加自学转行如何确定项目，设计项目的原则，怎么完成自己的项目？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwIt4m5mcl6BayYmeOfYBuh"></a></span>
+<p><span>2. 补充12月小红书大模型岗位一面内容，更新完了问题部分，反思和知识部分待整理。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBlpZtNA3aZMjxhyvswu56g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYVMFDnp3mzTqBdWZfiCJGc"></a></span>
+<p><span>2025/12/08</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnv0BUwZfTmKLIxjbfOuvbfg"></a></span>
+<p><span>更新完善小红书面试对应问题答案。 答案部分快总结完了，还差一点，明天可以完成小红书的答案部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmjV0f4cJMWLYhwG73UrkGe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmo6MtFpdzzmw7pRCOXpKWc"></a></span>
+<p><span>2025/12/09</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnixs0P7swcBxRqvS8pCZVWf"></a></span>
+<p><span>完成小红书一面笔记的答案部分，开始更新字节面试笔记（字节面了两个部门，两个都会整理）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxLq6RFYwBjMeyg7PDgwnqg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbdtRIbvwaLIPpV4TmuQDfc"></a></span>
+<p><span>2025/12/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2LvBELIX1vRol5tKukyANe"></a></span>
+<p><span>整理完字节大模型工程岗， 一面面试问题</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndMQF8e17RCfCA8eKGbqOtb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCMewViU3TZBzNr70yuhXld"></a></span>
+<p><span>2025/12/11</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnviJSZNCywamrSw3M6bV6jb"></a></span>
+<p><span>基本完成字节大模型工程岗， 一面面试问题对应答案。根据面试情况完善了MCP笔记八股部分，八股部分新增A2A协议的概念（因为出现过两次了，说明A2A协议也是要准备的）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEh1NfN7DZGr4M0JTbK6GMf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn69u2uWqZGnKzffUqeudxse"></a></span>
+<p><span>2025/12/13</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaQhR1H5pydQz7i9n9uxMUh"></a></span>
+<p><span>更新Multi Agent对应的知识。 在之前的参考资料中，我给大家推荐的《Agentic Design Pattern》中的Multi-Agent这一章，但是这一章的讲解不够深入，特别是对于架构设计这一块也比较浅，这是在针对小红书的面试的时候，这些知识显得不够。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQX1DsBDEp6o6J1kXDv2Frg"></a></span>
+<p><span>我将Multi-Agent相关的知识更新，替换成《Towards a Science of Scaling Agent Systems》这篇论文相关的内容，补充了相关知识，参考材料和思路，让相关内容更加权威，准确，深入。（没总结完，总结更新ing)</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1sJNlnn3lRPLF5qSpLuLO5"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWOdq6NZRbywf8r9UYcImee"></a></span>
+<p><span>2025/12/14</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnStzzJXCrDbykTZVKt5Jwyj"></a></span>
+<p><span>完善了多Agent 八股部分，采用更权威论文作为知识总结来源，也完善了小红书一面对于多Agent架构问题讨论的回答。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwxfNaOHjx3NSvnsodS0dLe"></a></span>
+<p><span>添加面试讲解视频：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQKYJbcWiXJPT79vUXnnVpd"></a></span>
+<p><span>小红书一面，滴滴一面，安克科技一面，灵动时刻一面，京东一面，京东二面</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKk6lfzlu72rVKF8DJ0H1Hf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS0ArjEC310I745JyePPUac"></a></span>
+<p><span>2025/12/17</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6pfJJPxhc78ZjjWYwneQ4g"></a></span>
+<p><span>完善了下Langgraph的八股，加了一个很全面的Langgraph知识的参考文档，是个很全的Langgraph知识大全，遇到不懂的可以直接查这个文章。具体文章链接看Langgraph八股部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnofrHAypasif0gLn5T6bu4f"></a></span>
+<p><span>添加了多Agent的通信方法和状态管理，也是面试考点。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMJVVPI5aZtEOykdnuoXJAf"></a></span>
+<p><span>总结了阿里国际站的问题和反思，答案和解析部分未完成。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTqxfrRzoHYYLM4nqLtzBjd"></a></span>
+<p><span>优化常见Agent框架知识：按照目前最火的5个架构整理，忽略其它top5之外的框架</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7B62Woz7YA5TI9OuhwdpJf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6Gu8ufbcHKrn490WUajG2c"></a></span>
+<p><span>2025/12/18</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSgiL1EcCaZ8zh5FGW8tzBd"></a></span>
+<p><span>更新完阿里国际站一面答案部分，根据面试情况，更新了Langchain版本相关的八股内容和参考资料。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2hljC1NzPPz6LXtsbwEhbb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKaCOi4SoN1dkzVVdgtDIch"></a></span>
+<p><span>2025/12/20~21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp4aM42xcPbuKjsjTjg4Bkf"></a></span>
+<p><span>重构Agent性能评估八股部分，包括</span><strong>参考资料</strong><span>，</span><strong>常见的问题</strong><span>，以及</span><strong>答题思路和准备方法</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSIfuYduDwJhIi6fp3pji4d"></a></span>
+<p><span>完成</span><strong>京东三面面</strong><span>试题答案和面试思路，上传 对应</span><strong>讲解视频。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncaVajzsrXkNzPkVy3OfNah"></a></span>
+<p><span>今天我通过京东这个面试复盘，彻底重新梳理了Agent 性能评估这个超重要考点，在京东三面讲解视频中也着重讲这个点如何复习，准备策略，相信通过这一面的知识你能把这个点弄透。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXd9mRISWZ8NHmEcY5wXqyb"></a></span>
+<p><span>上传了阿里国际站 电话面讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS3KTpkOYbhYpiL0vcceqvf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7LwhGrLnIquc5Xv8DBiA9g"></a></span>
+<p><span>2025/12/23</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwYBmX12nMtEDneFACVQ6Oe"></a></span>
+<p><span>整理字节一面面试问题</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3C3pER7Z2YPtB0qELM4L0g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaPFZ2tyVrAEwT84ZgrYFCc"></a></span>
+<p><span>2025/12/24~25</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxPPs9oXNhkqqgkcnMAhdBg"></a></span>
+<p><span>整理字节一面面试的答案，并根据面试内容，调整八股内容：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCx3VvVGA9OoctLOQyRkp3c"></a></span>
+<ol>
+<li><span>微调方法论部分，加入参考文档，详见八股（</span><span><span><a href="/momomian/lessons/feishu-3524f0c55b/#src-feishu-doxcngja5X6wbMkrcNzZLrPwk2g"><span>你是怎么做微调的</span></a></span></span><span>）</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAkQGaT6jfG6zR0PCN0yPZc"></a></span>
+<ol start="2">
+<li><span>Multi-Agent八股部分，增加Single/Multi agent的对比</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLGGAJ8agAIurRN4w8yvqRh"></a></span>
+<ol start="3">
+<li><span>添加八股 你在做项目中遇到最困难的问题以及如何解决的 相关问题答案和解决思路。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvZnYZbBAqZ6eAc6LloGcHe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcntwYJCz8xZ2dNV3vr20ejZJ"></a></span>
+<p><span>2025/12/28</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0yHqIZ8dIYSENMCIp0y9Xg"></a></span>
+<p><span>总结完了夸克千问一面，二面面试问题</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXz2FiWcokncte9Y3PmIxXX"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmSbHrUR1mRJanSizpWTRNg"></a></span>
+<p><span>2025/12/29</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbQDxod8CvxjhEEt297ZGcg"></a></span>
+<ol>
+<li><span>上传字节（豆包）一面讲解视频。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUoTpHcI1gp0EMBGBGK6aoc"></a></span>
+<ol start="2">
+<li><span>完成夸克千问一面答案，千问二面反思部分。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmWxYBGeW98fFTFgY2yYugS"></a></span>
+<ol start="3">
+<li><span>完善了问题-你在项目中遇到的最难的问题，如何解决的？</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGRRkUdTKfKC4ObTQ284dJg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcniXX78mPJFV0Hh9AA59oIbT"></a></span>
+<p><span>2026/1/4</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRerDQ9BzStMlOF9E0Ga25x"></a></span>
+<p><span>1.完善多Agent八股部分，设置第四小节，多Agent的架构设计题目，结合笔记给出的参考论文例子和笔记的面试内容，来汇总架构设计题目和答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMPE5RzJO8tVBPfMSGmG35d"></a></span>
+<p><span>2.总结完成夸克千问二面问题和答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKvRga17KjqkVSnPpWvdyXc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaPaMAmHcXnIZGivjH28cue"></a></span>
+<p><span>2026/1/5</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntq7bySFlNljItWpmJFD6qf"></a></span>
+<p><span>录制并上传夸克千问二面讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXKfXIoPekFg0QPSjsO9Wzb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIfxbwK4wNJow5h5gXX1JXf"></a></span>
+<p><span>2026/1/5 ~2026/1/8</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpOYgnWOu0CFg4H5bF7qJqg"></a></span>
+<p><span>主要在做项目的调研，我开始丰富完善项目部分，今天写完了项目实战的介绍部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOyO25Kw55HBJMygnHEBhIe"></a></span>
+<p><span>接下来会继续调研，写这个项目的技术选型和具体方案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKkwZVH4o9WgMKjo3U6k0Zd"></a></span>
+<p><span>因为我后面会花比较大的精力在项目上，可能更新面试实战部分会慢一些，我这周会把所有面试的公司先都加到目录上，如果有哪个朋友特别需要某一个公司的题目，可以私信我，我先更新。 </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnc8I6hf2LOk5H1fyjyvMkFf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnl8K93Z4J5MpCGhpfZVLUQo"></a></span>
+<p><span>2026/1/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5u8XBysGLcR7Stj1sLhXQe"></a></span>
+<p><span>1.更新完阿里HR面。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJRVH0DBe2oiNGB0DtBkshb"></a></span>
+<p><span>2.把所有未整理的面经素材留了个白，后面陆续整理。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnGAvTSUuAMLqqDXkXwMXPf"></a></span>
+<p><span>3.更新项目实战，技术方案选型。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaGUPecGIURoKDx4M891NYG"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcncESedIHom4j0Jbsv0Vbyrf"></a></span>
+<p><span>2026/1/12</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPjIWacnJWL1T6lg9tCNeDh"></a></span>
+<p><span>更新项目文档：项目概述和核心特点部分</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVkZ4GRS0xhklpA9UsQhBob"></a></span>
+<p><span>RAG分块内容加入一个讲解参考视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnl9IjUuqGmByjYoXe3FMezc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoPNp0h5y3zw6lBtbBJP0dc"></a></span>
+<p><span>2026/1/13</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSxQWP9toX5uIh8y6V2w86c"></a></span>
+<p><span>更新项目文档：项目概述和核心特点部分 3.1 RAG核心流水线设计。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZsjWZPVmWsjaPMkcZyEExb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5l1JYTofzG5PhnGEtDz9yh"></a></span>
+<p><span>2026/1/15</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaNXNORycY05hqqjZUXwyQc"></a></span>
+<p><span>更新项目文档：MCP服务设计</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLBpXreDPAvAkHHO7OMCOkb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJJvYcq2GetIpvN8x4gQd1g"></a></span>
+<p><span>2026/1/16</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcna5NzDjySx5dGNNy1lgXL1c"></a></span>
+<p><span>更新项目文档：可插拔架构设计 pro</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRuEa3t2GcMr0AgeP2oJrkf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxSZ37S6Cy2VGcD5iWsGyEg"></a></span>
+<p><span>2026/1/17</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVguX90quiMe6gZoY8Vsind"></a></span>
+<p><span>新增Skills 的八股部分：概念，和mcp对比，和prompts对比，运行模式，设计理念。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfzZDQCGHuVXHqDAv6bmoBf"></a></span>
+<p><span>提供参考视频和参考项目</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnN3pt6MgYRrgjQqGgKRcod"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEb32ig8AijHrjoeTyCaq9A"></a></span>
+<p><span>2026/1/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9QWTm8g8GHqvQu8fRNh9Ch"></a></span>
+<p><span>新增项目Github地址。接下来几天我重心会放在更新面经部分，更新几期面经哈。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPqRECccd9OezpG7xuTHzrh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcngqgrJGjqFkek4QSOWg8Wuh"></a></span>
+<p><span>2026/1/22</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIFS5VOLbd5TbzXSmhwhv1f"></a></span>
+<p><span>更新完啦Deepwisdom的问题部分</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8mvB6pP1xwREBwE8OFqgDb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnegPzO8LIavncAckvOvsHbg"></a></span>
+<p><span>2026/1/23</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbip9U6b88tXj4JljecHnke"></a></span>
+<p><span>新增粉丝提问和答疑章节，我把粉丝朋友问我的一些问题和答案汇总在这里，这样大家可以参考，共同进步哈！其中问题部分我已经做了优化，在我的认知里不会有隐私问题，但是如果粉丝朋友觉得这个问题不便于公开，联系我删除哈。 大家一起进步！</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIAj9UEbFJGgrSkYqTu61jf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKfkaX7lZV58SGr7T9cU8Md"></a></span>
+<p><span>2026/1/24</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnl8IduQkK81kujt2L6ZnpJc"></a></span>
+<p><span>更新完deepwidsom的问题解析。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnc4FV7sd4AOUOzkNggqjnqd"></a></span>
+<p><span>优化了八股答案： 你是怎么做Agent评估的，之前有点太AI化了，优化成一个可以直接回答，更口语的答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS5SMcFCpzHJETA9e2WFTMb"></a></span>
+<p><span>根据面试问题新增八股模型部分：如何判断模型能不能跑，跑的有多快</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN2TevEbHRRg4oCoC7TXPZe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvVQyAVTbIhMwwdTySP07df"></a></span>
+<p><span>2026/1/25</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoXOZUOB7INgtCSQqiLbufe"></a></span>
+<p><span>更新平安证券一面面经和答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngtgQCm8iAx7AYiVrwmO7wh"></a></span>
+<p><span>八股增加了一个面试技巧环节，更新自我介绍和反问的一些策略。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnypLxdqkyhsqTDXcKP5i2Vc"></a></span>
+<p><span>八股增加模型部分Qwen2.5->3的升级</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzH513LcXsEVSlrYucGA3Qg"></a></span>
+<p><span>上传录制视频：项目实战部分skills的使用视频，Deepwisdom 一面讲解视频， 平安证券1面讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwNSL5kFAXX8FG4xqMX22xd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9GIwKdGrT2W6ZYJpxag3xf"></a></span>
+<p><span>2026/1/26~2026/1/27</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCpioxEGulA1L7qlt9nCeWb"></a></span>
+<p><span>项目进度完成17%, 提交相关代码</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHUdKtiOvZb6weJMsjbgIIg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqZQ2hwEkyjmrAarYbZxCqh"></a></span>
+<p><span>2026/2/1</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLaoTgaZvedqAvbNcBl1lBe"></a></span>
+<p><span>Rag-Agent项目进度45%，目前在写C阶段，C阶段是数据存储阶段，等写完C阶段，就可以有一些可以展示的东西了，它是独立的，对数据处理然后存到数据库中的一个离线模块，也是整个系统比较重要的模块。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJsv8mnIMiI1M0RAHeWyFRf"></a></span>
+<p><span>更新了平安证券二面相关问题和回答。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcni9yYfEPozcSk8Pmmlvh3He"></a></span>
+<p><span>Skills 推荐项目部分加了一些链接介绍。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnrUV6TkYveDgEmpnWXJn3b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnok9vgkMAWdEqauk72A2Eif"></a></span>
+<p><span>2026/2/7~2/8</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMNCmnZdh37aq9RlfRgVf9g"></a></span>
+<ol>
+<li><span>Rag-Agent项目进度已经完成84%，目前也录制一些项目相关的视频，放在了小红书上，我会都归档在笔记链接中。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvtgxaZpGylSWPs0E9llqpb"></a></span>
+<ol start="2">
+<li><span>更新一期面经：盛大AI一面</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnz4dRINiXaLBBpW5Og07bsh"></a></span>
+<ol start="3">
+<li><span>更新八股： 我在笔记中 你的项目遇到的最困难的问题是什么，如何解决的这个问题，又加一个例子。这个例子是结合我们RAG项目写MCP Server总结的。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCy3BMd2mYtgRvEY9Fzqgjc"></a></span>
+<ol start="4">
+<li><span>更新参考视频。在MCP章节，我更新了一个MCP 参考视频，从入门到进阶的视频。这些都是我当时看的。MCP从0基础到精通，把这几个视频看了就差不多了。（另外粉丝朋友说有的人不能科学上网，所以我视频也尽量找的都是中文的视频网站了，虽然这几个推荐视频我当时在油管看的，但还好他们是中国博主，国内也能找到地址，不过还是建议程序员要能科学上网呀，有的资料可能真的必须要到外网去看了）</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR23lqfuPcDpaYniE8b5gXg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1mhLunGyty3RyNTWPNdXxc"></a></span>
+<p><span>2026/2/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsT7XhTZUXYaUYWaskwhzCf"></a></span>
+<p><span>更新项目视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjIRXr8oms6p7ZioE3Ueyxf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIk2jpA8RUF9fQpyKfXzQHd"></a></span>
+<p><span>2026/2/24</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnw6VY2EBmCHYZczgAJSvwJs"></a></span>
+<p><span>休假结束，开始更新啦。今天更新了一个大章节。大模型岗位介绍。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBZe5arWUqdtnF0jkxmhC6d"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcngSluPUbB2szzTLlxDXGnah"></a></span>
+<p><span>2026/2/25</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDzdzxFK0tqDPdP8Ne9MF6g"></a></span>
+<p><span>全面优化补充Skill 章节笔记，加入更多内容，参考文档，润色内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrYWbIc6ik2WfelIMQ1L8hg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnlBmPjddfJLIZ5df0daZ6e"></a></span>
+<p><span>2026/2/28</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJ9JIuQeR3Oa1LvDa4qpRDc"></a></span>
+<p><span>笔记更新了简历编写技巧和面试准备建议</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGQiq7E6EfTFHbiz4WbqOMg"></a></span>
+<p><span>另外dev分支更新了自动编写简历的SKILL(暂时没有同步到其他分支），感兴趣可以先试。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5wHWU8mdF37klxKHEDHCxb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn855cNhW8WYFCqnAEoZNlJd"></a></span>
+<p><span>2026/3/1</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwiznqWkS4U2GaQdOCgYejf"></a></span>
+<p><span>更新项目相关视频：介绍test skill和resume skill如何写的，视频里讲了项目SKILL如何写的，SKILL设计思路，以及使用这个项目面试的一些建议。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIzx2FwUaMXtAa2noCdFz9b"></a></span>
+<p><span>更新了盛大AI面试的讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4Quvyyyj7M6EWKtXNyWpwf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIeCmfCLq5iBYIX5qwzJ5Nh"></a></span>
+<p><span>2026/3/6</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKiWmylNuGSqH33k4PKoplk"></a></span>
+<p><strong>项目更新了setup SKILL和对应视频</strong><span>：大家使用它可以一键配置环境。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn77IoehfvoQSL51jnfT3yvD"></a></span>
+<p><strong>项目更新了项目复习和模拟面试SKILL以及对应视频</strong><span>： 大家在面试前通过它，可以快速突击，掌握核心知识。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKIZsL0oZUD74dSCAl6guXb"></a></span>
+<p><strong>项目更新了完整的README：</strong><span>提供了一些说明，不同的人群如何使用，常见的问题的说明。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNpM5RkcQX5cH0c5vYpB8Xf"></a></span>
+<p><span>整理了项目，DEV, Main,Clean Start相关的分支整理完毕，请大家按需使用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn13i2CzCEPhJFsA3z4TNb6d"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvWJ0fBP2XV9VEDDzKCIEAe"></a></span>
+<p><span>2026/3/7</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntS9ekBO8V5D96QjYTV7TZg"></a></span>
+<p><span>更新了Openclaw常见的技术细节和框架，掌握这一小节，你将知道Openclaw到底为什么这么神奇，如何实现的？他不是魔法，而是一个合理的框架。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoOL3nFx7DDp8uVFVG7Ru8b"></a></span>
+<p><span>最后总结了8个Openclaw面试问题，快问快答，帮助大家检验是否掌握。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCpfR7I9Tqt3q0nfi4edFDi"></a></span>
+<p><span>最后也给出了参考视频：如何配置Openclaw以及openclaw技术讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCeNBIgst5bTfp27lzEQ8Fe"></a></span>
+<p><strong>Openclaw，面试必看哈~！</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncTIwfLXzhbtR09TE9AGAzi"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvOTJCawiai8WAwhTQy17te"></a></span>
+<p><span>2026/3/11</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNaxX5SGwwMysBaN9VKDF2g"></a></span>
+<p><span>主要在学习pytorch， 我准备把这些变成一套超级叼（自认为）的SKILL，里面包含了我的复习路线，参考视频，到时候大家学习复刻我的路的时候，直接用就好了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqA012xEYrgSIvR6JEX9Pkd"></a></span>
+<p><span>然后就是会出一些论文专题，因为论文特别重要，你们这周会看到笔记会多一个论文阅读专栏。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncIsCF7HNldqlo7E3pU5Ubh"></a></span>
+<p><span>最后就是RAG项目的真题，已经有粉丝朋友和我反馈他用这个项目的面试真题了，我也真的希望大家也可以反馈给我，这样我都会整理更新在笔记中，帮人帮己。当然我自己也会去面试的，但是我太忙了，有太多东西要更新了，等我反馈RAG项目真题可能比较慢了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaFVgHkNwdmewCnxSeglDWd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvXYOer36jxwF0WuYnin5LE"></a></span>
+<p><span>2026/3/12</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGoZKXoJBOkWZCizfVKTvQg"></a></span>
+<p><span>增加了笔记的新的篇章：论文部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvg3Xsp7456pmXfGFOvXZMb"></a></span>
+<p><span>写了为什么要读论文的思路，也总结了我们这个部分的第一篇论文：《Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?》</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP24wzCvRWVEODmSxMofOCe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQmswWJptQkuLbHFK7lXbib"></a></span>
+<p><span>2026/3/13</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWYiSCTCXmlKbGZPtz0yk2d"></a></span>
+<p><span>更新了笔记项目部分的一个 面试实战和问题解析。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfbJ8tA3chR3gmwYxYmsLI2"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5Hq8i85lWsDsgTg1vOpaCh"></a></span>
+<p><span>2026/3/14</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfqvhS7eVXXvEPsNlK6G0Ve"></a></span>
+<p><span>笔记设计思路和大模型学习路线彻底大重构。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjKcDfwzf3cmbaA1u1BvT3d"></a></span>
+<p><span>我之前写这个学习路线的时候是25年12月，现在有了更新的技术，思路，所以路线值得重构。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7hd7VJJa55kXySY6sicHAf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaHI4UmTY9RLLu1MpzhstBf"></a></span>
+<p><span>2026/3/15</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEpHNdFfj5YwJBM9qTpORSF"></a></span>
+<p><span>1.更新SKILL学习路线，新增一个推荐视频：某个博主讲如何写SKILL的实战。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxeOhj3MbFR5txsEYTetJQb"></a></span>
+<p><span>2.更新RAG进阶内容：包括Graph RAG, Agentic RAG, 知识图谱。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnB32dknzrkDSE64EgWUZYDg"></a></span>
+<p><span>3. 新增RAG项目面试真题：离线解析部分相关面试真题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAIT99yi0AsCUQg1i3eUkSb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4rEd2U51JfwFEEvh5Ug1af"></a></span>
+<p><span>2026/3/17</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9JwG0moPAoVr2Wx32dAAkf"></a></span>
+<p><span>1. 更新Openclaw的记忆模块解析，我认为这里很重要，因为记忆功能面试必考，Openclaw本身也值得学习。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFm2z6m1Ukqnx2KEuAwmvRe"></a></span>
+<p><span>2. 优化八股：Agent记忆是如何实现的。直接加入Openclaw实例，结合经典知识讲解，面试官问到直接秒杀。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvkCWkD4qJb0rwDCUmPkUkd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUotSIUUaC78UtAaf3odnWt"></a></span>
+<p><span>2026/3/19</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMZ0cQdLzqfLkTZgskYnrob"></a></span>
+<p><span>RAG项目新增两个大厂面试真题及解析（感谢粉丝朋友的投稿！！！！）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMNIAsxKKgg1OMy0MNOxndg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmwXA5jpi5L11KrMr7G4xzg"></a></span>
+<p><span>2026/3/20</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9UvN8tWiZvddEQuwThRyAe"></a></span>
+<p><span>抱歉拖延久了，上传了Pytorch/深度学习入门的SKILL，在大模型算法0基础学习全记录，2.1小节。需要的朋友请自己取</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0sFY1bHtmn3v357NuUxZ1b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcneAHkWbuBYkH0JnYeedx8Le"></a></span>
+<p><span>2026/3/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7okd7mshzS3rR9AUzsxPFb"></a></span>
+<p><span>上传了联想大模型岗位一面面经记录。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcng03zcz3emVQLXm2RcZ018d"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2ihi7EFSCS9shn3zEq8Coh"></a></span>
+<p><span>2026/3/22</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1hueWKWdmmwdcdic0g0tDg"></a></span>
+<p><span>上传了华林面试一面面经揭露</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcna1bDFFYIDesgtCgnTx0uFd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP1tUOi1zrqDgdnc7RCqmog"></a></span>
+<p><span>2026/3/23</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUkbyqXAjGILkzrDk2vHqVe"></a></span>
+<p><span>添加了Harness工程的内容，有几个同学反映这是面试会考察的内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYjh4Hs36Q2tH55tYt66F5f"></a></span>
+<p><span>另外新增了AI通用素养章节，我将SKILL, VibeCoding等技巧放在了其中。因为我相信这是新时代对每一个人的要求，它不属于大模型应用开发，算法等大模型岗位，而是每一个程序员，甚至是产品在新时代必须掌握的技巧。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIo4yQtRnq5OXvpvTP7qmzd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBQLcNpw6QRAXf8bgt9NzDd"></a></span>
+<p><span>2026/3/24</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMvALAPLnRMZ0M46jK1IICh"></a></span>
+<p><span>论文部分，添加了对最近最火的论文：Kimi的注意力残差的解读。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrqqP3Gx78iil6ik0QaeEWf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqaEVkLxzptq60yUK4upwce"></a></span>
+<p><span>2026/3/28</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJXKe8u0j7p7keK2ZBQkGGM"></a></span>
+<p><span>在AI通用素养章节，加入Claude Code从入门到精通：涵盖Claude Code的概念，基本使用方法，最佳实践建议，面试问题和参考视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIJJxWQidDR4XrQQzIrEsLI"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcngPrY7BdF9M7lKKhnXRYIHb"></a></span>
+<p><span>2026/3/29</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKunZvvlcJuTLJ80YFWFCvf"></a></span>
+<p><span>更新Openclaw 多Agent框架解析/多Agent之间的通信机制以及相关面试问题，这两个内容对应着面试的高频考点，我们希望能从Openclaw这个架构中找到一些思路和启发。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntP1AMFCyIFEzJGuHtOqEoc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7CDqAx8xfOBQFsHyQO3IGf"></a></span>
+<p><span>2026/3/30</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjlFifwKobjmPCW23Nk5XZf"></a></span>
+<p><span>总结两个粉丝朋友提供的大厂项目面试真题，两个都是大厂，国内排名前10的公司。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcns6moqQjQoA7kaQAbmfGynh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBWNminbg3TUkyUiVVUkOig"></a></span>
+<p><span>2026/3/31</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcns82C4cR9GQ0ri1h6IY41oc"></a></span>
+<p><span>补个SKILL的推荐视频，讲解的是如何去写一个SKILL，作者的核心思路是FeedbackCycle，写Skill分成这四步，我是很认同的。通过他这个视频，他告诉你如何去写SKILL，通过实践讲解。.</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnW2IM1Qitt70FM8cnXyZiPg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrKRQOOqznOlq90yU2uKRNg"></a></span>
+<p><span>2026/4/1</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn15MpSmWGCzdXuk2zfQ2txg"></a></span>
+<p><span>更新华林二面的视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngul8SJgDI8zrpAfne7pY4c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkVg4FIs6LvZrQaI3T5C1nD"></a></span>
+<p><span>2026/4/9</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTNuDZ6LFcxa42Z93D7tyqh"></a></span>
+<p><span>旅游回来了，继续给大家更新。最近更新一下Claude Code源码，架构的内容。粉丝已经催了很久了，毫无疑问这个是最近超高频考点。大家要有这个意识，大模型岗位，对于那些爆了的热点知识，一定是最近常考的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpkfeEPlhxNhYaWEzky8U8c"></a></span>
+<p><span>拆解Claude Code源码，和它相关的发现了一个Clawcode的项目：它是在ClaudeCode泄露后，使用Harness工程把CC重写了一遍，Github创下了星星数增长最快的记录，它的harness工程值得我们学习。所以今天先更新了CC的源码泄露背景和对这个项目的拆解，希望大家通过这个项目可以学一下Harness工程，也是26年高频考点。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTFHewyqOQKiDzdddEJfead"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnk0M047Sxxvu7tx3ik6wUGf"></a></span>
+<p><span>2026/4/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzBbHaWnQMFb674PPJvuX9f"></a></span>
+<p><span>添加ClawCode 5层harness架构的讲解视频（小红书传了，笔记也会附上夸克网盘链接，没看到就稍微晚一天再查看）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRax1DbUBoYwQBjobWUYJVc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnirBvKL1VG7kU1kVccOiINh"></a></span>
+<p><span>2026/4/11</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWyQPgzuRrPgnkWJrEfqS4g"></a></span>
+<p><span>添加Claudecode的记忆功能解析以及添加相关面试问题/答案参考。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp6rx4KyV3LsytlGEXRi1mg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5ktveRkRaI4sr3JWtcC7Zf"></a></span>
+<p><span>2026/4/12</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjZHiJKULT8j7nBAvu0rEye"></a></span>
+<p><span>解析了ClaudeCode的架构，将Claude Code的架构和Openclaw去对比，包括和我们笔记部分，Agent之间通信方法联系起来。希望通过这个笔记，大家理论联系实践，对理论有更好的理解，也对Agent架构有一定理解，这些对自己设计Agent框架，以及相关面试问题都很有帮助。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoHbDimHrhPQTPEwdOJb4gg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfJRwNIH0q7IBEoF8JWoAjb"></a></span>
+<p><span>2026/4/13</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnci8Bas2J8JpBloRWsCMmLg"></a></span>
+<p><span>上传了ClaudeCode源码解析 - 记忆模块 讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOgzmpsSod7K9JStIxRRUlu"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJ9G0lmxow6UQIfx0lrgMlb"></a></span>
+<p><span>2026/4/17</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7Kwu48BDIsEOg9yZTDzhot"></a></span>
+<p><span>更新ClaudeCode源码解析 - 四层安全模块。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8TVjV3rQaBQszD4Z0IvQKd"></a></span>
+<p><span>同时上传了CC的源代码，在源码解析章节，大家自取.</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEJ8l1vz1jzKz8f7PUoyI5e"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbw6qj4eFytrwUl3nN48ILf"></a></span>
+<p><span>2026/4/20</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnU4oEtmgHKO94K8igJVHG5f"></a></span>
+<p><span>更新了自学算法章节，上传了第二阶段的SKILL。后训练学习SKILL。阐述了使用该SKILL的技巧和思路。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoj80X927pL65IdRNAfp2Gd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhbtqwromnZzxwahSI929de"></a></span>
+<p><span>2026/4/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp1UEMUIOiPyL30NA3yLhmf"></a></span>
+<p><span>更新了Hermes Agent的知识部分和相关面试高频考点。Hermes工程是26年4月底的顶流，面试常考。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrCGWIdDMMogGTuO4KrhWTg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCddWZfXjTe4SfgS3XRa5Dc"></a></span>
+<p><span>2026/4/22</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEmV8SwOZhkOi2V5Dvlsfnc"></a></span>
+<p><span>更新Hermes Agent的讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrPgmae93nrDIC0Tol7hJgc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQWg6NGOVhn8qXgyumMtQIh"></a></span>
+<p><span>2026/4/23</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSeftz0MrxMdQn2w7P6A22g"></a></span>
+<p><span>总结了三个粉丝朋友投稿的RAG项目面试真实的问题和答案。并且根据这个真实面试题，补充了2个八股：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbnOJzDl9ZgegSvWN4oJwbe"></a></span>
+<p><span>1.  Chunk size的选型策略和思路。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvIcuC2YgHk9wSIgnqbPJGh"></a></span>
+<p><span>2.  MCP Server的tools 设计的原则。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnvoHW8RCiqGScgm93pikYf"></a></span>
+<p><span>公开了RAG面试真题前面几期面试公司（当时鉴于隐私，把公司名隐藏了，现在小伙伴都上岸了，我把这个公司名公开了）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFEAAHtDAmpgbBIpoGJ5tZg"></a></span>
+<p><span>另外笔记有个小优化，今天笔记中的互相引用的片段做成链接，方便大家跳转更方便。等我空了逐步修改过来。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncZeXtm4bn8wkiJO1WTJuuf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnz556b4NnK6iaZ7oc71hERh"></a></span>
+<p><span>2026/4/24</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2qt6LNZKqjMNx1Q6yxd7Rh"></a></span>
+<p><span>更新了华林三面的面试问题和解析。我主要想通过这次面试来讲一下架构设计面试问题，提供一个模板供大家套用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcniHB3o2U6qJsJiW3qg92poc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsvgbuoNxZZhHagwp4kh2nc"></a></span>
+<p><span>2026/4/26</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnz1QvP52C8D0ONISseL8xce"></a></span>
+<p><span>笔记加了一个小小的彩蛋，既然是彩蛋，我就不说是在哪里了，成立了一个新的章节。希望通过这个章节可以鼓励到大家。感兴趣自己翻翻吧。这两天开始学习算法的第三阶段了，开源项目的学习，所以没有更新笔记，但是随着算法学习，也离提供一个算法的项目越来越近了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGLjIoLtcvc8dI7pZMh8mmg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoIALbwuhZjQd3VKiJQoVHb"></a></span>
+<p><span>2026/4/29</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvJ2MrP29SJ1GdeUccMVpzs"></a></span>
+<p><span>1. 下一个就是你的彩蛋环节加了一个例子。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpFWW1IND424jw5nhBrKSNe"></a></span>
+<p><span>2. 我把文本里我找到的所有文本内相互引用的地方变成了超链接的形式，帮助大家能快速上下文跳转。如果有没改过来的或者有问题的地方，请大家和客服反馈，我会及时修改。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUK5KHfN4E9TgcT4CIxbAeh"></a></span>
+<p><span>这两天没更新笔记是因为我在学算法第三阶段，更快学完更快开始做算法项目分享给大家。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0iDvl9GFtoMS2djtReW9zb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbUh3WdoUw5Ny307cL8o9jf"></a></span>
+<p><span>2026/4/30</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr0yUd90M7cBH0igo7QoUxh"></a></span>
+<p><span>1. 下一个就是你的彩蛋环节加了一个例子。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJnQJHAG0taIkLe1j64nEsd"></a></span>
+<p><span>2. ClaudeCode源码解析章节，添加ClaudeCode的成本控制功能讲解。这一部分对于理解面试问题：你的项目怎么做Agent成本控制，如何避免Agent无限调用烧爆token，以及对于设计自己的项目，都是有很好的借鉴价值。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnG7UuMb9p34cRgHaLvSoMce"></a></span>
+<p><span>五一期间可能不会有太多更新，好好放个假吧，祝大家假期快乐。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqQfFRA3DQGOrqWynqFm6ck"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF6kcQ0fGrUwwGOYsCzhwNc"></a></span>
+<p><span>2026/5/6</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmFlF3lDASx8fXt3r61aB5b"></a></span>
+<p><span>在整理按摩房预约系统的项目，很多朋友问我能不能分享。这个项目是我自学大模型开始自己做的第一个项目。我想着就分享给大家，我在整理相应的代码，SKILL，真题，以及如何使用，相关配套的面试真题，预期在5.8号左右整理完。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPHa8L1yXM4GsOTJdrgrjDd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5kqb8nvU30gnMPmaT1sSfg"></a></span>
+<p><span>2026/5/7</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSkWmYUJCIE4ggOQ06WEn2e"></a></span>
+<p><span>成立一个所有人都能看到，编辑，反馈的文档（在文本最后）。我希望在这个文档上和大家去交流，我会在上面写上我的长期更新计划，大家也可以补充有什么面试问题（比如文档上没有的，希望补充的），提供文档的反馈，意见，错误纠正，好的参考资料，以及其他一切内容（因为大家是都可以共建的），集合团队力量，一起获取胜利。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngPlu9AY1zMphkxTbWevgnh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbDHuEP3X9tMwygqN6RurOg"></a></span>
+<p><span>2026/5/8</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfigmVT6Z53T0C57RUgBIkh"></a></span>
+<p><span>按摩房预约项目部分文档已经更新完了，源代码也上传了，怎么使用等我的面试心得都写上去了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnG8uThTHua4ZnnXjiWS7L2f"></a></span>
+<p><span>我还需要对这个按摩房预约系统录制一个视频讲解，项目部分就到此结束了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIPCTbBP9vAdwOgWYKmNHRd"></a></span>
+<p><span>接下来会更新个面经，粉丝提议的模型对比，私有部署，以及主线内容是算法，推出算法项目。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBkVb8yYx7Whmei0y0vu8md"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS6qNR5wCuww0HBEIpHzjFh"></a></span>
+<p><span>2026/5/9</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7r69iuHIWsDDPJXXNh3MAj"></a></span>
+<p><span>Agent项目部分传了个视频，项目部分到此结束。我会把之前的一些视频都换成b站链接，后续也都会用b站代替，有粉丝朋友反馈夸克链接不方便。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUQ3d7g0N6U1v8b9ykFYRNd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXJDNHegU9XKtigGZoaXKbe"></a></span>
+<p><span>2026/5/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfyhHlkCQakTSQE81CG5jxh"></a></span>
+<p><span>更新了不同模型的对比，选型策略，deepseekv4的核心特性，结合了面试真题讲解。我觉得这部分还是值得大家了解的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpXQfJDtesidDWPr2nWsKme"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVPrbX9QovgnKXSCuVHNdjb"></a></span>
+<p><span>2026/5/11</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGfLwRNelYN4ZZw7RJYWZFc"></a></span>
+<p><span>添加了不同模型对比的文档对应的讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXkoCZcrVZZt1Eo1Ca8QpJe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3jBzZmzLOHxHHx84SqZoZd"></a></span>
+<p><span>2026/5/12</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYqDWgLhnWarDiOqwrSI6tg"></a></span>
+<p><span>详细分析了问题，部署/训练某个模型时，需要多少显存和空间。大模型社群中有朋友反映这个问题面试官问了，不知道怎么回答。这个问题有点难，涉及知识点有点广，我也会配一个讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpKppmvij8v4xiUO6ndOmxf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp0QcplsB2ooQd0XTREFYAe"></a></span>
+<p><span>2026/5/13</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp7pa8rFfoRceVNUP707VSg"></a></span>
+<p><span>更新部署模型讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnznf5yMaoIBVgzwdYjPETUf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnj5EVM87Mot9znWJE706s9b"></a></span>
+<p><span>2026/5/17</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbhNXEMhoTCDo8CBNFRSGJg"></a></span>
+<p><span>更新2026.05 字节跳动暑期实习一面新鲜面经。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAyASdNAq7mu6oLNOpUy7md"></a></span>
+<p><span>重构大模型笔记：幻觉部分，力争完整，前沿，增加了一些亮点设计。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneK80QDUrLPSUgalVyye2hY"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcncg3D9IP0xfSOA7650E8lOZ"></a></span>
+<p><span>2026/5/18</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVi3cU2pHJ9T9ECeKRwqgwg"></a></span>
+<p><span>更新2026.05 字节跳动暑期实习一面新鲜面经视频讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRzhL4P1Y0U8HxycdTLMFxh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAz25ITckYNIrQXJWRoY4lh"></a></span>
+<p><span>2026/5/19</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHYB2PGNgTjszSeDgJTsTuf"></a></span>
+<p><span>重构了Harness章节的内容。添加了2个参考视频和参考文档。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8JlhTRvs4hfRD3lz3t4Y8d"></a></span>
+<p><span>同时新增了一个Harness工程的一些工程实战细节，我觉得非常有帮助，不管是对面试还是自己使用AI，还是开发Agent项目。在这个笔记的过程中，也结合了非常多的面试问题来讲解这一小节笔记如何在面试中运用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP7VD8qTlKu3jVpLEvIdG0g"></a></span>
+<p><span>同时在Harness章节，也增加了如何学习Harness的一些思路介绍。相信重构后，大家不管学习Harness内容还是准备相关面试问题，都会更加容易</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrQ00eLg3JuiUaqrEG9nZOg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUsjiXaNe0aLyQVYiYK2pGd"></a></span>
+<p><span>2026/5/20</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjmghWwr68O4lfenxEzrPtc"></a></span>
+<p><span>更新了笔记推荐阅读顺序建议。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbAdqGkRX9BcilycRWNeJxb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcneKQ01HJyrvqRwZzagXVrfe"></a></span>
+<p><span>2026/5/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWqOjKAvcjULOztJTTgCSud"></a></span>
+<p><span>经验之谈，更新如何找项目</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTUWcncccdyIhaEcFBLpZch"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVgyxT6PlbBxS7vXXR6s2D5"></a></span>
+<p><span>2026/5/24</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyvZyUwMLUeFwCuxbMg6quh"></a></span>
+<p><span>更新腾讯AIAgent暑期实习一面面经和解析</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvSyc4jhQEepcXtSZVbAipb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcndm21a3x6h0PpPvR417zPzc"></a></span>
+<p><span>2026/5/26</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvff4fShZB9QffEdtFAwrGg"></a></span>
+<p><span>更新腾讯AIAgent暑期实习一面面经和解析 讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHceCt2KnQd2j0703OqXVOf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCeBvHCL3FaRSYdEUR4ebib"></a></span>
+<p><span>2026/5/27</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUky10a1qpbIWPTWEggibGc"></a></span>
+<p><span>更新重构ClaudeCode的源码解析，关于ClaudeCode的架构部分：增加了AgentTeam部分的讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp3tSy1F6Z8dif0cogofGqf"></a></span>
+<p><span>在ClaudeCode的笔记部分，加入了CC的Agentteam和SubAgent的使用介绍。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFRUnHRDbOlG37MtaIFedbf"></a></span>
+<p><span>在ClaudeCode章节，加入了若干参考资料：Agentteam和SubAgent 的使用视频讲解，官方文档，CC源码解读书籍在线阅读链接。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCe4oArvSq8JGV6l7kALy3g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcngiCbBuT6E1D3VX4I9zTpQc"></a></span>
+<p><span>2026/5/28</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyZPzoR06v6UzSwR0OIf9qh"></a></span>
+<p><span>自学大模型算法章节，完整的三个阶段的SKILL已经更新。这个是我自己学下来，掌握大模型算法（后训练）部分的理论基础使用的方法，觉得合适的同学可以直接复用。我接下来准备做算法项目了。确实我是用这一套从0算法基础到现在（虽然也不是什么算法高手，但是最少后训练，pytorch等整个算法的理论基础是学完了的）的一个水平。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxU6q93aMoMnByL6VJ0bmtg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwyrATFLdVtiy02tdssbL8d"></a></span>
+<p><span>2026/6/2</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2KTmNG8mon1wPRpajed2Nc"></a></span>
+<p><span>更新了虾皮暑期实习一面面试深度解析。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKNr9Er4aGxiX1fEx4EIEdh"></a></span>
+<p><span>根据这一次面试，补充了ClaudeCode源码解读的笔记部分，新增全局图片，Transcript部分，以及将笔记部分和面试题融合。增加了相关的参考资料，比如Langgraph的持久化知识参考链接。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngRnlOQFbniZJ66EP9rRM8d"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7NA79Q6euBb5iU50SjQlCe"></a></span>
+<p><span>2026/6/2</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoR9Kd8FK4jb0k2bpb5pfEb"></a></span>
+<p><span>更新了虾皮暑期实习一面面试讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEHjn3sPuX4qhBz3Uvwtjjg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPXdO91A5JaPztcTL2YQfU4"></a></span>
+<p><span>2026/6/7</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLLxNxmfDpzKU5uXXr2x0id"></a></span>
+<p><span>更新了ClaudeCode vs Codex工具测评，对比，选型建议，面试问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwzdWzXyNf7Gwbp4So55k2b"></a></span>
+<p><span>因为最近Codex的热度起来了，很多人说Codex更好用，了解这一章节，有助于提升我们的VibeCoding的技巧，在我们和面试官聊VibeCoding工具时，心中也更有料。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZS93Y8Xigc7sGlsQINKcHc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYjc8GrudSYO2NZhZDIvpGf"></a></span>
+<p><span>2026/6/8</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIkQNwpkDS69lQfb12oylVI"></a></span>
+<p><span>更新CC和Codex对比讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7qtIYbKtvy8vttanz8g0vg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKyMn5dqQVxWJjewaxWe6ob"></a></span>
+<p><span>2026/6/9</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnY4q39AyOPvaXCKLU24rw0d"></a></span>
+<p><span>我主要在写算法章节的设计文档，这一部分的思路希望这个文档能够不光展示技术细节，也展示如何写的，你如何复用。我在写这一部分的过程中不会往文档里写，会在我设计完细节的时候一次性写入笔记中。如果想要现在就看的同学，可以看我小红书的笔记:算法设计章节，这个里面展示了设计的中间过程。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnica2VRq9YwF9PfqxzyKWzc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGtdv53nsRF3bXgMBgwD4Ua"></a></span>
+<p><span>2026/6/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnulaJ4tgIh2VpjY1MIUtyVc"></a></span>
+<p><span>分享了一个提示词和技巧，用于将面试录音快速变成面试问题记录。放在上面的经验之谈里。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7LSo0Ch6Id5WjZKyzD3y4f"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn968ErLiB6ntzYPjpW09hff"></a></span>
+<p><span>2026/6/11</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoML00DH5Q8FIjSBCL5K3gc"></a></span>
+<p><span>替换夸克千问面试讲解视频变成b站链接。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlZMQtVj8iyFmRthAEPdUce"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8N3euMubRzocRlEAmzsGIc"></a></span>
+<p><span>2026/6/14</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsTxhNSZ0JPEPDNWXgXej6c"></a></span>
+<p><span>新增了安克暑期实习一面的面经和详细解析，根据面经内容重构笔记，具体包括：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnElyaUG8x5XujtddpDTgS7g"></a></span>
+<p><span>RAG部分加入RAG整体流程图和描述，新增意图识别步骤内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0kmXhyiT14NnU8rVDgZPPe"></a></span>
+<p><span>CC源码压缩部分新增整体压缩的流程图，重构压缩部分讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkIOKUBiroQjdSb9dNd9Nkd"></a></span>
+<p><span>将本次面试真题问题融入到笔记中。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOdERwPELd7Yfgl0qkalNSb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoMIZaVuLCuaxHOu221OF6d"></a></span>
+<p><span>2026/6/15</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBE7QNfyejfeUAzkfzPBaDf"></a></span>
+<p><span>新增安克暑期实习一面面经讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcns2q7Hdec4gsNSHLqb9hIFd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXDiHzlPXEy2uIObYHni1qd"></a></span>
+<p><span>2026/6/16</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnzyOo6vNL3W3MbfOaaZzIg"></a></span>
+<p><span>新增研究院大模型开发岗位面试全记录，包括所有面试流程，注意事项，具体放在面经章节。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpfjKZN6Y0o5hHtHj7n9q6g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDun12guMsnFEsnD4Gi9zzg"></a></span>
+<p><span>2026/6/17</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbWyrSdI1riUgVYL9x69Gee"></a></span>
+<p><span>Agent章节新增Loop 工程的内容，是最近比较火的概念，补齐相关内容防止面试官会问。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbfoMsDe8DjkURwKrjtyKtZ"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOj221dxaPFJkTV6ImEARTf"></a></span>
+<p><span>2026/6/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnigxTbo0cErXLQWgIxDxhp4"></a></span>
+<p><span>新增一个Agent实战例子：PI Agent. 添加该项目完整的架构讲解，思想设计，面试问题，课后作业等。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4grrvDcuAeeYi1Lja6yVLe"></a></span>
+<p><span>同时更新学习思路部分：推荐该项目作为学完Agent理论一个开始上手实践的Agent项目。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnShe8Cbo8dqwPQOISExKRyc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn516uw9e3jehWmT62jkrQxb"></a></span>
+<p><span>2026/6/22</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAd1FxVOCcpuGxeXeNJGaBf"></a></span>
+<p><span>添加Pi-agent讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4ruPAU6cXNDFGCu8yqfcIe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnexaeT0RyQcvuXVQzWcsR2K"></a></span>
+<p><span>2026/6/25</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnA02dD1U5GkKpqZp4buZ26g"></a></span>
+<p><span>更新米连科技（社招）面经</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIGu3Jkx1ebb8aHmsprcbIf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEF8SaMa94IjLP2mMFxBqhe"></a></span>
+<p><span>2026/6/28</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3udkAuOiWfBJJQbqGpmNxd"></a></span>
+<p><span>彻底重构了整个Agent评估内容。参考了3本书籍和一篇论文，按照Agent开发的生命周期讲解，插入每个地方需要评测的内容。确保评估点完整且符合逻辑。笔记里掺杂了十几个面试真题供大家参考。同时给出了参考资料供大家深入学习。相信这一部分能够讲透，覆盖清楚Agent评估常考的问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVuqxkq4qUxxJjnupycgnNe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnv2AFvmpdFNkOkFS1KrgJ7d"></a></span>
+<p><span>2026/6/29</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcny4CGIeSV7VRyG2SvSaQRde"></a></span>
+<p><span>添加Agent评估的讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnv46sXtm6Tm3hNmSnuOgPbc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMsIxKvA1DH9va9NwsQS7re"></a></span>
+<p><span>2026/6/30~2026/07/02</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxxO9nJarF3D4TLHC3wmNQf"></a></span>
+<p><span>加了几个上岸记录（其实中间还有很多人上岸，我太懒了，没有及时记录）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlmotJk7YE7xloTF9hkUmUf"></a></span>
+<p><span>然后这几天笔记虽然没有更新，但我一直也没闲着，我在设计我们算法项目的spec，马上设计完了。我会讲算法的项目对应的技术文档直接添加在笔记中，更新我们的笔记章节，有需要的可以先看起来。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPGtSNg1ZAoB1lrvTGiEQtc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcng0eWbm1i0Y43pLkqmyJ4Sb"></a></span>
+<p><span>2026/07/05</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJB4MOHWqPukv7fdvuVakFh"></a></span>
+<p><span>SKILL章节添加面试实战内容，总结梳理了粉丝朋友提供的近期SKILL面试相关真题和解析，以及对应视频讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfqTPmJzauViOPOm4UdnIFh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCsR0yh03IIBLeCDaLAQKAP"></a></span>
+<p><span>2026/07/06</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6e4PT1HYH4u59PYmxDg9Jf"></a></span>
+<p><span>添加算法项目技术文档</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnz4JuTgoLhvpYooWzbV5Qeg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMcMZXq6JQOqjsjTNzORbQd"></a></span>
+<p><span>2026/07/07</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneg4f7vT1wvwzUhWD7FdAQe"></a></span>
+<p><span>更新SKILL面试真题对应的讲解部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRff7C0DhhB1KnpJbRufsPh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfIA3lCzYLSNzrNfDGJFtQw"></a></span>
+<p><span>2026/07/08</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnawa0IyuRf6JYHWJu2c5Zme"></a></span>
+<p><span>添加一个Agent场景题, 社招面试真题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfA1Ru0zG8DIVYPTdpiqh8z"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHVHgycbEgwsGrMyfdivqSd"></a></span>
+<p><span>2026/07/09</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpCwgHGq41GT8tLcTe1glGc"></a></span>
+<p><span>添加RAG趋势讨论的问题。包括比如你的项目要不要用RAG啊？ClaudeCode为什么不用RAG啊？RAG是否过时了啊？你怎么看待RAG已死这个问题啊。今天补充的内容，大家读完了以后会对这些问题有深入的理解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMt5jXBRRJcOovOI0LFmIsd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnctJfbzvCNywKkxZhh1Qfzb"></a></span>
+<p><span>2026/07/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyKL7rs6Vw7piCg0mR8lmSg"></a></span>
+<p><span>添加RAG趋势探讨部分笔记的讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlnbBjIKTvTQpecMErFOovf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnERsdU6TrU4izLVRS2ZaMvg"></a></span>
+<p><span>2026/07/11</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYZvOPku1fsIc478NkbIbgb"></a></span>
+<p><span>添加Agent场景题部分笔记的讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDKvG6Pd4PF2n9wszU7uJCe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnX9hAEJv8DPe5RJK8GIFcLe"></a></span>
+<p><span>2026/07/13</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndiRhIaZQc6CcOl7Pp7lLrh"></a></span>
+<p><span>上传了大模型算法项目一阶段的代码：主要完成了对应的项目框架的搭建，推理模块的基本架构。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAZ8gxcroJUUl6mxVACSIme"></a></span>
+<p><span>同时在笔记中整理该项目推荐的学习方法。这是阶段性的交付，每个阶段我都教给大家如何去完成，怎么去学习的。你真的不用等我完成整个项目后再来理解，可以跟着我写的步骤，阶段性学习。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJGLanBLqEvu4W1znzVxbyc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPOJ2QgROaebZGNdIrOJ71d"></a></span>
+<p><span>2026/07/14</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGUvcJKuwa6MUp5AuUvlO2A"></a></span>
+<p><span>上传了大模型算法项目一阶段的讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4xjB9Mrn3EuFWKfFpMkuXf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjnQRhCSeNhlGmDJxN0aPoh"></a></span>
+<p><span>2026/07/15</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaUvn4Z5w1wHKEinzyLyYZ3"></a></span>
+<p><span>上传了</span><span><span><a href="/momomian/lessons/feishu-70a1816b49/#src-feishu-doxcntzTSDKPsVXAE65jzjcn2zc"><span>大模型算法项目二阶段</span></a></span></span><span>的代码：完成了Agent的评估模块。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGQLGUJUDmIlsiVUi0ndL5g"></a></span>
+<p><span>这块其实适合于任何人，即使你不做大模型算法项目，这个阶段也值得学习。因为应用开发也很常考大模型评估，这块可以作为一个Agent评估内容的实战。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwaSdnp7oLbpzSzyCfTDFEc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjV00iAxYbBU4LROIEfviyh"></a></span>
+<p><span>2026/07/16</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCV8B4iQvgtWZzuf0vM5tPh"></a></span>
+<p><span>上传了</span><span><span><a href="/momomian/lessons/feishu-70a1816b49/#src-feishu-doxcntzTSDKPsVXAE65jzjcn2zc"><span>大模型算法项目二阶段</span></a></span></span><span> 讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWnDrVaBQNww9MAzSOEzVsb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsJ4PTkdRlrb13hcVYsL90c"></a></span>
+<p><span>2026/07/19</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrQ6C9ARFr7xCTLVWrlexeh"></a></span>
+<p><span>新增面经：</span><span><span><a href="/momomian/lessons/feishu-2086c96f4e/#src-feishu-doxcnVZsQykjyWV7PdW0V7Ostez"><span>滴滴Agent开发</span></a></span></span><span>一面面试题和答案解析。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1gFSzMYFCZHwjRrGvEqrbc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMrVBJQvdJiLStkcOMj8Nxb"></a></span>
+<p><span>2026/07/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZHlQXzAbUb55zBqxTGmCXg"></a></span>
+<p><span>增加滴滴Agent开发一面面经讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuJtgwc9DPV5sAXRrMUqJyd"></a></span>
+<p><span>修复了错别字，同时重构目录结构。我希望把我们目录再整理一下，内容越来越多了，还没整理完，今天重构了一部分，希望想个办法比如整理目录结构，加点全局结构图之类的，让大家即使内容一直在增加，看笔记也能很清楚知道结构和应该看哪一部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0TJpb4rBux2GVI9pfkeAxH"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQcFpDm911UxhDvT5cmjgzf"></a></span>
+<p><span>2026/07/22</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoZblNB9fm8Zdr4n8e7hGzf"></a></span>
+<p><span>修复错别字。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7XRD6tZ4HI0RuY4b7Q12nf"></a></span>
+<p><span>新增笔记：使用</span><span><span><a href="/momomian/lessons/feishu-139a4ca540/#src-feishu-doxcnXI0BffQzRxfuFMKrGj7XGb"><span>AI工具时如何节约Token使用量</span></a></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfnbY9kH25utpzWrscnfoQh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcndclvCYqvuQetAnRAACImng"></a></span>
+<p><span>2026/07/23</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRkZSZnQ7R62Cmz6tNusKRc"></a></span>
+<p><span>修复错别字。我用AI修了好几版错别字。新增笔记：使用</span><span><span><a href="/momomian/lessons/feishu-139a4ca540/#src-feishu-doxcnXI0BffQzRxfuFMKrGj7XGb"><span>AI工具时如何节约Token使用量</span></a></span></span><span> 对应的视频讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntMN0JYJz7zRGY6Fm9omNKh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNmuxCxtZwPfTjBXbTGCaGb"></a></span>
+<p><span>2026/07/24</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsXauYWcZY7QgFrMFEWfLvZ"></a></span>
+<p><span>岗位介绍部分新添对</span><span><span><a href="/momomian/lessons/feishu-ab5c12af3e/#src-feishu-doxcnmNoI51xql9aRjUj0VVQF6n"><span>FDE岗位的介绍</span></a></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncL8j1ed8pW3bUxlcWmlGth"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGbF47woGjW2EYPci64TGOc"></a></span>
+<p><span>2026/07/25~2026/07/26</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGQlL7C6tmwBMbA3FljLeCh"></a></span>
+<p><span>上传算法</span><span><span><a href="/momomian/lessons/feishu-9eba045be3/#src-feishu-doxcnIjLgG7Pe2zBY5bPMMqlIRh"><span>项目三阶段代码</span></a></span></span><span>和讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTRcLB2DLfH3hw836MprGOh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5YxWhoouE0jCZjgHpHz7Je"></a></span>
+<p><span>2026/07/27</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqUglY6YpsRThTWqSTzhLlD"></a></span>
+<p><span>更新了深圳</span><span><span><a href="/momomian/lessons/feishu-2086c96f4e/#src-feishu-doxcnVZsQykjyWV7PdW0V7Ostez"><span>大模型研究院Agent开发一面</span></a></span></span><span>解析。同时Agent章节添加了专题讲解，如何应对面试官对你</span><span><span><a href="/momomian/lessons/feishu-301390ca94/#src-feishu-doxcnYU6dmQAHzN02OoWnO5hGWd"><span>Agent项目的质疑</span></a></span></span><span>。在Agent框架知识部分，也加入了一些根据26年7月份的经验，加了一些学习深浅的建议。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzRIcsEL8SsKyqtEiOUwdMg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXMBVuZOc0Qu7zYoVdIBlec"></a></span>
+<p><span>2026/07/28</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1uWNa3UetUtgFwruJ5qH8e"></a></span>
+<p><span>更新深圳大模型研究院一面讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfHqAibPAChY7gGhZ5C9Xdc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKYelzOYqS1YZroDgPKWBHf"></a></span>
+<p><span>2026/07/29</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAGyCdr1Fz0idywb9hoNzQh"></a></span>
+<p><span>更新最近很火的概念，</span><span><span><a href="/momomian/lessons/feishu-6aca377ead/#src-feishu-doxcnTZPd89uYF1317aMsSps82b"><span>Graph工程</span></a></span></span><span>的笔记。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrGPTfocZuwaUgqnnwuE3We"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2dVasOzm0bxP4yFzfDPvlh"></a></span>
+<p><span>2026/07/30</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN55eoEuu9av0cjumojsUSc"></a></span>
+<p><span>更新最近很火的概念，</span><span><span><a href="/momomian/lessons/feishu-6aca377ead/#src-feishu-doxcnTZPd89uYF1317aMsSps82b"><span>Graph工程</span></a></span></span><span>的笔记。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSSzEM24KyVYWnyY9JzyaTh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn47kHpkSmEgsNI6wvMhjRhd"></a></span>
+<p><span>2026/07/31</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnrEVl2T11ietsNDt9yov0U"></a></span>
+<p><span>添加Graph工程讲解笔记。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0ueDg9DgrV9pgfeEqhIkJd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSdKYajxjdyPMMi4eU5RhLg"></a></span>
+<p><span>2026/08/2</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncyzyWWEFpJmofTWE5NPaaf"></a></span>
+<p><span>更新2026年有价值做的6个AI项目，包含简历如何编写，美化。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuDwaYw5pOk6VC9sl1ubrNc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXk9AdYMAVK8yvIFK843Chb"></a></span>
+<p><span>2026/08/3</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBcqFt5aSJShZdHYewnBJBd"></a></span>
+<p><span>更新2026年有价值做的6个AI项目，包含简历如何编写，美化对应讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngytQ9sAogUlLcxyn1MOQYf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb40DqLV4sf07rWU0nXlzeb"></a></span>
+<p><span>2026/08/5</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1rzHF0YBb73xtSALmmSikx"></a></span>
+<p><span>完成大模型算法后训练项目第四阶段，提交相关代码。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnab6WhzA2VhAVZLjOnjwIb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnanKN7buOpziMQc1XpyNAzf"></a></span>
+<p><span>2026/08/6</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCNJrAsNfvLbnir9ztNq95g"></a></span>
+<p><span>上传大模型算法后训练项目第四阶段讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4WNPnUilNaAU5Mhw358tgg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL5MLD8NU8MoktT3pXE4LNh"></a></span>
+<p><span>2026/08/7</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7bmu1vSqCGrLrqAv185ibT"></a></span>
+<p><span>在项目实战部分，加入了我们目前已有的三个项目该如何使用，如何学习，包装，写在简历上，给出了简历编写思路和示例简历。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlmioQhQEfmJk4zC6kbzeof"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnW4gKFDvtRFhWs732lgNOxc"></a></span>
+<p><span>2026/08/9</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKqh8pYTWWdh9eJf4paA9dc"></a></span>
+<p><span>Agent章节新增专题，</span><span><span><a href="/momomian/lessons/feishu-f902dfdaa5/#src-feishu-doxcnUcRWxpQIJaOUL5L1GlF3Ge"><span>Agent健壮性设计</span></a></span></span><span>。这个也是面试常考的点，完成了内容：当工具调用失败时，如何优雅处理？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnB8CI0sLkD0FTuwU6asahlf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnE6CQYWkC3FdyLRWQEK3MGf"></a></span>
+<p><span>2026/08/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhRzg8xaKK3XBKCaaQRvKtc"></a></span>
+<p><span>更新Agent健壮性设计视频讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpNeKPiNRsTpunIqCpzhd7b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnazWW5AaRqG8YDWYEsp9QVh"></a></span>
+<p><span>2026/08/11</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6UPv1b5kLHeudTQ1kOwChe"></a></span>
+<p><span>重构</span><span><span><a href="/momomian/lessons/feishu-d5924e89db/#src-feishu-doxcnZsWZy1AiDoVW8mkkRPtK7e"><span>Agent框架部分</span></a></span></span><span>，新增包含2026Agent框架特点解析，选型策略，面试真题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkd5NwO0DauBjvbCZbCKOBg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTDRuU4oART406Ccxn7neP2"></a></span>
+<p><span>2026/08/12</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnA01XsMpnEj2xl8c29h6Cag"></a></span>
+<p><span>新增Agent框架部分对应的讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvOZaMthekCwYhpWo7kT9Hf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAPTAuPMNwx0RgwygYNNtBb"></a></span>
+<p><span>2026/08/14</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNtId6xIG3DrIyeslf8EHgh"></a></span>
+<p><span>完成算法项目第五阶段，上传代码。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9qCaN3cs4g0rG4rVHKAUgb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnm17OXaLiDVpNxWQ82cC06f"></a></span>
+<p><span>2026/08/16</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn07HGA9qEEYVK9213USntfh"></a></span>
+<p><span>新增</span><span><span><a href="/momomian/lessons/feishu-ffb96801c5/#src-feishu-doxcnmUsJ0WrKtWb5gcvn5tBZTb"><span>英伟达Agent开发一面</span></a></span></span><span>面试笔记。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXkwPiIatGvO3WPratvKkCi"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsWtHOwEw2DrHJk9v6UbjJb"></a></span>
+<p><span>2026/08/18</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAWjnoNIUBlyVBIfnjRZNzd"></a></span>
+<p><span>新增</span><span><span><a href="/momomian/lessons/feishu-ffb96801c5/#src-feishu-doxcnmUsJ0WrKtWb5gcvn5tBZTb"><span>英伟达Agent开发一面</span></a></span></span><span>面试内容讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpHHHzhq8JepnJGdNvA8zFe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcna0cUtgVqgdAiLInJ3IyZbg"></a></span>
+<p><span>2026/08/19</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmXgSO83kpLanVWcNJ7q3Yy"></a></span>
+<p><span>新增算法项目5阶段讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRwTHdcY3RRGUIebZgRoD8a"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvxZabIGUgULvzcpcRDU1ld"></a></span>
+<p><span>2026/08/20</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkWqQd9HIv7v0QOfHYoCcPc"></a></span>
+<p><span>新增</span><span><span><a href="/momomian/lessons/feishu-0cc0244174/#src-feishu-doxcnZAZ8GjpUOPs8U00WN0l3Ph"><span>DeepSeekHarness内容解析</span></a></span></span><span>，Cordis特性讲解，架构图，面试问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnRia0J5Oa8JPa9JWjwQQQf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZuaYMFSft8vttL8X81uHee"></a></span>
+<p><span>2026/08/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwMRCdwdkM8ZNLgM85S1lAf"></a></span>
+<p><span>新增</span><span><span><a href="/momomian/lessons/feishu-0cc0244174/#src-feishu-doxcnZAZ8GjpUOPs8U00WN0l3Ph"><span>DeepSeekHarness内容解析</span></a></span></span><span>，对应的讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR9UUYJE0fTcUV97EnsBDbe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnpSVWeDg3gepfyZ1DWB0fb"></a></span>
+<p><span>2026/08/24</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS3j93UliWcWfD2DG0iHiig"></a></span>
+<p><span>完成项目第5阶段，更新算法项目相应章节。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLoDMiQhPMjf9sXXZb1ZYrO"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFiLj7c7NGheducfHScxK7b"></a></span>
+<p><span>2026/08/25</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOTpwBMkEa8dVwGAv9Dtwaf"></a></span>
+<p><span>上传项目第5阶段对应的讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0XsCDj8OG7Ag9dafV52Ndb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwFmKpvMO1mdJcPfdg9Nyxe"></a></span>
+<p><span>2026/08/26</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkNP6IxOmVHngP9r3l8UF7d"></a></span>
+<p><span>新增RAG项目对应的两个粉丝投稿的面试真题及相关子问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjXH2UH7kw6wuCbto3pYcAh"></a></span>
+<p><span><span><a href="/momomian/lessons/feishu-ff8b85db3d/#src-feishu-doxcncre0k2okUTQXY1bNXXiCUf"><span>如何保证RAG系统生成的回答是准确的？</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXKcjQrUILjT4niTG6zwtDb"></a></span>
+<p><span><span><a href="/momomian/lessons/feishu-ff8b85db3d/#src-feishu-doxcnnbMYD5vpjPBU2aHDrzevVi"><span>PDF 转 Markdown 是怎么处理的？</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhiuQyYSFqsaL8lUYMYYHqe"></a></span>
+<p><span>同时在RAG专题，新增对应的RAG知识：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnz6W70rgQcL2n67xsgPSCXc"></a></span>
+<p><span><span><a href="/momomian/lessons/feishu-9cbff4d14e/#src-feishu-doxcnb2YC7Vpe2VuLAvjyNeJrik"><span>RAG的文档输入处理</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnq1bmdyKmqsDqmF2VndS65c"></a></span>
+<p><span><span><a href="/momomian/lessons/feishu-2ba396d889/#src-feishu-doxcnuLIexZJT9vCqgUe8Csx1zb"><span>Self-RAG</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEDjbMHvynSkGz6VtnqaCQb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSie3PHCupielvxTxSjFYWb"></a></span>
+<p><span>2026/08/27 </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4gq1SGQsmtymmaBvOwSf1e"></a></span>
+<p><span>新增上面的RAG项目两个面试真题对应的讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOHtE7NdeJoUEFzLXioURod"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnT0TAwZsbsrssisI5qYyDS5"></a></span>
+<p><span>2026/08/28</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKoFeuAt49Q9UJmtmccX6wh"></a></span>
+<p><span>新增</span><span><span><a href="/momomian/lessons/feishu-a5977303c0/#src-feishu-doxcnEcIoStISnP036iZvLN5vIb"><span>宇树科技Agent开发一面面试真题精讲笔记</span></a></span></span><span>。 </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOOe1NPTTRTnlrnJgiyKaKc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF9qBdOBUHsB5091ILd8d9f"></a></span>
+<p><span>2026/08/29</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaCzdwQJvl6GhODtcy4Dbfc"></a></span>
+<p><span>新增宇树科技Agent开发一面讲解视频。 </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRDt7yzzHnNd9hNeFbnyUDp"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcng6puloNGcLVUhOZIyWVrif"></a></span>
+<p><span>2026/09/01</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRmEiLJC5MbuW2gvGIhpf0d"></a></span>
+<p><span>彻底</span><span><span><a href="/momomian/lessons/feishu-9cbff4d14e/#src-feishu-doxcnkq9ZaSj6JxrEd5ZPmLkxxc"><span>重构RAG分块章节</span></a></span></span><span>，总结面试问题，选型策略，汇总近10道面试真题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr5LVUXuN4VuK4XDTlH8Ore"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyyxQrltpvxS9UsRe7NMItb"></a></span>
+<p><span>2026/09/02</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbXuiFJFXbqlotK5AiXoX9c"></a></span>
+<p><span>RAG分块章节，加入视频讲解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTJyn9Eo2pMXEOqzqq1xKHb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMtxXsoES9CehF7cS7cpMb4"></a></span>
+<p><span>2026/09/03</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncccbapTEgDekPF7MRf8Tie"></a></span>
+<p><span>开辟我们</span><span><span><a href="/momomian/lessons/feishu-bf46788725/#src-feishu-doxcnA51rqKpLAzPBYWynzjgtCf"><span>后端章节</span></a></span></span><span>！完成导引部分，加入后端章节第一个面试问题和讲解资料。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBF7WMElm48tpgwiVD5QBXf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxqkRrUJx8T9kvfaFnZaJAg"></a></span>
+<p><span>2026/09/04</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR4Y6Vm5JGdUgiqEvW32kHg"></a></span>
+<p><span>更新后端章节对应的讲解视频。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZliU41ZobgI5IC8Tk53nje"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCiIpjUIXzQ6yAQKlJXCbBb"></a></span>
+<p><span>2026/09/07</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrm6crpwaB6iEwyNQDnrbFf"></a></span>
+<p><span>完成算法项目，</span><span><span><a href="/momomian/lessons/feishu-70a1816b49/#src-feishu-doxcntzTSDKPsVXAE65jzjcn2zc"><span>上传第七阶段</span></a></span></span><span>(最后一阶段）的代码，笔记更新响应内容</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTeJpJg70meXt6QAivf1lPf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoq5XRU3gF6J1TcQPXx8dog"></a></span>
+<p><span>2026/09/08</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnA3DNxYleeRYDEIG9EkDTJd"></a></span>
+<p><span>上传算法项目，上传第七阶段(最后一阶段）的讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcni5wW0yQZonLlUX3DG587Ue"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEwxRXBtVDoEeauJ1sLZwpe"></a></span>
+<p><span>2026/09/09</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzFY09ZtcZIyWhaNr25wtZc"></a></span>
+<p><span>更新</span><span><span><a href="/momomian/lessons/feishu-2407259c4b/#src-feishu-doxcn4xdf6ZtUuTSfTLjA5ke0uc"><span>202607宇树科技二面答案解析</span></a></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcny3gPrE0GtP649w4Sxeeybe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcndsroSgh7KRXV5tfPxgdJdf"></a></span>
+<p><span>2026/09/10</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTYmZnxvZ9mlzAR5u7qWtcf"></a></span>
+<p><span>更新202607 宇树科技二面讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMEyB2DSNpfQIUgIHA5eI8c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6CWayUFV6tdSvNXClRaReh"></a></span>
+<p><span>2026/09/14</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx45WqQGco6QP2NpuqOvm9e"></a></span>
+<p><span>更新</span><span><span><a href="/momomian/lessons/feishu-00889b761f/#src-feishu-doxcnIf936PBS6HaUa4Zj4UdDag"><span>简历编写原则</span></a></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJF3gIWUPb8bE2zy9mpQmAS"></a></span>
+<p><span>新增</span><span><span><a href="/momomian/lessons/feishu-1eaee24319/#src-feishu-doxcntSJcXjaYna0X6ZMrmCDzuF"><span>面试记录章节</span></a></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJegdzcCzleVRDA01hUTCQb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnumQePUercCdPb79UksT8a8"></a></span>
+<p><span>2026/09/15</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZE7kMhjCZkMg0UHQfrrHoh"></a></span>
+<p><span>上传简历编写原则章节讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndQuupHqy1HeUSfoFxpNnBb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIjmPmsGqO32apRnrlJtd1c"></a></span>
+<p><span>2026/09/16</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8Iq7iwv69mjxaRir8C4CWf"></a></span>
+<p><span>更新</span><span><span><a href="/momomian/lessons/feishu-388d54fd82/#src-feishu-doxcndg46y44GYeuV9fAcpfgg3f"><span>面试前突击准备方法</span></a></span></span><span>，技巧，预测问题</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYQ92I8M73fXxZxN5tpLQ8g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcncPTFaI4l9WDl9zZIYIDplb"></a></span>
+<p><span>2026/09/17</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUxKvTpL3uzntVHOhdX2v7e"></a></span>
+<p><span>更新</span><span><span><a href="/momomian/lessons/feishu-388d54fd82/#src-feishu-doxcndg46y44GYeuV9fAcpfgg3f"><span>面试前突击准备方法</span></a></span></span><span> 对应讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntCw4mVJKwh6rrecRqbZPNf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzlPTZkQ5q07nFkkrhSumKd"></a></span>
+<p><span>2026/09/18</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFIh6a0qLGviGwwt1ltMJQd"></a></span>
+<p><span>更新</span><span><span><a href="/momomian/lessons/feishu-604f7e29a6/#src-feishu-doxcne4ozLba2eMh2hpE3JsT1tc"><span>MCP 新特性</span></a></span></span><span>，趋势，这个是选自阿里秋招大模型开发一面的三个面试问题，根据该面试问题，总结更新MCP章节的知识。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhVS4NfpClLzWHel83ZM5cb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLumqMPPlj7zffevJl6lWJc"></a></span>
+<p><span>2026/09/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTRpc54JDsIdPvULQeXIkEe"></a></span>
+<p><span>更新</span><span><span><a href="/momomian/lessons/feishu-9407209664/#src-feishu-doxcncXN1joqZ1P2qOoJvmMXK22"><span>2026阿里淘天秋招一面</span></a></span></span><span>面经及解析</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCkxWWQFczucPnjJUI80lbi"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxcmB37nuJen6e47kGjlbRc"></a></span>
+<p><span>2026/09/23</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneU2r0WeDGh23ZBwQAzuvwb"></a></span>
+<p><span>添加2026阿里淘天秋招一面面经讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOIDwzcqX6qUowT7JTntqRe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzWPnquHjoQPIazj7D5FDbd"></a></span>
+<p><span>2026/09/24~10.7 </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnORxelPGbllzwUBCieRsRQe"></a></span>
+<p><span>国庆中秋期间，主播请假出去玩了，更新会放慢甚至更新，感谢大家理解，祝大家假期快乐。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPA9mPnSuUN7x2vcf8fXQ2c"></a></span>
+<p><span>假期更新记录：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmIR68KLinefC8gPhNlxnNd"></a></span>
+<p><span><span><a href="/momomian/lessons/feishu-65475e33b4/#src-feishu-doxcnrG6QwVO1qtaF9ZQjNbJJOc"><span>更新了Jev 模型的文档</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHvcrtxIZTyF94Ftn9c3APh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2gsakgGRryGUFB8urRjNsb"></a></span>
+<p><span>2026/10/08</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUER6kXZAhXWMj82jW4WxHh"></a></span>
+<p><span>更新了面试前突击章节-</span><span><span><a href="/momomian/lessons/feishu-1df54d766d/#src-feishu-doxcnxay5HkIASEmzMGxopqxGLo"><span>项目上线设计</span></a></span></span><span>部分。主要讲了简历里的项目，如何能够包装成企业级的生产项目，面试会问哪些问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpbdiLJ2GsbetdH0NCGQkHg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcniDEMTva2ZIbuy3NNCGFJWh"></a></span>
+<p><span>2026/10/09</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcny59pQSsAzkCeGMphIWOJHb"></a></span>
+<p><span>更新了面试前突击章节-</span><span><span><a href="/momomian/lessons/feishu-1df54d766d/#src-feishu-doxcnxay5HkIASEmzMGxopqxGLo"><span>项目上线设计</span></a></span></span><span>部分的讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcniOGCbBEWJN9eI3VpEldLXd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcndAl41LzggR7rZLZst4FvxR"></a></span>
+<p><span>2026/10/12</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIUIxDOU21xHQKY6dkdTuRg"></a></span>
+<p><span>更新了 阿里淘天秋招</span><span><span><a href="/momomian/lessons/feishu-9407209664/#src-feishu-doxcnV5vTNwoZCC0VyLF79W4c3g"><span>Agent开发二面</span></a></span></span><span>问题解析</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2m0offxWrIxJNOZsar65Yf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyohyBXIMroCSoJ6d5XG5HU"></a></span>
+<p><span>2026/10/13</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKR301ryoGpMrig6sfLHJke"></a></span>
+<p><span>更新了 阿里淘天秋招Agent开发二面讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUGxoVO5SkP8evjsYf3SCad"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXKLR0Hu9fgAmU7jtfd3Zsp"></a></span>
+<p><span>2026/10/14</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN3sjToJCBSrEx8jAzYl3ag"></a></span>
+<p><span>新增「</span><span><span><a href="/momomian/lessons/feishu-1fc275882c/#src-feishu-doxcnz5i34oVytz2qpXkOWt8vpf"><span>1.2 2026年 Agent 新形态</span></a></span></span><span>」：介绍四款代表产品、五大发展趋势，以及面试问题与 ForgePilot 项目设计启发。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9ZXHoDzq0KkIU9metiaCFr"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsTCZeKMJhkFh6w5DTOlxth"></a></span>
+<p><span>2026/10/15</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndCk3DtlcZMOr7gHBFs3Gid"></a></span>
+<p><span>新增「</span><span><span><a href="/momomian/lessons/feishu-1fc275882c/#src-feishu-doxcnz5i34oVytz2qpXkOWt8vpf"><span>1.2 2026年 Agent 新形态</span></a></span></span><span>」：对应讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXtdLZlETtGYYLGdvsexBQg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8gIzI1lXl3XkyjF39PT1mg"></a></span>
+<p><span>2026/10/16</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPDcF0cg6Yw7YnlJj34TFFe"></a></span>
+<p><span>新增</span><span><span><a href="/momomian/lessons/feishu-fd239916a0/#src-feishu-doxcnQxdiYsTtdTUM00vZYYwdze"><span>“3 简历投递技巧”</span></a></span></span><span>：整理投递渠道、AI 搜索与岗位管理、投递策略及校招/社招时间安排的个人心得。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOy0IiUNWs8UlL6efccJEMf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3taJIrv2BHi1xVLmzUr8Pd"></a></span>
+<p><span>2026/10/19</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVHDb1YJmxXaLGRZjq1k2Td"></a></span>
+<p><span>补充「</span><span><span><a href="/momomian/lessons/feishu-337c761ed9/#src-feishu-doxcnsCL64VKvwMExS3b8wZy6WD"><span>1.3 RSI 进展</span></a></span></span><span>」：梳理概念、四层能力、行业进展与项目启发，配套五张图及面试问答，并关联「2026年 Agent 新形态」参考章节。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjK7G7TW27S4Bedwvk4G6Sh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcno1tyigV0Sh5XYjOgClW0pR"></a></span>
+<p><span>2026/10/21</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMLHG6hMSxTz8jeBBvJKC5f"></a></span>
+<p><span>补充「</span><span><span><a href="/momomian/lessons/feishu-337c761ed9/#src-feishu-doxcnsCL64VKvwMExS3b8wZy6WD"><span>1.3 RSI 进展</span></a></span></span><span>」章节对应讲解视频</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnitM4FmllLzFawyOjYpsOId"></a></span>
+<br></div></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-reading" class="lesson-resource-group" data-lesson-resource-anchor="src-feishu-doxcnKNr9Er4aGxiX1fEx4EIEdh" aria-label="保存状态与恢复任务"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">保存状态与恢复任务</h3><p class="resource-scope">补充本课主题的原理。具体接口与运行条件仍需结合本课及所用版本核对。</p><details class="chapter-readings"><summary>延伸阅读 · 2 章（选读）</summary><ul><li><a href="https://docs.langchain.com/oss/python/langgraph/persistence" target="_blank" rel="noopener noreferrer">LangGraph 官方文档 · 检查点与长期存储 <span aria-hidden="true">↗</span></a><span class="reading-meta">英文 · 官方文档 · 入门</span><p>区分线程范围的检查点和跨线程存储，以及内存保存和持久化保存。</p></li><li><a href="https://adp.xindoo.xyz/chapters/Chapter%208_%20Memory%20Management/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 8 章：记忆管理 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 进阶</span><p>分清会话状态与长期记忆，关注保存、更新与读取的时机。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="feishu-1ef7f04e21" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：更新记录。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-feishu-1ef7f04e21-1","version":1,"type":"single","stage":"lesson","concept":"feishu-1ef7f04e21","prompt":"更新记录写“问题部分完成，反思和知识待整理”，应如何理解覆盖范围？","options":[{"id":"option-1","text":"题目已整理，相关解释仍未补齐","reason":"更新记录分别标注问题、答案与反思等产物，完成其中一部分不等于整套资料已经完成，应按状态继续查阅。"},{"id":"option-2","text":"该次面试的所有答案已经完整校验","reason":"状态明确指出仍有待整理内容，不能扩展成全部完成。"},{"id":"option-3","text":"应把待整理部分视为已被前一版资料完全覆盖","reason":"更新状态未说明已覆盖，仍应区分题目完成与解释待补。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"题目已整理，相关解释仍未补齐。","explanation":"更新记录分别标注问题、答案与反思等产物，完成其中一部分不等于整套资料已经完成，应按状态继续查阅。易混点：状态明确指出仍有待整理内容，不能扩展成全部完成。更新状态未说明已覆盖，仍应区分题目完成与解释待补。","analysisSteps":["更新记录分别标注问题、答案与反思等产物，完成其中一部分不等于整套资料已经完成，应按状态继续查阅。","排除“该次面试的所有答案已经完整校验”：状态明确指出仍有待整理内容，不能扩展成全部完成。","用例检验：给定想复习该面试，先看到题目，再检查后续日期是否补了答案。"],"workedExample":"给定想复习该面试，先看到题目，再检查后续日期是否补了答案。","evidence":{"quote":"反思和知识部分待整理","href":"/lessons/feishu-1ef7f04e21/#src-feishu-doxcnwIt4m5mcl6BayYmeOfYBuh"},"misconception":"状态明确指出仍有待整理内容，不能扩展成全部完成。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-1ef7f04e21/#src-feishu-doxcnwIt4m5mcl6BayYmeOfYBuh"}]},{"id":"lx-feishu-1ef7f04e21-2","version":1,"type":"single","stage":"lesson","concept":"feishu-1ef7f04e21","prompt":"记录中多Agent章节从书籍介绍补充到研究论文，主要针对什么问题？","options":[{"id":"option-1","text":"原有架构讲解不够深入，需要补充设计依据","reason":"更新动机来自原资料对架构设计解释不足，补充研究是为增加方法和依据，仍需理解其内容及适用范围。"},{"id":"option-2","text":"把原书章节重新排列，但不补架构解释与依据","reason":"更新动机是原架构讨论不够深入，单纯换顺序未解决知识缺口。"},{"id":"option-3","text":"用论文中的数字直接代替个人项目实测结果","reason":"研究条件与项目条件不同，补参考不能等同于已完成项目验证。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"原有架构讲解不够深入，需要补充设计依据。","explanation":"更新动机来自原资料对架构设计解释不足，补充研究是为增加方法和依据，仍需理解其内容及适用范围。易混点：更新动机是原架构讨论不够深入，单纯换顺序未解决知识缺口。研究条件与项目条件不同，补参考不能等同于已完成项目验证。","analysisSteps":["更新动机来自原资料对架构设计解释不足，补充研究是为增加方法和依据，仍需理解其内容及适用范围。","排除“把原书章节重新排列，但不补架构解释与依据”：更新动机是原架构讨论不够深入，单纯换顺序未解决知识缺口。","用例检验：给定面试追问如何选协作架构，需补决策依据而不只是背角色名称。"],"workedExample":"给定面试追问如何选协作架构，需补决策依据而不只是背角色名称。","evidence":{"quote":"特别是对于架构设计这一块也比较浅","href":"/lessons/feishu-1ef7f04e21/#src-feishu-doxcnaQhR1H5pydQz7i9n9uxMUh"},"misconception":"更新动机是原架构讨论不够深入，单纯换顺序未解决知识缺口。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-1ef7f04e21/#src-feishu-doxcnaQhR1H5pydQz7i9n9uxMUh"}]},{"id":"lx-feishu-1ef7f04e21-3","version":1,"type":"single","stage":"lesson","concept":"feishu-1ef7f04e21","prompt":"Agent性能评估章节的重构说明了怎样的资料维护方式？","options":[{"id":"option-1","text":"结合面试复盘，补充参考资料、问题与准备方法","reason":"记录描述把复盘中暴露的知识缺口转成章节调整，资料、问题与答题方法联动，便于后续有针对性地复习。"},{"id":"option-2","text":"只修改章节标题，保持缺失内容不变","reason":"标题变化不能完成参考资料和具体评估方法的补充。"},{"id":"option-3","text":"把某次面试结论直接当成所有岗位的统一标准","reason":"个别面试提供反馈，但不能代表全部岗位的共同要求。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"结合面试复盘，补充参考资料、问题与准备方法。","explanation":"记录描述把复盘中暴露的知识缺口转成章节调整，资料、问题与答题方法联动，便于后续有针对性地复习。需要区分的是：标题变化不能完成参考资料和具体评估方法的补充。个别面试提供反馈，但不能代表全部岗位的共同要求。","analysisSteps":["记录描述把复盘中暴露的知识缺口转成章节调整，资料、问题与答题方法联动，便于后续有针对性地复习。","排除“只修改章节标题，保持缺失内容不变”：标题变化不能完成参考资料和具体评估方法的补充。","代入案例检查：给定复盘发现不会解释评估指标，就补资料和案例再检查答题逻辑。"],"workedExample":"给定复盘发现不会解释评估指标，就补资料和案例再检查答题逻辑。","evidence":{"quote":"重构Agent性能评估","href":"/lessons/feishu-1ef7f04e21/#src-feishu-doxcnp4aM42xcPbuKjsjTjg4Bkf"},"misconception":"标题变化不能完成参考资料和具体评估方法的补充。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-1ef7f04e21/#src-feishu-doxcnp4aM42xcPbuKjsjTjg4Bkf"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-1ef7f04e21-1" disabled><legend><span class="quiet-tag">单选</span> 1. 更新记录写“问题部分完成，反思和知识待整理”，应如何理解覆盖范围？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-1" value="option-1"><span>题目已整理，相关解释仍未补齐</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-1" value="option-3"><span>应把待整理部分视为已被前一版资料完全覆盖</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-1ef7f04e21-1" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-1" value="option-2"><span>该次面试的所有答案已经完整校验</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-1ef7f04e21-2" disabled><legend><span class="quiet-tag">单选</span> 2. 记录中多Agent章节从书籍介绍补充到研究论文，主要针对什么问题？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-1ef7f04e21-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-2" value="option-1"><span>原有架构讲解不够深入，需要补充设计依据</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-2" value="option-2"><span>把原书章节重新排列，但不补架构解释与依据</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-2" value="option-3"><span>用论文中的数字直接代替个人项目实测结果</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-1ef7f04e21-3" disabled><legend><span class="quiet-tag">单选</span> 3. Agent性能评估章节的重构说明了怎样的资料维护方式？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-3" value="option-3"><span>把某次面试结论直接当成所有岗位的统一标准</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-3" value="option-2"><span>只修改章节标题，保持缺失内容不变</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-1ef7f04e21-3" value="option-1"><span>结合面试复盘，补充参考资料、问题与准备方法</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-1ef7f04e21-3" value="unsure"><span>暂时不会，提交后看解析</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-1ef7f04e21">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="feishu-1ef7f04e21" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构根据本课原文自动整理，术语通用释义与迁移问题为本站补充。它不代表逐课人工审定或原文代码已运行。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><h3>这次阅读的目标</h3><ol><li>从连续日期日志追踪一套面试资料的问题、答案和视频是否分别完成</li><li>将复盘暴露的知识缺口定位到后续章节更新，说明更新补充了什么依据</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnaQhR1H5pydQz7i9n9uxMUh">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnJnQJHAG0taIkLe1j64nEsd">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnVguX90quiMe6gZoY8Vsind">回看本课上下文</a></span></dd></div><div><dt>RAG</dt><dd>先从资料中取回相关内容，再将检索结果作为生成回答的上下文；检索与回答依据应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnVkZ4GRS0xhklpA9UsQhBob">回看本课上下文</a></span></dd></div><div><dt>Chunk</dt><dd>为索引和检索划分的内容片段。片段应保留必要上下文和来源，边界需要结合资料结构选择。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnVkZ4GRS0xhklpA9UsQhBob">回看本课上下文</a></span></dd></div><div><dt>工具调用</dt><dd>模型或策略提出结构化的操作请求，由程序校验参数与权限、执行工具并返回结果。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnKqh8pYTWWdh9eJf4paA9dc">回看本课上下文</a></span></dd></div><div><dt>记忆</dt><dd>为后续使用保留信息的机制。近期会话、跨会话偏好与操作审计的范围和用途应分开。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn9JwG0moPAoVr2Wx32dAAkf">回看本课上下文</a></span></dd></div><div><dt>LangChain</dt><dd>模型、消息、工具等应用组件的框架生态。具体接口以课程标注版本和官方文档为准。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnSgiL1EcCaZ8zh5FGW8tzBd">回看本课上下文</a></span></dd></div><div><dt>LangGraph</dt><dd>使用图与持久状态组织工作流的框架。图的结构不自动保证任务正确、终止或外部操作安全。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn6pfJJPxhc78ZjjWYwneQ4g">回看本课上下文</a></span></dd></div><div><dt>MCP</dt><dd>连接模型应用与工具、资源等能力的协议。协议一致性不代替工具授权或业务安全检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnviJSZNCywamrSw3M6bV6jb">回看本课上下文</a></span></dd></div><div><dt>注意力</dt><dd>根据输入表示计算并汇总相关信息的机制。权重不是对模型所有行为的完整因果解释。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnMvALAPLnRMZ0M46jK1IICh">回看本课上下文</a></span></dd></div><div><dt>微调</dt><dd>在已有模型基础上继续训练，使其适应特定任务或数据。训练收益应通过独立评测判断。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnCx3VvVGA9OoctLOQyRkp3c">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnvg3Xsp7456pmXfGFOvXZMb">回看本课上下文</a></span></dd></div><div><dt>反思</dt><dd>对已有结果进行检查和修正的过程。自我检查不是独立验证，仍需外部标准或测试。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnwIt4m5mcl6BayYmeOfYBuh">回看本课上下文</a></span></dd></div><div><dt>持久化</dt><dd>让数据在进程或会话结束后仍可读取的保存方式。保存成功与业务完成需要分别确认。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnKNr9Er4aGxiX1fEx4EIEdh">回看本课上下文</a></span></dd></div><div><dt>项目更新了项目复习和模拟面试SKILL以及对应视频</dt><dd>项目更新了项目复习和模拟面试SKILL以及对应视频： 大家在面试前通过它，可以快速突击，掌握核心知识。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn77IoehfvoQSL51jnfT3yvD">回看本课上下文</a></span></dd></div><div><dt>项目更新了完整的README</dt><dd>项目更新了完整的README：提供了一些说明，不同的人群如何使用，常见的问题的说明。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnKIZsL0oZUD74dSCAl6guXb">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>原文中的具体说明：更新记录</h3><p class="small muted">原文节选用于理解，不表示其中所有技术判断已核实。 <a href="#src-feishu-doxcnFm2z6m1Ukqnx2KEuAwmvRe">打开完整来源段落</a></p><blockquote class="lesson-guide-excerpt">2. 优化八股：Agent记忆是如何实现的。直接加入Openclaw实例，结合经典知识讲解，面试官问到直接秒杀。</blockquote><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-1ef7f04e21-explain"><h3>1. 更新记录 · 解释</h3><p>学习「更新记录」后，合上正文说明「更新记录」在解决什么问题。围绕原文“更新完善小红书面试对应问题答案。 答案部分快总结完了，还差一点，明天可以完成小红书的答案部分。”复述一条具体关系，并区分已知与待确认的信息。</p><label class="lesson-task-field" for="task-lesson-card-feishu-1ef7f04e21-explain">先写自己的回答<textarea id="task-lesson-card-feishu-1ef7f04e21-explain" data-lesson-task-answer="lesson-card-feishu-1ef7f04e21-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-1ef7f04e21-explain">给一点提示</button><p class="lesson-task-hint" hidden>先回忆这一段：更新完善小红书面试对应问题答案。 答案部分快总结完了，还差一点，明天可以完成小红书的答案部分。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：更新完善小红书面试对应问题答案。 答案部分快总结完了，还差一点，明天可以完成小红书的答案部分。
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。</p><ul><li>指出「更新记录」讨论的对象或任务</li><li>复述原文中的一条具体关系：更新完善小红书面试对应问题答案。 答案部分快总结完了，还差一点，明天可以完成小红书的答案部分。</li><li>区分原文说法与自己尚未验证的推断</li></ul><a href="#src-feishu-doxcnv0BUwZfTmKLIxjbfOuvbfg">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-1ef7f04e21-explain">主要错因<select id="task-error-lesson-card-feishu-1ef7f04e21-explain" data-lesson-task-error="lesson-card-feishu-1ef7f04e21-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-1ef7f04e21#lesson-card-feishu-1ef7f04e21-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-1ef7f04e21-apply"><h3>2. 更新记录 · 条件</h3><p>把「更新记录」中的「更新记录」放进一个具体使用场景：原文“根据面试问题新增八股模型部分：如何判断模型能不能跑，跑的有多快”提供了什么条件或步骤？再指出一种不能直接据此下结论的情况。</p><label class="lesson-task-field" for="task-lesson-card-feishu-1ef7f04e21-apply">先写自己的回答<textarea id="task-lesson-card-feishu-1ef7f04e21-apply" data-lesson-task-answer="lesson-card-feishu-1ef7f04e21-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-1ef7f04e21-apply">给一点提示</button><p class="lesson-task-hint" hidden>围绕「根据面试问题新增八股模型部分：如何判断模型能不能跑，跑的有多快」改变一个输入或适用条件。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：根据面试问题新增八股模型部分：如何判断模型能不能跑，跑的有多快
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。
+请把原文明确提供的条件与自己构造的反例分开；本课未给出的结果不能写成已验证事实。</p><ul><li>引用「更新记录」的具体步骤或条件：根据面试问题新增八股模型部分：如何判断模型能不能跑，跑的有多快</li><li>写出一个与本课主题相关的使用场景</li><li>标明一个缺少信息或需要额外验证的判断</li></ul><a href="#src-feishu-doxcnS5SMcFCpzHJETA9e2WFTMb">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-1ef7f04e21-apply">主要错因<select id="task-error-lesson-card-feishu-1ef7f04e21-apply" data-lesson-task-error="lesson-card-feishu-1ef7f04e21-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-1ef7f04e21#lesson-card-feishu-1ef7f04e21-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>原文提到「根据面试问题新增八股模型部分：如何判断模型能不能跑，跑的有多快」。如果这个条件不满足，会影响「更新记录」的哪一步？设计一个最小失败例子。</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>根据面试问题新增八股模型部分：如何判断模型能不能跑，跑的有多快</blockquote><ul><li>说明改变了哪个输入或条件</li><li>写出预期结果和验证方法</li><li>未运行时明确标注为待验证，不编造日志或指标</li></ul><a href="#src-feishu-doxcnS5SMcFCpzHJETA9e2WFTMb">回到原文依据</a></details><label class="lesson-task-field" for="boundary-feishu-1ef7f04e21">写下最小失败输入、预期和验证方法<textarea id="boundary-feishu-1ef7f04e21" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>将「更新记录」迁移到一个接收用户 JSON 的问答入口：遇到“格式正确但内容缺少依据”时，你会怎样调整？以本课“更新完善小红书面试对应问题答案。 答案部分快总结完了，还差一点，明天可以完成小红书的答案部分。”为依据，说明哪些信息能沿用，检查输入格式、业务约束和回答依据。</p><ul><li>指出本课中实际采用的一点：更新完善小红书面试对应问题答案。 答案部分快总结完了，还差一点，明天可以完成小红书的答案部分。</li><li>说明新场景与原例子的差别</li><li>留下一个输入、预期结果和可复现的检查步骤</li></ul><label class="lesson-task-field" for="transfer-feishu-1ef7f04e21">解释哪些能复用，哪些要重新验证<textarea id="transfer-feishu-1ef7f04e21" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>不看原文说明「更新记录」的作用与适用范围</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>能引用本课的一条具体说明，并给出自己的例子</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>完成两次主动回忆并记录一个边界或失败问题</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>写下产物、验证方法和仍未确认的内容</span></label></fieldset><label class="lesson-task-field" for="artifact-feishu-1ef7f04e21">产物、实际验证与未决问题<textarea id="artifact-feishu-1ef7f04e21" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=feishu-1ef7f04e21#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=feishu-1ef7f04e21">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/path/"><small>返回课程</small><span>查看教学顺序</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><p class="small muted">本课为短篇阅读</p></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

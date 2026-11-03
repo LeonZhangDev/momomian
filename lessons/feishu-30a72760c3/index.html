@@ -1,0 +1,576 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>1Claude Code 从入门到精通：Codex VS ClaudeCode · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="feishu-30a72760c3"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>AI辅助编程通用方法与系列导读</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-cafa511fc7/" data-record-id="feishu-cafa511fc7">Vibe Coding</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-dbbe1e9927/" data-record-id="feishu-dbbe1e9927">AI 工具与工程实践</a><a href="/momomian/lessons/feishu-045ec1469d/" data-record-id="feishu-045ec1469d">1Claude Code 从入门到精通</a></details></div></details><details><summary>AI编码基本方式、工具类型与交付责任</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-017-7900c5220b/" data-record-id="tencent-013-017-7900c5220b">Vibe Coding 入门教程</a><a href="/momomian/lessons/tencent-013-017-6fc6483751/" data-record-id="tencent-013-017-6fc6483751">Vibe Coding 入门教程：主流工具介绍</a></details></div></details><details><summary>名片页首例、diff验证循环与Worktree</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-017-334c20e1a4/" data-record-id="tencent-013-017-334c20e1a4">Vibe Coding 入门教程：快速开始</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-017-757c43c6aa/" data-record-id="tencent-013-017-757c43c6aa">Vibe Coding 入门教程：Vibe Coding 核心工作流</a><a href="/momomian/lessons/tencent-013-017-bcc6c18808/" data-record-id="tencent-013-017-bcc6c18808">Vibe Coding 入门教程：常见误区与注意事项</a><a href="/momomian/lessons/tencent-013-016-cc43dc69ae-7c252a/" data-record-id="tencent-013-016-cc43dc69ae-7c252a">Loop Engineering（循环工程）：Loop 的核心循环 · 示例（2）</a></details></div></details><details><summary>Claude Code能力、入口与功能地图</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-f08617ba83/" data-record-id="feishu-f08617ba83">1Claude Code 从入门到精通：核心特性与用法</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3b9c632f0c/" data-record-id="feishu-3b9c632f0c">1Claude Code 从入门到精通：Claude Code 概述</a></details></div></details><details><summary>编程Agent工程习惯与工作流</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-d8f3b76192/" data-record-id="feishu-d8f3b76192">1Claude Code 从入门到精通：最佳实践经验</a></details></div></details><details><summary>零代码及桌面Agent首例：平台选择到文件交付</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-002/" data-record-id="tencent-013-002">AI 开发平台</a><a href="/momomian/lessons/tencent-013-006/" data-record-id="tencent-013-006">QoderWork 教程</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-001/" data-record-id="tencent-013-001">第一个 AI Agent</a><a href="/momomian/lessons/tencent-013-003/" data-record-id="tencent-013-003">桌面级智能体</a></details></div></details><details><summary>OpenClaw产品定位与能力比较边界</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-004-8774f275d6/" data-record-id="tencent-013-004-8774f275d6">OpenClaw (Clawdbot) 教程</a><a href="/momomian/lessons/tencent-013-004-19fe76ff9b/" data-record-id="tencent-013-004-19fe76ff9b">OpenClaw (Clawdbot) 教程：为什么最近这么火？</a></details></div></details><details><summary>OpenClaw安装、首次首聊与扩展配置</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-004-5977931438/" data-record-id="tencent-013-004-5977931438">OpenClaw (Clawdbot) 教程：安装方法</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-005-53aeffd839/" data-record-id="tencent-013-005-53aeffd839">OpenClaw 快速上手</a><a href="/momomian/lessons/tencent-013-004-c1490c52e7/" data-record-id="tencent-013-004-c1490c52e7">OpenClaw (Clawdbot) 教程：配置说明</a></details></div></details><details><summary>OpenClaw TUI交互与运维命令参考</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-005-be52854010/" data-record-id="tencent-013-005-be52854010">OpenClaw 快速上手：TUI：终端聊天界面</a><a href="/momomian/lessons/tencent-013-004-1cbb8f00f0/" data-record-id="tencent-013-004-1cbb8f00f0">OpenClaw (Clawdbot) 教程：常用命令</a></details></div></details><details><summary>QoderWake基础：角色、环境与员工创建</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-007-6f0258e8c3/" data-record-id="tencent-013-007-6f0258e8c3">QoderWake 入门教程：步骤 1：安装 QoderWake</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-007-06e1f2f4a1/" data-record-id="tencent-013-007-06e1f2f4a1">QoderWake 入门教程</a><a href="/momomian/lessons/tencent-013-007-6d25186afc/" data-record-id="tencent-013-007-6d25186afc">QoderWake 入门教程：安装环境说明</a></details></div></details><details><summary>QoderWake对话及自动任务</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-007-65efdbc128/" data-record-id="tencent-013-007-65efdbc128">QoderWake 入门教程：步骤 4：跟员工开始干活</a></div></details><details><summary>QoderWake记忆、Skill、Connector及Bug处理</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-007-b249f408e9/" data-record-id="tencent-013-007-b249f408e9">QoderWake 入门教程：员工配置详解</a></div></details><details><summary>Hermes安装：快速路径与源码环境</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-015-429a44ab97/" data-record-id="tencent-013-015-429a44ab97">Hermes Agent：快速安装</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-015-b7b8d70227/" data-record-id="tencent-013-015-b7b8d70227">Hermes Agent：手动安装</a></details></div></details><details><summary>Dify基础：组件、模型提供商与应用形态</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-018-67ec0dfd21/" data-record-id="tencent-013-018-67ec0dfd21">Dify 入门教程</a><a href="/momomian/lessons/tencent-013-018-3e5506b3d2/" data-record-id="tencent-013-018-3e5506b3d2">Dify 入门教程：配置模型提供商</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-018-011b22ad82/" data-record-id="tencent-013-018-011b22ad82">Dify 入门教程：核心概念</a><a href="/momomian/lessons/tencent-013-018-51ae35a50a/" data-record-id="tencent-013-018-51ae35a50a">Dify 入门教程：五种应用类型详解</a></details></div></details><details><summary>Dify Workflow编排与对外发布</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-018-1af9fc2c4d/" data-record-id="tencent-013-018-1af9fc2c4d">Dify 入门教程：Workflow 工作流：可视化编排多步骤任务</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-018-24ccf712fa/" data-record-id="tencent-013-018-24ccf712fa">Dify 入门教程：对外发布：API、网页嵌入与 MCP 服务器</a></details></div></details><details><summary>Dify学习路线与参考入口</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-018-daa6d02a55/" data-record-id="tencent-013-018-daa6d02a55">Dify 入门教程：资源</a></details></div></details><details><summary>n8n节点、表达式与首次体验入口</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-019/" data-record-id="tencent-013-019">n8n 入门教程</a></details></div></details><details><summary>LangSmith平台与账户接入</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-008-001/" data-record-id="tencent-008-001">LangSmith概述</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-008-002/" data-record-id="tencent-008-002">创建账户和 API 密钥</a></details></div></details><details><summary>Studio本地服务与轨迹调试</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-005-003/" data-record-id="tencent-007-005-003">LangSmith Studio</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-006-007-001/" data-record-id="tencent-006-007-001">LangSmith Studio 实验室</a></details></div></details><details><summary>Agent Chat UI连接后端</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-005-004/" data-record-id="tencent-007-005-004">智能体聊天界面</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-006-007-003/" data-record-id="tencent-006-007-003">智能体聊天界面</a></details></div></details><details><summary>图结构可视化与渲染后端</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-003-ff9978f642/" data-record-id="tencent-007-004-003-ff9978f642">使用图形 API：可视化您的图</a></details></div></details><details><summary>开发工具、编程范式与生态速查</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-004-58c645bc27/" data-record-id="tencent-011-004-58c645bc27">Python 智能体环境配置：开发工具推荐</a><a href="/momomian/lessons/tencent-005-004-18a1defc02/" data-record-id="tencent-005-004-18a1defc02">AI Agent 术语</a><a href="/momomian/lessons/tencent-005-004-5280579ead/" data-record-id="tencent-005-004-5280579ead">AI Agent 术语：八、工具生态（Tool Ecosystem）</a></details></div></details><details open><summary>时间敏感的工具比较与资料索引</summary><div class="lesson-nav"><details open><summary>补充与参考</summary><a href="/momomian/lessons/feishu-30a72760c3/" class="current" aria-current="page" data-record-id="feishu-30a72760c3">1Claude Code 从入门到精通：Codex VS ClaudeCode</a><a href="/momomian/lessons/feishu-ed01442c5e/" data-record-id="feishu-ed01442c5e">1Claude Code 从入门到精通：参考资源</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=tools">AI 开发工具与低代码</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">参考 · 按需查阅</p><h1 data-pagefind-meta="title">1Claude Code 从入门到精通：Codex VS ClaudeCode</h1><div class="lesson-meta"><span>约 16 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：时间敏感的工具比较与资料索引 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="feishu-30a72760c3" data-task-title="1Claude Code 从入门到精通：Codex VS ClaudeCode" data-task-href="/lessons/feishu-30a72760c3/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>模型名称、价格/权益、热度、性能排名、安装界面及“必考”等描述按原资料记录日期理解；当前情况和适用版本未在本次逐项核实，请以官方说明和自己的任务评测为准。 </p><p>Hook 数量、预览命令、模型清单、图像模型排名、第三方 OAuth 和价格均有时间条件，本轮未逐项实测。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">AI 开发工具与低代码 / 时间敏感的工具比较与资料索引</p><a class="text-link" href="/momomian/path/?topic=tools&amp;unit=unit-tools-ddce4cd6">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>以相同任务和验收条件比较规划、执行与审查结果。</li><li>区分本地与 worktree 隔离，核对模型、套餐和子代理触发条件。</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">本课机制与检查方向</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">如何公平比较两种编码Agent？
+固定任务、模型、权限、环境和验收标准，分别记录计划、修改、检查和结果；个人体验不能证明所有任务的稳定胜负。
+
+worktree能隔离什么，不能据此推断什么？
+它提供独立检出目录；端口、外部服务、凭据及其他副作用仍可能共享，需另外核对。</p><a class="text-link" href="#lesson-source-body">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><div class="prose" id="lesson-source-body"><h3 id="section-1"><span>1.5 Codex VS ClaudeCode</span></h3>
+<span class="source-anchor-container"><a id="src-feishu-doxcngFFuBI5TjMqxPdFa37zUhh"></a></span>
+<p><span>随着近期(2026年6月初）Codex的热度增高，网上很多人说Codex已经超过ClaudeCode。这一说法我不光在自媒体上听到，也听到同事圈有类似的说法。这篇笔记希望详细，</span><strong>诚实</strong><span>地对比 ClaudeCode和Codex的</span><strong>区别，优势，特征，表现</strong><span>。看完本次你的收获：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMM0klNmtnWBxxDjTwWH4Be"></a></span>
+<p><span>1. 如果你在</span><strong>纠结到底选择哪个工具，我相信看完你会知道如何选择。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngEP9Kl373c9Nhu8tzfnj9I"></a></span>
+<p><span>2. 从VibeCoding的能力角度，看完你会掌握更好的VibeCoding使用技巧，根据测评结果：</span><strong>最推荐的使用方法是：针对于ClaudeCode和Codex的优势，取长补短，相互互补使用。</strong><span>包括本节提到的一些两个工具的好用的地方，比如loop, ultrareview，都可以用起来。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkk9zs4sjKlMQaFhzId06Ke"></a></span>
+<p><span>3. 从面试的角度，</span><strong>如果面试官考察VibeCoding</strong><span>，比如问到你使用什么VibeCoding工具，为什么？你知不知道Codex和ClaudeCode的区别？探讨到这些问题，相信你会回答得很好，本节也会总结这些问题的参考答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnewqimlx68z8kjlsiSC8sCh"></a></span>
+<p><span>注意：</span><span>因为这些工具迭代速度很快，模型也在不断迭代，定价也经常变更，本节笔记和时间强相关</span><span>。如果你阅读本篇笔记时间相隔现在（2026年6月初）有一段时间，这些架构区别可能相对保持稳定，但是具体的特征，状态可能有所差异。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndh6540eaQbSUuvF7yhZlIh"></a></span>
+<p><span>如果你觉得看文字有点枯燥，也可以参考本期讲解视频哦！</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5MrmJMi7ACOzBhoECf3mxf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnphCDy73WybM0A3hoimwyqC"></a></span>
+<h4 id="section-2"><span>1.5.1 核心结论</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9GkjIolyxtmwraWBGvvdNQ"></a></span>
+<p><span>问题并不在于哪个工具客观上更强。而在于：</span><strong>面对你当前这个具体场景，哪个工具更适合。</strong><span>二者呈现的特点不同：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnopzQa0LDCAD2KqK8NmIX6f"></a></span>
+<p><strong>Claude Code</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBxm8St4gzLZCN5aWqPu6Bc"></a></span>
+<p><span>更像一个富有创造力的伙伴，更擅长头脑风暴；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnE1shhcS6rJuok53W1eb4bf"></a></span>
+<p><span>当你走错方向时，它也更愿意指出问题、</span><strong>提出反对意见</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1pE2GS6XiRJXPN9zlWKtDh"></a></span>
+<p><strong>Codex</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4GpvKXb1KJOYqooTncGIt3"></a></span>
+<p><span>更像一个执行力很强的工程师，</span></p>
+<div><p id="src-feishu-doxcnZET3rISZjriTAw6rSZ7I9g"><span> 擅长严格遵循指令、精确执行你的要求，以及在</span><strong>代码或方案审查时发现 Bug 与漏洞</strong><span>。</span></p><span id="src-feishu-doxcnuQJMsPg2O73wygjvODH1yf" class="source-anchor-container"><br></span></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZv9qpYhPJAj3MSUyiJ4gcg"></a></span>
+<h4 id="section-3"><span>1.5.2 两款工具简介</span></h4>
+<div><p id="src-feishu-doxcnUlYTdrYtSrmVnIQAblYCFX"><strong>Claude Code（Anthropic）</strong></p><p id="src-feishu-doxcnvu2u23Ahn3QZZqX2pCIezf"><strong>Anthropic </strong><span>推出的代码 Agent，能够规划任务、编辑文件、运行命令，并根据你的配置请求权限。</span></p><p id="src-feishu-doxcnyE5AYo1wsJ62AQNg8KqDq2"><span>可在</span><strong>终端</strong><span>、</span><strong>VS Code 扩展</strong><span>、</span><strong>桌面应用</strong><span>（Mac 和 Windows）以</span><strong>及网页版</strong><span>（研究预览）中使用。</span></p><p id="src-feishu-doxcn4y43vt3dXFtzJNg1gkR9Sd"><span>可运行在</span><strong> Opus（目前最强模型）、Sonnet 或 Haiku 模型</strong><span>之上。</span></p><p id="src-feishu-doxcnwZuLFzozQYOPSFKe7lybGe"><span>它更像一个可由你自行塑造的工作流系统，你可以把它</span><strong>融入自己的工程习惯与自动化流程中</strong><span>。比如你可以定义工作流，子Agent，Skill，hooks，来完成自己的一套自动化任务。</span></p><span id="src-feishu-doxcnIjGQsLTWf505YGMg89lT0g" class="source-anchor-container"><br></span><p id="src-feishu-doxcnsSal3HExjEeJuHAFy5TDIh"><strong>OpenAI Codex</strong></p><p id="src-feishu-doxcn0LLy8x8oFifxwuPAur2GWf"><span>OpenAI 推出的新一代 Agentic Coding System（并不是 2021 年已经退役的那个 Codex 模型）。</span></p><p id="src-feishu-doxcnhAIT2rdyhJcHgCS0KN1Rxc"><span>可在终端、桌面应用（Mac 和 Windows）、VS Code 扩展（也支持 Cursor 等 IDE）以及云端版本 </span><span><span><a href="https://chatgpt.com/codex" target="_blank" rel="noopener noreferrer"><span>chatgpt.com/codex</span></a></span></span><span> 中使用。</span></p><p id="src-feishu-doxcnjrr26jt4Z4t6Zx8SQSiAdg"><span>支持运行在</span><strong> GPT-5.5</strong><span>、</span><strong>GPT-codex</strong><span>（偏代码专用）以及 </span><strong>GPT-codex-spark</strong><span>（更快、更轻量，Pro 用户的研究预览版）之上。</span></p><p id="src-feishu-doxcn31S3N2mA6fbRVR2gPFV4uf"><span>它更像一台"带有明确工程理念的机器"，目标是把</span><strong>流程从“Agent 完成任务”一路推进到“代码正式上线生产环境”。</strong><span>（提供了一套成熟的工具，带你完成从代码-评审-部署-生产的一套标准化流程）</span></p><p id="src-feishu-doxcnvgedtrWLqw3tIOPBCG9Lpc"><span>已包含在所有 ChatGPT 付费与免费套餐中（Free、Plus、Pro、Business、Enterprise）。（也就是说只要你买了ChatGPT的额度，Codex天然就可以直接用）</span></p><span id="src-feishu-doxcnqzhB5y4umw82tdZwGg2b2e" class="source-anchor-container"><br></span></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWYTTJQJCUSdaA8WAaGN9Vd"></a></span>
+<h4 id="section-4"><span>1.5.3 它们有哪些重叠能力</span></h4>
+<div><p id="src-feishu-doxcnSraLA1wANWlHU2EF0W0xOe"><span>两者之间的共同功能，其实比大多数对比文章里提到的还要多。这两个工具都能够：</span></p><div id="src-feishu-doxcnfUkTB2TTb2FOb7pBMp2b8g"><span>◦</span><div><span>在你的本地机器上编辑代码</span></div></div><div id="src-feishu-doxcnIVNasK7nfLpVVvDUoRDTxS"><span>◦</span><div><span>提供桌面应用和 VS Code 扩展</span></div></div><div id="src-feishu-doxcn6FLQ5uso4wsJnwKekvuVHg"><span>◦</span><div><span>从命令行运行</span></div></div><div id="src-feishu-doxcndt0l1gZi0i0XPaHWex11ch"><span>◦</span><div><span>支持 MCP（用于将外部工具接入 AI 的开放协议）</span></div></div><div id="src-feishu-doxcn6hk5VxeYegm83PTIhrljhE"><span>◦</span><div><span>提供 CLI（命令行工具）</span></div></div><div id="src-feishu-doxcnaFvUzkuRFBOLE99PgctoDf"><span>◦</span><div><span>使用相同的 Skills 格式（带有 YAML Front Matter 的 Markdown 文件）</span></div></div><div id="src-feishu-doxcn5nzQdhlVseJ0OzGsqxjaqg"><span>◦</span><div><span>提供插件市场（Plug-in Marketplace）</span></div></div><div id="src-feishu-doxcnBqRNVlu0638Wm1QBYrUqGc"><span>◦</span><div><span>支持云端任务委托（把任务丢给 Agent 后直接离开）</span></div></div><div id="src-feishu-doxcnMXrMnV3fwLYsGemkZaENjy"><span>◦</span><div><span>支持 Hooks 与 Sub-agents（子 Agent）</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcndi1UNiwFa0qpehCCJBrkCf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnG5QLz40W4AgKLjruPsUPrb"></a></span>
+<h4 id="section-5"><span>1.5.4 ClaudeCode胜出的地方</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnljEW9N9RUzxzzafjsqFBcf"></a></span>
+<p><strong>1.</strong><strong>更深度的可定制能力</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzLaNCqN4URuWBdh8FluGne"></a></span>
+<p><span>Claude Code 提供大约 </span><strong>30 个 Hook 事件</strong><span>，而 Codex 目前只有大约 </span><strong>6 个事件</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnewYjB228x6ZUx1lmjFTj7c"></a></span>
+<p><span>Hook 本质上是“自动触发器”——</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnK5ILLDFjRWp3Q3VUAwUM7c"></a></span>
+<p><span> 当某些事件发生时自动执行，例如：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSRMmpGwYp5Hfj8o5TuoiDf"></a></span>
+<ul>
+<li><span>提交 Prompt</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAQ9WyWdu9qMhnEFzFrHpdd"></a></span>
+<ul>
+<li><span>调用工具</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2iQ8FPRFwnMKAAkDDtN4hh"></a></span>
+<ul>
+<li><span>Session 启动</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvG7OS6Toer3W4ZgdGuiP1d"></a></span>
+<ul>
+<li><span>创建任务</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWFlONcxAFxEBZAcFDueNul"></a></span>
+<p><span>在这一点上，Claude Code 提供了大约 </span><strong>5 倍粒度</strong><span> 的控制能力。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXWLNMmocvDJeZKh4hvm3sh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAmjeJcWG6YYj4hWfqsJXOe"></a></span>
+<p><strong>2. 自动委派子 Agent</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWB8vWaJr2DiFITemnDufKf"></a></span>
+<p><span>当任务需要时，Claude Code 会自动生成子 Agent，例如：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqTUg7dDzo6ut0RfON87iDh"></a></span>
+<ul>
+<li><span>Planner（规划器）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOxY4SADwptGKGjYAnwyfnd"></a></span>
+<ul>
+<li><span>Explorer（探索器）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDOMn5dBgYDlh1sN5BpDzgg"></a></span>
+<ul>
+<li><span>Code Reviewer（代码审查器）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnm1m3pZZMlxSl8ZfKB5m0he"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>Codex 子代理触发取决于版本和指令配置，可按直接请求或适用的 AGENTS.md、Skill 指令委派。</p><details><summary>查看解释与参考资料</summary><p>当前官方说明也可按适用 AGENTS.md 或 Skill 指令委派，不限每次直接要求。</p><p><a href="https://learn.chatgpt.com/docs/agent-configuration/subagents" target="_blank" rel="noopener noreferrer">Codex subagents ↗</a></p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><span>而 Codex 则需要你显式要求后，才会生成子 Agent.</span></p></details>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCatfQYNcK8vySTQbDVdLUf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2SDmi55deIVE0azgcYXANc"></a></span>
+<p><strong>3. 强大的 Slash Commands</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHopHuETPhJN1JTMBM8vUgh"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEXcsfQ3daCxAGhLIxWoisd"></a></span>
+<p><span>注意，这里的两个指令其实还是在preview版本，也就是没有正式上线，普通用户现在用不了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTSAfNzfcJAflDnrzgCa1ve"></a></span>
+<br>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnt3LWVaUqRa4Lv2yQD1oc3b"></a></span>
+<p><span><span><span>/ultraplan</span></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSWRKDJAerSEb9Iij0sKMne"></a></span>
+<p><span>把规划阶段发送到云端 Claude Code Session，</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjKM84eLe4yXZpxsLkh7ntf"></a></span>
+<p><span>你可以在浏览器中进行 Review 和添加内联评论（inline comments），</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpTEKu6jnFGbJbdgcWInxZe"></a></span>
+<p><span> 之后再把结果回传到本地终端继续执行。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCsPBdE1VfYh23LmGlhzjie"></a></span>
+<p><span><span><span>/ultrareview</span></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOlIELzFzlwI4SDU8X9rFhd"></a></span>
+<p><span>启动多个 Reviewer Agent，</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJdOkU5kPe9mwzhMti4ltUJ"></a></span>
+<p><span> 实现更深入的多 Agent Code Review，并复现问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJKogM3wgvgAowAaKi3agpd"></a></span>
+<ul>
+<li><span>Pro / Max 用户可免费使用 3 次</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnV3IKu40bpHyo0y4sfu9CSf"></a></span>
+<ul>
+<li><span>超出后按次计费</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnth6e6gAtsVr9mlb8Mb6Fbg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwdhQ2p01aRSWnOCTMnxbFc"></a></span>
+<p><strong>4. </strong><strong><span><span>/loop</span></span></strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKwc5JyQePBGiEKxA7AbV9N"></a></span>
+<p><span>你可以给 Claude Code 一个“周期性 Prompt”，让它按计划重复执行。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXHb9U44bSPBBuK63ltNKvh"></a></span>
+<p><span>或者不提供 Prompt，直接让它进入“维护模式”。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHNY2WKUZDCSRmfx2rad0Th"></a></span>
+<p><span>它能够自主处理：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhfwVKEMwBiTRwMc39KWc0d"></a></span>
+<ul>
+<li><span>未完成任务</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuzfPGbIOLdWWaIU2m9Wxxe"></a></span>
+<ul>
+<li><span>PR 评论</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL8l4uXjsiM1AJHfTMUcBSd"></a></span>
+<ul>
+<li><span>Merge Conflict 修复</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcngMnJJTDSrNinBvCKzEBp3g"></a></span>
+<p><span>等持续性工作。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVCfnuyevIDMPdF334NNw0f"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEHKg3PRn2Y4pPh6b6POVmd"></a></span>
+<p><strong>5. Channels</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRlxS0TvT9QN7fsRWzUAxff"></a></span>
+<p><span>这是一个 MCP Server，</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnucoABl60wuovT2tSmBwLye"></a></span>
+<p><span>能够把 Telegram、Discord、iMessage 等外部事件推送进正在运行的 Claude Code Session。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4H64hJ95GVGHEDIVcqngIc"></a></span>
+<p><span>你甚至可以直接用手机“发短信”给你的 Agent。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlUcQGnPd4IAptkb67KFzwh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnrCmd6XWJx2EImomksMECf"></a></span>
+<p><strong>6. Claude Agent SDK</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndgH1Pk64CUQ5btSGkADdXc"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRZUXTTKv6ceA42CODtltic"></a></span>
+<p><span>Claude把他们的ClaudeCode能力封装成了sdk，在这个SDK基础上可以用更细的粒度，使用CC的思想开发Agent。我们使用ClaudeCode本身，只能用它的预制功能，但是如果使用AgentSDK，可以构建一个和CC类似的，但是更加定制化的产品。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9CB5SlGPN2ZcxYhc16x0kd"></a></span>
+<p><span>有一本书叫《ClaudeCode Harness之道》（作者：黄佳），AgentSDK是作为ClaudeCode的专门一个小节。不过对于普通人甚至是企业来说，这种用法还是太高级了，我在面试的过程中目前没有被问到过这个问题。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzcBFrveq8zd4yDjpJGAEbc"></a></span>
+<p><span>Claude Code 背后的同一套 Agent 引擎，</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZ9HnwRIcZ3Q3w5EINi198b"></a></span>
+<p><span> 已经开放为：Python SDK和TypeScript SDK两个版本。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcni4DhxVdtA4KXwKCSQ49EMe"></a></span>
+<p><span>你可以基于它构建属于自己的 Agent 系统。 想更多了解Claude Agent SDK？参考</span><span><span><a href="https://blog.csdn.net/2401_82819240/article/details/161146967" target="_blank" rel="noopener noreferrer"><span>这里</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSpeEjHJubK0TSaK5Ma50Fg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWqbM7AGLkHR6SjGQD8xD1g"></a></span>
+<p><strong>7.</strong><strong>企业级认证</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr50NQc6JC1PjVpwFXEKRTb"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUamy9lkhyDgRwhgbSe7jqf"></a></span>
+<p><span>这个主要是ToB的能力，就是提供了如何让企业安全托管和调用大模型的能力。Bedrock、Vertex、Foundry 是企业在自己云里安全合规地“托管和调用大模型”的平台。Claude Code 支持这三家，意味着它能进入大公司的合规环境工作</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNQvhirvRuXQDTnlzX7AWqe"></a></span>
+<p><span>Claude Code 支持：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAfO5K1s1frWpDoqDmUa6Gh"></a></span>
+<ul>
+<li><span>Bedrock</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9TDo8htdlBqvnCu9BjcyXb"></a></span>
+<ul>
+<li><span>Vertex AI</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1fKbqwWIwtkDxDpt4ourRf"></a></span>
+<ul>
+<li><span>Microsoft Foundry</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAv62zAoprfZ3r6o8bd7ofd"></a></span>
+<p><span>这些大型企业常用的 AI 托管平台。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFm4MpCclcdMEgADVjiHsvd"></a></span>
+<p><span>目前 Codex 在 OAuth 灵活性方面，还达不到这个级别。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnu5VPr3UE7eqm2UnxSjvNPf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnohbhiAGiFgyXFAoMwCu7ld"></a></span>
+<h4 id="section-6"><strong>1.5.5 Codex胜出的地方</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnI0iUCnBXPkOdUl98Xvifcg"></a></span>
+<p><strong>1. 更统一的工作流设计</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwrDT9DZj9MFW7lOE8MaoDj"></a></span>
+<p><span>Codex 从底层就是围绕 </span><strong>Git Worktree</strong><span> 构建的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUnILr8fe1oTA9kh8MoXpcf"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>需要隔离并行修改时选择 worktree；本地任务也可直接在当前检出目录执行。</p><details><summary>查看解释与参考资料</summary><p>本地与 worktree 是可选择的执行方式，不是所有线程都独立隔离。</p><p><a href="https://learn.chatgpt.com/docs/environments/modes" target="_blank" rel="noopener noreferrer">Codex environments ↗</a></p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><span>每一个线程（thread）都会运行在自己的 worktree 中，</span></p></details>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4ZGPkzLrsj1Vh68xG75L51"></a></span>
+<p><span> 不会互相污染主项目。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIuWlIVIb5vt0ZLDylxDboe"></a></span>
+<p><span>这意味着：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFxumTNvasYZ0s6Vxui9Shf"></a></span>
+<ul>
+<li><span>Agent 并行工作更安全</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBnLoWdjVpzMXO5UUnVSDgc"></a></span>
+<ul>
+<li><span>不容易覆盖彼此改动</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCj0sbzFl4TKBkRntF7c9Ob"></a></span>
+<ul>
+<li><span>更适合多任务开发</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAbmf1jCRRmsYda4vecWOAf"></a></span>
+<p><span>更重要的是：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjzqBgzoKSr7pE9H2wf0KBb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcndrZ575trlDk1ySQ8q5zGhh"></a></span>
+<p><strong>2.内置浏览器</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2LE3pW0R21ps4HSN5vNHqe"></a></span>
+<p><span>Codex 桌面应用内直接集成了浏览器。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn142W231g0bLiZ6RKCdFQSe"></a></span>
+<p><span>你可以：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0yl5JEOwDHq6EQP2fpVogd"></a></span>
+<ul>
+<li><span>查看 Agent 刚刚生成的页面</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIueiAwoEDaihpaaMgDZIad"></a></span>
+<ul>
+<li><span>直接在页面上留下视觉评论（visual comments）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnT5EQSw1rQ1msCuSo5ATptc"></a></span>
+<p><span>在修改AI改完的代码并且review给出意见的问题上，Codex的体验感更好。（其实Claudecode也有这个在browser上检查修改过的代码的功能，只不过它是集成在浏览器上的，需要 Agent 写完 → 切到 Chrome → 手动检查， 而Codex直接集成在桌面，更流畅）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjIRpSBp8jW8yefzBjbm1Oh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlfyJgG3KrrrJbycAnjawph"></a></span>
+<p><strong>3. 更强的电脑操作能力</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmp2UZhmEx52cf49gVhmaHg"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGcELUTRKuvWGdBB91UgHsf"></a></span>
+<p><span>这一点还是很好用的，我们构建一款应用，做自动化测试，使用Codex的内置方法实现点击测试，还是非常实用的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1zuFVAE2tBaCr35r6thAjg"></a></span>
+<br>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbOwnUo7PDfCmymLtwM5tqc"></a></span>
+<p><span>Codex 的产品 QA（质量测试）流程非常成熟。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGq3Q3TXTrTU1W8f754Ow6f"></a></span>
+<p><span>比如你让 Codex 测试刚刚构建的 App：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFh0tUbQsoqqDWTcAlhgRve"></a></span>
+<p><span>它会：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSxkRB3nZmttrA0M8QR9FJt"></a></span>
+<ul>
+<li><span>自动打开应用</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnseds3tNcp6clOHPbMRnHEf"></a></span>
+<ul>
+<li><span>点击页面</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnITmBBH56UlMltMq0sYo9Yg"></a></span>
+<ul>
+<li><span>发现 Bug</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3JRmp1qZkSh662ecZ4DMqh"></a></span>
+<ul>
+<li><span>记录问题</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlIjOVWLtsGTEFfqyVhOnKb"></a></span>
+<p><span>甚至还能自动生成：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfTW1GHFu5xPdXIRSfkVuWe"></a></span>
+<ul>
+<li><span>严重等级（Severity）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxCsLHNm8wkfLBqC0b2XI6f"></a></span>
+<ul>
+<li><span>预期行为 vs 实际行为</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn43USkc2CE0LlhtgfC9P9Pe"></a></span>
+<ul>
+<li><span>复现步骤（Steps to Reproduce）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1S0nrxeJZF5cBEnZHtajaf"></a></span>
+<ul>
+<li><span>问题分诊总结（Triage Summary）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIG55WcCsK3DSJcrwqmGy3b"></a></span>
+<p><span>这已经非常接近真实 QA 工程师的流程。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkSamK7GFLWL46E9ir5U3yg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBg2TNSmi8v8HNVRHUusqZd"></a></span>
+<p><strong>4.GitHub 集成</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnflBVz58MbnTjOezFYAcplf"></a></span>
+<p><span><span><span>@codex</span></span></span><span> 的体验非常顺滑。你只需要在：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpiDopRiQAsqLoYilaUtrRh"></a></span>
+<ul>
+<li><span>PR 评论</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcne0TvtRwuJk1TFuqoaoMmrh"></a></span>
+<ul>
+<li><span>Issue</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3cJMp4LEKebswYwwvVvBNh"></a></span>
+<p><span>里 @codex，</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCg1TU4aZPRVDwomCun0Sx1"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>配置好账户、仓库访问与任务环境后，可在支持的位置通过 @codex 发起任务。</p><details><summary>查看解释与参考资料</summary><p>仍依赖账户连接、仓库权限和任务环境。</p></details></aside><p><span>它就会直接启动一个云端 Sandbox 去处理任务。几乎是：零配置。这点对团队协作尤其舒服。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlAWvy4HplHL3jy3flCI5hc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcniTICE1c8fkAkEC6aTzxyce"></a></span>
+<p><strong>5. GPT Image 2 图像生成能力</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0j6WEvUJnuLLberJt4f3xf"></a></span>
+<p><span>Codex 内置了 GPT Image 2（目前的图像生成最强模型）这意味着它可以直接生成游戏素材，产品icon, UI插画。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8mhOF7awFYoDlcGuQparsc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcni8x1P00oWh5rVckKNy42dd"></a></span>
+<p><strong>6. Codex的review功能</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnosDufrOZYC6vP4ZenjXEMp"></a></span>
+<p><span>Codex的/review相比于ClaudeCode的/review功能。Codex更会从挑刺的角度分析，更能够发现问题。而ClaudeCode的review相对来说更加谄媚，不太能分析出来潜在的bug（这里说是普通/review功能，不是CC的/ultrareview)，因此在这一问题上，我觉得Codex的review功能更好。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzoXfczjKELXPNqvvCHxaDg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9zI5s7rfp5MHVSu49kuaOf"></a></span>
+<h4 id="section-7"><span>1.5.6 第三方工具集成问题</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnG7CDpT2Rzn1R75tHyr9Fsm"></a></span>
+<p><span>像 </span><strong>OpenClaw</strong><span>、</span><strong>Hermes Agent</strong><span> 这样的第三方开源工具，最近开始越来越受欢迎。原因在于：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxDlBO3ygvLEUlqTyGdEtKd"></a></span>
+<p><span>它们在 coding agent 的基础上，额外加入了很多“长期自治能力”，例如：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8Zl76ytamhSpNPLBaqqzE5"></a></span>
+<ul>
+<li><span>原生 Cron 定时任务</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcno3VZBSXMK5MZmxa46AdRNd"></a></span>
+<ul>
+<li><span>Heartbeat（心跳机制）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxCpp62rGAUGU2TcOMb6dMh"></a></span>
+<ul>
+<li><span>主动技能调用（Proactive Skill Use）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcns50RZQioLavoAZoUcC5S5e"></a></span>
+<p><span>Agent 不再只是“你问一句，它做一步”，而是开始变成一种能持续运行的半自治系统。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZfNZx3UZwlCz7zm1kmwU7d"></a></span>
+<p><span>OpenAI和Anthropic公司对于第三方集成问题的态度，则显得截然不同。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnC8WZt8uhIlXTjUhjWizBqe"></a></span>
+<p><strong>OpenAI对于第三方 Agent 工具，OpenAI 的态度相对开放。你可以用自己的 ChatGPT 订阅登录 OpenClaw / Hermes，然后把 Codex 能力路由进去使用</strong><span>。甚至Sam Altman 在 5 月 2 日还公开认可了这种做法。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntiMDuTyoq8dyXOapW3pKMf"></a></span>
+<p><strong>Anthropic 则明显更保守</strong><span>。Claude Agent SDK 文档里明确写着：除非事先获得 Anthropic 批准，第三方开发者不能向用户提供 Claude.ai 登录能力，也不能共享 Claude 的订阅额度。换句话说：你不能合法地：拿自己的 Claude Pro 账号，接到第三方 Agent 平台里无限跑。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRIkDsLWuhtjWp4wi1s65qX"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhsJXNunGtwdOk0CcdyMxId"></a></span>
+<h4 id="section-8"><span>1.5.7 定价</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6bu8NP8rnHdsSMzpPUR8Rd"></a></span>
+<p><span>两边其实都不需要单独买 API Key。因为：Claude Code 已经包含在 Claude 订阅里，Codex 已经包含在 ChatGPT 订阅里。所以你开通对应会员后，基本就能直接开始用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxIiHO0YAmjqgnwqzH5j2cc"></a></span>
+<p><strong>Claude 这边</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyllMJYEAzhABTg5OxuzZah"></a></span>
+<p><span>Claude Pro 是每月 20 美元，包含 Claude Code 的基础使用权限。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7ZYSHvAy0kJYHApbzolsEf"></a></span>
+<p><span>如果你是重度用户，可以升级：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnURDKirM3MaGd0j0uafTuhf"></a></span>
+<ul>
+<li><span>Claude Max 5x：每月 100 美元，大约是 Pro 五倍额度</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhhqCY1k1MjzpeCyxy4Kj93"></a></span>
+<ul>
+<li><span>Claude Max 20x：每月 200 美元，大约是 Pro 二十倍额度</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5hlS7NxC2v0mpiuQy3qsOd"></a></span>
+<p><span>不过最近不少用户反馈：Claude Code 的 session limit 和 weekly limit 比以前更容易撞到。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwJdSMYsO2OHsc1Nqrgu2Vc"></a></span>
+<p><span>特别是长任务、多 Agent、超长上下文工作流时会比较明显。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbcZOa74e544m3nJ0ftY2dc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR3tFcPtD7UuRJlboKHBsVf"></a></span>
+<p><strong>Codex 这边</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNkGGtxyRgLYJugOFDY1OXI"></a></span>
+<p><span>Codex 已经直接包含在 ChatGPT 套餐内：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhLoAWxXci27cMRz4c4M3pc"></a></span>
+<ul>
+<li><span>免费版可体验基础能力</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPmXFywOSlXa3PkDDrHK6Kd"></a></span>
+<ul>
+<li><span>Plus（20 美元/月）即可使用 Codex</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoSjC30TlPZEaTAFmMlwWud"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>具体额度、任务成本和限制以当前套餐说明为准。</p><details><summary>查看解释与参考资料</summary><p>订阅仍受套餐限额和任务成本约束。</p><p><a href="https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan" target="_blank" rel="noopener noreferrer">Codex plan usage ↗</a></p></details></aside><span>Pro（200 美元/月）基本接近“无限使用”</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTAMeSEapdCW2hvGM4plx0c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWxpbL1JliVo3tLxVfsTD6b"></a></span>
+<h4 id="section-9"><span>1.5.8 同一任务测试</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZTm4RraF9CtDl1QE9ezozd"></a></span>
+<p><span>最后你可能想问，对于同一个任务，哪个AI生成的效果更好，代码质量更好？这个问题其实就更难评测了，因为对于任务效果的评估是主观的，另外对任务性质的不同可能导致结论的不同。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmwxSJQNEXKEHCMbOFqQ5wh"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>以下为特定提示、模型和环境下的作者体验，迁移到新任务应重新比较。</p><details><summary>查看解释与参考资料</summary><p>三类演示不能推导所有前端、工程审查或 token 成本的固定胜负。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><span>不过 Youtube博主Nate Herk也使用了同样的提示词，</span><strong>两家最强模型（Opus 4.7和GPT 5.5）</strong><span>对ClaudeCode和Codex在生成</span><strong>品牌化PDF,</strong><strong>生成官网Page</strong><span>，</span><strong>生成市场数据分析图表三个任务上测试</strong><span>。大致结论如下：</span></p></details>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwmyK3Zt3Ia4QZxYuaP6bPh"></a></span>
+<p><span>ClaudeCode在UI质量，视觉效果，产品感，</span><strong>动效方面，表现得更好。Claude Code 更像“有审美的高级工程师”</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNg2w0o26bXIwWCXyPY33Ne"></a></span>
+<p><span>而Codex在结构化输出，工程流畅，文档规范性, </span><strong>稳定性方面执行得更好</strong><span>。Codex 更像“</span><strong>高效的生产工程师</strong><span>”。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5OhMqb2nYC1v4RTi7zbJZe"></a></span>
+<p><span>从Token使用量上，Claudecode倾向于输出更多的token，更爱解释更改展开，因此用户更容易撞 Claude 限额。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9zpRLPHzZya6RwsdmrSivg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhMS61eEO73IIyUDusyQGed"></a></span>
+<h4 id="section-10"><span>1.5.9 结论：如何选择？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhCBxQRbV5f3MiQY5xsXAhK"></a></span>
+<p><strong>你应该优先选择 Claude Code，如果</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb8hXbLiu3zvv08TOwqysQb"></a></span>
+<ul>
+<li><span>你在做复杂前端（complex frontend）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVAJ26JK9l16ZkZAcqYO2Jf"></a></span>
+<ul>
+<li><span>视觉设计质量很重要</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcngNl15Js0UdQlc1xqPjQFWd"></a></span>
+<ul>
+<li><span>任务需要深度规划（deep planning）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPEkymMmoYO1bwppc2CmwQg"></a></span>
+<ul>
+<li><span>你希望 Agent 自动委派 sub-agents</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWVMg9orOcsoPgki0YS3gGf"></a></span>
+<ul>
+<li><span>你正在构建带 Hooks、Skills、Channels 的自定义工作流</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcntREx9rv2Y6ckaeahIhzivc"></a></span>
+<ul>
+<li><span>你需要 Claude Agent SDK，将 Agent 能力嵌入自己的产品</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbBqj3FpoKfhY2qiKgoxzZg"></a></span>
+<ul>
+<li><span>你处于需要 Bedrock / Vertex 等企业认证的环境</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDPrkajzDbSq1a9e11i44Zg"></a></span>
+<ul>
+<li><span>你在做 brainstorming，或者正在解决复杂问题</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL3vUiaDCCrtvYw9UpSQdXc"></a></span>
+<p><span>因为CC尤其擅长：UI, Dashboard, 前端，架构，workflow orchestration, 上下文推理。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRNv4hZ2DU15qPGhCidMDib"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpMTU3rSas5tEzDIavtU73c"></a></span>
+<p><strong>更适合使用 Codex 的场景</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2uoMTH0MyZzb3CrEyI5Y3g"></a></span>
+<p><span>你应该优先选择 Codex，如果：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFSTEajA9gcNQuHUi2pZdId"></a></span>
+<ul>
+<li><span>任务偏 research-heavy，需要大量联网研究</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoSWakfVVkj210yMJiuDyGb"></a></span>
+<ul>
+<li><span>你在生成结构化文档，例如 PDF 或报告</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzPAsg9HUgLVf35VR9HAwbf"></a></span>
+<ul>
+<li><span>你希望一个 App 里直接完成： </span></li>
+</ul>
+<div><div id="src-feishu-doxcnQ63boXkD2GkytbKcMgoufb"><span>◦</span><div><span>worktree</span></div></div><div id="src-feishu-doxcnwwIWy9DOuYRhlmT6BTd9ac"><span>◦</span><div><span>review</span></div></div><div id="src-feishu-doxcnKhpXgAkRCNlSLQsI9S33Vb"><span>◦</span><div><span>shipping</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTqbO7itGDuUNJWiY65cL9d"></a></span>
+<ul>
+<li><span>你想在 GitHub PR 里直接 </span><span><span><span>@codex</span></span></span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNWB0Ms8iM5yWX5ahlFdPjc"></a></span>
+<ul>
+<li><span>项目需要内置图片生成能力</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4b9vg10GIgaAYeJhjHkEkc"></a></span>
+<ul>
+<li><span>你需要一个长期稳定执行的大型工程工作流</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWibmYLVr4oHjf9kZDl8zPh"></a></span>
+<p><span>因为</span><strong>Codex尤其擅长</strong><span>:工程执行 + QA + 长任务 + 生产交付</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn657VoOEn0DoEwN8Tj6z8xb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNF7Mbj7loicxAhcNFGPMNe"></a></span>
+<h4 id="section-11"><span>1.5.10 迁移小技巧</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcntnzsoRaKUzMqOqVcGRQfJg"></a></span>
+<p><span>其实我自己也写完这个小节的笔记，也做了一些尝试。因为我之前都是用的ClaudeCode，但是借助这个机会，我使用了Codex。其实迁移方法挺简单的，分享一下我的技巧。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvePlkUNUmBmBVoYm3qoZEj"></a></span>
+<p><span>首先我个人使用codex，我走的模型的中转，不走Openai官方账号，走后台的服务器，中转API请求，比常规流程更复杂一些，但是，我的亲身经历是：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7Pf6nZICoMmVtH8U7NqO1e"></a></span>
+<p><span>1.</span><strong> Codex的配置。</strong><span>你使用ClaudeCode，告诉它你的基本需求：需要下载codex，使用代理来完成模型调用不走官方账号。 我先让它规划方案，最后它框框执行。经过几次测试（比如模型调用失败，我把错误粘贴给CC),让它修改，很快它就帮我完成了这个功能。 亲测使用CC下载，安装，配置Codex, 全程不到2小时，很容易。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXkfq9ZrwsG4bUyBDQPZ32z"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-6" data-course-correction="6"><p><strong>更正：</strong>按工具规则迁移 CLAUDE.md 到 AGENTS.md，并复核技能、权限和工作流配置。</p><details><summary>查看解释与参考资料</summary><p>标准入口为 CLAUDE.md 与复数的 AGENTS.md；配置迁移也不只是重命名。</p></details></aside><p><span>2. </span><strong>项目的迁移。</strong><span>我将我的ClaudeCode的项目配置成Codex的项目，也很容易。因为我的CC项目里面有很多skills, workflows, claude.md等，我只用告诉它：</span><strong>这是CC的项目，现在我需要使用Codex,请帮我完成相应适配</strong><span>。它会自动完成包括SKILL的转换，Claude.md->Agent.md，所以从项目工程迁移上，成本也很低。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnE1zpyZgxvufJGGrRCUm1vb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNQKu8bHszTVoNlc2QLCyge"></a></span>
+<h4 id="section-12"><span>1.5.11 面试问题</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfF2nyojf1KU4nzfkY6UWfu"></a></span>
+<p><strong>1.</strong><strong>你平时会用什么VibeCoding的工具呢</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDxZGr6pADbPcAhRNoKr9Bc"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjsJTzuDZdj7qaxvgKWvfsg"></a></span>
+<p><span>如果我学习了我们今天的内容，你回答的时候，从这二者的优缺点的角度，取长补短地使用，肯定能体现你真的是在高效地使用AI，聪明地使用AI。这个问题其实面试官就是想问你对Vibecoding工具的了解，有没有聪明使用。当然我也希望大家能切实理解今天的内容，使用上了codex和Claudecode(没用过，也起码把最少相关内容理解了），因为这个答案其实挺高级的，你要是一点不懂这俩工具，面试官继续和你讨论你连他们基本特性都不懂，这个问题回答得又是这么聪明地在使用AI，那么他会觉得你是背的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnguUwdysk3RNFa7Wyeyhgce"></a></span>
+<p><span>另外我觉得这个回答还是不够具体，有点浮在理论。更好的答案还是真的结合你的使用情况来说，这个就要求大家真的看懂了本期内容，真正去实践，再回答。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5Nzcsn76ioEHFGcYj3Km8f"></a></span>
+<p><span>我会同时使用ClaudeCode和Codex，因为他们的特点和优缺点不同，我会取长补短地使用它们。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWDK8KQ44IwdWEthHddukTd"></a></span>
+<p><span>ClaudeCode更具有创意性，当我需要进行复杂方案设计，头脑风暴时，我会借助Claudecode的能力，同时他对于前端的设计能力，审美更好，包括定制化更强比如提供了30+个hook的能力，当我需要进行那些特别定制化的任务，创造自己的workflow的时候，我会使用ClaudeCode。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1eg82XRPTDFMY4kacq1rXd"></a></span>
+<p><span>Codex则更严谨，指令遵循能力更好。当我需要使用一些长时间，稳定的任务，我会选择Codex，他更加听从指挥，执行严谨。同时他在git生态支持上也很好用，从coding - review - deploy -production整个链路提供了非常好的支持，比如具备了自动操作电脑来执行review，测试前端代码输出报告，有这些需求时我会使用Codex。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQFGBRkPryAQoxCAdTTUekF"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKisiyPg417zmf2T7Q3toBh"></a></span>
+<p><strong>2.你熟悉什么VibeCoding工具，能简单讲讲吗？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqRA53Ozq1knHnlJvCVQ49O"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1ymeLFMEQ1Muq9o15v4Lab"></a></span>
+<p><span>同时给面试官讲两个当前最强的coding工具，分析他们优缺点，面试官肯定会对你竖起大拇指，觉得你愿意研究，关注最新技术。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn20bMULaPkPqHgljpdawele"></a></span>
+<p><span>我熟悉 Claude Code 和 Codex，这两个是目前比较主流的 Vibe Coding / Agentic Coding 工具。二者定位不太一样，我一般会结合使用：Claude Code 负责规划、设计和复杂思考，Codex 负责工程执行、Review 和长期任务推进。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5Z18iNyO0VK53dHFAONyFg"></a></span>
+<p><span>Claude Code 更偏“创造力”和“产品感”。它比较适合复杂前端、Dashboard、UI 设计、架构规划这类任务，生成的页面和交互通常更精致，Agent 工作流能力也更强，比如自动 sub-agent、hooks、长上下文推理等，比较适合做 brainstorming 和复杂工程设计。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR2EnMNIefoiTVyYpOmT7ne"></a></span>
+<p><span>Codex 更偏“工程化”和“执行力”。它的 GitHub 工作流、QA、代码 Review、长时间任务执行会更稳定，token 效率和成本控制也更好，适合做 PR 修复、自动化开发、结构化文档生成以及持续交付类任务。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8jWAMnrQUjeTTnH1w9uEfb"></a></span>
+<p><span>以上两个问题是面试原题：参考2</span><span><span><a href="/momomian/lessons/feishu-83572da16d/#src-feishu-doxcnMWQwNzSZdTiCuCnvVvOgCe"><span>02605 安克暑期实习一面</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR8Vw1uchwLpQc6jo5J2YGb"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqoFdSpqdjSrSCQ6dzwhvHc"></a></span>
+<h4 id="section-13"><span>1.5.12 讲解视频</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn46CzlAiJI2OAytJ4WDoG3d"></a></span>
+<p><span><span><a href="https://www.bilibili.com/video/BV1cqE86NE8c/?spm_id_from=333.1387.homepage.video_card.click&#x26;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer"></a><a href="https://www.bilibili.com/video/BV1cqE86NE8c/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1cqE86NE8c/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b</a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndUxRcLGJHH3oLRbfg1hdke"></a></span>
+<h4 id="section-14"><span>1.5.13 参考资料</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjElDlGCU60hVPQUp0xpsse"></a></span>
+<p><span>Nate Herk博主做的</span><span><span><a href="https://www.youtube.com/watch?v=RLjaUES9P8A&#x26;t=149s" target="_blank" rel="noopener noreferrer"><span>CC vs Codex测评的视频</span></a></span></span><span>，也是本期视频主要参考资料，理论上如果本小节你都看明白了，不需要再去观看此视频了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfNiN22j6vdU6OdqkHcU3xf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKyyfSp0bRt0QBFyX0zBWCQ"></a></span>
+<p><span>Codex安装使用教程。其实我自己在迁移小技巧 章节教了大家如何配置Codex，结合CC的能力。我自己很快配置好了。网上也有0基础保姆级教学，我找了一个资料，供大家参考。</span></p>
+<div id="src-feishu-doxcnew973DXLDt2Q9eo0zrVy2d"><div><div><div><div><div><div><div><div><div><a href="https://open.douyin.com/player/video?vid=7641831765677460776&#x26;mode=pc" target="_blank" rel="noopener noreferrer">嵌入视频 / 原始播放器</a></div></div></div></div></div></div></div></div></div></div>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDOuqNnBTvhcNtH5x0T955b"></a></span></div></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-reading" class="lesson-resource-group" data-lesson-resource-anchor="src-feishu-doxcnFxumTNvasYZ0s6Vxui9Shf" aria-label="并发任务与结果汇合"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">并发任务与结果汇合</h3><p class="resource-scope">补充本课主题的原理。具体接口与运行条件仍需结合本课及所用版本核对。</p><details class="chapter-readings"><summary>延伸阅读 · 2 章（选读）</summary><ul><li><a href="https://adp.xindoo.xyz/chapters/Chapter%203_%20Parallelization/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 3 章：并行化 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 进阶</span><p>先找独立任务，再比较并发汇合、共享状态与失败处理。</p></li><li><a href="https://docs.python.org/zh-cn/3/library/asyncio-task.html" target="_blank" rel="noopener noreferrer">Python 标准库 · asyncio：协程与任务 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 官方中文文档 · 入门</span><p>分清创建协程、等待结果和并发任务，注意取消与异常传播。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="feishu-30a72760c3" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：工具比较中的任务匹配与能力边界。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-feishu-30a72760c3-1","version":1,"type":"single","stage":"lesson","concept":"feishu-30a72760c3","prompt":"本课比较 Claude Code 与 Codex 的核心判断方式是什么？","options":[{"id":"option-1","text":"结合当前任务和结果选择合适工具","reason":"本课把比较落在场景适配上，规划、执行、审查可能有不同需求；它同时提醒具体功能与价格具有时间条件，不能当永久结论。"},{"id":"option-2","text":"用单次公开榜单排名替所有项目做永久选择","reason":"本课把比较落在场景适配上，规划、执行、审查可能有不同需求；它同时提醒具体功能与价格具有时间条件，不能当永久结论。 因此，“用单次公开榜单排名替所有项目做永久选择”不符合本题给出的对象或执行条件。"},{"id":"option-3","text":"只按模型最大窗口长度判断所有工作流质量","reason":"本课把比较落在场景适配上，规划、执行、审查可能有不同需求；它同时提醒具体功能与价格具有时间条件，不能当永久结论。 因此，“只按模型最大窗口长度判断所有工作流质量”不符合本题给出的对象或执行条件。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"结合当前任务和结果选择合适工具","explanation":"本课把比较落在场景适配上，规划、执行、审查可能有不同需求；它同时提醒具体功能与价格具有时间条件，不能当永久结论。 假设任务是审查现有改动，应重点比较缺陷定位与证据，而非只看演示文案。","analysisSteps":["本课把比较落在场景适配上，规划、执行、审查可能有不同需求；它同时提醒具体功能与价格具有时间条件，不能当永久结论。","假设任务是审查现有改动，应重点比较缺陷定位与证据，而非只看演示文案。"],"workedExample":"假设任务是审查现有改动，应重点比较缺陷定位与证据，而非只看演示文案。","evidence":{"quote":"面对你当前这个具体场景，哪个工具更适合","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcn9GkjIolyxtmwraWBGvvdNQ"},"misconception":"本课把比较落在场景适配上，规划、执行、审查可能有不同需求；它同时提醒具体功能与价格具有时间条件，不能当永久结论。 因此，“用单次公开榜单排名替所有项目做永久选择”不符合本题给出的对象或执行条件。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcn9GkjIolyxtmwraWBGvvdNQ"}]},{"id":"lx-feishu-30a72760c3-2-r2","version":2,"type":"single","stage":"lesson","concept":"feishu-30a72760c3","prompt":"本课 Channels 示例把外部消息接入运行中的会话，这里的 MCP Server 提供什么？","options":[{"id":"option-1","text":"把外部事件接入 Agent 的能力入口","reason":"本课用 MCP Server 接入外部事件，提供应用与外部能力之间的接口；实际可用性仍依赖配置和授权。"},{"id":"option-2","text":"让不同工具自动共享全部模型参数与权限","reason":"连接协议不会自动共享模型参数和外部服务权限。"},{"id":"option-3","text":"代替全部工作流配置并自动决定业务步骤","reason":"事件入口与工作流规划和配置是不同职责。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"回看 Channels 示例，区分事件接入与模型或业务决策。"}],"correctIds":["option-1"],"keyPoint":"MCP 提供外部能力接口","explanation":"Channels 示例将外部事件接入会话；这不能推导出共享模型参数、自动拥有服务权限或替代全部工作流。","analysisSteps":["定位 Channels 对 MCP Server 的说明。","将事件接入与模型参数、服务授权及业务决策分开。"],"workedExample":"外部消息成为会话输入后，操作仍受任务、配置和权限约束。","evidence":{"quote":"这是一个 MCP Server","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcnRlxS0TvT9QN7fsRWzUAxff"},"misconception":"把连接入口当作模型共享或完整业务流程。","condition":"仅判断本课 Channels 中的接口用途，不要求配置消息服务。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcnRlxS0TvT9QN7fsRWzUAxff"}]},{"id":"lx-feishu-30a72760c3-3","version":1,"type":"single","stage":"lesson","concept":"feishu-30a72760c3","prompt":"本课介绍 Claude Agent SDK 时，它与直接使用预制应用的区别是什么？","options":[{"id":"option-1","text":"用 SDK 更细地定制自己的 Agent 系统","reason":"SDK 暴露编程接口，适合把引擎能力嵌入自建流程；直接应用主要使用已有交互，两者对应不同定制层次。"},{"id":"option-2","text":"只在现有应用界面配置预制选项，不能编程组合","reason":"SDK 暴露编程接口，适合把引擎能力嵌入自建流程；直接应用主要使用已有交互，两者对应不同定制层次。 因此，“只在现有应用界面配置预制选项，不能编程组合”不符合本题给出的对象或执行条件。"},{"id":"option-3","text":"SDK 只是终端启动器，不暴露 Agent 调用接口","reason":"SDK 暴露编程接口，适合把引擎能力嵌入自建流程；直接应用主要使用已有交互，两者对应不同定制层次。 因此，“SDK 只是终端启动器，不暴露 Agent 调用接口”不符合本题给出的对象或执行条件。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"用 SDK 更细地定制自己的 Agent 系统","explanation":"SDK 暴露编程接口，适合把引擎能力嵌入自建流程；直接应用主要使用已有交互，两者对应不同定制层次。 假设团队要自建审查服务，可通过 SDK 连接自己的输入、工具和审批流程。","analysisSteps":["SDK 暴露编程接口，适合把引擎能力嵌入自建流程；直接应用主要使用已有交互，两者对应不同定制层次。","假设团队要自建审查服务，可通过 SDK 连接自己的输入、工具和审批流程。"],"workedExample":"假设团队要自建审查服务，可通过 SDK 连接自己的输入、工具和审批流程。","evidence":{"quote":"构建一个和CC类似的，但是更加定制化的产品","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcnRZUXTTKv6ceA42CODtltic"},"misconception":"SDK 暴露编程接口，适合把引擎能力嵌入自建流程；直接应用主要使用已有交互，两者对应不同定制层次。 因此，“只在现有应用界面配置预制选项，不能编程组合”不符合本题给出的对象或执行条件。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcnRZUXTTKv6ceA42CODtltic"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-30a72760c3-1" disabled><legend><span class="quiet-tag">单选</span> 1. 本课比较 Claude Code 与 Codex 的核心判断方式是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-1" value="option-2"><span>用单次公开榜单排名替所有项目做永久选择</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-1" value="option-1"><span>结合当前任务和结果选择合适工具</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-30a72760c3-1" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-1" value="option-3"><span>只按模型最大窗口长度判断所有工作流质量</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-30a72760c3-2-r2" disabled><legend><span class="quiet-tag">单选</span> 2. 本课 Channels 示例把外部消息接入运行中的会话，这里的 MCP Server 提供什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-2-r2" value="option-2"><span>让不同工具自动共享全部模型参数与权限</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-2-r2" value="option-3"><span>代替全部工作流配置并自动决定业务步骤</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-30a72760c3-2-r2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-2-r2" value="option-1"><span>把外部事件接入 Agent 的能力入口</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-30a72760c3-3" disabled><legend><span class="quiet-tag">单选</span> 3. 本课介绍 Claude Agent SDK 时，它与直接使用预制应用的区别是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-3" value="option-2"><span>只在现有应用界面配置预制选项，不能编程组合</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-3" value="option-3"><span>SDK 只是终端启动器，不暴露 Agent 调用接口</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-30a72760c3-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-3" value="option-1"><span>用 SDK 更细地定制自己的 Agent 系统</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-30a72760c3">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>查看修订前的题目、草稿与作答记录</summary><p class="small muted">原题和旧记录按当时版本保留。上方补讲题单独记录，旧草稿不会被当成新题答案。</p><section class="lesson-course-quiz" id="lesson-original-question-history" data-course-quiz="feishu-30a72760c3" data-course-mode="dedicated" data-archived-course="true" aria-labelledby="lesson-original-question-history-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-original-question-history-title">修订前的题目与记录</h2><p class="small muted">这里只查看旧草稿和历史。旧题的答案与评分沿用提交时的版本，请以上方新题和当前讲解为准。</p></div></div><script type="application/json" data-course-questions>[{"id":"lx-feishu-30a72760c3-2","version":1,"type":"single","stage":"lesson","concept":"feishu-30a72760c3","prompt":"按本课重叠能力列表，MCP 在两类编程工具里承担什么作用？","options":[{"id":"option-1","text":"把外部工具接入 AI","reason":"共同支持协议表示可以连接符合约定的能力，并不让模型相同，也不自动赋予外部系统权限。"},{"id":"option-2","text":"让两套工具自动共享全部模型参数与权限","reason":"共同支持协议表示可以连接符合约定的能力，并不让模型相同，也不自动赋予外部系统权限。 因此，“让两套工具自动共享全部模型参数与权限”不符合本题给出的对象或执行条件。"},{"id":"option-3","text":"替代各自全部工作流配置，自动决定业务步骤","reason":"共同支持协议表示可以连接符合约定的能力，并不让模型相同，也不自动赋予外部系统权限。 因此，“替代各自全部工作流配置，自动决定业务步骤”不符合本题给出的对象或执行条件。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"MCP 把外部工具能力接入 AI 的执行流程。","explanation":"共同支持协议表示可以连接符合约定的能力，并不让模型相同，也不自动赋予外部系统权限。 假设两边都可连接 GitHub 工具，但实际操作仍取决于连接配置与授权。","analysisSteps":["共同支持协议表示可以连接符合约定的能力，并不让模型相同，也不自动赋予外部系统权限。","假设两边都可连接 GitHub 工具，但实际操作仍取决于连接配置与授权。"],"workedExample":"假设两边都可连接 GitHub 工具，但实际操作仍取决于连接配置与授权。","evidence":{"quote":"用于将外部工具接入 AI 的开放协议","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcndt0l1gZi0i0XPaHWex11ch"},"misconception":"共同支持协议表示可以连接符合约定的能力，并不让模型相同，也不自动赋予外部系统权限。 因此，“让两套工具自动共享全部模型参数与权限”不符合本题给出的对象或执行条件。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-30a72760c3/#src-feishu-doxcndt0l1gZi0i0XPaHWex11ch"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-30a72760c3-2" disabled><legend><span class="quiet-tag">单选</span> 1. 按本课重叠能力列表，MCP 在两类编程工具里承担什么作用？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-2" value="option-1"><span>把外部工具接入 AI</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-30a72760c3-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-2" value="option-3"><span>替代各自全部工作流配置，自动决定业务步骤</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-30a72760c3-2" value="option-2"><span>让两套工具自动共享全部模型参数与权限</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-30a72760c3">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section></details><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="feishu-30a72760c3" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构已按本课原文与2026-10-29逐课审读修订；不是逐课人工验收，也不代表代码已运行或视频已全片审核。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><h3>这次阅读的目标</h3><ol><li>以相同任务和验收条件比较规划、执行与审查结果。</li><li>区分本地与 worktree 隔离，核对模型、套餐和子代理触发条件。</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnvu2u23Ahn3QZZqX2pCIezf">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn5OhMqb2nYC1v4RTi7zbJZe">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnKwc5JyQePBGiEKxA7AbV9N">回看本课上下文</a></span></dd></div><div><dt>摘要</dt><dd>压缩原始信息的表达。压缩会取舍细节，需要对照任务所需事实、纠正和约束检查遗漏。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn1S0nrxeJZF5cBEnZHtajaf">回看本课上下文</a></span></dd></div><div><dt>MCP</dt><dd>连接模型应用与工具、资源等能力的协议。协议一致性不代替工具授权或业务安全检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnRlxS0TvT9QN7fsRWzUAxff">回看本课上下文</a></span></dd></div><div><dt>HTTP</dt><dd>客户端与服务端交换请求和响应的协议；方法、状态码、响应体和业务结果分别提供信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn46CzlAiJI2OAytJ4WDoG3d">回看本课上下文</a></span></dd></div><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn6bu8NP8rnHdsSMzpPUR8Rd">回看本课上下文</a></span></dd></div><div><dt>SDK</dt><dd>帮助调用某种平台能力的一组开发工具或库。SDK 版本与服务端 API 版本需要区分。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnnrCmd6XWJx2EImomksMECf">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnZ9HnwRIcZ3Q3w5EINi198b">回看本课上下文</a></span></dd></div><div><dt>GPT</dt><dd>常用于生成任务的一类自回归语言模型家族；具体上下文、能力和接口取决于所用模型。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnjrr26jt4Z4t6Zx8SQSiAdg">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnZTm4RraF9CtDl1QE9ezozd">回看本课上下文</a></span></dd></div><div><dt>规划</dt><dd>把目标转成步骤或下一步选择的过程。计划需要根据实际结果调整并限制执行资源。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnvu2u23Ahn3QZZqX2pCIezf">回看本课上下文</a></span></dd></div><div><dt>命令行</dt><dd>通过文本命令操作程序的界面。先确认当前目录、输入参数和命令的实际副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnyE5AYo1wsJ62AQNg8KqDq2">回看本课上下文</a></span></dd></div><div><dt>Claude Code</dt><dd>Anthropic 的编程 Agent，可按配置读取代码、编辑文件、执行命令和调用工具；Hook 数量属于版本信息。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnzLaNCqN4URuWBdh8FluGne">回看本课上下文</a></span></dd></div><div><dt>Codex</dt><dd>OpenAI 的编程 Agent，支持本地任务和可选 worktree 隔离等方式；不是每个任务都有独立工作树。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnwrDT9DZj9MFW7lOE8MaoDj">回看本课上下文</a></span></dd></div><div><dt>Anthropic</dt><dd>Anthropic 推出的代码 Agent，能够规划任务、编辑文件、运行命令，并根据你的配置请求权限。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnvu2u23Ahn3QZZqX2pCIezf">回看本课上下文</a></span></dd></div><div><dt>1.</dt><dd>1. 如果你在纠结到底选择哪个工具，我相信看完你会知道如何选择。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnMM0klNmtnWBxxDjTwWH4Be">回看本课上下文</a></span></dd></div><div><dt>Anthropic 则明显更保守</dt><dd>Anthropic 则明显更保守。Claude Agent SDK 文档里明确写着：除非事先获得 Anthropic 批准，第三方开发者不能向用户提供 Claude.ai 登录能力，也不能共享 Claude 的订阅额度。换句话说：你不能合法地：拿自己的 Claude Pro 账号，接到第三方 Agent 平台里无限跑。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcntiMDuTyoq8dyXOapW3pKMf">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>本课机制与检查方向</h3><p class="small muted">依据本课原文与就近审校整理的教学说明；原文代码和外部视频未因此获得运行或全片审核。 <a href="#lesson-source-body">打开完整来源段落</a></p><blockquote class="lesson-guide-excerpt">如何公平比较两种编码Agent？
+固定任务、模型、权限、环境和验收标准，分别记录计划、修改、检查和结果；个人体验不能证明所有任务的稳定胜负。
+
+worktree能隔离什么，不能据此推断什么？
+它提供独立检出目录；端口、外部服务、凭据及其他副作用仍可能共享，需另外核对。</blockquote><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-30a72760c3-explain"><h3>1. 1Claude Code 从入门到精通：Codex VS ClaudeCode · 机制回忆</h3><p>如何公平比较两种编码Agent？</p><label class="lesson-task-field" for="task-lesson-card-feishu-30a72760c3-explain">先写自己的回答<textarea id="task-lesson-card-feishu-30a72760c3-explain" data-lesson-task-answer="lesson-card-feishu-30a72760c3-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-30a72760c3-explain">给一点提示</button><p class="lesson-task-hint" hidden>如何公平比较两种编码Agent？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">固定任务、模型、权限、环境和验收标准，分别记录计划、修改、检查和结果；个人体验不能证明所有任务的稳定胜负。</p><ul><li>固定任务模型环境和权限</li><li>统一验收并记录执行</li><li>个人体验不是普遍胜负</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-30a72760c3-explain">主要错因<select id="task-error-lesson-card-feishu-30a72760c3-explain" data-lesson-task-error="lesson-card-feishu-30a72760c3-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-30a72760c3#lesson-card-feishu-30a72760c3-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-30a72760c3-apply"><h3>2. 1Claude Code 从入门到精通：Codex VS ClaudeCode · 条件判断</h3><p>worktree能隔离什么，不能据此推断什么？</p><label class="lesson-task-field" for="task-lesson-card-feishu-30a72760c3-apply">先写自己的回答<textarea id="task-lesson-card-feishu-30a72760c3-apply" data-lesson-task-answer="lesson-card-feishu-30a72760c3-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-30a72760c3-apply">给一点提示</button><p class="lesson-task-hint" hidden>worktree能隔离什么，不能据此推断什么？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">它提供独立检出目录；端口、外部服务、凭据及其他副作用仍可能共享，需另外核对。</p><ul><li>worktree隔离检出目录</li><li>端口和服务可共享</li><li>外部副作用另查</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-30a72760c3-apply">主要错因<select id="task-error-lesson-card-feishu-30a72760c3-apply" data-lesson-task-error="lesson-card-feishu-30a72760c3-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-30a72760c3#lesson-card-feishu-30a72760c3-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>worktree能隔离什么，不能据此推断什么？</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>它提供独立检出目录；端口、外部服务、凭据及其他副作用仍可能共享，需另外核对。</blockquote><ul><li>worktree隔离检出目录</li><li>端口和服务可共享</li><li>外部副作用另查</li></ul><a href="#lesson-source-body">回到原文依据</a></details><label class="lesson-task-field" for="boundary-feishu-30a72760c3">写下最小失败输入、预期和验证方法<textarea id="boundary-feishu-30a72760c3" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>换一组输入或一个版本，重新判断：worktree能隔离什么，不能据此推断什么？</p><ul><li>worktree隔离检出目录</li><li>端口和服务可共享</li><li>外部副作用另查</li></ul><label class="lesson-task-field" for="transfer-feishu-30a72760c3">解释哪些能复用，哪些要重新验证<textarea id="transfer-feishu-30a72760c3" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>以相同任务和验收条件比较规划、执行与审查结果。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>区分本地与 worktree 隔离，核对模型、套餐和子代理触发条件。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>独立解释机制，并列出改变条件后需要重新核对的内容。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>区分资料说明、本站补充与自己的实际验证。</span></label></fieldset><label class="lesson-task-field" for="artifact-feishu-30a72760c3">产物、实际验证与未决问题<textarea id="artifact-feishu-30a72760c3" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=feishu-30a72760c3#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=feishu-30a72760c3">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/path/"><small>返回课程</small><span>查看教学顺序</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1" class="nested">1.5 Codex VS ClaudeCode</a><a href="#section-2" class="nested">1.5.1 核心结论</a><a href="#section-3" class="nested">1.5.2 两款工具简介</a><a href="#section-4" class="nested">1.5.3 它们有哪些重叠能力</a><a href="#section-5" class="nested">1.5.4 ClaudeCode胜出的地方</a><a href="#section-6" class="nested">1.5.5 Codex胜出的地方</a><a href="#section-7" class="nested">1.5.6 第三方工具集成问题</a><a href="#section-8" class="nested">1.5.7 定价</a><a href="#section-9" class="nested">1.5.8 同一任务测试</a><a href="#section-10" class="nested">1.5.9 结论：如何选择？</a><a href="#section-11" class="nested">1.5.10 迁移小技巧</a><a href="#section-12" class="nested">1.5.11 面试问题</a><a href="#section-13" class="nested">1.5.12 讲解视频</a><a href="#section-14" class="nested">1.5.13 参考资料</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

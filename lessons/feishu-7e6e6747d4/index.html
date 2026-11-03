@@ -1,0 +1,745 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>模型和硬件：模型能不能跑 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="feishu-7e6e6747d4"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>算法与后训练外部学习路线</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-946d6f818f/" data-record-id="feishu-946d6f818f">算法理论与项目</a><a href="/momomian/lessons/feishu-6d6b0fa6b6/" data-record-id="feishu-6d6b0fa6b6">Pytorch/深度学习入门</a><a href="/momomian/lessons/feishu-628415261e/" data-record-id="feishu-628415261e">后训练学习</a><a href="/momomian/lessons/feishu-9eba045be3/" data-record-id="feishu-9eba045be3">开源项目学习</a></details></div></details><details><summary>Transformer直觉、注意力与BERT/GPT训练目标</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-7151470ffb/" data-record-id="feishu-7151470ffb">Transformer</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-005-007-0e71204b82/" data-record-id="tencent-005-007-0e71204b82">大语言模型基础（LLM）：核心工作原理：Transformer 架构简析</a><a href="/momomian/lessons/feishu-e10fd12c8c/" data-record-id="feishu-e10fd12c8c">Bert vs GPT？</a><a href="/momomian/lessons/feishu-5ef4c83678/" data-record-id="feishu-5ef4c83678">LLM模型训练</a></details></div></details><details><summary>HF环境、模型缓存和Tokenizer输入契约</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-014-20c5e9e76a/" data-record-id="tencent-011-014-20c5e9e76a">Hugging Face：安装环境、模型缓存与离线加载</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-79bf08/" data-record-id="tencent-011-014-cc43dc69ae-79bf08">Tokenizer：编码解码、Padding、截断与Attention Mask</a></details></div></details><details><summary>Pipeline任务接口、GPU批处理和音频分块</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-014-cc43dc69ae/" data-record-id="tencent-011-014-cc43dc69ae">Transformers Pipeline：八类任务的最短调用</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-7045d1/" data-record-id="tencent-011-014-cc43dc69ae-7045d1">Pipeline进阶：GPU、批处理与Whisper长音频分块</a></details></div></details><details><summary>分类前向、随机任务头与已训练分类器</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-090d38/" data-record-id="tencent-011-014-cc43dc69ae-090d38">AutoModel分类前向：Logits、Softmax与随机任务头</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-37b735/" data-record-id="tencent-011-014-cc43dc69ae-37b735">批量情感分类：加载已训练RoBERTa及标签映射</a></details></div></details><details><summary>隐藏状态与掩码均值句向量</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-da70df/" data-record-id="tencent-011-014-cc43dc69ae-da70df">句向量实操：隐藏状态与掩码均值池化</a></div></details><details><summary>聊天生成、NER、翻译与摘要任务</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-cc6aed/" data-record-id="tencent-011-014-cc43dc69ae-cc6aed">本地Qwen聊天：Chat Template与自回归生成</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-42f0be/" data-record-id="tencent-011-014-cc43dc69ae-42f0be">NER实体识别：聚合输出与中英文模型示例</a><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-48ce32/" data-record-id="tencent-011-014-cc43dc69ae-48ce32">翻译与摘要：任务专用Pipeline</a></details></div></details><details open><summary>本地运行：阶段、容量预算和性能测量</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-7e6e6747d4/" class="current" aria-current="page" data-record-id="feishu-7e6e6747d4">模型和硬件：模型能不能跑</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-d6f0ad3742/" data-record-id="feishu-d6f0ad3742">模型和硬件</a><a href="/momomian/lessons/feishu-a204211b94/" data-record-id="feishu-a204211b94">模型和硬件：跑的有多快</a></details></div></details><details><summary>SFT与LoRA理论、IMDB训练和适配器配置</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-3524f0c55b/" data-record-id="feishu-3524f0c55b">模型微调基础</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-6e2d4d/" data-record-id="tencent-011-014-cc43dc69ae-6e2d4d">IMDB+BERT监督微调：数据预处理、Trainer与评测集</a><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-bda584/" data-record-id="tencent-011-014-cc43dc69ae-bda584">4-bit LoRA：量化底座与适配器配置（不含完整训练）</a></details></div></details><details><summary>意图分类方法：规则、TF-IDF和BERT可选支线</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-009-004/" data-record-id="tencent-009-004">三大核心技术：让AI懂你所想</a></details></div></details><details><summary>推理优化理论与量化/注意力/编译配置</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-fc0d56c341/" data-record-id="feishu-fc0d56c341">模型推理加速基础</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-0ebb35/" data-record-id="tencent-011-014-cc43dc69ae-0ebb35">推理优化配置：量化、FlashAttention-2与torch.compile</a></details></div></details><details><summary>模型与Tokenizer保存恢复、Hub发布及API速查</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-a4c6af/" data-record-id="tencent-011-014-cc43dc69ae-a4c6af">模型产物：保存、恢复、Tokenizer配套与Hub发布</a><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-eaf89d/" data-record-id="tencent-011-014-cc43dc69ae-eaf89d">Transformers API速查与外部学习资源</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=training">模型训练与推理</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">主题主讲与实践</p><h1 data-pagefind-meta="title">模型和硬件：模型能不能跑</h1><div class="lesson-meta"><span>约 23 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：本地运行：阶段、容量预算和性能测量 · 主讲与实践</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="feishu-7e6e6747d4" data-task-title="模型和硬件：模型能不能跑" data-task-href="/lessons/feishu-7e6e6747d4/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>训练固定状态的精度、FP32 主权重、分片和卸载取决于实现，14 字节/参数不是普遍定律；激活经验系数也不能覆盖所有注意力实现。</p><p>CPU 回答耗时 20–30 秒未说明 CPU、线程、输入输出长度，不能作为通用性能结论；其他丢失分隔的范围需对照原始版式核实。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">模型训练与推理 / 本地运行：阶段、容量预算和性能测量</p><a class="text-link" href="/momomian/path/?topic=training&amp;unit=unit-training-450fb2cc">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>按精度、训练状态、缓存和临时空间分项估算内存。</li><li>区分 LoRA 参数量、激活与上下文并发开销。</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">模型和硬件：模型能不能跑</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">7×10^9×2=14×10^9字节，另需预留KVCache和临时空间。</p><a class="text-link" href="#src-feishu-doxcnD0WiCiNq490AyGhZWuiRVb">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 2 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>2 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><a class="text-link" href="/momomian/practice/?lesson=feishu-7e6e6747d4#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h3 id="section-1"><strong>6.1 模型能不能跑</strong></h3>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMxEAVbICHDsP5B82Vaf5Yf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOXbmyMpOOnJfmMpRwnjAwb"></a></span>
+<p><span>这个章节其实涉及的内容也很复杂，涉及训练，推理。要是都弄得特别透彻的话，需要结合具体的算法来计算，需要理解神经网络的结构，训练过程，具体的算法。如果没有深度学习背景，算法基础，推理的基础，肯定看不懂所有的细节，不过你可以抓大放小，细节你都放掉，掌握具体的原则即可。你看我总结的面试问题和回答示例的时候，也没有回答特别多的细节。如果还在学习应用的朋友，</span><strong>抓大放小，忽略细节</strong><span>。如果学习了算法，有推理，训练的基础，可以对细节看得更仔细。另外本期内容也配备了视频讲解，可以结合来看。 另外这一小节的内容其实有非常多的算法，推理部署相关的东西，还是按照我们的思路来说，第一阶段的核心任务是学好应用，这里的内容对于应用岗位属于</span><strong>拔高项和加分项</strong><span>，优先级低于应用相关知识。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhknVmtpRXptOHVBFSQOUFb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQeLZxK5dLDVLXr4wkKD8ac"></a></span>
+<br>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnypTz7QwLkLIjWhLvkg29nh"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGkFQ5lehsjlMddbfc55wRb"></a></span>
+<p><span> 这里讲清楚一个模型能不能跑起来，核心就是一个问题：</span><strong>运行它的设备内存够不够</strong><span>。 </span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb4kGgsNhvDmtiLH2EPpbTh"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMF6fgLz7kUtAzlTMVTvp5Y"></a></span>
+<p><span> 如果模型跑在 GPU 上，这个设备内存通常就是显存；如果跑在 CPU 上，就是内存（RAM）。同一个 7B 参数的模型，推理时可能只需要 14GB 左右设备内存，而用 PPO 做强化学习对齐时可能需要超过 200GB。所以在回答"需要多少内存/显存"之前，我们必须先搞清楚：</span><strong>现在是哪个阶段、跑在哪类设备上</strong><span>。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6omEy0Us4LqjcrmzEwJA9g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVjRQUsCdlCm00H5dhmWsxd"></a></span>
+<h4 id="section-2"><strong>6.1.1 背景：先搞清楚"问的是哪个阶段"</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8UenHwO7l3O04tlrSzJyjb"></a></span>
+<p><span>当有人问"训练一个大模型需要多少内存/显存"时，这个问题就过于笼统，缺少了细节—因为一个大模型从诞生到被用户使用，要经历多个完全不同的阶段，每个阶段的内存需求差异极大。同一个 7B 参数的模型，推理时可能只需要 14GB 左右设备内存，而用 PPO 做强化学习对齐时可能需要超过 200GB。所以在回答"需要多少内存/显存"之前，我们必须先搞清楚：</span><strong>面试官说的是哪个阶段、跑在哪类设备上</strong><span>。所以第一部分，给大家介绍一下大模型的生命周期。大模型的生命周期，也是建议大家需要理解和掌握的，虽然大家的岗位和工作可能只聚焦在一块，但是你需要知道他整个生命周期。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhqpNU95KP8LLf8fLF5dddf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCU12G6GNPcaZi0ra57gKjb"></a></span>
+<h4 id="section-3"><strong>6.1.1.1 大模型完整生命周期</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnX8p4vF2WHAzooxiWgSbPed"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfqkg42VUovIyQrEptgUjid"></a></span>
+<p><span>掌握这个图也可以看出大模型的大致岗位。 一般说算法，Infra, 算法工程，说的其实比较笼统，那对应会的事就是这里的RLHF（后训练），或者做模型部署推理的。 大模型应用工程 不处于这个图中，而是使用部署好的模型接口，直接调用，在上层做应用。 当然大模型算法一部分，就是搞研究，读论文，修改数理公式，创新个RL的方法呀，让整个训练效果更好，这种要求就会更高，一般要求论文，顶级学历（c9 硕博）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnl1whtc2mmYtW56scsRb0lf"></a></span>
+<p><span>综上，大模型方向岗位的门槛一般是  算法（纯研究) > 算法工程、infra,推理 > 大模型应用</span></p>
+</blockquote>
+<div id="src-feishu-doxcneeyegXvniUuT52em3y1J3e"><img src="/momomian/assets/6cf8d0342ffc70495abb.png" alt="语言模型从预训练到部署的生命周期" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnetlSQnXp22IAK73TwiZLzb"></a></span>
+<p><strong>1. 预训练</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFoOgsHnjsJ7x7F02VTM9Ug"></a></span>
+<p><span>这是大模型的"出生"阶段。用海量文本数据（几万亿 token）训练模型预测下一个 token，让模型学会语言规律、世界知识和推理能力。这个阶段由 OpenAI、Meta、DeepSeek 等顶级团队完成，成本动辄数百万美元，普通人和工程师直接下载现成的 Base Model 即可，无需自己做。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnl3kH2cXOePLgZxGxybEXyh"></a></span>
+<p><strong>2. SFT</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndq8gQ4WTJrMuxYSedymsuH"></a></span>
+<p><span>Base Model 只会"续写文本"，不会"回答问题"。SFT 用人工标注的（问题, 高质量回答）数据对，教会模型遵循指令、按格式输出。这是让模型从"自动补全"变成"AI 助手"的关键一步。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIi4NEwxbuZRE18vDBQnOpb"></a></span>
+<p><strong>3. 奖励模型训练</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhEwqvuBcBYzfgnajSpDyPp"></a></span>
+<p><span>收集人类对不同回答的偏好数据（"A 回答比 B 好"），训练一个打分模型。这个模型之后会充当"AI 评委"，给策略模型的输出打分，替代人类实时反馈。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnO6BLzdMLntjDbLxGRDMtCh"></a></span>
+<p><strong>4. 策略更新</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnp0yBMVOJlHaD4vyLp4gVhc"></a></span>
+<p><span>用强化学习算法（PPO 或 GRPO）驱动模型不断优化，目标是在奖励模型认可的方向上提升输出质量，同时不偏离 SFT 模型太远（通过 KL 惩罚控制）。这才是严格意义上的"RLHF"中的 RL 部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQafi44U42oAYvGvrchlp8g"></a></span>
+<p><strong>5. 部署推理</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfRL7kLTjawxseGHIJzsWzh"></a></span>
+<p><span>训练完成后，模型被部署给用户使用。这个阶段不需要梯度和优化器状态，运行内存需求大幅下降。如果部署在 GPU 上，主要看的就是显存；如果部署在 CPU 上，主要看的就是内存（RAM）。可以通过量化（INT8、INT4）进一步压缩，让模型跑在消费级显卡或普通 CPU 机器上。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSnN9bejgLrbTcfimfJyQlJ"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQlXvAO67QxMQ0iTuiUhryg"></a></span>
+<h4 id="section-4"><strong>6.1.2 基础知识铺垫</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVBk6SVjfQEw0bj2DAfAr4c"></a></span>
+<h4 id="section-5"><strong>6.1.2.1 核心原则</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnci7aI6E8oDLRvXswptqzWc"></a></span>
+<p><strong>运行内存需求 = 运行设备上每样东西的大小之和。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndMxIkNIZOQkCyXbkEZiVLf"></a></span>
+<p><span>所以搞清楚两件事就够了：</span><strong>放什么</strong><span> + </span><strong>每样多大</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAQH34HoaSZRzPxz6SU8Dve"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNh66RCVWEfgSDXjGA3erjg"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZjbQdgknmf5BYE2EHWVjXd"></a></span>
+<p><span>这里的"运行设备"可以是 GPU、CPU，也可以是 NPU/TPU 等加速器。跑在 GPU 上时，这部分内存通常叫</span><strong>显存</strong><span>；跑在 CPU 上时，就是</span><strong>内存（RAM）</strong><span>；跑在其他加速器上，则更准确地叫</span><strong>设备内存</strong><span>。后文为了讲解方便，很多地方仍会用"显存"举例，但底层计算逻辑是一致的。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRWlLdKH5PWd439Kt2chBIf"></a></span>
+<p><span>在讲"放什么"之前，先明确</span><strong>两个阶段</strong><span>在干什么：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndjpBOyjse2hGXnNppq2bUe"></a></span>
+<p><span>- </span><strong>训练阶段</strong><span>：典型的深度学习训练过程——前向传播计算 loss，反向传播计算梯度，优化器用梯度更新参数。因为要做反向传播，计算设备必须同时持有参数、梯度、优化器状态，还要缓存中间激活值，所以内存压力极大；如果用 GPU 训练，这个压力就体现为显存压力。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmyTs2Jvy6uNNciDHiAWbDg"></a></span>
+<p><span>- </span><strong>推理阶段</strong><span>：模型已经训练好，只做前向传播，输入 prompt 输出 token。不需要更新任何参数，因此梯度和优化器状态完全不存在，运行内存需求大幅下降。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkVu6Nz9FjIjLOhiaHhimId"></a></span>
+<p><span>这也是为什么同一个模型，训练和推理的运行内存需求可以相差 5-10 倍。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPjVWnUmNWWujcoBFefT6hc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnyOM0eJpPCDyFij8XobJHb"></a></span>
+<h4 id="section-6"><strong>6.1.2.2 训练 vs 推理：运行内存里住着什么？</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFH8mv7yRpfVj07BgF3XRlg"></a></span>
+<pre><code class="language-text">┌─────────────────────────────┐      ┌─────────────────────────────┐
+│          训练阶段            │      │          推理阶段            │
+├─────────────────────────────┤      ├─────────────────────────────┤
+│  ✅ 模型参数                 │      │  ✅ 模型参数                 │
+│  ✅ 梯度                    │      │  ❌ 梯度（不需要）            │
+│  ✅ 优化器状态               │      │  ❌ 优化器状态（不需要）      │
+│  ✅ 激活值（前向传播缓存）    │      │  ❌ 激活值（不需要缓存）      │
+│  ❌ KV Cache（通常不涉及）   │      │  ✅ KV Cache                 │
+└─────────────────────────────┘      └─────────────────────────────┘
+       训练内存占用：参数量 × ~14字节 + 激活值    推理内存占用：参数 + KV Cache
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9IHTQc8u7neDl52IIz5pee"></a></span>
+<p><span>推理比训练省内存的根本原因：</span><strong>梯度和优化器状态消失了</strong><span>，这两项在训练时占了总内存的大头；如果模型跑在 GPU 上，这里说的总内存就是总显存。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkRJ9awK7H1kpXO3u1G3sah"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxTQ8TxCwjaFQUTen3AaYxc"></a></span>
+<h4 id="section-7"><strong>6.1.2.3 各部分简介</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP9OSO17pO7O7cdyyDzK2Fb"></a></span>
+<p><strong>训练和推理都有</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb4gi2t5b7nNKOfazB6psFd"></a></span>
+<p><strong>模型参数（Parameters）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwZn31gG2MgknVXHZCYCAEd"></a></span>
+<p><span>模型的"权重"，就是神经网络里所有的数字。7B 模型 = 70亿个参数。训练和推理都需要，是运行内存占用的基础项，也是估算一切的起点。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnClHfurfLgdG2SewkYd5uWs"></a></span>
+<p><strong>训练专属（推理时全部消失）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAYh4f0p3ci6Q8wftjWgmud"></a></span>
+<p><strong>梯度（Gradients）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngi5Yroz74VnWOPXEQbMhSo"></a></span>
+<p><span>反向传播时计算出来的"每个参数应该往哪个方向调整多少"。每次更新完参数就可以释放，但在反向传播过程中必须常驻运行内存。精度通常用 fp32（4字节），大小和参数量相同。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpWY5AANTyiccuGyUThJ65g"></a></span>
+<p><strong>优化器状态（Optimizer States）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfBRzw3wZSIPqB49I7hwx8d"></a></span>
+<p><span>优化器（如 Adam）为了更稳定地更新参数，需要记录每个参数的历史梯度信息（动量 m 和方差 v）。Adam 需要存两份，共 8字节/参数，是训练运行内存开销最大的单项。与梯度不同，优化器状态跨训练步骤</span><strong>全程持久存在</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqiMCi8Z5PrEPaTJTLIrZch"></a></span>
+<p><strong>激活值（Activations）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxJwtnO0UX2Eyjo55gjOEtc"></a></span>
+<p><span>前向传播时每一层的中间计算结果。反向传播计算梯度时需要用到它，所以前向传播过程中必须缓存。大小与 batch size 和序列长度成正比。可用"梯度检查点"技术，在反向传播时重新计算激活值而非缓存，以计算时间换内存空间。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnn2Vz4CBdAJLzDeOldYYbnf"></a></span>
+<p><span>总结上述内容，可以用下面的图来表示</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnU5Z2LfMdf1dFMauw91O96c"></a></span>
+<pre><code class="language-text">前向传播                    反向传播                  参数更新
+───────────────────────────────────────────────────────────────▶
+产生激活值（缓存）  →  用激活值计算梯度  →  优化器用梯度更新参数
+    ↑                      ↑
+ 占内存，撑到              占内存，用完即丢
+ 反向传播结束才能释放
+</code></pre>
+<div id="src-feishu-doxcnkx5u7MCzYfXeMV6Uqd2jNe"><img src="/momomian/assets/53c2b09092dd0711b9c4.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4NBD2RitnqjvTiYwPZeLsf"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqcPGk86lCYTJFU5lDdVxXk"></a></span>
+<p><strong>推理专属</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCOaGzrDqpslJME4HUwc61g"></a></span>
+<p><strong>KV Cache</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6gFhmOU4oImP5fwziOa5kh"></a></span>
+<p><span>KV Cache可以理解为推理时一个空间换时间的策略。推理时，模型自回归生成每个新 token 都需要"回顾"之前所有 token 的注意力键值（Key-Value）。KV Cache 把这些中间结果缓存下来，避免每步都重新计算。随上下文长度和并发请求数增长，长上下文或高并发场景下不可忽视。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcna60qj2xs81M4piCZVFCs4g"></a></span>
+<h4 id="section-8"><strong>6.1.2.4 精度与字节数</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQArGCntKkBFDmIUy7SVtqS"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnocdCaksg4rbo5amFds1St7"></a></span>
+<p><span>混合精度训练：刻意将低精度（bf16/fp16）和高精度（fp32）混合使用——在能省的地方用低精度（前向传播、反向传播计算，节省显存和加速），在必须保精度的地方用高精度（梯度存储、参数更新，防止数值不稳定）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPHPtiBcuURiBn2AebWqo2b"></a></span>
+<p><span>这里在</span><strong>面试网龙的时候也被问过，面试官问bf16和fp16的区别。</strong></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlbtp6OWf2XARunOvLPh9Lc"></a></span>
+<p><span>这里的“精度”决定了每个参数、梯度或中间激活值用多少字节存储。字节数越低，显存占用越小、吞吐通常越高；但数值范围和有效精度也会下降，训练时更容易遇到溢出、下溢或更新不稳定。因此训练常用混合精度：参数和计算尽量用 bf16/fp16，梯度累积、优化器状态等关键部分保留 fp32。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6r2x3f4ofcJiRVwY7ZKWGg"></a></span>
+<ul>
+<li><strong>fp32（4 字节）</strong><span>：精度高、数值稳定，但显存占用最大、计算吞吐较低。常用于</span><strong>梯度、优化器状态、关键累积计算</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5jv1gK9rUF2F1mebwoZ5Fb"></a></span>
+<ul>
+<li><strong>bf16（2 字节）</strong><span>：和 fp32 接近的数值范围，不易溢出；有效精度低于 fp32。</span><strong>大模型训练的常用选择</strong><span>，覆盖训练参数、前向反向计算、推理。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCXt3LgD27KvMHjTp1zaMke"></a></span>
+<ul>
+<li><strong>fp16（2 字节）</strong><span>：有效精度比 bf16 略高，但数值范围更小，训练易溢出，常需 loss scaling。多用于</span><strong>推理、混合精度训练、较老 GPU 加速</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQOfcVHW84H2xNZPpYiQe2e"></a></span>
+<ul>
+<li><strong>INT8（1 字节）</strong><span>：量化压缩，显存更省，但带来少量精度损失。用于</span><strong>量化推理</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMiAisWgP2OEAd8MF3LX7zb"></a></span>
+<ul>
+<li><strong>INT4（0.5 字节）</strong><span>：压缩最激进，显存占用最低，但对模型效果和量化方法更敏感。用于</span><strong>极致压缩推理、QLoRA</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWQDckFDhvVQQjyv5MM66If"></a></span>
+<h4 id="section-9"><strong>6.1.2.5 激活值大小的计算</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYF3PfKmpbje3cuipuT2tAf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZE1ABmfyhqFd2Man55q0re"></a></span>
+<p><span>激活值的大小计算就比较复杂了，和超参数，数据量，模型结构都有关系。大家如果看不懂很正常，缺少算法基础，还是像我们前头说的原则，抓大放小，我下面也总结了激活值大小大概的估算方法。看不懂先有大概印象就行。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnO8e8kpGAgNdkvW5Zk266gh"></a></span>
+<p><span>激活值不像参数一样固定，它由四个变量共同决定：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnXgM4w8KHKcod66nSQ4Fxh"></a></span>
+<ul>
+<li><strong>B（batch size）</strong><span>：一次喂多少条数据 — 超参数，可调。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSyQzSA4xZ8bxPVBLGg63Vd"></a></span>
+<ul>
+<li><strong>L（sequence length）</strong><span>：每条数据有多少个 token — 由数据集和截断设置决定，部分可控。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcndb6u6z6qLnXrv4Jfx6Zflg"></a></span>
+<ul>
+<li><strong>H（hidden dimension）</strong><span>：模型隐藏层维度 — 模型架构决定，选定后固定。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCvIKCmkKTaPwfilG7OApbs"></a></span>
+<ul>
+<li><strong>N（层数）</strong><span>：Transformer 的层数 — 模型架构决定，选定后固定。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBXBJhdcdHh8FcnLJAyIPvh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2WojRjz4ssA6zwujXnxaMc"></a></span>
+<p><strong>粗略公式（bf16，每一层）：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnewvJDk2tMy5LGQdp1KCaYe"></a></span>
+<div><div><div><img alt="单层激活值=B×L×H×10∼12 字节" src="/momomian/assets/594687c777846dd22ae0.png" loading="lazy" decoding="async"></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnU7VqBWa7DLUhAc5wbHojWb"></a></span>
+<div><div><div><img alt="全模型激活值=B×L×H×N×10∼12 字节" src="/momomian/assets/d6b896f9d1f8564dc402.png" loading="lazy" decoding="async"></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5WtvUtyybuGtXbMWmGuklf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJNDYCC8f5KTAY30mSB8ITC"></a></span>
+<p><span>这里的 10~12 字节是经验系数，不是数学常数。不同框架、是否使用 FlashAttention、是否开启梯度检查点，都会影响真实激活值大小。它适合作为视频讲解里的快速估算。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJpCimYUH0KbRhKWEOP427g"></a></span>
+<p><strong>7B 模型举例</strong><span>（$H=4096$，$N=32$）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0ExLp9yErgLFJUK1T1dtve"></a></span>
+<ul>
+<li><strong>B=1, L=2048</strong><span>：约 </span><strong>2.5 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEzkSoX3FIoSdjno7qoKYhg"></a></span>
+<ul>
+<li><strong>B=4, L=2048</strong><span>：约 </span><strong>10 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzoQ5RaAeZRHMkA00AtHMrd"></a></span>
+<ul>
+<li><strong>B=8, L=2048</strong><span>：约 </span><strong>20 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2Mc2HmZcJd5TEYGkzxbJ0e"></a></span>
+<ul>
+<li><strong>B=4, L=8192</strong><span>（长文本）：约 </span><strong>40 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTvaMyD81zcLzG2wCQOc8Se"></a></span>
+<p><strong>快速估算口诀（不想算细节时）：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnT4GMRiYTSlg0pbP7eKHgqh"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjml9qz3ZdIiuxjfOLspIif"></a></span>
+<p><span>7B 模型，batch=4，seq=2048 → 激活值约 </span><strong>10 GB。</strong><span>seq 翻倍 → 激活值翻倍；batch 翻倍 → 激活值翻倍</span></p>
+</blockquote>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQ4DtoO0VmEkRV5hGUEBOrf"></a></span>
+<h4 id="section-10"><strong>6.1.3 后训练阶段</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrVdaH37rp7eJ8e2sPX5kiN"></a></span>
+<p><span>后训练的每个算法，在显存里放的东西不同，需要按统一假设分别估算。下面统一用 </span><strong>7B 模型、混合精度（bf16 参数 + fp32 梯度/优化器）</strong><span> 作为基准。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndW1QX5HIDhy2zaDu9rxoHb"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuo5gXo4ofng3dmr0sB93Jf"></a></span>
+<p><strong>基础换算</strong><span>：7B 参数</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnD0WiCiNq490AyGhZWuiRVb"></a></span>
+<p><span>参数（bf16）：7B × 2字节 = </span><strong>14 GB</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8DNQGKPkjG8w5oY3QqXh6f"></a></span>
+<p><span>梯度（fp32）：7B × 4字节 = </span><strong>28 GB</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyDTP8UmWFTQJwQNQwu1vlg"></a></span>
+<p><span>优化器状态 Adam（fp32，动量+方差）：7B × 4字节 × 2 = </span><strong>56 GB</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoaxceWyJfhiarWjANni7je"></a></span>
+<p><span>激活值：随 batch size 和 seq_len 变化，下面各节单独说明</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPzy2thrKA84WwowlrhIqDg"></a></span>
+<p><span>注意：这里“梯度”和“优化器状态”都按 fp32 存，但数量不同：梯度只有一份，所以是 4字节/参数；Adam 优化器状态有动量 m 和方差 v 两份 fp32，所以是 2 × 4 = 8字节/参数。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlZSAlJ0IDVDlddNvXNJQqe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZCgd5g76g8maJA8ibtSndf"></a></span>
+<h4 id="section-11"><strong>6.1.3.1 SFT — 全参微调（Full Fine-Tuning）</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMRWkogyOjhM9G6qh44IGlh"></a></span>
+<p><strong>显存里有什么：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoWswcpuUBX6URGmbf6IqLe"></a></span>
+<p><span>所有参数都参与训练，梯度和优化器状态覆盖全部 7B 参数。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPSRoh00vhfl3F4AUm8dQXb"></a></span>
+<ul>
+<li><strong>模型参数（bf16）</strong><span>：7B × 2 字节 = </span><strong>14 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnndN3ETLB9l6qoRsKVVOGec"></a></span>
+<ul>
+<li><strong>梯度（fp32）</strong><span>：7B × 4 字节 = </span><strong>28 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8DtoyEmiaL6UGFIj9LUNIb"></a></span>
+<ul>
+<li><strong>优化器状态 Adam（fp32）</strong><span>：7B × 4 字节 × 2 = </span><strong>56 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQ8VzV9yxF4Gth5ktIp2Lud"></a></span>
+<ul>
+<li><strong>激活值</strong><span>：B·L·H·N·12 字节，典型 </span><strong>10–40 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5nERxPDuDF5GVft9NJUGRz"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIsWVmNcXKKWp699rKrqN1c"></a></span>
+<p><strong>激活值典型范围</strong><span>（7B，$H=4096$，$N=32$，bf16）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfdkxEWqpXkHkCPhDUrSjTh"></a></span>
+<ul>
+<li><span>B=4，L=2048 → 约 10 GB</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZTh7JSulJwjjBF0ZDkkKNd"></a></span>
+<ul>
+<li><span>B=8，L=2048 → 约 20 GB</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTuh1apfV8OFmoNQqT6RkPb"></a></span>
+<ul>
+<li><span>B=4，L=8192（长文本）→ 约 40 GB</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlCnF1e0pLdc58pz7eE1Lee"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>需分片、卸载、降低状态精度或改用参数高效训练；梯度检查点仅减少激活，不能单独消除固定项超限。</p><details><summary>查看解释与参考资料</summary><p>这里固定项已超 80GB，梯度检查点主要减少激活，不能让 98GB 固定项单卡装下。</p></details></aside><p><strong>结论</strong><span>：固定项已达 98 GB，单张 A100（80GB）仅凭固定项就装不下，必须多卡或开启梯度检查点。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcni6JHb4hAs1Fv1wo6unCffd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWxPPKtjTsdUAvhGn0thVtb"></a></span>
+<h4 id="section-12"><strong>6.1.3.2 SFT — LoRA 微调</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVPUk0muUd4UB47VbZArClc"></a></span>
+<p><strong>核心思路</strong><span>：冻结原始模型参数，只在每层注入小的低秩矩阵（rank r，通常 r=8~64），只训练这些新增的 adapter 参数。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4KoJIRPD6DOQxl8GeIH8Ge"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnh0h8aRqBbsJ8IEfoQF5eqZ"></a></span>
+<p><strong>LoRA 可训练参数量估算</strong><span>（r=16，7B 模型约 32 层，每层注入 Q/V 矩阵）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSVId0Vx6HoETlRfNd15Kcg"></a></span>
+<ul>
+<li><span>每个 adapter：2 × (hidden_dim × r) ≈ 2 × (4096 × 16) ≈ 13万参数</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuDFchKQKmdoVHNBAUiJhtd"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>按此 Q/V、r=16 假设约为 839 万参数，占 7B 约 0.12%；若注入更多矩阵，应重新按实际矩阵形状求和，下方梯度和优化器估算也相应调整。</p><details><summary>查看解释与参考资料</summary><p>按给定 32 层、Q/V 两个 4096×4096 矩阵、r=16，参数是 32×2×2×4096×16=8,388,608，并非 4000 万。</p></details></aside><p><span>- 全模型 adapter 总量 ≈ 约 </span><strong>4000万参数（0.04B）</strong><span>，仅占原模型的 0.5%</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMIyjCELKFrbVFNnXFFMKDf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkkipfwYp3F1mnSQzkMWc6e"></a></span>
+<p><span>7B 模型 SFT LoRA 微调显存拆解（LoRA 参数量按 ~0.04B 估）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMwRZPMMmDJgNf2acTXnfWe"></a></span>
+<ul>
+<li><strong>原始模型参数（bf16，冻结、无梯度）</strong><span>：7B × 2 字节 = </span><strong>14 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnubcmTao9fjB7qyAXYSp3ac"></a></span>
+<ul>
+<li><strong>LoRA 参数梯度（fp32）</strong><span>：0.04B × 4 字节 ≈ </span><strong>0.16 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXte4vJ87AdtD6kLyAWgWvR"></a></span>
+<ul>
+<li><strong>LoRA 优化器状态 Adam（fp32）</strong><span>：0.04B × 4 字节 × 2 ≈ </span><strong>0.32 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSkAcavE9L54CK44k6zeQMd"></a></span>
+<ul>
+<li><strong>激活值</strong><span>（同全参）：B·L·H·N·12 字节，典型 </span><strong>2.5–10 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnn2Y5Exdo8dkzD3bOpKzu3b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJO669q0HnGsJo4eiqKryHf"></a></span>
+<p><strong>激活值典型范围</strong><span>（7B，$H=4096$，$N=32$，bf16）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPzml5y9umvA0o2k9NKuMDc"></a></span>
+<ul>
+<li><span>B=1，L=2048 → 约 2.5 GB</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaoJVahhku8B2caz9mK8Mqd"></a></span>
+<ul>
+<li><span>B=4，L=2048 → 约 10 GB</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcncDtGi0mPVDpNObINoFW4dg"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGu3uXS88ZxJFoOaa8S7GKf"></a></span>
+<p><span>注意：LoRA 的激活值和全参 SFT </span><strong>近似同量级</strong><span>——因为前向传播时整个模型都要跑，激活值覆盖全部 32 层，不会因为"只训练少量参数"就消失。真实工程里可能通过冻结层优化、梯度检查点进一步降低。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnogcp0iX4IVVblERgb5DLEb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDdd8X7Dypbn3cAv805fkvg"></a></span>
+<p><strong>结论</strong><span>：单张 4090（24GB）在短序列、小 batch 下可以跑 LoRA，但比较贴边；更常见的消费级方案是 QLoRA（把冻结的底座模型量化存储）。显存大幅下降的原因是</span><strong>梯度和优化器状态只覆盖极少量 adapter 参数</strong><span>，而不是全部 7B。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLOVs7OD5GT1tZExMW3bJTg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOKTmfY67ddtIZgXgaiGyYg"></a></span>
+<h4 id="section-13"><strong>6.1.3.3 RL 对齐 — PPO 算法</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnybeyDlxZQ3Ni8v9uUf7r0f"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrnmDnWT5KcQXayNNpb8Ooe"></a></span>
+<p><span>这里涉及到强化学习的两个算法，PPO和GRPO。没有强化学习的背景肯定看不懂，可以先理解或者背诵。 如果想要学习强化学习，可以用零基础学习算法章节的后训练SKILL去学习，这个SKILL主要核心就是在讲解这两个算法和区别。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn538fWv8hX4v6m24hRKsIRe"></a></span>
+<p><strong>PPO 需要同时在显存里维护多个模型</strong><span>（这里按最容易理解的"独立 Actor + 独立 Critic + Reference + Reward Model"估算）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpEHqI0exGbo7YwKLLJ16Eg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwdNyfR10FxoEVy4W8VBmsd"></a></span>
+<p><strong>PPO 同时持有 4 个 7B 模型，显存压力极大：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUp9tDJIovRVODt3NiadTFc"></a></span>
+<ul>
+<li><strong>Actor 策略模型</strong><span>（生成回答，训练目标）— </span><strong>训练中</strong><span>：参数 + 梯度 + 优化器 + 激活值，</span><strong>108–138 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsQTcyI0EusoRUFEA5rVl9c"></a></span>
+<ul>
+<li><strong>Critic 价值网络</strong><span>（估计每个状态价值，辅助计算优势）— </span><strong>训练中</strong><span>：同 Actor，</span><strong>108–138 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnTUkL5Qjy1smvDcGrbT5Kh"></a></span>
+<ul>
+<li><strong>Reference Model</strong><span>（SFT 冻结版，计算 KL 惩罚）— </span><strong>冻结</strong><span>：仅参数，</span><strong>14 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkjjT09zcx1G2wuUvfkWhke"></a></span>
+<ul>
+<li><strong>Reward Model</strong><span>（给回答打分）— </span><strong>冻结</strong><span>：仅参数，</span><strong>14 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRsOzWxr44pIKsMGRbIWHsg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEMPHQHuS9NHNM0sSQcrGCe"></a></span>
+<p><strong>合计 ≈ (108<del>138) + (108</del>138) + 14 + 14 ≈ 244~304 GB</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOdkhlCp2HPrh47yxDuVWhe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYlj5NmbchtRkzD2ZR2fExb"></a></span>
+<p><strong>为什么需要 Critic？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzJpZJEP6IMGk0QaqIU6Irc"></a></span>
+<p><span>PPO 用 GAE（广义优势估计）计算每个 token 的优势值，需要一个能输出 </span></p><div><div><div><img alt="V(s)" src="/momomian/assets/a3eef006f1188bc97765.png" loading="lazy" decoding="async"></div></div></div><span>（状态价值）的网络，这个 Critic 网络和 Actor 同等规模。</span>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpQN54WJjb8LLMWmidO8eZe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDZICoEmw4Suhq788vNy8Ub"></a></span>
+<p><strong>结论</strong><span>：7B PPO 通常至少 4 张 A100 80GB 起步，并且需要分片、梯度检查点等工程优化，是后训练中显存开销最大的算法。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvhrErpYqDxyBH8vqlbK6jg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfJBSkWMjsnKOxuRmG3bllf"></a></span>
+<h4 id="section-14"><strong>6.1.3.4 RL 对齐 — GRPO 算法（DeepSeek R1 方案）</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXGLSfUUgbNwNhipvGWBpHd"></a></span>
+<p><strong>GRPO 的核心改动</strong><span>：去掉 Critic，改用"组内相对奖励"估计优势——同一个 prompt 生成 G 条回答，用组内均值做 baseline，不需要价值网络。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjRyO4uaXnnAcTi77Hspu7e"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn72sNzwUyUGeTTEHj7o7Mzd"></a></span>
+<p><span>GRPO 相对 PPO </span><strong>去掉了 Critic</strong><span>，是 R1 训练得以可行的关键优化. </span><strong>GRPO 需要的模型</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAZEsyXorH36W4U0locTD4b"></a></span>
+<ul>
+<li><strong>Actor 策略模型</strong><span>（生成回答，训练目标）— </span><strong>训练中</strong><span>：</span><strong>108–138 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvU7h9WzXJNiKVSHbUIIWBe"></a></span>
+<ul>
+<li><strong>Reference Model</strong><span>（计算 KL 惩罚）— </span><strong>冻结</strong><span>：仅参数，</span><strong>14 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnflsC3CaJsKCumZavjMlQuc"></a></span>
+<ul>
+<li><strong>Reward Model</strong><span>（规则函数可替代）— </span><strong>可选</strong><span>：</span><strong>0–14 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMZ8g08jdphtGNEkUg2wmjc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnihKr2GtSOjnvZcgavSigGh"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-7" data-course-correction="7"><p><strong>更正：</strong>按 Actor 108–138GB 与 Reference 14GB，不加载独立 RM 为 122–152GB；若再加 14GB RM，则为 136–166GB。</p><details><summary>查看解释与参考资料</summary><p>当前列表的可选 Reward Model 若占 14GB，上界应增加；122–152 只对应不加载独立 RM。</p></details></aside><p><strong>合计 ≈ 122–152 GB</strong><span>，相比 PPO 节省了一个完整 Critic（≈100 GB），算力门槛下降了一档。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvuggDSSK8Tf8HCxe1CnO8c"></a></span>
+<p><strong>合计 ≈ (108<del>138) + 14 ≈ 122</del>152 GB</strong><span>（不用独立 RM 的情况）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5pG9oyPmuhMv5QB5ZJnPbe"></a></span>
+<p><strong>额外注意</strong><span>：GRPO 每个 prompt 要采样 G 条回答（通常 G=8），激活值比普通 SFT 更大，实际偏向范围上限。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAf9d7pGUwxCODTCRYyuTfe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcng1907JxyDCDqmyKTTmvdlg"></a></span>
+<p><strong>对比 PPO 的节省：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKWiFdwXDhoeNij79KRl1bd"></a></span>
+<ul>
+<li><span>去掉 Critic：直接省去一整个训练中的模型（108~138 GB）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJH1woAICkAl3uENgjpUMYk"></a></span>
+<ul>
+<li><span>去掉 Reward Model（用规则打分）：再省 14 GB</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnn3ZH1PI5cGtBN6eO4kXBEc"></a></span>
+<p><span>- </span><strong>显存从 <del>244</del>304 GB 降到 <del>122</del>152 GB，减少约一半</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZMXtoauCy3EZbyqrucOmLb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrfbmsQ4n72fyhBY0VSFwlb"></a></span>
+<p><strong>结论</strong><span>：7B GRPO 单张 A100 80GB 无法完成（122<del>152GB > 80GB），通常至少需要 2 张 A100 起步，并配合分片或梯度检查点；相比 PPO 的 244</del>304GB，显存压力大约减半。这是 DeepSeek R1 选择 GRPO 的核心工程原因之一。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoBfCfy41UHPSXOP4QDCpPh"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKyEXYhominiIc5qrGFsovf"></a></span>
+<h4 id="section-15"><strong>6.1.4 部署推理阶段</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7dgFTNRhTyvepN8EsU7LBg"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-6" data-course-correction="6"><p><strong>更正：</strong>推理无需为反向传播长期保存训练激活，但仍有临时激活、工作区和框架开销；参数加 KV 只是预算起点，应预留并实测峰值。</p><details><summary>查看解释与参考资料</summary><p>推理仍有临时激活与工作区，长 prompt 预填充时不能一概称少量。</p></details></aside><p><span>推理阶段只做前向传播，没有反向传播，因此</span><strong>梯度、优化器状态、训练用的激活值缓存全部消失</strong><span>。主要显存开销只剩两样东西：模型参数 + KV Cache（实际框架还会有少量临时 workspace）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn08TXVQCXTSVuvWLjvGLcNc"></a></span>
+<h4 id="section-16"><strong>6.1.4.1 模型参数：精度决定基础显存</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQpugnEeeda9JE5Gtr7g7Lg"></a></span>
+<p><span>推理时参数可以用比训练更低的精度，进一步压缩显存。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnI9zgJYbL5JJZWrayGXBlmh"></a></span>
+<p><strong>7B 模型各精度下的参数显存：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnAZrrV8EQAizmeIIOo1Wjd"></a></span>
+<ul>
+<li><strong>bf16 / fp16（2 字节）</strong><span>：</span><strong>14 GB</strong><span>，标准推理，效果无损。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6eZUwPR96iUFYa8bpGeEOc"></a></span>
+<ul>
+<li><strong>INT8（1 字节）</strong><span>：</span><strong>7 GB</strong><span>，量化推理，效果略有损失。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkd8bl5fQ8onuWotetwpqdd"></a></span>
+<ul>
+<li><strong>INT4（0.5 字节）</strong><span>：理论 </span><strong>3.5 GB</strong><span>，实际常见 </span><strong>4–5 GB</strong><span>（因为还要存量化 scale 等元数据），极致压缩。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcndnQkYEIxlWKu5Q91tgagbg"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcniSxha5BOnBqBiM2MO99GGh"></a></span>
+<p><strong>量化</strong><span>：将参数从高精度（bf16）映射到低精度（INT8/INT4）存储，推理时动态还原计算。显存减半，但精度有损失，模型越大量化损失越小（70B模型 INT4 通常还可接受，7B INT4 可能有明显退化）。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwecT9Z19MrQqMW2MyAl3Tg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzRyjJFweSHUB9fjRMcfTYf"></a></span>
+<h4 id="section-17"><strong>6.1.4.2 KV Cache：随上下文增长的动态开销</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLoIWYcHx8DUYCZDDtB4cgc"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKiO1QJp66TCgmNBO7FKIzf"></a></span>
+<p><span>这里面公式又很复杂，需要专门做过部署推理的人才会深入理解，还是抓大放小，有个印象就行。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKNJ1zaF2IDTCeYjuYnLJPf"></a></span>
+<p><span>推理时每生成一个 token，都需要回顾之前所有 token 的注意力键值（Key-Value）。KV Cache 把这些结果缓存起来避免重复计算（空间换时间）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXRKZwsdVD878NzE2BQ24Qc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZH80t83QZRbYU92L5vMmjh"></a></span>
+<p><strong>KV Cache 大小公式：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyyArYbydlhMoEQBKT2OrAh"></a></span>
+<div><div><div>&#x3C;img alt="KV Cache=2×B×L×N×N
+kv_heads
+​
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>常规 KV Cache 字节数约为 2×B×L×N×Hkv×Dhead×每元素字节数；B 为活跃序列数，L 包含已处理输入与输出。</p><details><summary>查看解释与参考资料</summary><p>公式在当前抽取正文中残缺，无法按图核算。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p>×D
+head
+​</p></details>
+<p>×字节数" height="26" src="assets/formula-doxcnyyArYbydlhMoEQBKT2OrAh-0.png" width="462"/></p></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYyph8G0ilnWNzVKAA9ONFe"></a></span>
+<ul>
+<li><span>系数 2：Key 和 Value 各一份</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSyN3ShteR5ICSjktI0aLxT"></a></span>
+<ul>
+<li><span><span><span><div><div><div><img alt="B" src="/momomian/assets/1bf759639e0a6ed0b9c7.png" loading="lazy" decoding="async"></div></div></div></span></span></span><span>：当前同时参与推理的序列数，也可以叫推理时的有效 batch size；在线服务里通常可近似理解为“正在生成中的活跃并发请求数”</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1OYWjjOCsLVa7J1wBrBYCe"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>缓存长度是已缓存的输入 Token 与生成 Token 总量；滑动窗口、共享前缀和压缩缓存等实现还会改变实际占用。</p><details><summary>查看解释与参考资料</summary><p>KV Cache 长度通常还包含已处理的输入提示，不能只数新生成 Token。</p></details></aside><span><span><span><div><div><div><img alt="L" src="/momomian/assets/a92cf2c4e93625e9f797.png" loading="lazy" decoding="async"></div></div></div></span></span></span><span>：上下文长度（已生成的 token 数）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjlj4bzaLgtiueB9OT1oRpg"></a></span>
+<ul>
+<li><span><span><span><div><div><div><img alt="N" src="/momomian/assets/bc52e8a5266dac65dd67.png" loading="lazy" decoding="async"></div></div></div></span></span></span><span>：层数</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3Edee6f9OZFNPxgsLmPOUg"></a></span>
+<ul>
+<li><span><span><span><div><div><div><img alt="N
+kv_heads
+​
+" src="/momomian/assets/6fc1122c3b0c880d94af.png" loading="lazy" decoding="async"></div></div></div></span></span></span><span>：KV 头数量</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjgoGT9MJ8KFhsRH1b9PzJg"></a></span>
+<ul>
+<li><span><span><span><div><div><div><img alt="D
+head
+​
+" src="/momomian/assets/60e266b5360e83488cbb.png" loading="lazy" decoding="async"></div></div></div></span></span></span><span>：每个注意力头的维度</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpNRrHAkKkznZeC7WRZmU9f"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZSQhGf0GNty4ZSmKAGsg2F"></a></span>
+<p><span>如果是传统 MHA，KV 头数量通常等于注意力头数量，KV Cache 会更大；如果是 GQA/MQA，KV 头数量更少，KV Cache 会明显变小。所以 KV Cache 也和模型结构有关。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnc0pnMIZbWqbhPSlhrUGbTc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQEGKfgszoHIkXngALGaRKd"></a></span>
+<p><strong>7B 模型举例</strong><span>（$N=32$，$D_{head}=128$，bf16，按 8~32 个 KV 头给范围）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9CJjDkWfeTZjapwBM8iKJd"></a></span>
+<p><span>KV Cache 的显存几乎与 </span><span><span><span>batch × context_length</span></span></span><span> 成正比：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQBm0TrsDWjscjPaKDDKLQg"></a></span>
+<ul>
+<li><strong>B=1, L=2048</strong><span>：约 </span><strong>0.25–1 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnc7zhs27Lm3XMmzDuW1REif"></a></span>
+<ul>
+<li><strong>B=1, L=32K</strong><span>：约 </span><strong>4–16 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUUdCy39YumeyMZPKr2Vfct"></a></span>
+<ul>
+<li><strong>B=16, L=2048</strong><span>：约 </span><strong>4–16 GB</strong></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJadGPcLUdaiQ7AIkhrIeDb"></a></span>
+<ul>
+<li><strong>B=16, L=32K</strong><span>：约 </span><strong>64–256 GB</strong><span>（多并发 + 长上下文是显存炸裂的典型场景）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnm8zJXHbBFLsgjbtgZzY5pe"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVLugqGp8gMqTLfveZiiFrf"></a></span>
+<p><span>长上下文 + 高并发时，KV Cache 可以轻易超过模型参数本身的显存占用，这是部署时最容易被忽视的显存杀手。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnA98RRlCTNn0LlQui87Zn83"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYAdMKGOrOivlFiYYtelgYc"></a></span>
+<h4 id="section-18"><strong>6.1.4.3 推理总显存 = 参数 + KV Cache</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMHUgBtd3DPXixHkKq7m5DM"></a></span>
+<p><strong>7B 模型典型推理场景：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjTG1Ztqzfvdim86p4DbNne"></a></span>
+<p><span>推理总显存 = 模型参数 + KV Cache，5 个典型场景：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkMlRhjIX4b8BIGYdHjwWTg"></a></span>
+<ol>
+<li><strong>单用户短对话（bf16）</strong><span>：14 GB 参数 + 0.25–1 GB KV ≈ </span><strong>14.25–15 GB</strong><span>，4090 单卡可跑。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZz3B6aWq4XulUAMvtUuBee"></a></span>
+<ol start="2">
+<li><strong>单用户长上下文 32K（bf16）</strong><span>：14 GB + 4–16 GB ≈ </span><strong>18–30 GB</strong><span>，4090 视模型结构而定。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbtTzWjNxGqylpWLxDBN9pg"></a></span>
+<ol start="3">
+<li><strong>量化单用户（INT4）</strong><span>：4–5 GB + 0.25–1 GB ≈ </span><strong>4.5–6 GB</strong><span>，消费级卡轻松。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1nQ7Av1kbG6ftygczDcDce"></a></span>
+<ol start="4">
+<li><strong>多并发 16 路、短对话（bf16）</strong><span>：14 GB + 4–16 GB ≈ </span><strong>18–30 GB</strong><span>，A100/80G。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQWotiJrQ64QgB6c2YtpMXg"></a></span>
+<ol start="5">
+<li><strong>多并发 16 路、长上下文（bf16）</strong><span>：14 GB + </span><strong>64–256 GB</strong><span> ≈ </span><strong>78–270 GB</strong><span>，必须多卡或限流。</span></li>
+</ol>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0fPlLXuhZZ7sEpE8O0nFLe"></a></span>
+<h4 id="section-19"><strong>6.1.5 汇总对比表</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUR65J2wyPbHzqVdB1Q3Mz2"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDfLcRBa6MxWFAoYHwsdeQc"></a></span>
+<p><span>以下均以 </span><strong>7B 模型、混合精度（bf16 参数 + fp32 梯度/优化器）</strong><span> 为基准。训练激活值按 10<del>40GB 估算；推理 KV Cache 按 8</del>32 个 KV 头给范围</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDeRn3opG8Y8ID2nBhdZBtf"></a></span>
+<ul>
+<li><strong>SFT 全参微调</strong><span>：</span><strong>108–138 GB</strong><span>（参数 14 + 梯度 28 + Adam 56 + 激活 10–40）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpxA0fecs8hh6shMPjuFIsf"></a></span>
+<ul>
+<li><strong>SFT LoRA</strong><span>：</span><strong>17–25 GB</strong><span>（冻结参数 14 + adapter 梯度&#x26;优化器 ≈0.5 + 激活 2.5–10）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNcjDK4raH5T7fm6ragbs5g"></a></span>
+<ul>
+<li><strong>RL PPO</strong><span>：</span><strong>244–304 GB</strong><span>（Actor 108–138 + Critic 108–138 + Ref 14 + RM 14）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcniZ2RDETCsY5KOEnykqUGFP"></a></span>
+<ul>
+<li><strong>RL GRPO</strong><span>：</span><strong>122–152 GB</strong><span>（Actor 108–138 + Ref 14，去掉 Critic）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcni1stmL8QQnqhlhUzP0Sp7e"></a></span>
+<ul>
+<li><strong>推理 bf16，单用户</strong><span>：</span><strong>14.25–15 GB</strong><span>（参数 14 + KV 0.25–1）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcniaQkFWV71ImQsWnxox2VKN"></a></span>
+<ul>
+<li><strong>推理 bf16，16 并发 / 2048</strong><span>：</span><strong>18–30 GB</strong><span>（参数 14 + KV 4–16）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6Ve1I5Ee1QOJLe4MFbCEOc"></a></span>
+<ul>
+<li><strong>推理 INT4，单用户</strong><span>：</span><strong>4.5–6 GB</strong><span>（参数 4–5 + KV 0.25–1）</span></li>
+</ul>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTtaMwsa4k4h8nwAjSQuXcf"></a></span>
+<h4 id="section-20"><strong>6.1.6 附：根据显卡选方案</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGu6282Q7kUh2t7PEEkkyYc"></a></span>
+<p><span>我们在选卡时，应该自己用上面的知识去算一下，给一个表让大家有个直观印象。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnisPESu5ka6QiUb60AOdNAe"></a></span>
+<ul>
+<li><strong>消费级 4090（24 GB）</strong><span>：7B bf16 推理；7B QLoRA / LoRA 微调（控制 batch、seq_len）；30B 级 INT4 量化推理。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6EVBqGznnG69NqRrYy9f2b"></a></span>
+<ul>
+<li><strong>专业卡 A100（80 GB）</strong><span>：7B LoRA 微调较轻松；7B 全参 SFT 单卡不够；7B GRPO 通常需要 2 张起步。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVwjyRPMfB6JFnMXxfMd9Hb"></a></span>
+<ul>
+<li><strong>多卡 A100 × 4（320 GB）</strong><span>：7B 全参 SFT / GRPO 较稳；7B PPO 可做，但需要分片、梯度检查点等工程优化。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3NFQKWWU3MsOH06d1iNkpf"></a></span>
+<ul>
+<li><strong>多卡 H100 × 8（640 GB）</strong><span>：7B PPO 较稳；70B 级全参训练通常还需要 ZeRO、并行切分、梯度检查点或优化器状态压缩。</span></li>
+</ul>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnu8AC8tCkDzAwG6kRkwTJoe"></a></span>
+<h4 id="section-21"><strong>6.1.7 附：面试 Q&#x26;A</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnn5YeVV05wAleeaDVyBZpxg"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcndMCC7DxdQQVyiWnZS6Hrjh"></a></span>
+<p><span>其实面试过程中很多时候对于类似的问题，面试官本身的表述是模糊的。比如6.1.7.1， 问SFT要多大显存？但是SFT里有全量微调，Lora等部分参数微调，算法不一样，结果是不一样的。回答问题的时候，我们自己心里要是清楚的，主动澄清清楚前提和具体细节，然后给面试官举例说明，可以不用说得那么细致，说一下大致的估算即可。如果面试官深入问了，可以再给他讲细节，也就是我们上面笔记介绍的细节部分</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCRRBuIOAijma3a4Dl3tRbg"></a></span>
+<h4 id="section-22"><strong>6.1.7.1 Q1：7B 模型做 SFT 大概需要多大显存？</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcndjgudj03JWglW6HYFuefpd"></a></span>
+<p><span>这个问题要先看是</span><strong>全参 SFT</strong><span>还是 </span><strong>LoRA/QLoRA</strong><span>。原则上，训练显存主要由参数、梯度、优化器状态和激活值组成。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnASHOWpgFgRb7EzetOmmBJd"></a></span>
+<p><span>如果是全参 SFT，通常会按照业界大模型训练里常见的</span><strong>混合精度训练口径</strong><span>来估算：模型参数用 bf16/fp16 存储，梯度和 Adam 优化器状态保留 fp32。这个口径的来源其实就是不同精度的字节数：7B 参数用 bf16/fp16 是 2 字节/参数，所以参数本身约 14GB；梯度按 fp32 是 4 字节/参数，所以约 28GB；Adam 还要保存一阶动量和二阶动量两份 fp32 状态，所以是 2 × 28GB，约 56GB。再加上激活值，全参 SFT 通常要 </span><strong>100GB 以上</strong><span>，单张 80GB A100 一般不够，需要多卡或分片优化。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNQnNTt8hDFO5rLwbWxx2Jb"></a></span>
+<p><span>如果是 LoRA/QLoRA，因为只训练少量 adapter 参数，梯度和优化器状态会小很多。以 7B 为例，LoRA 通常 </span><strong>20GB 左右</strong><span>可以起步，QLoRA 会更省，消费级 24GB 显卡也有机会跑起来，但要控制 batch size 和 sequence length。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLU0AsyTZFnJvTxCi2mmAid"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaYpNhMYr9xZqIyrzVszEmd"></a></span>
+<h4 id="section-23"><strong>6.1.7.2 Q2：7B 模型做强化学习大概需要多大显存？</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZK7x1NjMOvOWllTJ0YDpXe"></a></span>
+<p><span>强化学习阶段要看具体算法，因为不同算法需要同时放进显存的模型数量不一样</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9WCKodPbPiyZvWlPhrLswd"></a></span>
+<p><span>如果以 PPO 为例，通常要同时维护 Actor、Critic、Reference Model 和 Reward Model。Actor 和 Critic 都是训练中的完整模型，单个就接近全参微调的开销，所以 7B PPO 往往需要 </span><strong>200GB 以上显存</strong><span>，通常需要多张 A100/H100，并配合 ZeRO、梯度检查点等工程优化。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWvgtW9EPJJ6oqri7LtjZMb"></a></span>
+<p><span>如果以 GRPO 为例，它去掉了 Critic，用组内相对奖励来估计优势，显存压力会明显下降。7B GRPO 大致可以按 Actor + Reference Model 来估，通常在 </span><strong>100GB 以上</strong><span>，相比 PPO 大约省一半，但单张 80GB A100 仍然比较紧张。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKT20HkPYDTFlBNAifdgB3b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcntC5S0Rq29KR5ny5lMvnmFc"></a></span>
+<h4 id="section-24"><strong>6.1.7.3 Q3：7B 模型部署推理大概需要多大显存？</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFps8KXBiHJ518ZtdtNleVc"></a></span>
+<p><span>部署推理和训练不一样，推理不需要梯度和优化器状态，主要看两个东西：</span><strong>模型参数</strong><span>和 </span><strong>KV Cache</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnutaOdOFF7h0XzJ28D0jSCg"></a></span>
+<p><span>如果用 bf16/fp16 推理，7B 模型参数大约是 </span><strong>14GB</strong><span>。KV Cache 的大小差异会比较大，主要和上下文长度、并发请求数、模型的注意力结构以及 KV Cache 本身的存储精度有关。单用户、短上下文场景下，再加少量 KV Cache，整体大约 </span><strong>15GB 左右</strong><span>，24GB 显卡一般可以跑。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn20HLReUw9Ca6DrUMeaXKMe"></a></span>
+<p><span>如果做量化，INT8 大约 7GB，INT4 实际常见大约 4~5GB，再加 KV Cache，可以进一步降低显存。但如果是长上下文或高并发，KV Cache 会快速增长，这时显存瓶颈可能不再是模型参数，而是 KV Cache。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoVtsmOdkV6it4RgoP8VmRl"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnm9B5VM7CkgWMBmZDcj7cih"></a></span>
+<h4 id="section-25"><strong>6.1.7.4 Q4：你说在CPU机器上跑7B的模型，这个可以跑得动吗？</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcny18pTdYMfYRN07pvOpRr21"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYuspdT6J2wiLFZtA1LYAdf"></a></span>
+<p><span>这个是阿里夸克千问一面面试官的原题。我当时被问到这个问题，其实我答得很笼统，我就说模型比较小，也做了量化。但当我学习了今天这个内容以后，我才总结出这个更细致，详实的答案。当然当时我的回答也并没有阻碍我通过面试，反正整个夸克千问我是拿到了offer的。我们都会按照100分甚至是120的回答去准备，但是通过一次面试，不意味着面试每个问题都要回答到100分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqCsDUiFWHq2ocrPkVgfx5p"></a></span>
+<p><span>另外，其实我分析来说，其实当时的面试官我估计也不懂这个细节。原因是本身就是应用岗，夸克千问整体面试下来给我的感觉，他们这个岗位不会做算法，不做训练，纯专注于应用，强度又高，其实面试官不知道这块内容很正常。他问到这个问题，是因为项目写了在cpu机器上本地跑7B模型。所以我答得模糊这事也就过去了。不过在这种情况下，当时我能够像下面这个答案一样回答得很具体，甚至面试官感兴趣，继续问我，我给他讲一下，这样面试会更加分。如果在面试官不懂的地方，你能够给他讲得很清楚，会极大地加分。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOVr1YEIYMQLSwtg88Zl5fe"></a></span>
+<p><span>可以跑，但要分两个角度看：</span><strong>能不能装下</strong><span>，以及</span><strong>跑得快不快</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntYGFNnCVMKF7LBUGezg3Me"></a></span>
+<p><span>首先从能不能装下看，CPU 机器没有 GPU 显存，主要看的是</span><strong>内存（RAM）够不够</strong><span>。这里我按实际使用场景来回答：我把 7B 模型量化成了 </span><strong>INT4</strong><span>，并且使用 </span><strong>llama.cpp</strong><span> 做 CPU 推理。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfJdc9J9MGmbyvtAGJrVN3d"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>7B INT4 权重理论约 3.5GB，具体 GGUF 文件常因量化元数据与混合精度而更大；按实际文件大小记录，不按 45GB 估算。</p><details><summary>查看解释与参考资料</summary><p>与本节 7B INT4 的 4–5GB 量级矛盾，区间分隔符疑似丢失。</p></details></aside><p><span>推理阶段的内存主要是：</span><strong>量化后的模型参数 + KV Cache + llama.cpp 运行时开销</strong><span>。7B 模型做 INT4 量化后，模型文件通常大约 </span><strong>4<del>5GB</del></strong><span>。KV Cache 的大小和上下文长度、并发数有关，但本地 CPU 推理一般是单用户、单路对话，也就是并发数基本可以按 </span><strong>1</strong><span> 来算。如果上下文长度是 2K4K，7B 模型的 KV Cache 通常大约是 </span><strong>0.5<del>2GB</del></strong><span> 这个量级，具体取决于模型结构和 llama.cpp 的 KV Cache 精度设置。再加上系统和框架开销，整体大概需要 </span><strong>810GB 内存</strong><span>，所以 16GB 内存的普通消费级机器一般可以跑起来，8GB 会比较紧张。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3h0OBRLPp9v2cS4AHw8nEh"></a></span>
+<p><span>其次从速度看，CPU 可以跑，但速度和 GPU 不是一个量级。INT4 量化会减少模型参数读取和计算压力，llama.cpp 又专门针对 CPU 做了优化，比如多线程、矩阵计算优化、GGUF 格式加载等。按普通消费级 CPU 来估算，一次普通长度的回答大概可能在 </span><strong>20~30 秒左右</strong><span>；另外考虑到我们的任务对实时性要求不高，所以这个时延是完全可以接受的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9yILOfBqKU3OKpv9gJbdZb"></a></span>
+<h4 id="section-26"><span>6.1.8 视频讲解</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGDshuV4OTaKql7ygiPspRh"></a></span>
+<p><span>本小节的内容涉及范围很广，算法，部署，深度学习，大家可能学起来有难度。我录了一个视频，视频的讲解面向于0基础，相信大家都能看懂。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnonhbe3fgpI7gCi8E7tL6td"></a></span>
+<p><span><span><a href="https://www.bilibili.com/video/BV1Lb5S6qEuA/?spm_id_from=333.1387.homepage.video_card.click&#x26;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer"></a><a href="https://www.bilibili.com/video/BV1Lb5S6qEuA/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1Lb5S6qEuA/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b</a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7grSpn2c0TxJstaVJmaz6b"></a></span></div></section></article><section class="notice" data-pagefind-ignore><h2>图示的文字说明与边界</h2><details><summary>语言模型从预训练到部署的生命周期</summary><p>依次列出预训练、监督微调、奖励模型、策略优化和部署，并括出经典 RLHF 阶段。</p><ul><li>这是经典带奖励模型的示意，不是每个模型都有全部阶段；PPO、GRPO 与所有偏好优化并非相同配方。</li></ul><a class="text-link" href="/momomian/assets/6cf8d0342ffc70495abb.png" target="_blank" rel="noopener noreferrer">查看原尺寸图示 ↗</a></details></section><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-reading" class="lesson-resource-group" aria-label="GPU内存、设备与硬件瓶颈"><p class="lesson-resource-label">本课目标阅读（选读）</p><h3 class="lesson-resource-title">GPU内存、设备与硬件瓶颈</h3><p class="resource-scope">硬件章节补内存层次和带宽原理，GPU章节解释张量设备；LLM的权重、KV与临时内存预算仍要结合本课，不将asyncio或检查点当作显存解释。</p><details class="chapter-readings"><summary>中文站内阅读 · 2 篇（按需）</summary><ul><li><a href="/momomian/lessons/feishu-a204211b94/">模型和硬件：跑的有多快</a><p>对应本课当前目标的中文阅读；原文结论结合该课审校。</p></li><li><a href="/momomian/lessons/feishu-fc0d56c341/">模型推理加速基础</a><p>对应本课当前目标的中文阅读；原文结论结合该课审校。</p></li></ul></details><details class="chapter-readings"><summary>延伸阅读 · 2 章（选读）</summary><ul><li><a href="https://zh.d2l.ai/chapter_computational-performance/hardware.html" target="_blank" rel="noopener noreferrer">动手学深度学习 · 12.4. 硬件 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 原书中文在线版 · 进阶</span><p>比较内存层次、计算与带宽瓶颈；LLM权重和KV预算仍结合具体模型测量。</p></li><li><a href="https://zh.d2l.ai/chapter_deep-learning-computation/use-gpu.html" target="_blank" rel="noopener noreferrer">动手学深度学习 · 5.6. GPU <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 原书中文在线版 · 入门</span><p>对照张量所在设备、迁移与GPU计算；不把Python异步直接等同GPU提速。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="feishu-7e6e6747d4" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：模型和硬件：模型能不能跑。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-feishu-7e6e6747d4-1","version":1,"type":"single","stage":"lesson","concept":"feishu-7e6e6747d4","prompt":"按本课估算，7B参数以bf16每参数2字节存储，仅参数约多少十进制GB？","options":[{"id":"option-1","text":"14GB，仍未加入缓存与框架开销","reason":"7B约为七十亿参数，乘两字节得到十四十亿字节，这只是权重基础项，完整训练或推理还需额外状态，不能把纯参数量当完整预算。"},{"id":"option-2","text":"7GB","reason":"这是每参数一字节的估算，不符合题定bf16。"},{"id":"option-3","text":"98GB","reason":"课文训练固定项总和不等于纯参数大小。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"7B约为七十亿参数。","explanation":"7B约为七十亿参数，乘两字节得到十四十亿字节，这只是权重基础项，完整训练或推理还需额外状态，不能把纯参数量当完整预算。","analysisSteps":["7B约为七十亿参数。","乘两字节得到十四十亿字节。","这只是权重基础项，完整训练或推理还需额外状态，不能把纯参数量当完整预算。"],"workedExample":"7×10^9×2=14×10^9字节，另需预留KVCache和临时空间。","evidence":{"quote":"7B × 2字节 = 14 GB","href":"/lessons/feishu-7e6e6747d4/#src-feishu-doxcnD0WiCiNq490AyGhZWuiRVb"},"misconception":"这是每参数一字节的估算，不符合题定bf16。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-7e6e6747d4/#src-feishu-doxcnD0WiCiNq490AyGhZWuiRVb"}]},{"id":"lx-feishu-7e6e6747d4-2","version":1,"type":"single","stage":"lesson","concept":"feishu-7e6e6747d4","prompt":"LoRA内存下降的主要来源是什么？","options":[{"id":"option-1","text":"梯度和优化器主要覆盖少量adapter，底座仍参与前向","reason":"LoRA冻结原始权重并训练低秩参数，可训练状态由此减少，底座与激活仍要纳入预算，所以可训练参数很少不等于所有内存项目同步消失。"},{"id":"option-2","text":"冻结后底座权重也不再需要加载","reason":"冻结是不更新参数，不等于前向不使用底座。"},{"id":"option-3","text":"全部激活值按可训练参数比例同等下降","reason":"激活仍涉及完整前向，不能只按adapter比例估算。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"LoRA冻结原始权重并训练低秩参数。","explanation":"LoRA冻结原始权重并训练低秩参数，可训练状态由此减少，底座与激活仍要纳入预算，所以可训练参数很少不等于所有内存项目同步消失。","analysisSteps":["LoRA冻结原始权重并训练低秩参数。","可训练状态由此减少。","底座与激活仍要纳入预算，所以可训练参数很少不等于所有内存项目同步消失。"],"workedExample":"训练参数仅占少量，不代表14GB底座就自动降为几MB。","evidence":{"quote":"梯度和优化器状态只覆盖极少量","href":"/lessons/feishu-7e6e6747d4/#src-feishu-doxcnDdd8X7Dypbn3cAv805fkvg"},"misconception":"冻结是不更新参数，不等于前向不使用底座。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-7e6e6747d4/#src-feishu-doxcnDdd8X7Dypbn3cAv805fkvg"}]},{"id":"lx-feishu-7e6e6747d4-3","version":1,"type":"single","stage":"lesson","concept":"feishu-7e6e6747d4","prompt":"KVCache为何让长上下文和高并发增加内存？","options":[{"id":"option-1","text":"更多位置与活跃序列需要保留更多Key和Value","reason":"缓存通过复用键值减少重复计算，上下文增长会增加保留位置，并发序列又各有状态，因此装得下权重不代表目标并发也有足够缓存。"},{"id":"option-2","text":"只保留最后一个token，历史长度无关","reason":"缓存目的是复用此前位置的键值，不只最后位置。"},{"id":"option-3","text":"只缓存模型参数，所有请求共用同一份历史","reason":"权重可共享，但各请求的上下文状态并不相同。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"缓存通过复用键值减少重复计算。","explanation":"缓存通过复用键值减少重复计算，上下文增长会增加保留位置，并发序列又各有状态，因此装得下权重不代表目标并发也有足够缓存。","analysisSteps":["缓存通过复用键值减少重复计算。","上下文增长会增加保留位置。","并发序列又各有状态，因此装得下权重不代表目标并发也有足够缓存。"],"workedExample":"一个用户短问可运行，十个用户同时长文生成却可能超过缓存预算。","evidence":{"quote":"KV Cache","href":"/lessons/feishu-7e6e6747d4/#src-feishu-doxcnFH8mv7yRpfVj07BgF3XRlg"},"misconception":"缓存目的是复用此前位置的键值，不只最后位置。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-7e6e6747d4/#src-feishu-doxcnFH8mv7yRpfVj07BgF3XRlg"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-7e6e6747d4-1" disabled><legend><span class="quiet-tag">单选</span> 1. 按本课估算，7B参数以bf16每参数2字节存储，仅参数约多少十进制GB？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-1" value="option-3"><span>98GB</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-1" value="option-2"><span>7GB</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-1" value="option-1"><span>14GB，仍未加入缓存与框架开销</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-7e6e6747d4-1" value="unsure"><span>暂时不会，提交后看解析</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-7e6e6747d4-2" disabled><legend><span class="quiet-tag">单选</span> 2. LoRA内存下降的主要来源是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-2" value="option-2"><span>冻结后底座权重也不再需要加载</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-7e6e6747d4-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-2" value="option-3"><span>全部激活值按可训练参数比例同等下降</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-2" value="option-1"><span>梯度和优化器主要覆盖少量adapter，底座仍参与前向</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-7e6e6747d4-3" disabled><legend><span class="quiet-tag">单选</span> 3. KVCache为何让长上下文和高并发增加内存？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-3" value="option-1"><span>更多位置与活跃序列需要保留更多Key和Value</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-3" value="option-3"><span>只缓存模型参数，所有请求共用同一份历史</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-7e6e6747d4-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-7e6e6747d4-3" value="option-2"><span>只保留最后一个token，历史长度无关</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-7e6e6747d4">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="feishu-7e6e6747d4" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构根据本课原文自动整理，术语通用释义与迁移问题为本站补充。它不代表逐课人工审定或原文代码已运行。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><div class="lesson-guide-prerequisites"><h3>建议先修</h3><ul><li><a href="/momomian/roadmap/#foundations">LLM 与 Agent 基础</a><span class="small muted"> · 先能解释这个单元的输入、输出与限制，再阅读「模型和硬件：模型能不能跑」。</span></li></ul></div><h3>这次阅读的目标</h3><ol><li>按精度、训练状态、缓存和临时空间分项估算内存。</li><li>区分 LoRA 参数量、激活与上下文并发开销。</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>缓存</dt><dd>保存可复用结果以减少重复工作。命中率、键的范围、失效与更新策略会影响正确性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcndjpBOyjse2hGXnNppq2bUe">回看本课上下文</a></span></dd></div><div><dt>微调</dt><dd>在已有模型基础上继续训练，使其适应特定任务或数据。训练收益应通过独立评测判断。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnkkipfwYp3F1mnSQzkMWc6e">回看本课上下文</a></span></dd></div><div><dt>LoRA</dt><dd>通过训练低秩适配参数调整模型的一种方法；参数量减少不自动保证某任务效果更好。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnh0h8aRqBbsJ8IEfoQF5eqZ">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnFoOgsHnjsJ7x7F02VTM9Ug">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnmyTs2Jvy6uNNciDHiAWbDg">回看本课上下文</a></span></dd></div><div><dt>Chunk</dt><dd>为索引和检索划分的内容片段。片段应保留必要上下文和来源，边界需要结合资料结构选择。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn3NFQKWWU3MsOH06d1iNkpf">回看本课上下文</a></span></dd></div><div><dt>检查点</dt><dd>在流程执行中保存的状态快照，用于继续或恢复；它本身不保证外部写入恰好发生一次。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnxJwtnO0UX2Eyjo55gjOEtc">回看本课上下文</a></span></dd></div><div><dt>HTTP</dt><dd>客户端与服务端交换请求和响应的协议；方法、状态码、响应体和业务结果分别提供信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnonhbe3fgpI7gCi8E7tL6td">回看本课上下文</a></span></dd></div><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnfqkg42VUovIyQrEptgUjid">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnflsC3CaJsKCumZavjMlQuc">回看本课上下文</a></span></dd></div><div><dt>Transformer</dt><dd>利用注意力等结构处理序列表示的一类模型架构。具体结构、输入与训练目标随模型而异。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnCvIKCmkKTaPwfilG7OApbs">回看本课上下文</a></span></dd></div><div><dt>注意力</dt><dd>根据输入表示计算并汇总相关信息的机制。权重不是对模型所有行为的完整因果解释。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn6gFhmOU4oImP5fwziOa5kh">回看本课上下文</a></span></dd></div><div><dt>命令行</dt><dd>通过文本命令操作程序的界面。先确认当前目录、输入参数和命令的实际副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnonhbe3fgpI7gCi8E7tL6td">回看本课上下文</a></span></dd></div><div><dt>推理阶段</dt><dd>推理阶段只做前向传播,没有反向传播,因此梯度、优化器状态、训练用的激活值缓存全部消失。推理无需为反向传播长期保存训练激活，但仍有临时激活、工作区和框架开销；参数加 KV 只是预算起点，应预留并实测峰值。:模型参数 + KV Cache(实际框架还会有少量临时 workspace)。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn7dgFTNRhTyvepN8EsU7LBg">回看本课上下文</a></span></dd></div><div><dt>KV Cache</dt><dd>KV Cache可以理解为推理时一个空间换时间的策略。推理时，模型自回归生成每个新 token 都需要&quot;回顾&quot;之前所有 token 的注意力键值（Key-Value）。KV Cache 把这些中间结果缓存下来，避免每步都重新计算。随上下文长度和并发请求数增长，长上下文或高并发场景下不可忽视。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn6gFhmOU4oImP5fwziOa5kh">回看本课上下文</a></span></dd></div><div><dt>fp32（4 字节）</dt><dd>fp32（4 字节）：精度高、数值稳定，但显存占用最大、计算吞吐较低。常用于梯度、优化器状态、关键累积计算。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn6r2x3f4ofcJiRVwY7ZKWGg">回看本课上下文</a></span></dd></div><div><dt>bf16（2 字节）</dt><dd>bf16（2 字节）：和 fp32 接近的数值范围，不易溢出；有效精度低于 fp32。大模型训练的常用选择，覆盖训练参数、前向反向计算、推理。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn5jv1gK9rUF2F1mebwoZ5Fb">回看本课上下文</a></span></dd></div><div><dt>fp16（2 字节）</dt><dd>fp16（2 字节）：有效精度比 bf16 略高，但数值范围更小，训练易溢出，常需 loss scaling。多用于推理、混合精度训练、较老 GPU 加速。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnCXt3LgD27KvMHjTp1zaMke">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>原文中的格式化示例或图示：训练 vs 推理：运行内存里住着什么？</h3><p class="small muted">这是保留格式的原文示例、伪代码或图示，不作为可执行代码。打开来源查看完整上下文。 <a href="#src-feishu-doxcnFH8mv7yRpfVj07BgF3XRlg">打开完整来源段落</a></p><pre class="lesson-guide-example"><code>┌─────────────────────────────┐      ┌─────────────────────────────┐
+│          训练阶段            │      │          推理阶段            │
+├─────────────────────────────┤      ├─────────────────────────────┤
+│  ✅ 模型参数                 │      │  ✅ 模型参数                 │
+│  ✅ 梯度                    │      │  ❌ 梯度（不需要）            │
+│  ✅ 优化器状态               │      │  ❌ 优化器状态（不需要）      │
+│  ✅ 激活值（前向传播缓存）    │      │  ❌ 激活值（不需要缓存）      │
+│  ❌ KV Cache（通常不涉及）   │      │  ✅ KV Cache                 │
+└─────────────────────────────┘      └─────────────────────────────┘
+       训练内存占用：参数量 × ~14字节 + 激活值    推理内存占用：参数 + KV Cache</code></pre><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-7e6e6747d4-explain"><h3>1. 模型和硬件：模型能不能跑 · 解释</h3><p>学习「模型和硬件：模型能不能跑」后，合上正文说明「模型能不能跑」在解决什么问题。围绕原文“如果模型跑在 GPU 上，这个设备内存通常就是显存；如果跑在 CPU 上，就是内存（RAM）。同一个 7B 参数的模型，推理时可能…”复述一条具体关系，并区分已知与待确认的信息。</p><label class="lesson-task-field" for="task-lesson-card-feishu-7e6e6747d4-explain">先写自己的回答<textarea id="task-lesson-card-feishu-7e6e6747d4-explain" data-lesson-task-answer="lesson-card-feishu-7e6e6747d4-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-7e6e6747d4-explain">给一点提示</button><p class="lesson-task-hint" hidden>先回忆这一段：如果模型跑在 GPU 上，这个设备内存通常就是显存；如果跑在 CPU 上，就是内存（RAM）。同一个 7B 参数的模型，推理时可能只需要 1…</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：如果模型跑在 GPU 上，这个设备内存通常就是显存；如果跑在 CPU 上，就是内存（RAM）。同一个 7B 参数的模型，推理时可能只需要 14GB 左右设备内存，而用 PPO 做强化学习对齐时可能需要超过 200GB。所以在回答&quot;需要多少内存/显存&quot;之前，我们必须先搞清楚：现在是哪个阶段、跑在哪类设备上。
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。</p><ul><li>指出「模型能不能跑」讨论的对象或任务</li><li>复述原文中的一条具体关系：如果模型跑在 GPU 上，这个设备内存通常就是显存；如果跑在 CPU 上，就是内存（RAM）。同一个 7B 参数的模型，推理时可能只需要 14GB 左右设备内存，而用 PPO 做强…</li><li>区分原文说法与自己尚未验证的推断</li></ul><a href="#src-feishu-doxcnMF6fgLz7kUtAzlTMVTvp5Y">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-7e6e6747d4-explain">主要错因<select id="task-error-lesson-card-feishu-7e6e6747d4-explain" data-lesson-task-error="lesson-card-feishu-7e6e6747d4-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-7e6e6747d4#lesson-card-feishu-7e6e6747d4-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-7e6e6747d4-apply"><h3>2. 模型和硬件：模型能不能跑 · 条件</h3><p>把「模型和硬件：模型能不能跑」中的「背景：先搞清楚&quot;问的是哪个阶段&quot;」放进一个具体使用场景：原文“当有人问&quot;训练一个大模型需要多少内存/显存&quot;时，这个问题就过于笼统，缺少了细节—因为一个大模型从诞生到被用户使…”提供了什么条件或步骤？再指出一种不能直接据此下结论的情况。</p><label class="lesson-task-field" for="task-lesson-card-feishu-7e6e6747d4-apply">先写自己的回答<textarea id="task-lesson-card-feishu-7e6e6747d4-apply" data-lesson-task-answer="lesson-card-feishu-7e6e6747d4-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-7e6e6747d4-apply">给一点提示</button><p class="lesson-task-hint" hidden>围绕「当有人问&quot;训练一个大模型需要多少内存/显存&quot;时，这个问题就过于笼统，缺少了细节—因为一个大模型从诞生到被用户使用，要经历多个完全不同的阶段，…」改变一个输入或适用条件。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：当有人问&quot;训练一个大模型需要多少内存/显存&quot;时，这个问题就过于笼统，缺少了细节—因为一个大模型从诞生到被用户使用，要经历多个完全不同的阶段，每个阶段的内存需求差异极大。同一个 7B 参数的模型，推理时可能只需要 14GB 左右设备内存，而用 PPO 做强化学习对齐时可能需要超过 200GB。所以在回答&quot;需要多少内存/显存&quot;之前，我们必须先搞清楚：面试官说的是哪个阶段、跑在哪类设备上。所以第一部分，给大家介绍一下大模型的生命周期。大模型的生命周期，也是建议大家需要理解和掌握的，虽然大家的岗位和工作可能只聚焦在一块，但是你需要知道他整个生命周期。
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。
+请把原文明确提供的条件与自己构造的反例分开；本课未给出的结果不能写成已验证事实。</p><ul><li>引用「背景：先搞清楚&quot;问的是哪个阶段&quot;」的具体步骤或条件：当有人问&quot;训练一个大模型需要多少内存/显存&quot;时，这个问题就过于笼统，缺少了细节—因为一个大模型从诞生到被用户使用，要经历多个完全不同的阶段，每个阶段的内存需求差异极大。同…</li><li>写出一个与本课主题相关的使用场景</li><li>标明一个缺少信息或需要额外验证的判断</li></ul><a href="#src-feishu-doxcn8UenHwO7l3O04tlrSzJyjb">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-7e6e6747d4-apply">主要错因<select id="task-error-lesson-card-feishu-7e6e6747d4-apply" data-lesson-task-error="lesson-card-feishu-7e6e6747d4-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-7e6e6747d4#lesson-card-feishu-7e6e6747d4-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>原文提到「KV Cache可以理解为推理时一个空间换时间的策略。推理时，模型自回归生成每个新 token 都需要&quot;回顾&quot;之前所有 token…」。如果这个条件不满足，会影响「模型和硬件：模型能不能跑」的哪一步？设计一个最小失败例子。</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>KV Cache可以理解为推理时一个空间换时间的策略。推理时，模型自回归生成每个新 token 都需要&quot;回顾&quot;之前所有 token 的注意力键值（Key-Value）。KV Cache 把这些中间结果缓存下来，避免每步都重新计算。随上下文长度和并发请求数增长，长上下文或高并发场景下不可忽视。</blockquote><ul><li>说明改变了哪个输入或条件</li><li>写出预期结果和验证方法</li><li>未运行时明确标注为待验证，不编造日志或指标</li></ul><a href="#src-feishu-doxcn6gFhmOU4oImP5fwziOa5kh">回到原文依据</a></details><label class="lesson-task-field" for="boundary-feishu-7e6e6747d4">写下最小失败输入、预期和验证方法<textarea id="boundary-feishu-7e6e6747d4" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>将「模型和硬件：模型能不能跑」迁移到一个需要选择模型或算法的具体任务：遇到“训练样例或简单输入表现很好，边界输入失败”时，你会怎样调整？以本课“如果模型跑在 GPU 上，这个设备内存通常就是显存；如果跑在 CPU 上，就是内存（RAM）。同一个 7B 参数的模型，推理时可能…”为依据，说明哪些信息能沿用，检查任务约束、复杂度、评测样本和适用条件。</p><ul><li>指出本课中实际采用的一点：如果模型跑在 GPU 上，这个设备内存通常就是显存；如果跑在 CPU 上，就是内存（RAM）。同一个 7B 参数的模型，推理时可能只需要 14GB 左…</li><li>说明新场景与原例子的差别</li><li>留下一个输入、预期结果和可复现的检查步骤</li></ul><label class="lesson-task-field" for="transfer-feishu-7e6e6747d4">解释哪些能复用，哪些要重新验证<textarea id="transfer-feishu-7e6e6747d4" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>不看原文说明「模型能不能跑」的作用与适用范围</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>能引用本课的一条具体说明，并给出自己的例子</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>完成两次主动回忆并记录一个边界或失败问题</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>写下产物、验证方法和仍未确认的内容</span></label></fieldset><label class="lesson-task-field" for="artifact-feishu-7e6e6747d4">产物、实际验证与未决问题<textarea id="artifact-feishu-7e6e6747d4" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=feishu-7e6e6747d4#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=feishu-7e6e6747d4">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/lessons/tencent-011-014-cc43dc69ae-cc6aed/"><small>本主题 · 上一课</small><span>本地Qwen聊天：Chat Template与自回归生成</span></a><a class="next-lesson" href="/momomian/lessons/feishu-3524f0c55b/" data-task-id="feishu-3524f0c55b" data-task-title="模型微调基础" data-task-step="阅读本课目标与例子"><small>本主题 · 下一课</small><span>模型微调基础</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1" class="nested">6.1 模型能不能跑</a><a href="#section-2" class="nested">6.1.1 背景：先搞清楚&quot;问的是哪个阶段&quot;</a><a href="#section-3" class="nested">6.1.1.1 大模型完整生命周期</a><a href="#section-4" class="nested">6.1.2 基础知识铺垫</a><a href="#section-5" class="nested">6.1.2.1 核心原则</a><a href="#section-6" class="nested">6.1.2.2 训练 vs 推理：运行内存里住着什么？</a><a href="#section-7" class="nested">6.1.2.3 各部分简介</a><a href="#section-8" class="nested">6.1.2.4 精度与字节数</a><a href="#section-9" class="nested">6.1.2.5 激活值大小的计算</a><a href="#section-10" class="nested">6.1.3 后训练阶段</a><a href="#section-11" class="nested">6.1.3.1 SFT — 全参微调（Full Fine-Tuning）</a><a href="#section-12" class="nested">6.1.3.2 SFT — LoRA 微调</a><a href="#section-13" class="nested">6.1.3.3 RL 对齐 — PPO 算法</a><a href="#section-14" class="nested">6.1.3.4 RL 对齐 — GRPO 算法（DeepSeek R1 方案）</a><a href="#section-15" class="nested">6.1.4 部署推理阶段</a><a href="#section-16" class="nested">6.1.4.1 模型参数：精度决定基础显存</a><a href="#section-17" class="nested">6.1.4.2 KV Cache：随上下文增长的动态开销</a><a href="#section-18" class="nested">6.1.4.3 推理总显存 = 参数 + KV Cache</a><a href="#section-19" class="nested">6.1.5 汇总对比表</a><a href="#section-20" class="nested">6.1.6 附：根据显卡选方案</a><a href="#section-21" class="nested">6.1.7 附：面试 Q&amp;A</a><a href="#section-22" class="nested">6.1.7.1 Q1：7B 模型做 SFT 大概需要多大显存？</a><a href="#section-23" class="nested">6.1.7.2 Q2：7B 模型做强化学习大概需要多大显存？</a><a href="#section-24" class="nested">6.1.7.3 Q3：7B 模型部署推理大概需要多大显存？</a><a href="#section-25" class="nested">6.1.7.4 Q4：你说在CPU机器上跑7B的模型，这个可以跑得动吗？</a><a href="#section-26" class="nested">6.1.8 视频讲解</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

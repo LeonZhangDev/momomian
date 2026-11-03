@@ -1,0 +1,567 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>Multi-Agent · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="tencent-014-005"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>岗位能力地图与备考深度</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-872e863177/" data-record-id="feishu-872e863177">大模型岗位介绍</a><a href="/momomian/lessons/feishu-e8556c6409/" data-record-id="feishu-e8556c6409">大模型岗位介绍：不同岗位技术侧重点和面试技巧</a><a href="/momomian/lessons/feishu-4ba62ef841/" data-record-id="feishu-4ba62ef841">大模型岗位介绍：算法工程师</a><a href="/momomian/lessons/feishu-f2ddc84a7a/" data-record-id="feishu-f2ddc84a7a">大模型岗位介绍：大模型开发工程师</a><a href="/momomian/lessons/feishu-0c0c182e9c/" data-record-id="feishu-0c0c182e9c">大模型岗位介绍：大模型数据工程师</a><a href="/momomian/lessons/feishu-7c9d61a0c3/" data-record-id="feishu-7c9d61a0c3">大模型岗位介绍：推理工程师</a><a href="/momomian/lessons/feishu-30cc2018e8/" data-record-id="feishu-30cc2018e8">大模型岗位介绍：垂直领域微调工程师</a></details></div></details><details><summary>FDE岗位与真实交付</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3eb172c30b/" data-record-id="feishu-3eb172c30b">大模型岗位介绍：FDE（前线部署工程师）</a></details></div></details><details><summary>真实项目选择、经历和综合答疑</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-e0bf2395a7/" data-record-id="feishu-e0bf2395a7">前言：经验之谈</a><a href="/momomian/lessons/feishu-60292f9aa5/" data-record-id="feishu-60292f9aa5">答疑</a></details></div></details><details><summary>项目选题、产品形态与有界自我改进论述</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-a77120c97d/" data-record-id="feishu-a77120c97d">提升简历通过率，做深项目</a><a href="/momomian/lessons/feishu-1fc275882c/" data-record-id="feishu-1fc275882c">提升简历通过率，做深项目：2026年真正有价值的AI项目</a><a href="/momomian/lessons/feishu-337c761ed9/" data-record-id="feishu-337c761ed9">提升简历通过率，做深项目：2026年 Agent 新形态</a><a href="/momomian/lessons/feishu-4b68e7620b/" data-record-id="feishu-4b68e7620b">提升简历通过率，做深项目：RSI 进展</a></details></div></details><details><summary>预约、后训练及RAG项目的深化与事实证据</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-8c218425d9/" data-record-id="feishu-8c218425d9">项目使用和简历编写</a><a href="/momomian/lessons/feishu-990141b9a7/" data-record-id="feishu-990141b9a7">项目使用和简历编写：后训练项目</a><a href="/momomian/lessons/feishu-dc3dca6864/" data-record-id="feishu-dc3dca6864">项目使用和简历编写：RAG 项目</a></details></div></details><details><summary>项目必要性、自主性与Workflow答辩</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-8e7d22cdf4/" data-record-id="feishu-8e7d22cdf4">面试官压力项目应对方案</a><a href="/momomian/lessons/feishu-a111e65a39/" data-record-id="feishu-a111e65a39">面试官压力项目应对方案：你的就是个workflow，还能叫Agent吗？</a><a href="/momomian/lessons/feishu-0faae20217/" data-record-id="feishu-0faae20217">面试官压力项目应对方案：传统方法就能做，你用Agent做有必要吗？</a><a href="/momomian/lessons/feishu-5ae8e0818b/" data-record-id="feishu-5ae8e0818b">面试官压力项目应对方案：面试问题</a><a href="/momomian/lessons/feishu-5efcb86056/" data-record-id="feishu-5efcb86056">面试官压力项目应对方案：Agent的Agentic 性质体现在哪里？</a></details></div></details><details><summary>项目难题、端到端架构和个人贡献追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-1eaee24319/" data-record-id="feishu-1eaee24319">项目难题与面试复盘</a><a href="/momomian/lessons/feishu-1df54d766d/" data-record-id="feishu-1df54d766d">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）：面试前突击</a></details></div></details><details><summary>框架取舍与底层机制问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-b4ee0f86f9/" data-record-id="feishu-b4ee0f86f9">Agent开发框架：面试真题</a></details></div></details><details><summary>ReAct、工具、记忆和场景设计问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-1eb7018a6b/" data-record-id="feishu-1eb7018a6b">ReAct</a><a href="/momomian/lessons/feishu-c49fcee408/" data-record-id="feishu-c49fcee408">Function Calling</a><a href="/momomian/lessons/feishu-e37922f7a8/" data-record-id="feishu-e37922f7a8">Agent的记忆功能</a><a href="/momomian/lessons/feishu-301390ca94/" data-record-id="feishu-301390ca94">Agent场景题</a></details></div></details><details><summary>Agent必要性、工具贡献与基础编码题</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-0078fac0fa/" data-record-id="feishu-0078fac0fa">面试真题（开发方向）</a><a href="/momomian/lessons/feishu-141fe7e7d6/" data-record-id="feishu-141fe7e7d6">面试真题（开发方向）：滴滴Agent开发工程师</a><a href="/momomian/lessons/feishu-2407259c4b/" data-record-id="feishu-2407259c4b">面试真题（开发方向）：宇树科技Agent开发</a></details></div></details><details><summary>RAG、微调、多Agent规模与选型证据追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-72e778069d/" data-record-id="feishu-72e778069d">面试真题（开发方向）：京东零售平台算法开发</a><a href="/momomian/lessons/feishu-7149f20e12/" data-record-id="feishu-7149f20e12">面试真题（开发方向）：2025.11网龙科技</a><a href="/momomian/lessons/feishu-99dc3e8706/" data-record-id="feishu-99dc3e8706">面试真题（开发方向）：平安证券</a><a href="/momomian/lessons/feishu-d728f65e7a/" data-record-id="feishu-d728f65e7a">面试真题（开发方向）：小红书</a><a href="/momomian/lessons/feishu-a5977303c0/" data-record-id="feishu-a5977303c0">面试真题（开发方向）：英伟达大模型Agent开发</a></details></div></details><details><summary>上下文与长期记忆面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-003-1a022ddecb/" data-record-id="tencent-014-003-1a022ddecb">上下文管理与记忆：多 Agent / 多异步任务下，如何防止上下文污染？</a><a href="/momomian/lessons/tencent-014-003-90adc147fe/" data-record-id="tencent-014-003-90adc147fe">上下文管理与记忆：Agent 是怎么实现上下文记忆的？</a><a href="/momomian/lessons/tencent-014-003-9dad0b32d7/" data-record-id="tencent-014-003-9dad0b32d7">上下文管理与记忆：上下文管理是怎么做的，如何进行记忆？</a><a href="/momomian/lessons/tencent-014-003-e0b00f84e5/" data-record-id="tencent-014-003-e0b00f84e5">上下文管理与记忆：如何构建工具实现 memory 记忆，让大模型在长期对话中学习用户习惯？</a><a href="/momomian/lessons/tencent-014-003-cb6686b2eb/" data-record-id="tencent-014-003-cb6686b2eb">上下文管理与记忆：对 Cursor 记忆管理机制的了解</a><a href="/momomian/lessons/tencent-014-003-2ec5ef5f15/" data-record-id="tencent-014-003-2ec5ef5f15">上下文管理与记忆：Memory 上下文记忆功能的处理逻辑</a><a href="/momomian/lessons/tencent-014-003-9f1e98b6d0/" data-record-id="tencent-014-003-9f1e98b6d0">上下文管理与记忆：如何进行记忆管理，怎么处理长上下文，怎么进行持久化，后续怎么读取和关联？</a><a href="/momomian/lessons/tencent-014-003-d0afa3f60f/" data-record-id="tencent-014-003-d0afa3f60f">上下文管理与记忆：你的向量记忆库是如何更新用户画像的？如何区分短期记忆和长期记忆？</a><a href="/momomian/lessons/tencent-014-003-15a815a7c4/" data-record-id="tencent-014-003-15a815a7c4">上下文管理与记忆：记忆更新时能否精准替换指定片段，还是需要全量清空重建？</a><a href="/momomian/lessons/tencent-014-003-fe4b62ac04/" data-record-id="tencent-014-003-fe4b62ac04">上下文管理与记忆：存储时如果出现前后不一致的情况如何解决？</a><a href="/momomian/lessons/tencent-014-003-32683631eb/" data-record-id="tencent-014-003-32683631eb">上下文管理与记忆：多轮对话的实现方案</a></details></div></details><details><summary>会话记忆、恢复与并发压缩竞态</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-d30b8751ef/" data-record-id="feishu-d30b8751ef">面试真题（开发方向）：灵动时刻</a><a href="/momomian/lessons/feishu-f8ef41cf34/" data-record-id="feishu-f8ef41cf34">面试真题（开发方向）：腾讯AI Agent暑期实习</a><a href="/momomian/lessons/feishu-1b42a824e3/" data-record-id="feishu-1b42a824e3">面试真题（开发方向）：虾皮 AIAgent暑期实习面经</a></details></div></details><details open><summary>工具、协议及多Agent面试</summary><div class="lesson-nav"><details open><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-004-6ac6505f31/" data-record-id="tencent-014-004-6ac6505f31">Tool Calling / Function Call / MCP：你了解的 Tool 调用机制是怎样的？</a><a href="/momomian/lessons/tencent-014-004-5f2ceaebb5/" data-record-id="tencent-014-004-5f2ceaebb5">Tool Calling / Function Call / MCP：介绍一下 Function Call 原理，模型生成的 JSON 如何通过逻辑触发表层代码执行并返回给模型？</a><a href="/momomian/lessons/tencent-014-004-5e3a437e28/" data-record-id="tencent-014-004-5e3a437e28">Tool Calling / Function Call / MCP：MCP 协议的核心内容、介绍一下 MCP</a><a href="/momomian/lessons/tencent-014-004-5c910b113d/" data-record-id="tencent-014-004-5c910b113d">Tool Calling / Function Call / MCP：MCP 和 Skill 的区别，二者谁占用上下文窗口比较大？</a><a href="/momomian/lessons/tencent-014-004-66ba807714/" data-record-id="tencent-014-004-66ba807714">Tool Calling / Function Call / MCP：Skills 是怎么实现的，Skills 和 MCP 区别，怎么使用它们？</a><a href="/momomian/lessons/tencent-014-004-284571d6a1/" data-record-id="tencent-014-004-284571d6a1">Tool Calling / Function Call / MCP：Tool 层怎么定义的？Tool 层具体在 Agent 运行中是怎么被调用的？</a><a href="/momomian/lessons/tencent-014-004-a12ba166ff/" data-record-id="tencent-014-004-a12ba166ff">Tool Calling / Function Call / MCP：如何不用多智能体方案让 1000 个 Tools 正常工作？</a><a href="/momomian/lessons/tencent-014-004-4f54ebb622/" data-record-id="tencent-014-004-4f54ebb622">Tool Calling / Function Call / MCP：如果 MCP 特别多的话要怎么管理？</a><a href="/momomian/lessons/tencent-014-004-f222b19f4a/" data-record-id="tencent-014-004-f222b19f4a">Tool Calling / Function Call / MCP：特定推理模型不支持 MCP 的技术原因</a><a href="/momomian/lessons/tencent-014-004-b2db61c2e0/" data-record-id="tencent-014-004-b2db61c2e0">Tool Calling / Function Call / MCP：如何让大模型格式化输出消息，以及 Pydantic 相比 Prompt Engineering 在工程上的优势？</a><a href="/momomian/lessons/tencent-014-004-9b4330f3d9/" data-record-id="tencent-014-004-9b4330f3d9">Tool Calling / Function Call / MCP：A2A 协议、A2A 与 MCP 区别</a><a href="/momomian/lessons/tencent-014-004-3602596498/" data-record-id="tencent-014-004-3602596498">Tool Calling / Function Call / MCP：谈谈对 A2A 通信的理解。在 A2A 场景下，如何防止两个 Agent 陷入递归对话？</a><a href="/momomian/lessons/tencent-014-005/" class="current" aria-current="page" data-record-id="tencent-014-005">Multi-Agent</a><a href="/momomian/lessons/tencent-014-006/" data-record-id="tencent-014-006">ReAct / 反思 / 任务规划</a></details></div></details><details><summary>MCP兼容、handoff与现场开源项目阅读</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9f98d898ee/" data-record-id="feishu-9f98d898ee">面试真题（开发方向）：字节跳动（抖音）</a><a href="/momomian/lessons/feishu-56174b693a/" data-record-id="feishu-56174b693a">面试真题（开发方向）：阿里国际站</a><a href="/momomian/lessons/feishu-eb349b3908/" data-record-id="feishu-eb349b3908">面试真题（开发方向）：盛大AI</a></details></div></details><details><summary>工具往返、Responses评估与图算法</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5188201aa8/" data-record-id="feishu-5188201aa8">面试真题（开发方向）：字节跳动（豆包）</a></details></div></details><details><summary>端侧量化与动态工具暴露</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5c48d98478/" data-record-id="feishu-5c48d98478">面试真题（开发方向）：Deepwisdom</a></details></div></details><details><summary>小模型分工、时间运算与前缀缓存</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c6ba154587/" data-record-id="feishu-c6ba154587">面试真题（开发方向）：阿里夸克千问</a></details></div></details><details><summary>多Agent架构问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3ca003789f/" data-record-id="feishu-3ca003789f">Multi-Agent 架构：面试问题</a></details></div></details><details><summary>评测与上线经历问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-f902dfdaa5/" data-record-id="feishu-f902dfdaa5">Agent评测：面试问题汇总</a><a href="/momomian/lessons/feishu-7324428422/" data-record-id="feishu-7324428422">Agent项目上线问题</a></details></div></details><details><summary>可靠性、模型、部署及应用设计面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-007/" data-record-id="tencent-014-007">异常处理 / 安全 / 熔断</a><a href="/momomian/lessons/tencent-014-008/" data-record-id="tencent-014-008">幻觉与评测</a><a href="/momomian/lessons/tencent-014-009/" data-record-id="tencent-014-009">Prompt 工程</a><a href="/momomian/lessons/tencent-014-010/" data-record-id="tencent-014-010">模型相关</a><a href="/momomian/lessons/tencent-014-011/" data-record-id="tencent-014-011">工程化与部署</a><a href="/momomian/lessons/tencent-014-012/" data-record-id="tencent-014-012">Agent 场景设计题</a></details></div></details><details><summary>后端服务化、压测和异步问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c959650ff7/" data-record-id="feishu-c959650ff7">按需深入：后端与服务化</a><a href="/momomian/lessons/feishu-f06d39781d/" data-record-id="feishu-f06d39781d">按需深入：后端与服务化：面试真题</a></details></div></details><details><summary>金融业务架构、边界与欺诈决策闭环</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-cdb0087f2b/" data-record-id="feishu-cdb0087f2b">面试真题（开发方向）：华林证券</a><a href="/momomian/lessons/feishu-ffb96801c5/" data-record-id="feishu-ffb96801c5">面试真题（开发方向）：滴滴Agent开发</a></details></div></details><details><summary>Windows/C++资源生命周期与AI运行链路</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c1e19a157f/" data-record-id="feishu-c1e19a157f">面试真题（开发方向）：联想</a></details></div></details><details><summary>系统模块、个人分工与完成状态核验</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-2149c749e9/" data-record-id="feishu-2149c749e9">面试真题（开发方向）：深圳边端智能研究院大模型应用岗位</a><a href="/momomian/lessons/feishu-2086c96f4e/" data-record-id="feishu-2086c96f4e">面试真题（开发方向）：米连科技</a></details></div></details><details><summary>校招/转行项目的逐层实现一致性追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3acfe382dd/" data-record-id="feishu-3acfe382dd">面试真题（开发方向）：字节大模型开发暑期实习一面</a><a href="/momomian/lessons/feishu-83572da16d/" data-record-id="feishu-83572da16d">面试真题（开发方向）：安克暑期实习</a></details></div></details><details><summary>修复率基线、样本分布与Judge校准</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9407209664/" data-record-id="feishu-9407209664">面试真题（开发方向）：阿里淘天秋招大模型开发</a></details></div></details><details><summary>模块化RAG项目长篇追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-ff8b85db3d/" data-record-id="feishu-ff8b85db3d">模块化RAG项目：面试真题</a></details></div></details><details><summary>Harness方案、失败诊断与工程经验问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-87f52c1d95/" data-record-id="feishu-87f52c1d95">Harness Engineering：Harness 思想的运用</a><a href="/momomian/lessons/feishu-66f128b6c9/" data-record-id="feishu-66f128b6c9">Harness Engineering：面试问题速览</a></details></div></details><details><summary>Loop与Graph热点的工程判断</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-6aca377ead/" data-record-id="feishu-6aca377ead">Loop Engineering &amp; Graph工程</a><a href="/momomian/lessons/feishu-bf46788725/" data-record-id="feishu-bf46788725">Loop Engineering &amp; Graph工程：Graph 工程</a></details></div></details><details><summary>Pi与OpenClaw架构面试复盘</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-a61d80101e/" data-record-id="feishu-a61d80101e">开源框架解读 - PI-Agent：面试问题</a><a href="/momomian/lessons/feishu-46f3b40b7e/" data-record-id="feishu-46f3b40b7e">开源框架解读 - Openclaw：面试问题</a></details></div></details><details><summary>Hermes与DSH的源码架构问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-39aa485705/" data-record-id="feishu-39aa485705">开源框架解读 - Hermes Agent：面试问题</a><a href="/momomian/lessons/feishu-e1735cd571/" data-record-id="feishu-e1735cd571">开源框架解读- DeepSeek Harness：面试问题</a></details></div></details><details><summary>编程Agent机制口述与源码证据</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-013d790598/" data-record-id="feishu-013d790598">1Claude Code 从入门到精通：面试问答 Q&amp;A</a></details></div></details><details><summary>模型家族、特性与生态的历史问答参考</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-67ef783c54/" data-record-id="feishu-67ef783c54">简单介绍一下千问模型？</a><a href="/momomian/lessons/feishu-3c6683ca0b/" data-record-id="feishu-3c6683ca0b">简单介绍一下Gemini3模型？</a><a href="/momomian/lessons/feishu-d8dbe24001/" data-record-id="feishu-d8dbe24001">不同模型的对比和选择</a><a href="/momomian/lessons/feishu-65475e33b4/" data-record-id="feishu-65475e33b4">不同模型的对比和选择：热门模型特点介绍</a></details></div></details><details><summary>备考策略与简历：选材、表达、定稿和反馈</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-b83945d562/" data-record-id="feishu-b83945d562">简历编写技巧</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-39b488044d/" data-record-id="feishu-39b488044d">面试准备建议</a><a href="/momomian/lessons/feishu-aeffaf910c/" data-record-id="feishu-aeffaf910c">简历编写技巧：第二部分：动笔取舍</a><a href="/momomian/lessons/feishu-ab05bfe325/" data-record-id="feishu-ab05bfe325">简历编写技巧：第三部分：模块写法</a><a href="/momomian/lessons/feishu-5cf0f7db7c/" data-record-id="feishu-5cf0f7db7c">简历编写技巧：第四部分：表达打磨</a><a href="/momomian/lessons/feishu-2de4bcc2b8/" data-record-id="feishu-2de4bcc2b8">简历编写技巧：第五部分：定稿提交</a><a href="/momomian/lessons/feishu-fd239916a0/" data-record-id="feishu-fd239916a0">简历编写技巧：第六部分：反馈修改</a><a href="/momomian/lessons/feishu-00889b761f/" data-record-id="feishu-00889b761f">项目使用和简历编写：简历示范</a></details></div></details><details><summary>岗位搜索、人类确认投递与记录管理</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-116f52c0ef/" data-record-id="feishu-116f52c0ef">简历投递技巧</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-925a819008/" data-record-id="feishu-925a819008">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）：简历投递</a></details></div></details><details><summary>自我介绍、反问与岗位匹配判断</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-eac36b80fc/" data-record-id="feishu-eac36b80fc">自我介绍</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3610908248/" data-record-id="feishu-3610908248">反问</a></details></div></details><details><summary>个人求职过程记录与来源边界</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-388d54fd82/" data-record-id="feishu-388d54fd82">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=career">职业与面试</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">参考 · 按需查阅</p><h1 data-pagefind-meta="title">Multi-Agent</h1><div class="lesson-meta"><span>约 12 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only">MCP A2A Multi-Agent 多智能体</span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：工具、协议及多Agent面试 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="tencent-014-005" data-task-title="Multi-Agent" data-task-href="/lessons/tencent-014-005/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>Manus 的固定三层内部架构、所用微调模型、首个通用平台和失败率未附可复核官方依据；不据此当成产品事实。</p><p>心理咨询拆分只是架构讨论，毫秒级同步与自动危机处理没有验证证据；不能据此宣称已满足真实场景的专业响应要求。</p><p>LangGraph 图缺少 TypedDict/END 导入、入口与 compile，SemanticRouter 还缺 fallback_handler；仅凭片段不能运行。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">职业与面试 / 工具、协议及多Agent面试</p><a class="text-link" href="/momomian/path/?topic=career&amp;unit=unit-career-40ffcaa5">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>在不确定路由时回退，并用标注样本评估阈值。</li><li>区分共享状态、消息传递与子任务并行的成本和边界。</li><li>让路由错误进入独立评测，而非无限增加 Agent。</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">意图路由、低置信度与反馈改进</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">若分类不确定，可以澄清需求；模型自报置信度仍需真实标注样本校验。</p><a class="text-link" href="#section-1">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 8 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>2 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><p>1 个选定片段未通过原样运行核验，请查看对应代码旁的修正版与限制。</p><p>其中 3 个片段需要补足上下文或修正，可能涉及缩进、占位内容或截断。请结合完整代码核对。</p><a class="text-link" href="/momomian/practice/?lesson=tencent-014-005#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><div class="source-heading">Multi-Agent</div>
+<span class="source-anchor-container"><a id="src-tencent-014-005-W3Jh22uYq5rLP4oDz7kjty"></a></span>
+<h2 id="section-1"><span>聊一下 Multi-Agent，你是怎么做意图识别的？</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-H28aiEYqkhYRasbxzXQViW"></a></span>
+<p><strong>Multi-Agent 系统概述</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-QDncIXyTfiKXA6JQYNNfLq"></a></span>
+<p><span>Multi-Agent 系统通过多个专业化 Agent 的协作来解决复杂问题。核心挑战之一就是</span><strong>意图识别</strong><span>——准确理解用户意图并路由到正确的 Agent。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-CLJqWHKzr7at6gih5Uh2yR"></a></span>
+<p><strong>意图识别的实现方式</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-zTnUJpwmOF3smId8oScr19"></a></span>
+<p><strong>方案一：LLM Router（主流方案）</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-oXwt2HuBG1lU87x1EysjCb"></a></span>
+<pre><code>ROUTER_PROMPT = """你是一个意图路由器。根据用户输入，判断应该由哪个 Agent 处理。
+
+可用 Agent：
+1. code_agent: 处理代码编写、调试、代码审查相关任务
+2. data_agent: 处理数据分析、可视化、报表生成相关任务
+3. research_agent: 处理信息检索、调研、资料整理相关任务
+4. writing_agent: 处理文案撰写、文档编辑、翻译相关任务
+
+输出 JSON: {"agent": "agent_name", "confidence": 0.0-1.0, "reasoning": "..."}
+"""
+
+def route(user_input):
+    result = llm.call(ROUTER_PROMPT + f"\n\n用户输入：{user_input}")
+    routing = json.loads(result)
+ if routing["confidence"] &#x3C; 0.7:
+ return fallback_agent  # 低置信度走兜底
+ return get_agent(routing["agent"])
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-wYrwqrwYjAdACtfNM30Exp"></a></span>
+<p><strong>方案二：嵌入相似度 + 分类器（低延迟方案）</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-jrJGmQHvy7kyxrVnHufc1P"></a></span>
+<pre><code># 预处理：为每个 Agent 的能力描述生成嵌入
+agent_embeddings = {
+    "code_agent": embed("代码编写 调试 审查 编程 bug修复"),
+    "data_agent": embed("数据分析 可视化 图表 报表 统计"),
+    # ...
+}
+
+# 运行时
+user_embedding = embed(user_input)
+scores = {name: cosine_similarity(user_embedding, emb) 
+          for name, emb in agent_embeddings.items()}
+best_agent = max(scores, key=scores.get)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-kSICFb9FHR8FHjqfB93hPn"></a></span>
+<p><strong>方案三：关键词 + 规则引擎（确定性方案）</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-CindlbGLpagHtSr4Ac37jj"></a></span>
+<ul>
+<li><span>适合领域明确、意图有限的场景</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-qIWkmusjeGAKd91ZLtnkVR"></a></span>
+<ul>
+<li><span>正则匹配 + 关键词词典 + 规则优先级</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-F5vaWjrb3dVTROlNPglc0P"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>优点：通常额外模型成本较低、行为易复现；仍需测规则处理耗时、覆盖率、冲突和误识别。</p><details><summary>查看解释与参考资料</summary><p>规则仍有处理耗时，行为确定也不等于对所有输入都识别正确。</p></details></aside><span>优点：零延迟、100% 可预测</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-dyehZPwPLDjteORLMklDvO"></a></span>
+<p><strong>实际项目推荐</strong><span>：规则兜底 + LLM Router 组合。先用规则匹配高确定性意图，匹配不上再走 LLM Router。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-014-005-8gYiILaXoFOxADL4iZslJ5"></a></span>
+<h2 id="section-2"><span>怎么提升意图识别的准确率？</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-VEJlTVi7eM4I4JJ5EF7uvA"></a></span>
+<p><strong>系统化提升方案</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-bcSWwQtjQtZzPqzvP6Lmky"></a></span>
+<p><strong>（1）Prompt 优化</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-eb0nfJQQ4QfcQBakGv6ANx"></a></span>
+<ul>
+<li><span>为每个 Agent 编写清晰的能力描述，特别是区分容易混淆的 Agent</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-Bjufpei2Um63ol4hXJMHdA"></a></span>
+<ul>
+<li><span>在 Router Prompt 中加入 Few-shot 示例，覆盖易混淆案例</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-dhpfBbHyorQeN6P0D9b3oR"></a></span>
+<ul>
+<li><span>加入"思考过程"要求（CoT），让模型先分析再决策</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-cwUqKQShKA4hNofYufT3v7"></a></span>
+<p><strong>（2）上下文增强</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-xpQuUzx15vB0X0q8p08YDd"></a></span>
+<ul>
+<li><span>不只看当前消息，还看最近 N 轮对话上下文</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-oC0F0Rs2TTWrre5GyOwcB3"></a></span>
+<ul>
+<li><span>用户画像信息辅助判断（如用户是开发者 → 代码类意图权重提高）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-V1IVv7efupOnBjbqEUnWYp"></a></span>
+<p><strong>（3）多级路由</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-cmfDffP1FG6F4nl0b5BEMk"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>Level 1：先做粗分类并测召回与误路由。
+Level 2：在候选类内细分，并测整条路由的端到端正确率。
+数字需来自具体标注集，不能预设 95% 或 90%。</p><details><summary>查看解释与参考资料</summary><p>没有实验数据支持固定准确率，分层错误还会传递。</p></details></aside><pre><code>Level 1: 粗分类（5大类）→ 准确率 95%+
+Level 2: 细分类（20小类）→ 准确率 90%+
+Level 3: Agent 内部再确认 → 不匹配时反馈给 Router
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-M1RBfG1iDcE77VB3Y7pwTk"></a></span>
+<p><strong>（4）反馈闭环</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-5VJrHkCogBD1C37t7e66v9"></a></span>
+<ul>
+<li><span>路由错误时，用户反馈"不对"→ 记录错误案例</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-hUXuBrq8DoEczPj4TugCeU"></a></span>
+<ul>
+<li><span>用错误案例更新 Router 的 Few-shot 示例</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-DTmOLiOzHuxKLU48OUjtBU"></a></span>
+<ul>
+<li><span>定期分析错误模式，优化 Agent 能力描述</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-8kUtIaBJrX8kiSgHuJ8WCx"></a></span>
+<p><strong>（5）置信度阈值 + Fallback</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-V9n7qAus5JQbFT0fuaTzO0"></a></span>
+<ul>
+<li><span>设置置信度阈值（如 0.7）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-tuh3FKTmRVlGea1qXN2E2S"></a></span>
+<ul>
+<li><span>低于阈值时：向用户确认意图 / 走通用 Agent / 多 Agent 并行处理后择优</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-7PwAMGQ3Sr0oeYSLPSaQUc"></a></span>
+<p><strong>（6）Ensemble 方法</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-wFZSBMGhVn2giLZH4clREJ"></a></span>
+<ul>
+<li><span>用多个模型/方法分别做意图识别</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-EKubILbGgz04ZlEhW5R0PH"></a></span>
+<ul>
+<li><span>投票或加权融合最终结果</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-wWGGRKwHnMBNHK9U8sIkTi"></a></span>
+<ul>
+<li><span>如：规则引擎 + 轻量分类器 + LLM Router 三票择优</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-c3Rln38zqZl5yFqzGVhFgq"></a></span>
+<p><strong>量化指标</strong><span>：意图识别准确率、Top-3 召回率、平均路由延迟、用户纠正率。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-014-005-uvv87rEGgmRxcwGKPN0Urg"></a></span>
+<h2 id="section-3"><span>了解目前主流的 MultiAgent 框架吗？如果将你的心理咨询 Agent 拆分，你认为状态同步的难点在哪？</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-GKL6SP7sEPaCLQXXKzQ6c3"></a></span>
+<p><strong>主流 Multi-Agent 框架</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-DUir2HDHFxhlRMeNUDbrVp"></a></span>
+<p><strong>心理咨询 Agent 拆分示例</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-8FcOpX2ohYrelbkmMclQNw"></a></span>
+<pre><code>├── 接待 Agent：初始评估、情绪识别、风险筛查
+├── 倾听 Agent：共情回应、情感支持、非指导性对话
+├── CBT Agent：认知行为疗法技术引导
+├── 危机干预 Agent：自杀/自伤风险应对
+└── 总结 Agent：会话总结、建议生成、后续计划
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ETQDSAapZCA0YGeXw7IYAo"></a></span>
+<p><strong>状态同步的核心难点</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-6jCoNtXPEw8FDdDbh6I9jU"></a></span>
+<p><strong>（1）情绪状态的连续性</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-zl9qlwvKVVypzrEi0VNkX8"></a></span>
+<ul>
+<li><span>用户的情绪状态是一个连续变化的过程</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-yFjCEXHNADUKwZ9zpUg5WV"></a></span>
+<ul>
+<li><span>从"接待 Agent"切换到"倾听 Agent"时，情绪状态必须无缝传递</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-RaOeJQIM4jqdhJ5bJfW2jL"></a></span>
+<ul>
+<li><span>如果丢失了"用户在前一段提到了离世的亲人导致情绪波动"这个状态，后续 Agent 的回应会显得突兀</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-LC0RSf131xVFe78ZJ5kXLH"></a></span>
+<p><strong>（2）信任关系的建立不可分割</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-T6VbcLtbN1oN7fhRfL4OyD"></a></span>
+<ul>
+<li><span>心理咨询中的信任关系（therapeutic alliance）是渐进建立的</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-V6B3bGpx57bKMkLEV6IVlt"></a></span>
+<ul>
+<li><span>切换 Agent 可能让用户感受到风格变化，破坏信任感</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-I28aDbWb6swjjJLOpSvaXY"></a></span>
+<ul>
+<li><span>解决：统一人格/语气配置，所有 Agent 共享同一个"人格层"</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-wXyy540sLuLXQtEX7kXVSJ"></a></span>
+<p><strong>（3）敏感信息的安全传递</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-iVFuZDhRIdWYBNqDDCq0a6"></a></span>
+<ul>
+<li><span>用户可能透露创伤经历、自杀想法等高度敏感信息</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-4OEyFoIb12uO6Tj6mYdzhH"></a></span>
+<ul>
+<li><span>Agent 间传递这些信息需要严格的安全控制</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-SYAbjJUJ2GJqJwqbjo6E1I"></a></span>
+<ul>
+<li><span>不能将原始敏感内容写入日志或外部存储</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-q95xs4rtsOOMM9qW2NaXry"></a></span>
+<p><strong>（4）实时性要求</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-K1ctaMVNj4xKomk9xPnBFg"></a></span>
+<ul>
+<li><span>危机信号（如用户提到自杀）必须被立即识别并切换到危机干预 Agent</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ZeNVy6dlNcxwwIu9GPAmcm"></a></span>
+<ul>
+<li><span>状态同步的延迟必须极低（毫秒级）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-R9WXIcJxTcDo4mwZnrICuy"></a></span>
+<p><strong>解决方案</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-tr86ASmzLKdjMvAinmUAJG"></a></span>
+<ul>
+<li><span>使用共享的 State Graph（如 LangGraph 的 State），所有 Agent 读写同一个状态</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-AAQRC8yliS7MEKcjmZpUc4"></a></span>
+<ul>
+<li><span>状态中包含：</span><span>emotion_state</span><span>、</span><span>risk_level</span><span>、</span><span>disclosed_topics</span><span>、</span><span>therapeutic_goals</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-aRBFHnFw3wCEkZBz8gFTxX"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>共享状态需按运行模型定义 reducer、并发写入和持久化规则；跨进程或外部写操作还需要原子更新、版本或幂等机制。</p><details><summary>查看解释与参考资料</summary><p>共享 LangGraph State 不自动为任意跨进程、并行或外部动作提供全局事务一致性。</p></details></aside><span>状态更新是原子操作，保证一致性</span></li>
+</ul>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-014-005-YPAg0JFoWd7kWydvc8VzDn"></a></span>
+<h2 id="section-4"><span>多 Agent 怎么实现，之间如何完成通信？怎么协作？</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-gkYSdqEzFQGHOiu4CuxMQl"></a></span>
+<p><strong>实现方式</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-MYlkA5CCRlbou403X0vqob"></a></span>
+<p><strong>（1）共享状态图（Shared State Graph）— 推荐</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-0f0rHijeBfwQzIUhLIXZcm"></a></span>
+<pre><code># LangGraph 实现
+from langgraph.graph import StateGraph
+
+class TeamState(TypedDict):
+    task: str
+    plan: list
+    research_results: str
+    draft: str
+    review: str
+    final_output: str
+
+graph = StateGraph(TeamState)
+graph.add_node("planner", planner_agent)
+graph.add_node("researcher", researcher_agent)
+graph.add_node("writer", writer_agent)
+graph.add_node("reviewer", reviewer_agent)
+
+graph.add_edge("planner", "researcher")
+graph.add_edge("researcher", "writer")
+graph.add_edge("writer", "reviewer")
+graph.add_conditional_edges("reviewer",
+ lambda state: "writer" if state["review"] == "needs_revision" else END)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-1XrQW54yW3T6utTpywc9hN"></a></span>
+<p><strong>（2）消息传递（Message Passing）</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ShPGnLDKtLa9xCxqt1K77f"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>from dataclasses import dataclass
+
+@dataclass
+class AgentMessage:
+    sender: str
+    receiver: str
+    content: str
+    metadata: dict</p><details><summary>查看解释与参考资料</summary><p>单纯类型注解不会生成接收这些关键字参数的构造函数，后面的实例化会失败。</p></details></aside><aside class="lesson-clarification" id="lesson-clarification-8" data-source-runtime-check="8"><p><strong>离线核验：</strong>离线核验未通过（TypeError），没有取得结果通过证据。原片段未改写。</p><details class="lesson-runtime-correction" data-source-corrected-code="true"><summary>查看修正版与验证结果</summary><p>Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1：修正版通过3项断言。原类只有注解，没有接收关键字参数的构造函数。修正版用dataclass生成构造函数，仍需纯内存event_bus记录桩；未连接真实消息队列。</p><pre><code class="language-python">from dataclasses import dataclass
+
+# Agent 之间通过消息队列通信
+@dataclass
+class AgentMessage:
+    sender: str
+    receiver: str
+    content: str
+    metadata: dict
+
+# 使用事件总线
+event_bus.publish(AgentMessage(
+    sender="researcher",
+    receiver="writer",
+    content="调研完成，以下是关键发现...",
+    metadata={"task_id": "123"}
+))</code></pre><p>本次核验输出：</p><pre><code>发布1条消息，sender=researcher，receiver=writer，metadata={task_id:123}。</code></pre></details></aside><pre><code># Agent 之间通过消息队列通信
+class AgentMessage:
+    sender: str
+    receiver: str
+    content: str
+    metadata: dict
+
+# 使用事件总线
+event_bus.publish(AgentMessage(
+    sender="researcher",
+    receiver="writer",
+    content="调研完成，以下是关键发现...",
+    metadata={"task_id": "123"}
+))
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-4m1Y4cPbstrFkGabgJ373j"></a></span>
+<p><strong>（3）黑板模式（Blackboard Pattern）</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-SZVwjrPLsZt0olH2NGkTsb"></a></span>
+<ul>
+<li><span>共享的"黑板"数据结构，所有 Agent 可读可写</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-JeaZqpKGZqO4d9Ypan7CN2"></a></span>
+<ul>
+<li><span>适合需要多个 Agent 对同一问题贡献信息的场景</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ChfTDH9NRUCt9tnEK1yoNU"></a></span>
+<p><strong>协作模式</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-VOjWXueW7czfJfowO3cjSf"></a></span>
+<ul>
+<li><strong>串行管道</strong><span>：Agent A → Agent B → Agent C，适合流水线式任务</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-aOLEroOVsUx58y5MQZ8buQ"></a></span>
+<ul>
+<li><strong>并行执行</strong><span>：多个 Agent 同时处理不同子任务，结果汇总</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-0eeOwHSSaUkT98HIhEHUFf"></a></span>
+<ul>
+<li><strong>层级调度</strong><span>：Orchestrator Agent 负责分配和协调</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-qnjn8h7LZAgWDeyd6Uawet"></a></span>
+<ul>
+<li><strong>辩论/评审</strong><span>：多个 Agent 对同一问题给出不同方案，由评审 Agent 择优</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-gnsGQkiGVhxuNi1X9tEF0a"></a></span>
+<ul>
+<li><strong>投票共识</strong><span>：多个 Agent 投票决定最终方案</span></li>
+</ul>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-014-005-2e1i2OLiLkScmswnPNoBZz"></a></span>
+<h2 id="section-5"><span>多 Agent 执行策略的智能选择和切换机制设计</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ySetUfpISmFAFCNbucmeO3"></a></span>
+<p><strong>核心思路</strong><span>：根据任务特征动态选择最优的执行策略。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-KPaVH9h2n12D5OHJzbXK1a"></a></span>
+<pre><code>class StrategySelector:
+ def select_strategy(self, task):
+        complexity = self.assess_complexity(task)
+        time_sensitivity = self.assess_urgency(task)
+        subtask_dependency = self.analyze_dependencies(task)
+
+ if complexity == "low" and len(task.subtasks) &#x3C;= 2:
+ return SingleAgentStrategy() # 简单任务单 Agent 处理
+
+ elif subtask_dependency == "independent":
+ return ParallelStrategy() # 子任务独立→并行执行
+
+ elif subtask_dependency == "sequential":
+ return PipelineStrategy() # 子任务有顺序→流水线
+
+ elif complexity == "high" and time_sensitivity == "low":
+ return DebateStrategy() # 复杂+不紧急→多Agent辩论
+
+ else:
+ return HierarchicalStrategy() # 默认层级调度
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-SbRZLzQU9SCEn3PvhidSUh"></a></span>
+<p><strong>切换机制</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ar7WbYKD8sSHvRZQLYKMuq"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-7" data-course-correction="7"><p><strong>更正：</strong>策略切换前核对依赖、已完成状态和副作用；只有独立子任务且剩余预算允许时才并行，必要时澄清或人工介入。</p><details><summary>查看解释与参考资料</summary><p>超时不能证明任务可并行，也不能忽略已产生的副作用和剩余预算。</p></details></aside><span>运行中检测到某个策略效果不佳（如单 Agent 处理超时），自动切换到多 Agent 并行</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-qETPR8sYfffICznEel8HL9"></a></span>
+<ul>
+<li><span>错误率超过阈值时，从自动模式切换到 Human-in-the-Loop 模式</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ZDIWjjgE4jszyya2ioldkN"></a></span>
+<ul>
+<li><span>基于历史任务数据训练策略选择模型，持续优化</span></li>
+</ul>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-014-005-RQ6imOPYVtaar6QgCMvG39"></a></span>
+<h2 id="section-6"><span>对 Manus 技术特点的理解及其多智能体方案的判断依据</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-afdGejYeeyjngJZZOjS4th"></a></span>
+<p><strong>Manus 技术特点</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-CZlK7ZHp7XJK7HvKJNohJ6"></a></span>
+<p><span>Manus 是 2025 年 3 月由中国公司 Butterfly Effect（Monica）发布的首个通用自主 Agent 平台，后被 Meta 收购。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-0wFfgOQpXHRuPVyruxlJuV"></a></span>
+<p><strong>核心技术架构</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-TnBVy3c3TRR0OtRKlKkZYH"></a></span>
+<ol>
+<li><strong>三层 Agent 架构</strong><span>：Planner（规划）+ Executor（执行）+ Verifier（验证）</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-014-005-AqH2yxKtSsvu5vqiTXsNCo"></a></span>
+<ol start="2">
+<li><strong>多模型混合</strong><span>：集成 Claude、Qwen 微调版本等多个 LLM，根据任务类型选择最优模型</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-014-005-e36IIalC7snFSCeoiHMIow"></a></span>
+<ol start="3">
+<li><strong>CodeAct 范式</strong><span>：Agent 的"行动"是生成并执行 Python 代码，而非固定格式的 tool_call。灵活性极高，可以在一段代码中组合多个工具。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-014-005-C3Hmg9aocAgN14kC1Eguzo"></a></span>
+<ol start="4">
+<li><strong>云端沙箱执行</strong><span>：每个任务在独立的云端虚拟机中执行，异步处理，用户可以离线等待</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-014-005-K5ehngw7nSqB5VmmEDXdJg"></a></span>
+<ol start="5">
+<li><strong>Wide Research</strong><span>：多个通用 Agent 实例并行工作，不是角色分工模式，而是"同质化并行"</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-014-005-PWv0viXxjvWXqgQ8yPErjb"></a></span>
+<p><strong>多智能体方案的判断依据</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-gmMeAmF5jwO8YfUXQyjT0t"></a></span>
+<ul>
+<li><span>任务本身涉及多个独立子领域（如旅行规划 = 机票+酒店+行程+预算）→ 需要多 Agent</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-jfSGwEjMf5BvNbDhLoao4V"></a></span>
+<ul>
+<li><aside class="lesson-clarification" id="lesson-clarification-6" data-course-correction="6"><p><strong>更正：</strong>规划、执行和验证可以由单 Agent 配合确定性工具完成；只有独立上下文、并行收益或权限隔离等需求值得增加时，再拆分角色。</p><details><summary>查看解释与参考资料</summary><p>角色或处理阶段不等于必须三个独立 Agent，单个系统也可顺序完成并接外部校验。</p></details></aside><span>任务需要规划-执行-验证的完整流程 → 需要多 Agent（至少 3 个角色）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-Zjh9e3gdqcuteCGNh0FsEq"></a></span>
+<ul>
+<li><span>单 Agent 的上下文窗口不足以承载所有信息 → 拆分 Agent 各持部分上下文</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-IaKVJsgBCF7mqS22JFf3PT"></a></span>
+<ul>
+<li><span>需要提高可靠性（验证 Agent 检查执行 Agent 的输出）→ 多 Agent 互检</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ii5ZXOhmm8GeMftgk4wsSn"></a></span>
+<p><strong>Manus 的局限</strong><span>（面试中可以提到以示客观）：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-GJJLBj8SoQHLp3kYPkkx2L"></a></span>
+<ul>
+<li><span>幻觉问题仍然存在</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-gkzHFQgtYDiYopFWCPezhF"></a></span>
+<ul>
+<li><span>复杂任务可能运行数小时</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-jC10fmd2pjEvYzXMWHrYtG"></a></span>
+<ul>
+<li><span>成本较高（密集调用多个大模型 API）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-H6YuNLszbqj4E6NUuzkfac"></a></span>
+<ul>
+<li><span>实际评测中有些任务（如实时预订）仍然失败率较高</span></li>
+</ul>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-014-005-LPwakQO45RZpWJQc1BuBss"></a></span>
+<h2 id="section-7"><span>语义路由怎么实现，怎么评估语义路由的效果？</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-gb2WhfeUslPrzpPDADzD8Q"></a></span>
+<p><strong>语义路由实现</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-2eYsGsg5uawHUA50HHnBcE"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>vectors = embed_model.encode(texts)
+route["embedding"] = vectors.mean(axis=0)
+# 再按所用相似度实现确认形状及是否需要归一化。</p><details><summary>查看解释与参考资料</summary><p>常见 encode(list[str]) 返回多行向量，代码没有执行注释声称的均值。</p></details></aside><pre><code>class SemanticRouter:
+ def __init__(self, routes):
+ """
+        routes: [{"name": "billing", "descriptions": ["账单", "费用", "收费", "付款"],
+                  "handler": billing_agent}, ...]
+        """
+        self.routes = routes
+ # 为每个路由生成嵌入向量
+ for route in self.routes:
+            texts = [route["name"]] + route["descriptions"]
+            route["embedding"] = embed_model.encode(texts) # 多文本取均值
+
+ def route(self, query):
+        query_embedding = embed_model.encode(query)
+        scores = []
+ for route in self.routes:
+            score = cosine_similarity(query_embedding, route["embedding"])
+            scores.append((route["name"], score, route["handler"]))
+
+        scores.sort(key=lambda x: x[1], reverse=True)
+        best_match = scores[0]
+
+ if best_match[1] &#x3C; 0.6: # 低置信度阈值
+ return self.fallback_handler
+ return best_match[2]
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-014-005-8F5x8Z14TRHVG15v5loeKU"></a></span>
+<p><strong>评估方法</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-MnlA0YVcsLSELHmCRzUus9"></a></span>
+<ol>
+<li><strong>离线评估</strong><span>：</span></li>
+</ol>
+<div><div id="src-tencent-014-005-5uegwGwDMQzZCD1qWs5Ha6"><span>a.</span><div><span>构建标注数据集：{query, expected_route} × N 条</span></div></div><div id="src-tencent-014-005-d4UEbD57MgECydHlpBcv4q"><span>b.</span><div><span>指标：准确率、Top-3 召回率、混淆矩阵</span></div></div><div id="src-tencent-014-005-EeVOORTQcqUBKImiSFQn5s"><span>c.</span><div><span>重点关注相似意图的区分度（如"退款"应路由到"billing"而非"support"）</span></div></div></div>
+<span class="source-anchor-container"><a id="src-tencent-014-005-WrmNBqONsfcTSyG3wJfWjy"></a></span>
+<ol start="2">
+<li><strong>在线评估</strong><span>：</span></li>
+</ol>
+<div><div id="src-tencent-014-005-zfYsxVi7S9DZPC7wcr0K2a"><span>a.</span><div><span>用户纠正率：用户说"不对"后重新路由的比例</span></div></div><div id="src-tencent-014-005-apZtLrI3nilsUKgQsvkWED"><span>b.</span><div><span>路由后的任务完成率：正确路由 → 任务完成率高</span></div></div><div id="src-tencent-014-005-LOY5izsgcU748REuUKerVv"><span>c.</span><div><span>平均路由延迟</span></div></div></div>
+<span class="source-anchor-container"><a id="src-tencent-014-005-iDitDpLfJylgOUr7RJUuUJ"></a></span>
+<ol start="3">
+<li><strong>A/B 测试</strong><span>：</span></li>
+</ol>
+<div><div id="src-tencent-014-005-VJ4YDQugup0mQgRkwCaARG"><span>a.</span><div><span>对比不同路由策略（语义路由 vs 规则路由 vs LLM 路由）</span></div></div><div id="src-tencent-014-005-JE4s1N3EbVUa3O1weaPxtK"><span>b.</span><div><span>观察端到端任务完成率和用户满意度</span></div></div></div>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-014-005-Mledm30de0Ldl5ng0xcBYB"></a></span>
+<h2 id="section-8"><span>Skill 和 Agent 的关系，为什么不用 Skill 而用子 Agent？</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-014-005-ZlzSJmJjLNGgIE9v0fIb63"></a></span>
+<p><strong>关系</strong><span>：Skill 是 Agent 的能力单元，Agent 可以拥有多个 Skill。Skill 是"技能"，Agent 是"角色"。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-7VGRnXox7VW8yVeIAhy59Z"></a></span>
+<p><strong>为什么某些场景需要子 Agent 而非 Skill？</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-HKV77uFYb8gUtbZjyaIFXM"></a></span>
+<p><strong>选择子 Agent 的判断标准</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-014-005-RR3Yfd0LrocDr9H3dTQHen"></a></span>
+<ul>
+<li><span>子任务需要大量独立上下文（如分析一份长文档）→ 子 Agent</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-RJHRZoD7atceUURNt0FTJN"></a></span>
+<ul>
+<li><span>子任务需要不同的工具集或不同的模型 → 子 Agent</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-m30JFl9xx6vDqWPmoPRvMx"></a></span>
+<ul>
+<li><span>多个子任务可以并行执行 → 子 Agent</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-LekWvNLb2lqDJ8q3PSrqgh"></a></span>
+<ul>
+<li><span>子任务的失败不应影响主流程 → 子 Agent（错误隔离）</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-014-005-9YKQg2KEb21DHh4kmXaIAX"></a></span>
+<ul>
+<li><span>子任务简单、不需要独立上下文 → Skill 即可</span></li>
+</ul>
+<hr></div><details class="notice" data-pagefind-ignore><summary>动手试一次 · 2 个配套例子</summary><p>这些完整教学代码已核对固定输入与结果，帮助理解本课主题；原文片段原有的上下文缺失或版本问题仍然存在。</p><ul><li><a class="text-link" href="/momomian/runnable-examples/?case=multi-agent">两个执行者交给一个协调者 →</a><p class="small muted">规则角色分别计算，协调者收集结果；没有调用多个模型。</p></li><li><a class="text-link" href="/momomian/runnable-examples/?case=model-messages">工具结果要接回对应的调用 →</a><p class="small muted">实际构造消息类型并核对tool_call_id；没有真实模型请求。</p></li></ul></details></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-reading" class="lesson-resource-group" aria-label="协作者的职责与结果"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">协作者的职责与结果</h3><p class="resource-scope">补充本课主题的原理。具体接口与运行条件仍需结合本课及所用版本核对。</p><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://adp.xindoo.xyz/chapters/Chapter%207_%20Multi-Agent%20Collaboration/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 7 章：多智能体协作 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 进阶</span><p>比较角色分工、协作消息与汇总结果，留意重复委派。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="tencent-014-005" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：意图路由、低置信度与反馈改进。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-tencent-014-005-1","version":1,"type":"single","stage":"lesson","concept":"tencent-014-005","prompt":"按本课LLM Router代码，confidence=0.65时应走哪里？","options":[{"id":"option-1","text":"fallback_agent，因为低于示例阈值0.7","reason":"代码先比较置信度，小于0.7便返回兜底，阈值是示例配置而非通用定律。"},{"id":"option-2","text":"仍强制调用模型评分最高的专业Agent","reason":"这忽略了示例中的低置信度保护分支。"},{"id":"option-3","text":"对原输入重复调用直到分数超过0.7","reason":"代码没有这样的无限采样循环，也无法保证重采样分数就可靠。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"fallback_agent，因为低于示例阈值0.7","explanation":"代码先比较置信度，小于0.7便返回兜底，阈值是示例配置而非通用定律。这忽略了示例中的低置信度保护分支。代码没有这样的无限采样循环，也无法保证重采样分数就可靠。","analysisSteps":["代码先比较置信度，小于0.7便返回兜底，阈值是示例配置而非通用定律。","这忽略了示例中的低置信度保护分支。","代码没有这样的无限采样循环，也无法保证重采样分数就可靠。"],"workedExample":"若分类不确定，可以澄清需求；模型自报置信度仍需真实标注样本校验。","evidence":{"quote":"routing[\"confidence\"] \u003c 0.7","href":"/lessons/tencent-014-005/#section-1"},"misconception":"这忽略了示例中的低置信度保护分支。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-014-005/#section-1"}]},{"id":"lx-tencent-014-005-2","version":1,"type":"single","stage":"lesson","concept":"tencent-014-005","prompt":"本课嵌入路由为什么先为Agent能力描述生成向量？","options":[{"id":"option-1","text":"运行时把用户需求与能力描述作相似度比较","reason":"预先编码能力文本，运行时比较用户向量与各能力向量来选择候选。"},{"id":"option-2","text":"把能力向量作为工具执行结果直接回答用户","reason":"向量用于路由，不是查询或业务动作的实际回执。"},{"id":"option-3","text":"只比较Agent名称字符串长度以推断任务难度","reason":"名称长度与任务语义能力无关，不能替代描述的语义表示。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"运行时把用户需求与能力描述作相似度比较","explanation":"预先编码能力文本，运行时比较用户向量与各能力向量来选择候选。向量用于路由，不是查询或业务动作的实际回执。名称长度与任务语义能力无关，不能替代描述的语义表示。","analysisSteps":["预先编码能力文本，运行时比较用户向量与各能力向量来选择候选。","向量用于路由，不是查询或业务动作的实际回执。","名称长度与任务语义能力无关，不能替代描述的语义表示。"],"workedExample":"“修复Python报错”与代码能力描述更接近；仍需处理跨领域和低相似度请求。","evidence":{"quote":"为每个 Agent 的能力描述生成嵌入","href":"/lessons/tencent-014-005/#section-1"},"misconception":"向量用于路由，不是查询或业务动作的实际回执。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-014-005/#section-1"}]},{"id":"lx-tencent-014-005-3","version":1,"type":"single","stage":"lesson","concept":"tencent-014-005","prompt":"本课把用户纠正路由的反馈用于什么？","options":[{"id":"option-1","text":"记录错误样例并调整能力边界、示例和路由评测","reason":"反馈能揭示易混淆类别，改动后应在独立样本验证是否改善而未扩大其他误路由。"},{"id":"option-2","text":"直接把该用户下一次全部任务固定给同一Agent","reason":"一次纠正不代表以后所有意图相同，固定路由会引入新的错误。"},{"id":"option-3","text":"只增加专业Agent数量，不再分析误分类原因","reason":"更多类别可能更难区分，需要先知道错误来自描述、上下文还是类别设计。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"记录错误样例并调整能力边界、示例和路由评测","explanation":"反馈能揭示易混淆类别，改动后应在独立样本验证是否改善而未扩大其他误路由。一次纠正不代表以后所有意图相同，固定路由会引入新的错误。更多类别可能更难区分，需要先知道错误来自描述、上下文还是类别设计。","analysisSteps":["反馈能揭示易混淆类别，改动后应在独立样本验证是否改善而未扩大其他误路由。","一次纠正不代表以后所有意图相同，固定路由会引入新的错误。","更多类别可能更难区分，需要先知道错误来自描述、上下文还是类别设计。"],"workedExample":"“分析代码仓库”可能偏代码或数据；补充边界样例并检查两类召回，而不是仅改名字。","evidence":{"quote":"记录错误案例","href":"/lessons/tencent-014-005/#section-2"},"misconception":"一次纠正不代表以后所有意图相同，固定路由会引入新的错误。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-014-005/#section-2"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-tencent-014-005-1" disabled><legend><span class="quiet-tag">单选</span> 1. 按本课LLM Router代码，confidence=0.65时应走哪里？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-1" value="option-2"><span>仍强制调用模型评分最高的专业Agent</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-1" value="option-3"><span>对原输入重复调用直到分数超过0.7</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-014-005-1" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-1" value="option-1"><span>fallback_agent，因为低于示例阈值0.7</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-014-005-2" disabled><legend><span class="quiet-tag">单选</span> 2. 本课嵌入路由为什么先为Agent能力描述生成向量？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-2" value="option-3"><span>只比较Agent名称字符串长度以推断任务难度</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-2" value="option-2"><span>把能力向量作为工具执行结果直接回答用户</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-2" value="option-1"><span>运行时把用户需求与能力描述作相似度比较</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-014-005-2" value="unsure"><span>暂时不会，提交后看解析</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-014-005-3" disabled><legend><span class="quiet-tag">单选</span> 3. 本课把用户纠正路由的反馈用于什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-014-005-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-3" value="option-1"><span>记录错误样例并调整能力边界、示例和路由评测</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-3" value="option-2"><span>直接把该用户下一次全部任务固定给同一Agent</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-014-005-3" value="option-3"><span>只增加专业Agent数量，不再分析误分类原因</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=tencent-014-005">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="tencent-014-005" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构根据本课原文自动整理，术语通用释义与迁移问题为本站补充。它不代表逐课人工审定或原文代码已运行。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><h3>这次阅读的目标</h3><ol><li>在不确定路由时回退，并用标注样本评估阈值。</li><li>区分共享状态、消息传递与子任务并行的成本和边界。</li><li>让路由错误进入独立评测，而非无限增加 Agent。</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-H28aiEYqkhYRasbxzXQViW">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-zTnUJpwmOF3smId8oScr19">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-oXwt2HuBG1lU87x1EysjCb">回看本课上下文</a></span></dd></div><div><dt>上下文窗口</dt><dd>单次模型处理所能容纳的信息范围。放进窗口的信息与存到外部数据库的信息不同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-Zjh9e3gdqcuteCGNh0FsEq">回看本课上下文</a></span></dd></div><div><dt>Embedding</dt><dd>将文本等对象表示为数值向量的方法，用于比较或检索；向量相近不自动证明事实正确。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-jrJGmQHvy7kyxrVnHufc1P">回看本课上下文</a></span></dd></div><div><dt>召回率</dt><dd>相关对象中被找回的比例。需要先定义这次任务的相关集合和标注方式。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-c3Rln38zqZl5yFqzGVhFgq">回看本课上下文</a></span></dd></div><div><dt>超时</dt><dd>在设定时间内没有得到完成结果；它不单独证明远端操作没有执行。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-ar7WbYKD8sSHvRZQLYKMuq">回看本课上下文</a></span></dd></div><div><dt>LangGraph</dt><dd>使用图与持久状态组织工作流的框架。图的结构不自动保证任务正确、终止或外部操作安全。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-tr86ASmzLKdjMvAinmUAJG">回看本课上下文</a></span></dd></div><div><dt>JSON</dt><dd>以对象、数组、字符串、数值等组成的数据交换格式。合法格式、符合约定结构和事实正确应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-oXwt2HuBG1lU87x1EysjCb">回看本课上下文</a></span></dd></div><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-jC10fmd2pjEvYzXMWHrYtG">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-oXwt2HuBG1lU87x1EysjCb">回看本课上下文</a></span></dd></div><div><dt>异步</dt><dd>允许程序在等待操作期间调度其他工作的一种执行方式；并发不自动等于更快或没有竞争条件。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-C3Hmg9aocAgN14kC1Eguzo">回看本课上下文</a></span></dd></div><div><dt>微调</dt><dd>在已有模型基础上继续训练，使其适应特定任务或数据。训练收益应通过独立评测判断。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-AqH2yxKtSsvu5vqiTXsNCo">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-H6YuNLszbqj4E6NUuzkfac">回看本课上下文</a></span></dd></div><div><dt>日志与追踪</dt><dd>记录一次处理的输入、状态、工具结果或耗时，帮助定位错误；记录时应控制敏感信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-SYAbjJUJ2GJqJwqbjo6E1I">回看本课上下文</a></span></dd></div><div><dt>规划</dt><dd>把目标转成步骤或下一步选择的过程。计划需要根据实际结果调整并限制执行资源。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-TnBVy3c3TRR0OtRKlKkZYH">回看本课上下文</a></span></dd></div><div><dt>状态图</dt><dd>用节点、边和状态表达流程。需分别检查状态更新、路径条件、恢复和终止。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-MYlkA5CCRlbou403X0vqob">回看本课上下文</a></span></dd></div><div><dt>精排与召回</dt><dd>先取回候选再筛选或排序的过程。需要区分候选覆盖与最终结果的适用性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-014-005-oXwt2HuBG1lU87x1EysjCb">回看本课上下文</a></span></dd></div><div><dt>实际项目推荐</dt><dd>实际项目推荐：规则兜底 + LLM Router 组合。先用规则匹配高确定性意图，匹配不上再走 LLM Router。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-014-005-dyehZPwPLDjteORLMklDvO">回看本课上下文</a></span></dd></div><div><dt>量化指标</dt><dd>量化指标：意图识别准确率、Top-3 召回率、平均路由延迟、用户纠正率。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-014-005-c3Rln38zqZl5yFqzGVhFgq">回看本课上下文</a></span></dd></div><div><dt>串行管道</dt><dd>串行管道：Agent A → Agent B → Agent C，适合流水线式任务<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-014-005-VOjWXueW7czfJfowO3cjSf">回看本课上下文</a></span></dd></div><div><dt>并行执行</dt><dd>并行执行：多个 Agent 同时处理不同子任务，结果汇总<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-014-005-aOLEroOVsUx58y5MQZ8buQ">回看本课上下文</a></span></dd></div><div><dt>层级调度</dt><dd>层级调度：Orchestrator Agent 负责分配和协调<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-014-005-0eeOwHSSaUkT98HIhEHUFf">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>原文中的代码或配置：聊一下 Multi-Agent，你是怎么做意图识别的？</h3><p class="small muted">原文节选，可能截断；代码未因此获得运行验证。打开来源查看完整上下文。 <a href="#src-tencent-014-005-oXwt2HuBG1lU87x1EysjCb">打开完整来源段落</a></p><pre class="lesson-guide-example"><code>ROUTER_PROMPT = &quot;&quot;&quot;你是一个意图路由器。根据用户输入，判断应该由哪个 Agent 处理。
+
+可用 Agent：
+1. code_agent: 处理代码编写、调试、代码审查相关任务
+2. data_agent: 处理数据分析、可视化、报表生成相关任务
+3. research_agent: 处理信息检索、调研、资料整理相关任务
+4. writing_agent: 处理文案撰写、文档编辑、翻译相关任务
+
+输出 JSON: {&quot;agent&quot;: &quot;agent_name&quot;, &quot;confidence&quot;: 0.0-1.0, &quot;reasoning&quot;: &quot;...&quot;}
+&quot;&quot;&quot;
+
+def route(user_input):
+    result = llm.call(ROUTER_PROMPT + f&quot;\n\n用户输入：{user_input}&quot;)
+    routing = json.loads(result)
+ if routing[&quot;confidence&quot;] &lt; 0.7:
+ return fallback_agent  # 低置信度走兜底
+ return get_agent(routing[&quot;agent&quot;])</code></pre><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-014-005-explain"><h3>1. Multi-Agent · 解释</h3><p>学习「Multi-Agent」后，合上正文说明「聊一下 Multi-Agent，你是怎么做意图识别的？」在解决什么问题。围绕原文“Multi-Agent 系统通过多个专业化 Agent 的协作来解决复杂问题。核心挑战之一就是意图识别——准确理解用户意图并路由到…”复述一条具体关系，并区分已知与待确认的信息。</p><label class="lesson-task-field" for="task-lesson-card-tencent-014-005-explain">先写自己的回答<textarea id="task-lesson-card-tencent-014-005-explain" data-lesson-task-answer="lesson-card-tencent-014-005-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-014-005-explain">给一点提示</button><p class="lesson-task-hint" hidden>先回忆这一段：Multi-Agent 系统通过多个专业化 Agent 的协作来解决复杂问题。核心挑战之一就是意图识别——准确理解用户意图并路由到正确的 A…</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：Multi-Agent 系统通过多个专业化 Agent 的协作来解决复杂问题。核心挑战之一就是意图识别——准确理解用户意图并路由到正确的 Agent。
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。</p><ul><li>指出「聊一下 Multi-Agent，你是怎么做意图识别的？」讨论的对象或任务</li><li>复述原文中的一条具体关系：Multi-Agent 系统通过多个专业化 Agent 的协作来解决复杂问题。核心挑战之一就是意图识别——准确理解用户意图并路由到正确的 Agent。</li><li>区分原文说法与自己尚未验证的推断</li></ul><a href="#src-tencent-014-005-QDncIXyTfiKXA6JQYNNfLq">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-014-005-explain">主要错因<select id="task-error-lesson-card-tencent-014-005-explain" data-lesson-task-error="lesson-card-tencent-014-005-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-014-005#lesson-card-tencent-014-005-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-014-005-apply"><h3>2. Multi-Agent · 实现</h3><p>在「Multi-Agent」的「聊一下 Multi-Agent，你是怎么做意图识别的？」代码中，route 如何接收输入或读取状态？指出一处会改变结果的调用，并说明你会怎样验证它。</p><label class="lesson-task-field" for="task-lesson-card-tencent-014-005-apply">先写自己的回答<textarea id="task-lesson-card-tencent-014-005-apply" data-lesson-task-answer="lesson-card-tencent-014-005-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-014-005-apply">给一点提示</button><p class="lesson-task-hint" hidden>先找 route 的调用位置、输入和紧随其后的结果处理。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">这是原文代码或配置阅读题，不代表代码已在本站运行。
+ROUTER_PROMPT = &quot;&quot;&quot;你是一个意图路由器。根据用户输入，判断应该由哪个 Agent 处理。
+
+可用 Agent：
+1. code_agent: 处理代码编写、调试、代码审查相关任务
+2. data_agent: 处理数据分析、可视化、报表生成相关任务
+3. research_agent: 处理信息检索、调研、资料整理相关任务
+4. writing_agent: 处理文案撰写、文档编辑、翻译相关任务
+
+输出 JSON: {&quot;agent&quot;: &quot;agent_name&quot;, &quot;confidence&quot;: 0.0-1.0, &quot;reasoning&quot;: &quot;...&quot;}
+&quot;&quot;&quot;
+
+def route(user_input):
+    result = llm.call(ROUTER_PROMPT + f&quot;\n\n用户输入：{user_input}&quot;)
+    routing = json.loads(result)
+ if routing[&quot;confidence&quot;] &lt; 0.7:
+ return fallback_agent  # 低置信度走兜底
+ return get_agent(routing[&quot;agent&quot;])
+核对参数、返回/状态与外部副作用；原文没有给出的行为需用测试验证。</p><ul><li>能在来源代码定位 route</li><li>指出实际参数、状态或返回值中的至少一项</li><li>列出一个正常输入和一个失败/边界输入，并标明尚未执行的部分</li></ul><a href="#src-tencent-014-005-oXwt2HuBG1lU87x1EysjCb">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-014-005-apply">主要错因<select id="task-error-lesson-card-tencent-014-005-apply" data-lesson-task-error="lesson-card-tencent-014-005-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-014-005#lesson-card-tencent-014-005-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>原文提到「不能将原始敏感内容写入日志或外部存储」。如果这个条件不满足，会影响「Multi-Agent」的哪一步？设计一个最小失败例子。</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>不能将原始敏感内容写入日志或外部存储</blockquote><ul><li>说明改变了哪个输入或条件</li><li>写出预期结果和验证方法</li><li>未运行时明确标注为待验证，不编造日志或指标</li></ul><a href="#src-tencent-014-005-SYAbjJUJ2GJqJwqbjo6E1I">回到原文依据</a></details><label class="lesson-task-field" for="boundary-tencent-014-005">写下最小失败输入、预期和验证方法<textarea id="boundary-tencent-014-005" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>将「Multi-Agent」迁移到一次要求讲清个人贡献的技术面试：遇到“面试官追问失败案例与实测证据”时，你会怎样调整？以本课“Multi-Agent 系统通过多个专业化 Agent 的协作来解决复杂问题。核心挑战之一就是意图识别——准确理解用户意图并路由到…”为依据，说明哪些信息能沿用，检查结论、取舍、真实贡献和可演示证据。</p><ul><li>指出本课中实际采用的一点：Multi-Agent 系统通过多个专业化 Agent 的协作来解决复杂问题。核心挑战之一就是意图识别——准确理解用户意图并路由到正确的 Agent。</li><li>说明新场景与原例子的差别</li><li>留下一个输入、预期结果和可复现的检查步骤</li></ul><label class="lesson-task-field" for="transfer-tencent-014-005">解释哪些能复用，哪些要重新验证<textarea id="transfer-tencent-014-005" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>不看原文说明「聊一下 Multi-Agent，你是怎么做意图识别的？」的作用与适用范围</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>能指出示例的输入/状态/返回，并区分代码阅读与实际运行</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>完成两次主动回忆并记录一个边界或失败问题</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>写下产物、验证方法和仍未确认的内容</span></label></fieldset><label class="lesson-task-field" for="artifact-tencent-014-005">产物、实际验证与未决问题<textarea id="artifact-tencent-014-005" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=tencent-014-005#choices">做本课对应的选择题 →</a></section><details class="notice lesson-optional" data-pagefind-ignore><summary>相关概念与记忆卡</summary><p>合上正文，解释一个概念、举一个反例，再给自己的回答评级。</p><div class="topic-links"><a href="/momomian/concepts/mcp/">协议与协作 · 记忆卡</a></div></details><details class="related-section lesson-optional" data-pagefind-ignore><summary>查阅相关内容</summary><ul class="related-list"><li><a href="/momomian/lessons/feishu-53f13ae99e/">MCP</a></li><li><a href="/momomian/lessons/feishu-fbd2761d14/">MCP：MCP的传输协议</a></li><li><a href="/momomian/lessons/feishu-604f7e29a6/">MCP：MCP Server Tool设计原则</a></li><li><a href="/momomian/lessons/feishu-6d3a1937c7/">MCP：MCP的新技术&amp;趋势</a></li><li><a href="/momomian/lessons/feishu-de6dcdf8cc/">Multi-Agent 架构</a></li></ul></details><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=tencent-014-005">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/path/"><small>返回课程</small><span>查看教学顺序</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1">聊一下 Multi-Agent，你是怎么做意图识别的？</a><a href="#section-2">怎么提升意图识别的准确率？</a><a href="#section-3">了解目前主流的 MultiAgent 框架吗？如果将你的心理咨询 Agent 拆分，你认为状态同步的难点在哪？</a><a href="#section-4">多 Agent 怎么实现，之间如何完成通信？怎么协作？</a><a href="#section-5">多 Agent 执行策略的智能选择和切换机制设计</a><a href="#section-6">对 Manus 技术特点的理解及其多智能体方案的判断依据</a><a href="#section-7">语义路由怎么实现，怎么评估语义路由的效果？</a><a href="#section-8">Skill 和 Agent 的关系，为什么不用 Skill 而用子 Agent？</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

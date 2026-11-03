@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索） · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="tencent-010-da6b45ec59"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>先看懂有证据的问答流程</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-8f059f0e81/" data-record-id="feishu-8f059f0e81">RAG：RAG全局总览</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-0cd4965f06/" data-record-id="tencent-010-0cd4965f06">RAG从入门到精通：一、概览：Overview（RAG是什么？）</a><a href="/momomian/lessons/tencent-005-013/" data-record-id="tencent-005-013">RAG 与知识检索</a></details></div></details><details><summary>向量、相似度、Embedding与存储选择</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-47ea400dcb/" data-record-id="tencent-005-012-47ea400dcb">向量数据库</a><a href="/momomian/lessons/feishu-b92e147637/" data-record-id="feishu-b92e147637">RAG：嵌入向量</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5a4b641084/" data-record-id="feishu-5a4b641084">RAG：常见的向量数据库</a></details></div></details><details><summary>向量度量、精确基线与近似索引</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae/" data-record-id="tencent-005-012-cc43dc69ae">实例 · 示例</a><a href="/momomian/lessons/tencent-005-012-047e0786f8/" data-record-id="tencent-005-012-047e0786f8">向量数据库：向量索引算法</a></div></details><details><summary>解析、分块、索引与增量更新</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-eb81779983/" data-record-id="tencent-010-eb81779983">RAG从入门到精通：一、概览：Indexing（索引构建：把知识装进&quot;大脑&quot;）</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9cbff4d14e/" data-record-id="feishu-9cbff4d14e">RAG：RAG的重要步骤</a><a href="/momomian/lessons/tencent-010-c20603cd5a/" data-record-id="tencent-010-c20603cd5a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧4：实时更新知识库</a><a href="/momomian/lessons/tencent-010-c20603cd5a-d7d573/" data-record-id="tencent-010-c20603cd5a-d7d573">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧4：实时更新知识库</a></details></div></details><details><summary>Chroma文档、查询、过滤和本地嵌入</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-52f14f/" data-record-id="tencent-005-012-cc43dc69ae-52f14f">向量数据库：向量索引算法 · 示例</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-1e5ee5/" data-record-id="tencent-005-012-cc43dc69ae-1e5ee5">向量数据库：向量索引算法 · 示例（2）</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-a20751/" data-record-id="tencent-005-012-cc43dc69ae-a20751">向量数据库：向量索引算法 · 示例（3）</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-fadb19/" data-record-id="tencent-005-012-cc43dc69ae-fadb19">向量数据库：向量索引算法 · 示例（4）</a></div></details><details><summary>pgvector接入和距离排序</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-793733/" data-record-id="tencent-005-012-cc43dc69ae-793733">向量数据库：向量索引算法 · 示例（5）</a></div></details><details><summary>召回、混合检索、RRF与重排</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-f863748d94/" data-record-id="tencent-010-f863748d94">RAG从入门到精通：一、概览：Retrieval（检索：快速找到相关知识）</a><a href="/momomian/lessons/tencent-010-febc1d8abe/" data-record-id="tencent-010-febc1d8abe">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧1：多路召回策略</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-2115728a6e/" data-record-id="tencent-010-2115728a6e">RAG从入门到精通：二、RAG查询优化策略：RAG-Fusion - 多查询结果融合策略</a><a href="/momomian/lessons/tencent-010-f203ebd20b/" data-record-id="tencent-010-f203ebd20b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：RRF算法详解（Reciprocal Rank Fusion）</a><a href="/momomian/lessons/tencent-010-c7f149de51/" data-record-id="tencent-010-c7f149de51">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Re-ranking重排</a><a href="/momomian/lessons/tencent-010-febc1d8abe-2f4e01/" data-record-id="tencent-010-febc1d8abe-2f4e01">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧1：多路召回策略</a></details></div></details><details><summary>上下文、引用与答案边界</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-8fd3bcfcc0/" data-record-id="tencent-010-8fd3bcfcc0">RAG从入门到精通：一、概览：4.Generation（生成：基于知识产生答案）</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-cb8199459d/" data-record-id="tencent-010-cb8199459d">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🔥 难题2：上下文窗口限制</a></details></div></details><details><summary>实现基础RAG并核对结果</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-007/" data-record-id="tencent-011-007">RAG 与知识检索</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-512fe4609f/" data-record-id="tencent-010-512fe4609f">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🛠️ 完整代码实现</a><a href="/momomian/lessons/tencent-010-eeb178258e/" data-record-id="tencent-010-eeb178258e">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🎯 运行效果示例</a><a href="/momomian/lessons/tencent-010-eeb178258e-74ac6b/" data-record-id="tencent-010-eeb178258e-74ac6b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🎯 运行效果示例</a></details></div></details><details><summary>LangChain检索—格式化—生成最短链</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-010-cc43dc69ae-ba689a/" data-record-id="tencent-013-010-cc43dc69ae-ba689a">LangChain 制作智能体：核心组件详解 · 示例</a></div></details><details><summary>Dify知识库：分块、词面信号与检索评测</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-018-5387de5f7e/" data-record-id="tencent-013-018-5387de5f7e">Dify 入门教程：知识库（RAG）：让 AI 回答你的私有数据</a></div></details><details><summary>先诊断，再选择查询优化</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-9f630938c4/" data-record-id="tencent-010-9f630938c4">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🔥 难题1：检索不准确（最核心的痛点）</a><a href="/momomian/lessons/tencent-010-f46bf0e47b/" data-record-id="tencent-010-f46bf0e47b">RAG从入门到精通：二、RAG查询优化策略：Multi Query - 多查询策略</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-6dabb90a5b/" data-record-id="tencent-010-6dabb90a5b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Retrieval检索优化策略</a><a href="/momomian/lessons/tencent-010-2e46a4d6b5/" data-record-id="tencent-010-2e46a4d6b5">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧2：查询改写</a><a href="/momomian/lessons/tencent-010-2e46a4d6b5-ed5154/" data-record-id="tencent-010-2e46a4d6b5-ed5154">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧2：查询改写</a><a href="/momomian/lessons/tencent-010-f2a65b8cb0/" data-record-id="tencent-010-f2a65b8cb0">RAG从入门到精通：二、RAG查询优化策略：Decomposition - 问题分解策略</a></details></div></details><details><summary>抽象问题、HyDE与查询路由</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-4db1a2ea03/" data-record-id="tencent-010-4db1a2ea03">RAG从入门到精通：二、RAG查询优化策略：Step Back问答回退策略</a><a href="/momomian/lessons/tencent-010-eeaa7a9fda/" data-record-id="tencent-010-eeaa7a9fda">RAG从入门到精通：二、RAG查询优化策略：HyDE（假设性文档嵌入）</a><a href="/momomian/lessons/tencent-010-7f91e97d0b/" data-record-id="tencent-010-7f91e97d0b">RAG从入门到精通：三、路由优化和问题构建策略</a></details></div></details><details open><summary>多表示、RAPTOR与ColBERT</summary><div class="lesson-nav"><details open><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-56cafff398/" data-record-id="tencent-010-56cafff398">RAG从入门到精通：一、传统RAG索引的痛点</a><a href="/momomian/lessons/tencent-010-2279c2d079/" data-record-id="tencent-010-2279c2d079">RAG从入门到精通：二、Multi-representation Indexing（多表示索引）</a><a href="/momomian/lessons/tencent-010-da6b45ec59/" class="current" aria-current="page" data-record-id="tencent-010-da6b45ec59">RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索）</a><a href="/momomian/lessons/tencent-010-425203d49f/" data-record-id="tencent-010-425203d49f">RAG从入门到精通：四、ColBERT（Token级别上下文检索）</a><a href="/momomian/lessons/tencent-010-bed182a5f1/" data-record-id="tencent-010-bed182a5f1">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：TM2C2算法：RRF的进化版</a></details></div></details><details><summary>Agentic、Graph、CRAG与Self-RAG</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-2ba396d889/" data-record-id="feishu-2ba396d889">RAG：RAG进阶</a><a href="/momomian/lessons/tencent-010-a48b31b24a/" data-record-id="tencent-010-a48b31b24a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：CRAG：纠错检索增强生成</a><a href="/momomian/lessons/tencent-010-2e1383ef6a/" data-record-id="tencent-010-2e1383ef6a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Self-RAG：自反思检索增强生成</a></details></div></details><details><summary>Agent按需检索与检索预算</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-015-cc43dc69ae-421c0a/" data-record-id="tencent-005-015-cc43dc69ae-421c0a">Agent 架构：架构二：规划 + 执行（Plan &amp; Execute） · 示例（4）</a></div></details><details><summary>GraphRAG原理、测试数据、配置与索引产物</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-013-241302f4a9/" data-record-id="tencent-013-013-241302f4a9">GraphRAG 入门教程：什么是 GraphRAG</a><a href="/momomian/lessons/tencent-013-013-9080a076a6/" data-record-id="tencent-013-013-9080a076a6">GraphRAG 入门教程：初始化工作区</a><a href="/momomian/lessons/tencent-013-013-85715ff48e/" data-record-id="tencent-013-013-85715ff48e">GraphRAG 入门教程：准备测试文档</a><a href="/momomian/lessons/tencent-013-013-cc43dc69ae/" data-record-id="tencent-013-013-cc43dc69ae">GraphRAG 入门教程：准备测试文档 · 示例</a><a href="/momomian/lessons/tencent-013-013-05db982f3a/" data-record-id="tencent-013-013-05db982f3a">GraphRAG 入门教程：开始索引</a></div></details><details><summary>GraphRAG查询模式、来源核查与抽取Prompt调优</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-013-cc43dc69ae-a77b6c/" data-record-id="tencent-013-013-cc43dc69ae-a77b6c">GraphRAG 入门教程：开始索引 · 示例</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-013-10cc00de17/" data-record-id="tencent-013-013-10cc00de17">GraphRAG 入门教程：Prompt 自动调优</a></details></div></details><details><summary>GraphRAG版本字段、恢复调优及资料索引</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-013-31f13d3717/" data-record-id="tencent-013-013-31f13d3717">GraphRAG 入门教程：完整 settings.yaml 字段说明</a><a href="/momomian/lessons/tencent-013-013-45a6d115fd/" data-record-id="tencent-013-013-45a6d115fd">GraphRAG 入门教程：常见问题</a><a href="/momomian/lessons/tencent-013-013-743a19f0bd/" data-record-id="tencent-013-013-743a19f0bd">GraphRAG 入门教程：延伸阅读</a></details></div></details><details><summary>检索选型、维护和模型迁移</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-005-012-f1f54e5e10/" data-record-id="tencent-005-012-f1f54e5e10">向量数据库：选型建议与最佳实践</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-b6bc07/" data-record-id="tencent-005-012-cc43dc69ae-b6bc07">向量数据库：选型建议与最佳实践 · 示例</a></details></div></details><details><summary>长上下文、检索与Grep怎样选</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-b182165a33/" data-record-id="feishu-b182165a33">RAG：RAG的趋势探讨</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=rag">RAG 与知识检索</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">参考 · 按需查阅</p><h1 data-pagefind-meta="title">RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索）</h1><div class="lesson-meta"><span>约 16 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：多表示、RAPTOR与ColBERT · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="tencent-010-da6b45ec59" data-task-title="RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索）" data-task-href="/lessons/tencent-010-da6b45ec59/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>含旧版 LangChain 导入路径。官方 v1 迁移说明已把传统 chains/retrievers 等移至 langchain-classic，并拆分集成包；本例确切依赖版本未锁定，复现前核对官方迁移说明，勿直接混用新旧代码。 <a href="https://docs.langchain.com/oss/python/migrate/langchain-v1" target="_blank" rel="noopener noreferrer">查看接口文档 ↗</a></p><p>表中性能数值及GPT-3.5‘快3倍、成本低10倍’未提供可复现实验或对应计价时间，尚未验证。</p><p>代码是跨段示意，未安装课程指定依赖执行；除已明确定位的问题外，不声称其余接口在当前版本可直接运行。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">RAG 与知识检索 / 多表示、RAPTOR与ColBERT</p><a class="text-link" href="/momomian/path/?topic=rag&amp;unit=unit-rag-3e77ceaf">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>沿切分、嵌入、聚类、摘要说明树节点的来源</li><li>为单簇和小样本输入补上不丢文档的聚类分配规则</li><li>区分树遍历与跨层检索，并保留节点到原文的关联</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">本课机制与检查方向</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">RAPTOR 的层次化摘要树如何兼顾具体与概括问题？
+结论：叶节点保留细节，上层摘要组织多个片段的主题。
+理由：树状组织同时提供不同粒度信息，具体问题可落到叶子内容，概括问题可利用高层摘要，但摘要仍需与原始证据对应。
+配套示例：给定问会议参与者查具体片段，问发展阶段可利用跨章节摘要。
+
+本课 GMM 软聚类相比单一硬分配，强调哪种特点？
+结论：一个文档可按概率属于多个主题簇。
+理由：软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。
+配套示例：给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。</p><a class="text-link" href="#lesson-source-body">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 9 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>1 个片段在补入固定模拟上下文后通过检查，不代表真实模型或线上集成已接通。</p><p>其中 3 个片段需要补足上下文或修正，可能涉及缩进、占位内容或截断。请结合完整代码核对。</p><a class="text-link" href="/momomian/practice/?lesson=tencent-010-da6b45ec59#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h2 id="section-1"><span>三、RAPTOR（递归抽象处理树状检索）</span></h2>
+<span class="source-anchor-container"><a id="src-tencent-010-pwuuDLtA3hy9HU7mCCJQc1"></a></span>
+<h3 id="section-2"><span>3.1 核心思想与动机</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-010-ucaAj3V4LLiUOvTuhROn5y"></a></span>
+<p><span>RAPTOR是2024年斯坦福大学研究团队提出的革命性索引方法。它解决了一个传统RAG的根本性问题：</span><strong>如何同时回答低层次的具体问题和高层次的抽象问题？</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-010-b8PMXY5njmysIpgSAJPDBL"></a></span>
+<blockquote>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>RAPTOR用层次摘要补充原始片段，旨在改善跨段概括与具体事实检索；实际效果仍需在目标问题集上评估。</p><details><summary>查看解释与参考资料</summary><p>层次摘要能提供不同粒度的候选内容，但摘要、聚类和有限候选检索仍可能遗漏或引入错误，不能承诺完美解决。</p><p><a href="https://arxiv.org/html/2401.18059v1" target="_blank" rel="noopener noreferrer">RAPTOR paper ↗</a></p></details></aside><p><span>💡 </span><strong>举个实际例子</strong><span>
+假设你有一本关于AI发展史的书。用户可能问两类截然不同的问题：</span><strong>低层次问题</strong><span>："1956年达特茅斯会议的参与者有谁？" - 这需要检索到具体的某一页</span><strong>高层次问题</strong><span>："AI发展经历了哪几个重要阶段？" - 这需要综合整本书的内容</span><span>传统的chunk-based检索对第一类问题还行，但对第二类问题就捉襟见肘了。RAPTOR通过构建</span><strong>层次化的摘要树</strong><span>完美解决了这个问题！</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-tencent-010-jyo25xaaM9iEo0emkGpqMO"></a></span>
+<h3 id="section-3"><span>3.2 RAPTOR架构详解</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-010-c1m1ruAAhbM7SDwj70DaCw"></a></span>
+<p><strong>【RAPTOR 递归树状结构完整示意图】</strong></p>
+<div id="src-tencent-010-6mTFPGNxlrXoXo6l1NnR3C"><img alt="原文学习图示（点击放大）" src="/momomian/assets/6fed75c0145f6b27fa18.png" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-tencent-010-MTNWAonLkVyUmGthiWhIDa"></a></span>
+<h3 id="section-4"><span>3.3 RAPTOR核心算法流程</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-010-UNwEZZppRZRjvrE4QM90Vt"></a></span>
+<h4 id="section-5"><span>算法步骤1️⃣：文档切分与向量化</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-010-p8h7WZnHxAf1xggzwGK3ca"></a></span>
+<p><span>首先将文档切分成小块（叶子节点），并为每个块生成embedding向量。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-U0FukGTI6Op5V6BykkxmMH"></a></span>
+<pre><code>#步骤1: 加载和切分文档
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000, # RAPTOR通常用较大的chunk
+    chunk_overlap=100
+)
+
+#切分文档
+leaf_texts = text_splitter.split_documents(documents)
+
+#为每个叶子节点生成embedding
+from langchain.embeddings import OpenAIEmbeddings
+embeddings = OpenAIEmbeddings()
+
+leaf_embeddings = embeddings.embed_documents(
+ [doc.page_content for doc in leaf_texts]
+)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-010-b2ynHM3wvoFkx12wRnOZ7J"></a></span>
+<h4 id="section-6"><span>算法步骤2️⃣：聚类（使用GMM）</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-010-9xWVVnbrSLd21hA3H5YfWe"></a></span>
+<p><span>RAPTOR使用</span><strong>高斯混合模型(GMM)进行聚类，而不是传统的K-means。为什么？因为GMM是软聚类</strong><span>，一个文档可以部分属于多个集群，这更符合实际情况。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-UEsjCN0aII92yPuqxqH6hA"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>先处理空集与小样本，限制有效簇数和降维参数；单簇时直接纳入全部样本，其他情况按阈值多分配，并为未分配样本回退到最大概率簇。聚类后检查每块至少有一个归属。</p><details><summary>查看解释与参考资料</summary><p>len(leaf_texts)//5在不足5块时得到0，GMM组件数无效；只有1簇时，概率为1而判断为probs>1，所有块都不会分配。固定10维UMAP也没有小样本保护。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><pre><code>from sklearn.mixture import GaussianMixture
+import numpy as np
+
+def cluster_embeddings(embeddings, n_clusters):
+ """
+    使用GMM进行软聚类
+    """
+ # 降维（可选，但推荐用于大规模数据）
+ from umap import UMAP
+    reducer = UMAP(n_components=10, random_state=42)
+    reduced_embeddings = reducer.fit_transform(embeddings)
+ # GMM聚类
+    gmm = GaussianMixture(
+        n_components=n_clusters,
+        covariance_type='full',
+        random_state=42
+ )
+    gmm.fit(reduced_embeddings)
+ # 获取每个样本对各集群的概率
+    probabilities = gmm.predict_proba(reduced_embeddings)
+ # 使用全局阈值确定每个样本所属的集群
+    threshold = 1 / n_clusters  # 动态阈值
+    clusters = {}
+ for i, probs in enumerate(probabilities):
+ # 一个文档可以属于多个集群（软聚类的优势）
+ for cluster_id in np.where(probs > threshold)[0]:
+ if cluster_id not in clusters:
+                clusters[cluster_id] = []
+            clusters[cluster_id].append(i)
+ return clusters
+
+#执行第一次聚类
+n_clusters = len(leaf_texts) // 5 # 每5个文档聚为一类
+level1_clusters = cluster_embeddings(leaf_embeddings, n_clusters)
+</code></pre></details>
+<span class="source-anchor-container"><a id="src-tencent-010-Br6cDpdRxbK3U5kQhBupDR"></a></span>
+<blockquote>
+<aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>论文附录B在QuALITY、SBERT和UnifiedQA设置下，将RAPTOR与连续片段摘要树比较，准确率分别为56.6%和55.8%；该实验不构成GMM与K-means的直接对照。</p><details><summary>查看解释与参考资料</summary><p>本次核对论文v1附录B，比较对象是连续片段构成的树，并非K-means；结果为56.6%与55.8%，相差0.8个百分点。不能把它归因为GMM相对K-means提升8%。</p><p><a href="https://arxiv.org/html/2401.18059v1" target="_blank" rel="noopener noreferrer">RAPTOR Appendix B ↗</a></p></details></aside><p><span>💡 </span><strong>为什么用GMM而不是K-means？</strong><strong>软聚类</strong><span>：一个文档可能同时涉及多个主题，GMM允许它属于多个集群</span><strong>概率输出</strong><span>：GMM给出每个样本属于各集群的概率，我们可以设置阈值灵活控制</span><strong>更好的泛化</strong><span>：GMM考虑了数据的协方差结构，对复杂数据分布更友好</span><strong>实验证明</strong><span>：RAPTOR论文中的实验表明，GMM比K-means效果提升约8%</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-tencent-010-DDSIQ9ohkn5ov6ctWP3wEv"></a></span>
+<h4 id="section-7"><span>算法步骤3️⃣：生成集群摘要</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-010-9oislhCUwwiisMFxy9OKo3"></a></span>
+<p><span>对每个集群，使用LLM生成一个综合性的摘要。这是RAPTOR的关键步骤！</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-nVUTZbLjQnJwdfFpUpxGL4"></a></span>
+<pre><code>from langchain.chat_models import ChatOpenAI
+from langchain.prompts import ChatPromptTemplate
+
+llm = ChatOpenAI(model="gpt-4", temperature=0)
+
+summary_prompt = ChatPromptTemplate.from_template(
+ """你是一个专业的文档摘要专家。请仔细阅读以下文档片段，
+    生成一个综合性的摘要，要求：
+    1. 抓住所有文档的共同主题和核心思想
+    2. 保留关键的细节信息（日期、人名、数字等）
+    3. 体现文档之间的逻辑关系
+    4. 语言简洁但信息完整
+    5. 长度约为原文总和的1/4
+    文档内容：
+    {documents}
+    综合摘要："""
+)
+
+def summarize_cluster(cluster_texts):
+ """为一个集群生成摘要"""
+ # 将集群内所有文档拼接
+    combined_text = "\n\n---\n\n".join(cluster_texts)
+ # 生成摘要
+    summary = llm.invoke(
+        summary_prompt.format(documents=combined_text)
+ )
+ return summary.content
+
+#为每个集群生成摘要
+level1_summaries = []
+for cluster_id, doc_indices in level1_clusters.items():
+    cluster_texts = [leaf_texts[i].page_content for i in doc_indices]
+    summary = summarize_cluster(cluster_texts)
+    level1_summaries.append(summary)
+
+print(f"生成了 {len(level1_summaries)} 个一级摘要")
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-010-1HugNosa6fbwk8mnhdi8dc"></a></span>
+<h4 id="section-8"><span>算法步骤4️⃣：递归构建树</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-010-BOzddrZxUDvvswzv40c7Qf"></a></span>
+<p><span>这是RAPTOR最精髓的部分！我们把第一层的摘要当作新的"文档"，重复步骤2和3，继续聚类和摘要，直到达到停止条件。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-CU9EMlz4P0xdMQ6bWy0k8r"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>明确停止条件比较的是样本数、簇数还是每簇成员数，并保存稳定node_id、level、child_ids、原文来源及节点向量；停止条件还应避免空层或递归不收缩。</p><details><summary>查看解释与参考资料</summary><p>min_cluster_size的注释说它是最小簇大小，代码比较的却是簇数。返回结构只保存每层文本，没有保存摘要节点对应哪些子节点，后面的树遍历因而无法据此找到children。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><pre><code>def build_raptor_tree(texts, max_depth=3, min_cluster_size=3):
+ """
+    递归构建RAPTOR树
+    Args:
+        texts: 初始文档列表
+        max_depth: 最大递归深度
+        min_cluster_size: 最小集群大小，小于此值停止
+    Returns:
+        tree: 完整的树结构
+    """
+    tree = {
+ 'level_0': texts  # 叶子节点
+ }
+    current_texts = texts
+    current_level = 0
+ while current_level &#x3C; max_depth:
+ print(f"\n🌳 构建 Level {current_level + 1}...")
+ # 1. 向量化当前层文本
+        embeddings_list = embeddings.embed_documents(current_texts)
+ # 2. 确定集群数
+        n_clusters = max(len(current_texts) // 5, 1)
+ if n_clusters &#x3C; min_cluster_size:
+ print(f"⚠️ 集群数 {n_clusters} 小于最小值，停止递归")
+ break
+ # 3. 聚类
+        clusters = cluster_embeddings(embeddings_list, n_clusters)
+ # 4. 为每个集群生成摘要
+        next_level_texts = []
+ for cluster_id, doc_indices in clusters.items():
+            cluster_docs = [current_texts[i] for i in doc_indices]
+            summary = summarize_cluster(cluster_docs)
+            next_level_texts.append(summary)
+ # 5. 保存当前层
+        current_level += 1
+        tree[f'level_{current_level}'] = next_level_texts
+ # 6. 准备下一轮递归
+        current_texts = next_level_texts
+ print(f"✅ Level {current_level} 完成，生成 {len(next_level_texts)} 个摘要")
+ # 停止条件：只剩一个摘要（根节点）
+ if len(next_level_texts) == 1:
+ print("🎯 到达根节点，树构建完成！")
+ break
+ return tree
+
+#构建完整的RAPTOR树
+raptor_tree = build_raptor_tree(
+    texts=[doc.page_content for doc in leaf_texts],
+    max_depth=3,
+    min_cluster_size=3
+)
+</code></pre></details>
+<span class="source-anchor-container"><a id="src-tencent-010-WdyvFNvkw4yEXo9bgeu59d"></a></span>
+<h3 id="section-9"><span>3.4 RAPTOR检索策略</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-010-XbVMI1RmXQvu46zCeRD6cH"></a></span>
+<p><span>RAPTOR提供了两种检索策略，各有优劣：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-94vdoljPxQDHPPk1p33gF5"></a></span>
+<h4 id="section-10"><span>策略1：树遍历检索 (Tree Traversal)</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-010-3GnUD19tW2iwHtyhONLjd6"></a></span>
+<p><span>从根节点开始，逐层向下找最相关的分支，像在图书馆里先找分类，再找书架，最后找书。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-A4wahSdq6P3mGKjHhJj6e3"></a></span>
+<p><strong>【树遍历检索流程】</strong><span> **</span></p>
+<div id="src-tencent-010-R8cBMfs5c6O63YKZ0CN3qH"><img alt="原文学习图示（点击放大）" src="/momomian/assets/64624e601b4930332621.png" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-tencent-010-ZxLJwxsKDt7H3E9pnlZnK2"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>统一使用level_{n}并按下划线解析层号，导入所需相似度函数，先建立父子ID映射，再累积各层选中内容；完成这些前应把此函数标为流程草图。</p><details><summary>查看解释与参考资料</summary><p>split('')会抛出空分隔符错误；level{max_level}与建树时的level_{n}不一致。get_children既未实现，也缺少可读取的父子映射；当前函数还没有保留各层选中节点作为上下文。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><pre><code>def tree_traversal_retrieval(query, tree, k=3):
+ """
+    树遍历检索
+    Args:
+        query: 用户查询
+        tree: RAPTOR树结构
+        k: 每层选择的top-k个节点
+    Returns:
+        最相关的文档列表
+    """
+    query_embedding = embeddings.embed_query(query)
+ # 从最高层开始
+    max_level = max([int(k.split('')[1]) for k in tree.keys()])
+    current_nodes = tree[f'level{max_level}']
+ for level in range(max_level, -1, -1):
+ print(f"🔍 在 Level {level} 搜索...")
+ # 计算相似度
+        level_embeddings = embeddings.embed_documents(current_nodes)
+        similarities = cosine_similarity(
+ [query_embedding],
+            level_embeddings
+ )[0]
+ # 选择top-k最相似的节点
+        top_k_indices = np.argsort(similarities)[-k:][::-1]
+ if level == 0:
+ # 到达叶子层，返回结果
+ return [current_nodes[i] for i in top_k_indices]
+ # 获取下一层的子节点
+        next_level_nodes = []
+ for idx in top_k_indices:
+ # 这里需要维护父子关系映射
+            children = get_children(tree, level, idx)
+            next_level_nodes.extend(children)
+        current_nodes = next_level_nodes
+ return current_nodes
+</code></pre></details>
+<span class="source-anchor-container"><a id="src-tencent-010-chg2n1f8ZxMhGsus91yIEo"></a></span>
+<h4 id="section-11"><span>策略2：扁平化检索 (Collapsed Tree)</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-010-GMpz9jbzHcDMfKjxcHlc9F"></a></span>
+<p><span>把所有层的节点（包括原始文档和各层摘要）都放在一起，一次性检索。简单高效，是</span><strong>推荐的方法</strong><span>！</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-2hvLUKmOK7ig9bCoTPu0RW"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-6" data-course-correction="6"><p><strong>更正：</strong>离线计算并保存各层节点向量，在线只嵌入查询后搜索候选；跨层检索能扩大粒度选择范围，但仍受排序、top-k和token预算限制，可能漏检。</p><details><summary>查看解释与参考资料</summary><p>把所有层放入候选池不保证有限top-k覆盖所有相关信息。此处每次查询重算全部节点向量，也会把离线索引工作重复放入在线路径。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><pre><code>def collapsed_tree_retrieval(query, tree, k=5):
+ """
+    扁平化检索 - 将所有层级的节点放在一起检索
+    这是推荐的方法，因为：
+    1. 实现简单
+    2. 不会错过任何相关信息
+    3. 可以同时获得不同抽象层次的内容
+    """
+ # 1. 收集所有层的所有节点
+    all_nodes = []
+    node_metadata = [] # 记录每个节点的元信息
+ for level_key, nodes in tree.items():
+        level = int(level_key.split('_')[1])
+ for i, node in enumerate(nodes):
+            all_nodes.append(node)
+            node_metadata.append({
+ 'level': level,
+ 'index': i,
+ 'is_leaf': (level == 0)
+ })
+ print(f"📚 共收集到 {len(all_nodes)} 个节点")
+ # 2. 向量化所有节点
+    all_embeddings = embeddings.embed_documents(all_nodes)
+ # 3. 向量化查询
+    query_embedding = embeddings.embed_query(query)
+ # 4. 计算相似度并排序
+ from sklearn.metrics.pairwise import cosine_similarity
+    similarities = cosine_similarity(
+ [query_embedding],
+        all_embeddings
+ )[0]
+ # 5. 获取top-k
+    top_k_indices = np.argsort(similarities)[-k:][::-1]
+ # 6. 返回结果，包含元信息
+    results = []
+ for idx in top_k_indices:
+        results.append({
+ 'content': all_nodes[idx],
+ 'similarity': similarities[idx],
+ 'metadata': node_metadata[idx]
+ })
+ return results
+
+#使用示例
+query = "AI发展经历了哪些重要阶段？"
+results = collapsed_tree_retrieval(query, raptor_tree, k=5)
+
+for i, result in enumerate(results):
+ print(f"\n📄 结果 {i+1} (相似度: {result['similarity']:.3f})")
+ print(f"层级: Level {result['metadata']['level']}")
+ print(f"内容: {result['content'][:200]}...")
+</code></pre></details>
+<span class="source-anchor-container"><a id="src-tencent-010-GfRMQEppFIwOP2jualdROJ"></a></span>
+<blockquote>
+<p><span>💡 </span><strong>为什么推荐扁平化检索？</strong><strong>全面性</strong><span>：不会因为在某一层选错分支而错过相关内容</span><strong>灵活性</strong><span>：对于不同抽象层次的问题，都能找到合适的答案</span><strong>实现简单</strong><span>：不需要维护复杂的父子关系，一次向量化搞定</span><strong>实验验证</strong><span>：RAPTOR论文实验表明，扁平化检索在大多数任务上优于树遍历</span><strong>举个例子</strong><span>：当用户问"AI发展经历了哪些阶段"，扁平化检索可能同时返回：</span><span>
+Level 2的全局摘要（提供整体框架）</span><span>
+Level 1的具体阶段摘要（提供中层细节）</span><span>
+Level 0的某些原始文档（提供具体例证）</span><span>
+这样的组合提供了多层次、立体化的答案！</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-tencent-010-io6wHi9WqpHQuG1ru9zKqO"></a></span>
+<h3 id="section-12"><span>3.5 RAPTOR性能分析与优化</span></h3>
+<span class="source-anchor-container"><a id="src-tencent-010-NCeb8op1RWLTptF2fYNgqW"></a></span>
+<h4 id="section-13"><span>性能数据对比</span></h4>
+<div id="src-tencent-010-KLBgWSjMEmQUMaYsn8eGRy"><aside class="lesson-clarification" id="lesson-clarification-7" data-course-correction="7"><p><strong>更正：</strong>将本表标为待复现示例，补齐读者模型、检索基线、数据划分和资源配置；若引用论文表7，应写明其具体模型与82.6%对62.3%的对照，不把差异全部归因于单一组件。</p><details><summary>查看解释与参考资料</summary><p>表中准确率、构建时间、空间和时延缺少实验配置。论文v1表7的QuALITY结果为RAPTOR+GPT-4 82.6%、CoLISA 62.3%，与这里53.70%到73.40%的设置无法对应，不能标作已核实的论文基准。</p><p><a href="https://arxiv.org/html/2401.18059v1" target="_blank" rel="noopener noreferrer">RAPTOR Table 7 ↗</a></p></details></aside><table><tbody><tr><td><p><strong>指标</strong></p></td><td><p><strong>传统RAG</strong></p></td><td><p><strong>RAPTOR</strong></p></td><td><p><strong>提升幅度</strong></p></td></tr><tr><td><p><span>简单事实查询准确率</span></p></td><td><p><span>78%</span></p></td><td><p><span>82%</span></p></td><td><p><span>0.04</span></p></td></tr><tr><td><p><span>复杂推理问题准确率</span></p></td><td><p><span>54%</span></p></td><td><p><span>74%</span></p></td><td><p><span>0.2</span></p></td></tr><tr><td><p><span>高层次概括问题</span></p></td><td><p><span>42%</span></p></td><td><p><span>71%</span></p></td><td><p><span>0.29</span></p></td></tr><tr><td><p><span>QuALITY基准测试</span></p></td><td><p><span>53.70%</span></p></td><td><p><span>73.40%</span></p></td><td><p><span>0.2</span></p></td></tr><tr><td><p><span>索引构建时间</span></p></td><td><p><span>5分钟</span></p></td><td><p><span>35分钟</span></p></td><td><p><span>6</span></p></td></tr><tr><td><p><span>存储空间</span></p></td><td><p><span>100MB</span></p></td><td><p><span>180MB</span></p></td><td><p><span>0.8</span></p></td></tr><tr><td><p><span>检索速度</span></p></td><td><p><span>150ms</span></p></td><td><p><span>165ms</span></p></td><td><p><span>0.1</span></p></td></tr></tbody></table></div>
+<span class="source-anchor-container"><a id="src-tencent-010-FyCtZsVhZaH7OGOZSeh9Wh"></a></span>
+<blockquote>
+<aside class="lesson-clarification" id="lesson-clarification-8" data-course-correction="8"><p><strong>更正：</strong>额外摘要与索引会增加离线成本，幅度取决于树深、簇大小、模型和实现。对准确率分别报告基线、结果及百分点差，不把示例测量推广为固定比例。</p><details><summary>查看解释与参考资料</summary><p>7倍构建时间、80%空间增加及20%–29%效果增益只来自上方未注明来源的示例表，不是算法固定代价；准确率的绝对差应称百分点。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><span>📊 </span><strong>数据解读</strong><span>RAPTOR在</span><strong>复杂问题</strong><span>和</span><strong>高层次理解</strong><span>方面有巨大优势（提升20%-29%），但代价是：</span><strong>构建时间长</strong><span>：需要多轮LLM调用生成摘要，时间是传统方法的7倍</span><strong>存储开销大</strong><span>：需要存储所有层级的节点，空间增加80%</span><strong>检索略慢</strong><span>：扁平化方法需要搜索更多节点</span><strong>适用场景</strong><span>：对于需要理解长文档、回答复杂问题、进行多跳推理的应用，RAPTOR非常值得！</span></p></details>
+</blockquote>
+<span class="source-anchor-container"><a id="src-tencent-010-SeTwsSGXFU1GS49Q3DyBM9"></a></span>
+<h4 id="section-14"><span>优化建议</span></h4>
+<span class="source-anchor-container"><a id="src-tencent-010-W7rjMmwQUAfJnmr4QqV6de"></a></span>
+<ol start="8">
+<li><strong>缓存机制</strong></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-010-QID9ABGrZektxrqJfo4RBd"></a></span>
+<p><span>构建一次树就缓存起来，避免重复计算：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-CtkdPV1yrpTFgH7J7DR742"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-9" data-course-correction="9"><p><strong>更正：</strong>补充import os，并传入[doc.page_content for doc in documents]；缓存键还应覆盖摘要模型、切分和聚类配置。只从可信缓存加载pickle。</p><details><summary>查看解释与参考资料</summary><p>本段使用os.path.exists但未导入os；前文documents来自加载器，是Document列表，而build_raptor_tree接收文本列表，调用接口不一致。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><pre><code>import pickle
+import hashlib
+
+def cache_raptor_tree(tree, docs_hash):
+ """缓存RAPTOR树"""
+    cache_file = f"raptor_tree_{docs_hash}.pkl"
+ with open(cache_file, 'wb') as f:
+        pickle.dump(tree, f)
+
+def load_raptor_tree(docs_hash):
+ """加载缓存的树"""
+    cache_file = f"raptor_tree_{docs_hash}.pkl"
+ if os.path.exists(cache_file):
+ with open(cache_file, 'rb') as f:
+ return pickle.load(f)
+ return None
+
+#使用
+docs_hash = hashlib.md5(str(documents).encode()).hexdigest()
+tree = load_raptor_tree(docs_hash)
+if tree is None:
+    tree = build_raptor_tree(documents)
+    cache_raptor_tree(tree, docs_hash)
+</code></pre></details>
+<span class="source-anchor-container"><a id="src-tencent-010-HXWM2xqiTKD0hflIHEw2BC"></a></span>
+<ol start="9">
+<li><strong>并行化处理</strong></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-010-ztPKzwnEfkTN1GeyWqrvxk"></a></span>
+<p><span>摘要生成可以并行化，大幅提升速度：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-mTyVS3pTQK6YmV4qYfNp0A"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-10" data-course-correction="10"><p><strong>更正：</strong>先把每簇下标映射为current_texts中的字符串，再提交摘要任务；实际耗时取决于服务并发限制、重试和任务长度。</p><details><summary>查看解释与参考资料</summary><p>前文clusters.values()存的是文档下标列表；直接传给需要字符串列表的summarize_cluster会在拼接时失败。并行数量也不保证等比例提速。</p></details></aside><aside class="lesson-clarification" id="lesson-clarification-11" data-source-runtime-check="11"><p><strong>离线核验：</strong>离线实测（Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1）：原片段补缺失上下文或判定桩后通过，不计独立运行。合成摘要函数，只核对线程映射顺序、空输入和错误参数；不证明5倍加速或真实模型效果。。仅覆盖所列输入与断言。</p></aside><pre><code>from concurrent.futures import ThreadPoolExecutor
+
+def parallel_summarize(clusters, max_workers=5):
+ """并行生成摘要"""
+ with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        summaries = list(executor.map(
+            summarize_cluster,
+ [cluster_texts for cluster_texts in clusters.values()]
+ ))
+ return summaries
+
+#速度提升5倍！
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-010-HAxqkOtY5FUaJRoihgPPFm"></a></span>
+<ol start="10">
+<li><strong>使用更快的LLM</strong></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-010-YJ0QGlNOrBU7t20miMzQN8"></a></span>
+<p><span>生产环境中，可以用较小的模型生成摘要：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-010-tfTZAYdGUbH4tYqeAkQTyC"></a></span>
+<pre><code>#用GPT-3.5生成摘要，速度快3倍，成本降低10倍
+fast_llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+
+#或者用开源模型
+from langchain.llms import LlamaCpp
+local_llm = LlamaCpp(model_path="./models/llama-2-7b.gguf")
+</code></pre>
+<hr>
+<span class="source-anchor-container"><a id="src-tencent-010-YCU8q0J3VUJY5hT2Y6Cxhv"></a></span></div><details class="notice" data-pagefind-ignore><summary>动手试一次 · 2 个配套例子</summary><p>这些完整教学代码已核对固定输入与结果，帮助理解本课主题；原文片段原有的上下文缺失或版本问题仍然存在。</p><ul><li><a class="text-link" href="/momomian/runnable-examples/?case=vector-search">手算向量相似度并排序 →</a><p class="small muted">使用二维手写向量理解余弦相似度；没有调用嵌入模型。</p></li><li><a class="text-link" href="/momomian/runnable-examples/?case=rag-evidence">有依据才回答，没有就说明 →</a><p class="small muted">从合成资料找到证据、加引用；找不到资料时不编答案。</p></li></ul></details></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-topic" class="lesson-resource-group" aria-label="主题补充（选看）"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">主题补充（选看）</h3><p class="resource-scope">按课程标题关联，帮助补充原理；不对应本课的具体代码版本或每个知识点。</p><p class="resource-topic-link"><a class="text-link" href="/momomian/lessons/feishu-8f059f0e81/#lesson-resource-1">在主讲课复习此视频 →</a><span class="reading-meta">RAG：原理、实践和应用场景</span></p><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://adp.xindoo.xyz/chapters/Chapter%2014_%20Knowledge%20Retrieval%20(RAG)/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 14 章：知识检索（RAG） <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 入门</span><p>对照检索、上下文组织和生成链路，检查证据在哪里进入回答。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="tencent-010-da6b45ec59" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索）。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-tencent-010-da6b45ec59-1","version":1,"type":"single","stage":"lesson","concept":"tencent-010-da6b45ec59","prompt":"RAPTOR 的层次化摘要树如何兼顾具体与概括问题？","options":[{"id":"option-1","text":"叶节点保留细节，上层摘要组织多个片段的主题","reason":"树状组织同时提供不同粒度信息，具体问题可落到叶子内容，概括问题可利用高层摘要，但摘要仍需与原始证据对应。"},{"id":"option-2","text":"只保留根摘要并删除所有原始片段","reason":"删除叶子会损失细节来源，无法支撑具体事实追溯。"},{"id":"option-3","text":"给每个块加同一标题，保持单层索引不变","reason":"统一标题没有建立层次摘要，也不能组织跨片段概括。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"叶节点保留细节，上层摘要组织多个片段的主题。","explanation":"树状组织同时提供不同粒度信息，具体问题可落到叶子内容，概括问题可利用高层摘要，但摘要仍需与原始证据对应。需要区分的是：删除叶子会损失细节来源，无法支撑具体事实追溯。统一标题没有建立层次摘要，也不能组织跨片段概括。","analysisSteps":["树状组织同时提供不同粒度信息，具体问题可落到叶子内容，概括问题可利用高层摘要，但摘要仍需与原始证据对应。","排除“只保留根摘要并删除所有原始片段”：删除叶子会损失细节来源，无法支撑具体事实追溯。","代入案例检查：给定问会议参与者查具体片段，问发展阶段可利用跨章节摘要。"],"workedExample":"给定问会议参与者查具体片段，问发展阶段可利用跨章节摘要。","evidence":{"quote":"层次化的摘要树","href":"/lessons/tencent-010-da6b45ec59/#src-tencent-010-b8PMXY5njmysIpgSAJPDBL"},"misconception":"删除叶子会损失细节来源，无法支撑具体事实追溯。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-010-da6b45ec59/#src-tencent-010-b8PMXY5njmysIpgSAJPDBL"}]},{"id":"lx-tencent-010-da6b45ec59-2","version":1,"type":"single","stage":"lesson","concept":"tencent-010-da6b45ec59","prompt":"本课 GMM 软聚类相比单一硬分配，强调哪种特点？","options":[{"id":"option-1","text":"一个文档可按概率属于多个主题簇","reason":"软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。"},{"id":"option-2","text":"每个文档必须无条件进入全部主题簇","reason":"概率需与阈值比较，不会无条件加入全部簇。"},{"id":"option-3","text":"每个文档只保留概率最大的单一簇，不使用其他概率","reason":"这是硬分配思路，本课示例按概率阈值允许一个文档进入多个簇。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"一个文档可按概率属于多个主题簇。","explanation":"软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。易混点：概率需与阈值比较，不会无条件加入全部簇。这是硬分配思路，本课示例按概率阈值允许一个文档进入多个簇。","analysisSteps":["软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。","排除“每个文档必须无条件进入全部主题簇”：概率需与阈值比较，不会无条件加入全部簇。","用例检验：给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。"],"workedExample":"给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。","evidence":{"quote":"一个文档可以属于多个集群","href":"/lessons/tencent-010-da6b45ec59/#src-tencent-010-UEsjCN0aII92yPuqxqH6hA"},"misconception":"概率需与阈值比较，不会无条件加入全部簇。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-010-da6b45ec59/#src-tencent-010-UEsjCN0aII92yPuqxqH6hA"}]},{"id":"lx-tencent-010-da6b45ec59-3","version":1,"type":"single","stage":"lesson","concept":"tencent-010-da6b45ec59","prompt":"按本课流程，集群摘要生成发生在哪个阶段之后？","options":[{"id":"option-1","text":"先切分并嵌入，再聚类，再对各簇生成摘要","reason":"摘要需要对应一组原始内容，切分嵌入提供表示，聚类确定内容集合，再做综合摘要才能建立有依据的上层节点。"},{"id":"option-2","text":"先对不存在的集群写摘要，再读取原文","reason":"尚无原文和分组就写摘要，会缺少应该概括的实际输入。"},{"id":"option-3","text":"只做一次随机抽样，不需要确定分组","reason":"抽样不等于聚类分组，无法对应本课所述层级构建。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"先切分并嵌入，再聚类，再对各簇生成摘要。","explanation":"摘要需要对应一组原始内容，切分嵌入提供表示，聚类确定内容集合，再做综合摘要才能建立有依据的上层节点。需要区分的是：尚无原文和分组就写摘要，会缺少应该概括的实际输入。抽样不等于聚类分组，无法对应本课所述层级构建。","analysisSteps":["摘要需要对应一组原始内容，切分嵌入提供表示，聚类确定内容集合，再做综合摘要才能建立有依据的上层节点。","排除“先对不存在的集群写摘要，再读取原文”：尚无原文和分组就写摘要，会缺少应该概括的实际输入。","代入案例检查：给定5个相关片段归为一簇，汇总它们生成摘要，再把摘要用于更高层组织。"],"workedExample":"给定5个相关片段归为一簇，汇总它们生成摘要，再把摘要用于更高层组织。","evidence":{"quote":"算法步骤3️⃣：生成集群摘要","href":"/lessons/tencent-010-da6b45ec59/#section-7"},"misconception":"尚无原文和分组就写摘要，会缺少应该概括的实际输入。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-010-da6b45ec59/#section-7"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-tencent-010-da6b45ec59-1" disabled><legend><span class="quiet-tag">单选</span> 1. RAPTOR 的层次化摘要树如何兼顾具体与概括问题？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-1" value="option-3"><span>给每个块加同一标题，保持单层索引不变</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-1" value="option-2"><span>只保留根摘要并删除所有原始片段</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-1" value="option-1"><span>叶节点保留细节，上层摘要组织多个片段的主题</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-010-da6b45ec59-1" value="unsure"><span>暂时不会，提交后看解析</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-010-da6b45ec59-2" disabled><legend><span class="quiet-tag">单选</span> 2. 本课 GMM 软聚类相比单一硬分配，强调哪种特点？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-2" value="option-2"><span>每个文档必须无条件进入全部主题簇</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-2" value="option-3"><span>每个文档只保留概率最大的单一簇，不使用其他概率</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-010-da6b45ec59-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-2" value="option-1"><span>一个文档可按概率属于多个主题簇</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-010-da6b45ec59-3" disabled><legend><span class="quiet-tag">单选</span> 3. 按本课流程，集群摘要生成发生在哪个阶段之后？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-3" value="option-1"><span>先切分并嵌入，再聚类，再对各簇生成摘要</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-010-da6b45ec59-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-3" value="option-3"><span>只做一次随机抽样，不需要确定分组</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-010-da6b45ec59-3" value="option-2"><span>先对不存在的集群写摘要，再读取原文</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=tencent-010-da6b45ec59">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="tencent-010-da6b45ec59" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构已按本课原文与2026-10-29逐课审读修订；不是逐课人工验收，也不代表代码已运行或视频已全片审核。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><div class="lesson-guide-prerequisites"><h3>建议先修</h3><ul><li><a href="/momomian/roadmap/#agent">手写 Agent 与记忆</a><span class="small muted"> · 先能解释这个单元的输入、输出与限制，再阅读「RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索）」。</span></li></ul></div><h3>这次阅读的目标</h3><ol><li>沿切分、嵌入、聚类、摘要说明树节点的来源</li><li>为单簇和小样本输入补上不丢文档的聚类分配规则</li><li>区分树遍历与跨层检索，并保留节点到原文的关联</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>RAG</dt><dd>先从资料中取回相关内容，再将检索结果作为生成回答的上下文；检索与回答依据应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-ucaAj3V4LLiUOvTuhROn5y">回看本课上下文</a></span></dd></div><div><dt>Embedding</dt><dd>将文本等对象表示为数值向量的方法，用于比较或检索；向量相近不自动证明事实正确。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-p8h7WZnHxAf1xggzwGK3ca">回看本课上下文</a></span></dd></div><div><dt>Chunk</dt><dd>为索引和检索划分的内容片段。片段应保留必要上下文和来源，边界需要结合资料结构选择。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-b8PMXY5njmysIpgSAJPDBL">回看本课上下文</a></span></dd></div><div><dt>摘要</dt><dd>压缩原始信息的表达。压缩会取舍细节，需要对照任务所需事实、纠正和约束检查遗漏。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-b8PMXY5njmysIpgSAJPDBL">回看本课上下文</a></span></dd></div><div><dt>精排与召回</dt><dd>先取回候选再筛选或排序的过程。需要区分候选覆盖与最终结果的适用性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-b8PMXY5njmysIpgSAJPDBL">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-9oislhCUwwiisMFxy9OKo3">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-nVUTZbLjQnJwdfFpUpxGL4">回看本课上下文</a></span></dd></div><div><dt>Top-k</dt><dd>按指定分数或顺序取前 k 个候选。候选数量、排序质量与回答可信度是不同问题。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-ZxLJwxsKDt7H3E9pnlZnK2">回看本课上下文</a></span></dd></div><div><dt>LangChain</dt><dd>模型、消息、工具等应用组件的框架生态。具体接口以课程标注版本和官方文档为准。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-U0FukGTI6Op5V6BykkxmMH">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-UEsjCN0aII92yPuqxqH6hA">回看本课上下文</a></span></dd></div><div><dt>缓存</dt><dd>保存可复用结果以减少重复工作。命中率、键的范围、失效与更新策略会影响正确性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-QID9ABGrZektxrqJfo4RBd">回看本课上下文</a></span></dd></div><div><dt>GPT</dt><dd>常用于生成任务的一类自回归语言模型家族；具体上下文、能力和接口取决于所用模型。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-nVUTZbLjQnJwdfFpUpxGL4">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-010-ZxLJwxsKDt7H3E9pnlZnK2">回看本课上下文</a></span></dd></div><div><dt>指标</dt><dd>将本表标为待复现示例，补齐读者模型、检索基线、数据划分和资源配置；若引用论文表7，应写明其具体模型与82.6%对62.3%的对照，不把差异全部归因于单一组件。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-010-KLBgWSjMEmQUMaYsn8eGRy">回看本课上下文</a></span></dd></div><div><dt>RAPTOR</dt><dd>RAPTOR是2024年斯坦福大学研究团队提出的革命性索引方法。它解决了一个传统RAG的根本性问题：如何同时回答低层次的具体问题和高层次的抽象问题？<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-010-ucaAj3V4LLiUOvTuhROn5y">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>本课机制与检查方向</h3><p class="small muted">依据本课原文与就近审校整理的教学说明；原文代码和外部视频未因此获得运行或全片审核。 <a href="#lesson-source-body">打开完整来源段落</a></p><blockquote class="lesson-guide-excerpt">RAPTOR 的层次化摘要树如何兼顾具体与概括问题？
+结论：叶节点保留细节，上层摘要组织多个片段的主题。
+理由：树状组织同时提供不同粒度信息，具体问题可落到叶子内容，概括问题可利用高层摘要，但摘要仍需与原始证据对应。
+配套示例：给定问会议参与者查具体片段，问发展阶段可利用跨章节摘要。
+
+本课 GMM 软聚类相比单一硬分配，强调哪种特点？
+结论：一个文档可按概率属于多个主题簇。
+理由：软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。
+配套示例：给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。</blockquote><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-010-da6b45ec59-explain"><h3>1. RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索） · 机制回忆</h3><p>RAPTOR 的层次化摘要树如何兼顾具体与概括问题？</p><label class="lesson-task-field" for="task-lesson-card-tencent-010-da6b45ec59-explain">先写自己的回答<textarea id="task-lesson-card-tencent-010-da6b45ec59-explain" data-lesson-task-answer="lesson-card-tencent-010-da6b45ec59-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-010-da6b45ec59-explain">给一点提示</button><p class="lesson-task-hint" hidden>RAPTOR 的层次化摘要树如何兼顾具体与概括问题？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">结论：叶节点保留细节，上层摘要组织多个片段的主题。
+理由：树状组织同时提供不同粒度信息，具体问题可落到叶子内容，概括问题可利用高层摘要，但摘要仍需与原始证据对应。
+配套示例：给定问会议参与者查具体片段，问发展阶段可利用跨章节摘要。</p><ul><li>叶节点保留细节，上层摘要组织多个片段的主题</li><li>树状组织同时提供不同粒度信息，具体问题可落到叶子内容，概括问题可利用高层摘要，但摘要仍需与原始证据对应。</li><li>给定问会议参与者查具体片段，问发展阶段可利用跨章节摘要。</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-010-da6b45ec59-explain">主要错因<select id="task-error-lesson-card-tencent-010-da6b45ec59-explain" data-lesson-task-error="lesson-card-tencent-010-da6b45ec59-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-010-da6b45ec59#lesson-card-tencent-010-da6b45ec59-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-010-da6b45ec59-apply"><h3>2. RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索） · 条件判断</h3><p>本课 GMM 软聚类相比单一硬分配，强调哪种特点？</p><label class="lesson-task-field" for="task-lesson-card-tencent-010-da6b45ec59-apply">先写自己的回答<textarea id="task-lesson-card-tencent-010-da6b45ec59-apply" data-lesson-task-answer="lesson-card-tencent-010-da6b45ec59-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-010-da6b45ec59-apply">给一点提示</button><p class="lesson-task-hint" hidden>本课 GMM 软聚类相比单一硬分配，强调哪种特点？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">结论：一个文档可按概率属于多个主题簇。
+理由：软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。
+配套示例：给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。</p><ul><li>一个文档可按概率属于多个主题簇</li><li>软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。</li><li>给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-010-da6b45ec59-apply">主要错因<select id="task-error-lesson-card-tencent-010-da6b45ec59-apply" data-lesson-task-error="lesson-card-tencent-010-da6b45ec59-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-010-da6b45ec59#lesson-card-tencent-010-da6b45ec59-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>本课 GMM 软聚类相比单一硬分配，强调哪种特点？</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>结论：一个文档可按概率属于多个主题簇。
+理由：软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。
+配套示例：给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。</blockquote><ul><li>一个文档可按概率属于多个主题簇</li><li>软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。</li><li>给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。</li></ul><a href="#lesson-source-body">回到原文依据</a></details><label class="lesson-task-field" for="boundary-tencent-010-da6b45ec59">写下最小失败输入、预期和验证方法<textarea id="boundary-tencent-010-da6b45ec59" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>换一组输入或一个版本，重新判断：本课 GMM 软聚类相比单一硬分配，强调哪种特点？</p><ul><li>一个文档可按概率属于多个主题簇</li><li>软聚类为各簇给出归属概率，示例按阈值选择簇，适合内容涉及多个主题的情况；它并不意味着全部归属或取消文档差异。</li><li>给定片段同时谈医疗和隐私，可能达到两个相关主题簇的分配条件。</li></ul><label class="lesson-task-field" for="transfer-tencent-010-da6b45ec59">解释哪些能复用，哪些要重新验证<textarea id="transfer-tencent-010-da6b45ec59" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>沿切分、嵌入、聚类、摘要说明树节点的来源</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>为单簇和小样本输入补上不丢文档的聚类分配规则</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>独立解释机制，并列出改变条件后需要重新核对的内容。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>区分资料说明、本站补充与自己的实际验证。</span></label></fieldset><label class="lesson-task-field" for="artifact-tencent-010-da6b45ec59">产物、实际验证与未决问题<textarea id="artifact-tencent-010-da6b45ec59" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=tencent-010-da6b45ec59#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=tencent-010-da6b45ec59">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/path/"><small>返回课程</small><span>查看教学顺序</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1">三、RAPTOR（递归抽象处理树状检索）</a><a href="#section-2" class="nested">3.1 核心思想与动机</a><a href="#section-3" class="nested">3.2 RAPTOR架构详解</a><a href="#section-4" class="nested">3.3 RAPTOR核心算法流程</a><a href="#section-5" class="nested">算法步骤1️⃣：文档切分与向量化</a><a href="#section-6" class="nested">算法步骤2️⃣：聚类（使用GMM）</a><a href="#section-7" class="nested">算法步骤3️⃣：生成集群摘要</a><a href="#section-8" class="nested">算法步骤4️⃣：递归构建树</a><a href="#section-9" class="nested">3.4 RAPTOR检索策略</a><a href="#section-10" class="nested">策略1：树遍历检索 (Tree Traversal)</a><a href="#section-11" class="nested">策略2：扁平化检索 (Collapsed Tree)</a><a href="#section-12" class="nested">3.5 RAPTOR性能分析与优化</a><a href="#section-13" class="nested">性能数据对比</a><a href="#section-14" class="nested">优化建议</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

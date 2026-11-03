@@ -1,0 +1,571 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>使用图形 API：定义和更新状态 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="tencent-007-004-003-61e37850b0"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>框架入口与资料导航</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-001/" data-record-id="tencent-007-001">LangGraph 概述</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-0d987354f7/" data-record-id="feishu-0d987354f7">Agent开发框架：LangGraph</a><a href="/momomian/lessons/tencent-012-004-69ec35d9a0/" data-record-id="tencent-012-004-69ec35d9a0">LangGraph实战开发智能体</a><a href="/momomian/lessons/tencent-007-004-003-8b2def17bf/" data-record-id="tencent-007-004-003-8b2def17bf">使用图形 API</a></details></div></details><details><summary>图运行时、环境与最小状态图</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-011-499e16a3e9/" data-record-id="tencent-013-011-499e16a3e9">LangGraph 入门教程</a><a href="/momomian/lessons/tencent-013-011-2f0bf1577a/" data-record-id="tencent-013-011-2f0bf1577a">LangGraph 入门教程：环境搭建</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-011-011b22ad82/" data-record-id="tencent-013-011-011b22ad82">LangGraph 入门教程：核心概念</a><a href="/momomian/lessons/tencent-013-011-cc43dc69ae/" data-record-id="tencent-013-011-cc43dc69ae">LangGraph 入门教程：环境搭建 · 示例</a></details></div></details><details open><summary>无模型最小图与状态更新</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-012-004-011b22ad82/" data-record-id="tencent-012-004-011b22ad82">LangGraph实战开发智能体：核心概念</a><a href="/momomian/lessons/tencent-012-004-90f310310f/" data-record-id="tencent-012-004-90f310310f">LangGraph实战开发智能体：第一个程序</a><a href="/momomian/lessons/tencent-007-004-002-6320b4a872/" data-record-id="tencent-007-004-002-6320b4a872">Graph API 概述：状态</a><details open><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-002-8013578e5e/" data-record-id="tencent-007-004-002-8013578e5e">Graph API 概述：图</a><a href="/momomian/lessons/tencent-007-004-003-61e37850b0/" class="current" aria-current="page" data-record-id="tencent-007-004-003-61e37850b0">使用图形 API：定义和更新状态</a><a href="/momomian/lessons/tencent-012-004-b6c81b856a/" data-record-id="tencent-012-004-b6c81b856a">LangGraph实战开发智能体：Reducer 机制</a><a href="/momomian/lessons/tencent-007-004-003-852ca5079e/" data-record-id="tencent-007-004-003-852ca5079e">使用图形 API：创建步骤序列</a></details></div></details><details><summary>State类型、reducer与节点接口</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-011-b3f37fad8f/" data-record-id="tencent-013-011-b3f37fad8f">LangGraph 入门教程：State 状态管理</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-011-cc43dc69ae-d83c7e/" data-record-id="tencent-013-011-cc43dc69ae-d83c7e">LangGraph 入门教程：State 状态管理 · 示例</a></details></div></details><details><summary>节点接口、运行依赖和执行预算</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-002-2410d860f0/" data-record-id="tencent-007-004-002-2410d860f0">Graph API 概述：节点</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-002-9e60f2d721/" data-record-id="tencent-007-004-002-9e60f2d721">Graph API 概述：运行时上下文</a><a href="/momomian/lessons/tencent-007-004-003-9082b968e4/" data-record-id="tencent-007-004-003-9082b968e4">使用图形 API：添加运行时配置</a></details></div></details><details><summary>条件边与Command状态跳转</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-002-099db31379/" data-record-id="tencent-007-004-002-099db31379">Graph API 概述：边</a><a href="/momomian/lessons/tencent-012-004-c6de23d6f8/" data-record-id="tencent-012-004-c6de23d6f8">LangGraph实战开发智能体：条件分支</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-002-713166971d/" data-record-id="tencent-007-004-002-713166971d">Graph API 概述：Command</a><a href="/momomian/lessons/tencent-007-004-003-72b75f7d06/" data-record-id="tencent-007-004-003-72b75f7d06">使用图形 API：使用Command结合控制流和状态更新</a></details></div></details><details><summary>普通边、规则路由与有限修订循环</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-011-9644cc2bea/" data-record-id="tencent-013-011-9644cc2bea">LangGraph 入门教程：Edges 边与条件路由</a><a href="/momomian/lessons/tencent-013-011-cc43dc69ae-85ea15/" data-record-id="tencent-013-011-cc43dc69ae-85ea15">LangGraph 入门教程：Edges 边与条件路由 · 示例</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-008-cc43dc69ae-fc72c9/" data-record-id="tencent-013-008-cc43dc69ae-fc72c9">AI Workflow（AI 工作流）：主流框架与工具对比 · 示例（3）</a></details></div></details><details><summary>循环与有界停止</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-003-b9429ce0f8/" data-record-id="tencent-007-004-003-b9429ce0f8">使用图形 API：创建和控制循环</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-012-004-482995e4f1/" data-record-id="tencent-012-004-482995e4f1">LangGraph实战开发智能体：循环流程</a></details></div></details><details><summary>消息状态与ReAct工具循环</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-012-004-0049d6ff3b/" data-record-id="tencent-012-004-0049d6ff3b">LangGraph实战开发智能体：聊天机器人</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-012-004-3ef2472476/" data-record-id="tencent-012-004-3ef2472476">LangGraph实战开发智能体：ReAct Agent</a></details></div></details><details><summary>工具定义与ToolNode执行观察闭环</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-011-cc43dc69ae-759b87/" data-record-id="tencent-013-011-cc43dc69ae-759b87">LangGraph 入门教程：工具调用 - ReAct Agent · 示例</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-011-20bc2335ac/" data-record-id="tencent-013-011-20bc2335ac">LangGraph 入门教程：工具调用 - ReAct Agent</a></details></div></details><details><summary>图测试及局部恢复验证</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-005-002/" data-record-id="tencent-007-005-002">测试</a></div></details><details><summary>线程检查点、快照和持久执行</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-003-001-97ed1a68a7/" data-record-id="tencent-007-003-001-97ed1a68a7">持久化</a><a href="/momomian/lessons/tencent-007-003-001-199a0dbda6/" data-record-id="tencent-007-003-001-199a0dbda6">持久化：检查点</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-003-001-63c62f8fd7/" data-record-id="tencent-007-003-001-63c62f8fd7">持久化：检查点器库</a><a href="/momomian/lessons/tencent-007-003-001-25f5ce57a1/" data-record-id="tencent-007-003-001-25f5ce57a1">持久化：功能</a><a href="/momomian/lessons/tencent-007-003-002/" data-record-id="tencent-007-003-002">持久化执行</a></details></div></details><details><summary>检查点与持久化状态</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-011-9aed17834c/" data-record-id="tencent-013-011-9aed17834c">LangGraph 入门教程：持久化内存</a></div></details><details><summary>动态HITL与重入安全</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-003-004-f9d19345a0/" data-record-id="tencent-007-003-004-f9d19345a0">中断</a><a href="/momomian/lessons/tencent-007-003-004-2c2997a29d/" data-record-id="tencent-007-003-004-2c2997a29d">中断：使用interrupt暂停</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-003-004-61c493927f/" data-record-id="tencent-007-003-004-61c493927f">中断：恢复中断</a><a href="/momomian/lessons/tencent-007-003-004-cf09498293/" data-record-id="tencent-007-003-004-cf09498293">中断：常见模式</a><a href="/momomian/lessons/tencent-007-003-004-1c17682d12/" data-record-id="tencent-007-003-004-1c17682d12">中断规则</a><a href="/momomian/lessons/tencent-007-003-004-6f089ee965/" data-record-id="tencent-007-003-004-6f089ee965">中断：与作为函数调用的子图一起使用</a><a href="/momomian/lessons/tencent-007-003-004-31f4427007/" data-record-id="tencent-007-003-004-31f4427007">中断：使用中断进行调试</a></details></div></details><details><summary>人工中断、拒绝保护与邮件审批</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-011-ae89d11da7/" data-record-id="tencent-013-011-ae89d11da7">LangGraph 入门教程：Human-in-the-Loop 人机协作</a><a href="/momomian/lessons/tencent-013-011-cc43dc69ae-28dbec/" data-record-id="tencent-013-011-cc43dc69ae-28dbec">LangGraph 入门教程：Human-in-the-Loop 人机协作 · 示例</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-008-cc43dc69ae-182dc6/" data-record-id="tencent-013-008-cc43dc69ae-182dc6">AI Workflow（AI 工作流）：主流框架与工具对比 · 示例（5）</a></details></div></details><details><summary>基础流式事件、状态与模型输出</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-003-003-49b0783bcc/" data-record-id="tencent-007-003-003-49b0783bcc">流式传输</a><a href="/momomian/lessons/tencent-007-003-003-100bee5583/" data-record-id="tencent-007-003-003-100bee5583">流式传输：基本用法示例</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-003-003-be678c9fab/" data-record-id="tencent-007-003-003-be678c9fab">流式传输图状态</a><a href="/momomian/lessons/tencent-007-003-003-b790edc81d/" data-record-id="tencent-007-003-003-b790edc81d">流式传输：LLM 令牌</a><a href="/momomian/lessons/tencent-007-003-003-f6f2ad432a/" data-record-id="tencent-007-003-003-f6f2ad432a">流式传输自定义数据</a><a href="/momomian/lessons/tencent-007-003-003-d1d9a8e4a1/" data-record-id="tencent-007-003-003-d1d9a8e4a1">流式传输：与任何 LLM 一起使用</a><a href="/momomian/lessons/tencent-007-003-003-4845efd16b/" data-record-id="tencent-007-003-003-4845efd16b">流式传输：为特定聊天模型禁用流式传输</a></details></div></details><details><summary>异步调用链</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-003-23969029db/" data-record-id="tencent-007-004-003-23969029db">使用图形 API：异步</a></div></details><details><summary>并行汇合与动态Send</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-003-c6fe4bf1b9/" data-record-id="tencent-007-004-003-c6fe4bf1b9">使用图形 API：创建分支</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-002-f6f4688ff2/" data-record-id="tencent-007-004-002-f6f4688ff2">Graph API 概述：Send</a><a href="/momomian/lessons/tencent-007-004-003-8f7b520d9c/" data-record-id="tencent-007-004-003-8f7b520d9c">使用图形 API：Map-Reduce 和 Send API</a></details></div></details><details><summary>短期线程与跨线程Store后端</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-003-006-a912f1a854/" data-record-id="tencent-007-003-006-a912f1a854">记忆功能：添加短期记忆</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-003-001-41b9928ed2/" data-record-id="tencent-007-003-001-41b9928ed2">持久化：记忆存储</a><a href="/momomian/lessons/tencent-007-003-006-fd31e4ce61/" data-record-id="tencent-007-003-006-fd31e4ce61">记忆功能：添加长期记忆</a></details></div></details><details><summary>子图接口与生命周期</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-003-007/" data-record-id="tencent-007-003-007">子图</a></div></details><details><summary>子图流的来源、命名空间与筛选</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-003-003-eca44b68c1/" data-record-id="tencent-007-003-003-eca44b68c1">流式传输子图输出</a></details></div></details><details><summary>检查点时间旅行与分叉</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-003-005/" data-record-id="tencent-007-003-005">使用时间旅行</a></div></details><details><summary>节点重试与缓存</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-003-ae9d8620f3/" data-record-id="tencent-007-004-003-ae9d8620f3">使用图形 API：添加重试策略</a><a href="/momomian/lessons/tencent-007-004-003-c5201b3065/" data-record-id="tencent-007-004-003-c5201b3065">使用图形 API：添加节点缓存</a></details></div></details><details><summary>Graph/Functional接口选型</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-001/" data-record-id="tencent-007-004-001">选择合适的接口</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-004-d137829022/" data-record-id="tencent-007-004-004-d137829022">函数式 API 概览：函数式 API 与图 API 对比 (Functional API vs. Graph API)</a></details></div></details><details><summary>Functional入口、task/future与首次审核</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-005-4ea81edac9/" data-record-id="tencent-007-004-005-4ea81edac9">使用函数式 API：创建简单工作流</a><a href="/momomian/lessons/tencent-007-004-004-2ad91e099e/" data-record-id="tencent-007-004-004-2ad91e099e">函数式 API 概览：入口点 (Entrypoint)</a><a href="/momomian/lessons/tencent-007-004-004-d1e37928fe/" data-record-id="tencent-007-004-004-d1e37928fe">函数式 API 概览：任务 (Task)</a><a href="/momomian/lessons/tencent-007-004-004-8651e6468c/" data-record-id="tencent-007-004-004-8651e6468c">函数式 API 概览：何时使用任务 (When to use a task)</a><a href="/momomian/lessons/tencent-007-004-004-fee94356d3/" data-record-id="tencent-007-004-004-fee94356d3">函数式 API 概览：示例 (Example)</a></details></div></details><details><summary>Functional确定性与幂等</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-004-6c75f5ffb3/" data-record-id="tencent-007-004-004-6c75f5ffb3">函数式 API 概览：确定性 (Determinism)</a><a href="/momomian/lessons/tencent-007-004-004-1266b18aba/" data-record-id="tencent-007-004-004-1266b18aba">函数式 API 概览：常见陷阱 (Common pitfalls)</a></div></details><details><summary>Functional并行和两API组合</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-007-004-005-4ee13ec627/" data-record-id="tencent-007-004-005-4ee13ec627">使用函数式 API：并行执行</a><a href="/momomian/lessons/tencent-007-004-005-7ea1ebf2b0/" data-record-id="tencent-007-004-005-7ea1ebf2b0">使用函数式 API：调用图</a><a href="/momomian/lessons/tencent-007-004-005-847d8c83d4/" data-record-id="tencent-007-004-005-847d8c83d4">使用函数式 API：调用其他入口点</a></div></details><details><summary>Functional流、重试、缓存与故障恢复</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-005-49b0783bcc/" data-record-id="tencent-007-004-005-49b0783bcc">使用函数式 API：流式传输</a><a href="/momomian/lessons/tencent-007-004-005-f9a0fae521/" data-record-id="tencent-007-004-005-f9a0fae521">使用函数式 API：重试策略</a><a href="/momomian/lessons/tencent-007-004-005-d926cacf2b/" data-record-id="tencent-007-004-005-d926cacf2b">使用函数式 API：缓存任务</a><a href="/momomian/lessons/tencent-007-004-005-f6569504cf/" data-record-id="tencent-007-004-005-f6569504cf">使用函数式 API：错误后恢复执行</a></details></div></details><details><summary>Functional人工审核与线程记忆</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-005-bb0ce0f608/" data-record-id="tencent-007-004-005-bb0ce0f608">使用函数式 API：人在回路</a><a href="/momomian/lessons/tencent-007-004-005-63d4db4928/" data-record-id="tencent-007-004-005-63d4db4928">使用函数式 API：短期记忆</a></details></div></details><details><summary>Pregel底层通道运行时</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-007-004-006/" data-record-id="tencent-007-004-006">LangGraph 运行时</a></details></div></details><details><summary>Studio调试、可靠图设计与框架回顾</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-011-9cce325ca3/" data-record-id="tencent-013-011-9cce325ca3">LangGraph 入门教程：LangGraph Studio 可视化调试</a><a href="/momomian/lessons/tencent-013-011-f147e6d74a/" data-record-id="tencent-013-011-f147e6d74a">LangGraph 入门教程：最佳实践与常见问题</a><a href="/momomian/lessons/tencent-013-011-04830193b4/" data-record-id="tencent-013-011-04830193b4">LangGraph 入门教程：总结</a></details></div></details><details><summary>进阶能力总览回链</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-012-004-916c429571/" data-record-id="tencent-012-004-916c429571">LangGraph实战开发智能体：进阶话题</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=langgraph">LangGraph 工作流</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">补充 · 按需查阅</p><h1 data-pagefind-meta="title">使用图形 API：定义和更新状态</h1><div class="lesson-meta"><span>约 24 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：无模型最小图与状态更新 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="tencent-007-004-003-61e37850b0" data-task-title="使用图形 API：定义和更新状态" data-task-href="/lessons/tencent-007-004-003-61e37850b0/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">LangGraph 工作流 / 无模型最小图与状态更新</p><a class="text-link" href="/momomian/path/?topic=langgraph&amp;unit=unit-langgraph-113fb3e1">查看本单元讲解、练习和补充 →</a><p><a href="/momomian/lessons/tencent-012-004-011b22ad82/">先看本单元主讲：LangGraph实战开发智能体：核心概念</a></p></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>按返回字段更新状态并避免原地修改共享输入</li><li>在默认覆盖、追加reducer和Overwrite间选择正确写法</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">节点返回更新与字段归约</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">节点返回extra_field=10，把合并职责交给图运行时。</p><a class="text-link" href="#section-3">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 29 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>8 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><p>1 个片段在补入固定模拟上下文后通过检查，不代表真实模型或线上集成已接通。</p><p>其中 4 个片段需要补足上下文或修正，可能涉及缩进、占位内容或截断。请结合完整代码核对。</p><a class="text-link" href="/momomian/practice/?lesson=tencent-007-004-003-61e37850b0#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h2 id="section-1"><strong>定义和更新状态</strong></h2>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-8bLkSMsMRwW4yIT7zsvcHB"></a></span>
+<p><span>这里我们将展示如何在 LangGraph 中定义和更新</span><strong>状态</strong><span>。我们将演示：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-XHH62imkXu6i4EQo0rRdJE"></a></span>
+<ol>
+<li><span>如何使用状态定义图的</span><strong>模式</strong></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-M2eK4cQkAN0AWGJBkjWqpw"></a></span>
+<ol start="2">
+<li><span>如何使用</span><strong>归约器</strong><span>来控制状态更新的处理方式。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-xJSDhEvalC9tjV5i6SjQdw"></a></span>
+<h3 id="section-2"><strong>定义状态</strong></h3>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-fwBO16VIdqwKNDrlZVcq8d"></a></span>
+<p><span>LangGraph 中的</span><strong>状态</strong><span>可以是 </span><span>TypedDict</span><span>、</span><span>Pydantic</span><span> 模型或数据类。下面我们将使用 </span><span>TypedDict</span><span>。。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-5RzkStC7Fy7fMdS1tMjkGB"></a></span>
+<p><span>默认情况下，图将具有相同的输入和输出模式，状态决定了该模式。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-rU0AiTe4V1JUPICff6fKNe"></a></span>
+<p><span>让我们考虑一个使用</span><strong>消息</strong><span>的简单示例。这代表了许多 LLM 应用状态的通用表示形式。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-48xphVhSNL7ClOIWl8NqtX"></a></span>
+<pre><code>from langchain.messages import AnyMessage
+from typing_extensions import TypedDict
+
+class State(TypedDict):
+messages: list[AnyMessage]
+extra_field: int
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-qxAo2tOh7Ca7xg16Ru9IOU"></a></span>
+<p><span>此状态跟踪一个</span><strong>消息</strong><span>对象列表，以及一个额外的整数字段。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-LbGwFh6Nn55LHH1Ru7tcpn"></a></span>
+<h3 id="section-3"><strong>更新状态</strong></h3>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-CwMXBRSNTul2Qdq8FdiIhE"></a></span>
+<p><span>让我们构建一个包含单个节点的示例图。我们的</span><strong>节点</strong><span>只是一个 Python 函数，它读取图的状态并对其进行更新。此函数的第一个参数始终是状态：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-bfN0ZETEeQi90AFAitUoAS"></a></span>
+<pre><code>from langchain.messages import AIMessage
+
+def node(state: State):
+messages = state["messages"]
+new_message = AIMessage("Hello!")
+return {"messages": messages + [new_message], "extra_field": 10}
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-UOXjb1pq2cXKrWnSvnBFRl"></a></span>
+<p><span>此节点只是将一条消息附加到我们的消息列表，并填充一个额外的字段。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-AG0EMewzslo06Yxzydv3gw"></a></span>
+<p><span>节点应直接返回对状态的更新，而不是改变状态。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-CHmDj9g9DkQ1v6tIHsTfhY"></a></span>
+<p><span>接下来让我们定义一个包含此节点的简单图。我们使用</span><strong>StateGraph</strong><span>来定义一个在此状态上操作的图。然后我们使用</span><strong>add_node</strong><span>来填充我们的图。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-gCqCztvnYAioatUrKMThXV"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-source-runtime-check="2"><p><strong>离线核验：</strong>离线实测（Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1）：原片段补缺失上下文或判定桩后通过，不计独立运行。核对真实单节点图的字符串更新。缺失对象使用本机临时上下文；不计独立原工程或真实模型运行。。仅覆盖所列输入与断言。</p></aside><pre><code>from langgraph.graph import StateGraph
+
+builder = StateGraph(State)
+builder.add_node(node)
+builder.set_entry_point("node")
+graph = builder.compile()
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-aKTP8g5Mggq2HErgLnflKo"></a></span>
+<p><span>LangGraph 提供了内置工具来可视化您的图。让我们检查一下我们的图。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-Edm7xBCTvtSOtkYb8XOi8U"></a></span>
+<pre><code>from IPython.display import Image, display
+
+display(Image(graph.get_graph().draw_mermaid_png()))
+</code></pre>
+<div id="src-tencent-007-004-003-m7TFhPM23AThnPPEd2umQk"><img alt="原文学习图示（点击放大）" src="/momomian/assets/992e84f165cb26d927a3.png" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-wS9fcOA5NRnGPTss0Nyd6F"></a></span>
+<p><span>在这种情况下，我们的图只执行单个节点。让我们继续一个简单的调用：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-pbTyedHDSpsw9EIQyt4MJp"></a></span>
+<pre><code>from langchain.messages import HumanMessage
+
+result = graph.invoke({"messages": [HumanMessage("Hi")]})
+result
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-oBwAdjT4LnDO6cYpnHKf0j"></a></span>
+<pre><code>{'messages': [HumanMessage(content='Hi'), AIMessage(content='Hello!')], 'extra_field': 10}
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-OjV1ecGtHcyL8yuQ6C8ZaV"></a></span>
+<p><span>请注意：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-BuIUrpVmu2EoyMIIJ4hgBQ"></a></span>
+<ul>
+<li><span>我们通过更新状态的单个键来启动调用。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-nMSIpU52DU5abY54fbQ91t"></a></span>
+<ul>
+<li><span>我们在调用结果中接收到完整的状态。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-FBGVU0ufhYUQ80FnO1nfun"></a></span>
+<p><span>为了方便起见，我们经常通过美化打印来检查</span><strong>消息对象</strong><span>的内容：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-bHPBYRbrsaI1CbCrFy0FAV"></a></span>
+<pre><code>for message in result["messages"]:
+message.pretty_print()
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-3WCpHHl4jmp8n8Pt9ZU5QC"></a></span>
+<pre><code>================================ Human Message ================================
+
+Hi
+================================== Ai Message ==================================
+
+Hello!
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-Ffgj6tX1hlwanP2OJJihgQ"></a></span>
+<h3 id="section-4"><strong>使用归约器处理状态更新</strong></h3>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-r7VxpFzmYyUqOBStQLjgB1"></a></span>
+<p><span>状态中的每个键都可以有自己的独立</span><strong>归约器</strong><span>函数，它控制如何应用来自节点的更新。如果没有明确指定归约器函数，则假定对该键的所有更新都应覆盖它。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-ZwzahWAmvJf1c41D57lejX"></a></span>
+<p><span>对于</span><span>TypedDict</span><span>状态模式，我们可以通过用归约器函数注释状态的相应字段来定义归约器。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-JW62mM2k5QI7sPuX2IZG2q"></a></span>
+<p><span>在前面的示例中，我们的节点通过向其附加一条消息来更新状态中的</span><span>"messages"</span><span>键。下面，我们为此键添加一个归约器，以便自动附加更新：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-OEhVKoJr7kXP98dfKIKsl7"></a></span>
+<pre><code>from typing_extensions import Annotated
+
+def add(left, right):
+"""Can also import `add` from the `operator` built-in."""
+return left + right
+
+class State(TypedDict):
+messages: Annotated[list[AnyMessage], add]
+extra_field: int
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-zHwRzMfERJ58Y0YB5qEkym"></a></span>
+<p><span>现在我们的节点可以简化：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-scaagTIO41Lr5uemH05qIu"></a></span>
+<pre><code>def node(state: State):
+new_message = AIMessage("Hello!")
+return {"messages": [new_message], "extra_field": 10}
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-Atbrl1BWR92MUHXOWux6FX"></a></span>
+<pre><code>from langgraph.graph import START
+
+graph = StateGraph(State).add_node(node).add_edge(START, "node").compile()
+
+result = graph.invoke({"messages": [HumanMessage("Hi")]})
+
+for message in result["messages"]:
+message.pretty_print()
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-GIULQN9ifV0mLsZHZUNfYT"></a></span>
+<pre><code>================================ Human Message ================================
+
+Hi
+================================== Ai Message ==================================
+
+Hello!
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-izpBQzkATxJE2sHPpBrqdu"></a></span>
+<h4 id="section-5"><strong>MessagesState</strong></h4>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-7OBKF8pV484gUE9oI2lgrD"></a></span>
+<p><span>实际上，更新消息列表还有其他考虑因素：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-22NkzcOsVUJToVYQ90c4SE"></a></span>
+<ul>
+<li><span>我们可能希望更新状态中的现有消息。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-ZMGYd1o7GvHT8upM2O7Rdc"></a></span>
+<ul>
+<li><span>我们可能希望接受</span><strong>消息格式</strong><span>的简写，例如 </span><strong>OpenAI 格式</strong><span>。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-fFIaK3hBWxx9musG9pHaWC"></a></span>
+<p><span>LangGraph 包含一个内置的归约器</span><strong>add_messages</strong><span>来处理这些考虑因素：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-e65FBO1V9ai3emekQhFeIJ"></a></span>
+<pre><code>from langgraph.graph.message import add_messages
+
+class State(TypedDict):
+messages: Annotated[list[AnyMessage], add_messages]
+extra_field: int
+
+def node(state: State):
+new_message = AIMessage("Hello!")
+return {"messages": [new_message], "extra_field": 10}
+
+graph = StateGraph(State).add_node(node).set_entry_point("node").compile()
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-LmYLIfTBsySGFQyNQWRPce"></a></span>
+<pre><code>input_message = {"role": "user", "content": "Hi"}
+
+result = graph.invoke({"messages": [input_message]})
+
+for message in result["messages"]:
+message.pretty_print()
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-cvH3uzZAuEDbEECA7HHRsb"></a></span>
+<pre><code>================================ Human Message ================================
+
+Hi
+================================== Ai Message ==================================
+
+Hello!
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-4pd6oxAlRTwu3BITGQJ4fD"></a></span>
+<p><span>这是涉及</span><strong>聊天模型</strong><span>的应用状态的通用表示形式。LangGraph 包含一个预构建的 </span><span>MessagesState</span><span> 以方便使用，这样我们就可以有：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-Cad2h6NC470K4Ax2QUAwcL"></a></span>
+<pre><code>from langgraph.graph import MessagesState
+
+class State(MessagesState):
+extra_field: int
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-lVSdJoZxxmklA9wEMHm7TS"></a></span>
+<h3 id="section-6"><strong>使用</strong><strong> </strong><strong>Overwrite</strong><strong> </strong><strong>绕过归约器</strong></h3>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-BhgoNKlVkrICvvQDyM6M6Y"></a></span>
+<p><span>在某些情况下，您可能希望绕过归约器并直接覆盖状态值。LangGraph 为此提供了</span><strong>Overwrite</strong><span>类型。当节点返回用</span><span>Overwrite</span><span>包装的值时，归约器将被绕过，通道将直接设置为该值。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-KOOild1sUcnRnSiMqn3Kju"></a></span>
+<p><span>当您想要重置或替换累积状态而不是将其与现有值合并时，这很有用。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-a0ttHuyUSiqIVySGfbsZ08"></a></span>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from langgraph.types import Overwrite
+from typing_extensions import Annotated, TypedDict
+import operator
+
+class State(TypedDict):
+messages: Annotated[list, operator.add]
+
+def add_message(state: State):
+return {"messages": ["first message"]}
+
+def replace_messages(state: State):
+# Bypass the reducer and replace the entire messages list
+return {"messages": Overwrite(["replacement message"])}
+
+builder = StateGraph(State)
+builder.add_node("add_message", add_message)
+builder.add_node("replace_messages", replace_messages)
+builder.add_edge(START, "add_message")
+builder.add_edge("add_message", "replace_messages")
+builder.add_edge("replace_messages", END)
+
+graph = builder.compile()
+
+result = graph.invoke({"messages": ["initial"]})
+print(result["messages"])
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-hBukZ5lMa4FodsZRssvIkM"></a></span>
+<pre><code>['replacement message']
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-sL2mXnH0sGAV2HK53uf07x"></a></span>
+<p><span>您也可以使用带有特殊键</span><span>"<strong>overwrite</strong>"</span><span>的 JSON 格式：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-z5rBxtAD3bO7YvRnxQhAqX"></a></span>
+<pre><code>def replace_messages(state: State):
+return {"messages": {"__overwrite__": ["replacement message"]}}
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-UIhhsCYVePQ6FzzP3KqD3v"></a></span>
+<p><span>当节点并行执行时，在给定的超级步骤中，只有一个节点可以对同一状态键使用</span><span>Overwrite</span><span>。如果多个节点在同一超级步骤中尝试覆盖同一键，将引发</span><span>InvalidUpdateError</span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-iAWuzzQVpV9DnK0cYmqzqP"></a></span>
+<h3 id="section-7"><strong>定义输入和输出模式</strong></h3>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-WKvv8z8biN0HypHFpFgaPi"></a></span>
+<p><span>默认情况下，</span><span>StateGraph</span><span>使用单一模式操作，所有节点都期望使用该模式进行通信。但是，也可以为图定义不同的输入和输出模式。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-1ROXwlM4U9AtyAsIEu7Cuz"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>输入模式定义图接收的字段通道；需要运行时类型或业务约束验证时，应使用合适的验证模型或显式校验，不能只依赖TypedDict。</p><details><summary>查看解释与参考资料</summary><p>TypedDict的字段声明不等于完整运行时类型校验，输入模式主要定义接收的通道。</p></details></aside><p><span>当指定了不同的模式时，节点之间的通信仍将使用内部模式。输入模式确保提供的输入符合预期结构，而输出模式则根据定义的输出模式过滤内部数据，仅返回相关信息。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-zp6BaBrVUQ2NOKljlzOL2F"></a></span>
+<p><span>下面，我们将看到如何定义不同的输入和输出模式。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-I8TqPssagE6S42kWk3vtmu"></a></span>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from typing_extensions import TypedDict
+
+# Define the schema for the input
+class InputState(TypedDict):
+question: str
+
+# Define the schema for the output
+class OutputState(TypedDict):
+answer: str
+
+# Define the overall schema, combining both input and output
+class OverallState(InputState, OutputState):
+pass
+
+# Define the node that processes the input and generates an answer
+def answer_node(state: InputState):
+# Example answer and an extra key
+return {"answer": "bye", "question": state["question"]}
+
+# Build the graph with input and output schemas specified
+builder = StateGraph(OverallState, input_schema=InputState, output_schema=OutputState)
+builder.add_node(answer_node) # Add the answer node
+builder.add_edge(START, "answer_node") # Define the starting edge
+builder.add_edge("answer_node", END) # Define the ending edge
+graph = builder.compile() # Compile the graph
+
+# Invoke the graph with an input and print the result
+print(graph.invoke({"question": "hi"}))
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-64fXFBaltTm2RNkfZP4EK0"></a></span>
+<pre><code>{'answer': 'bye'}
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-wmrUqeEQRnfF6A7MwIJGL1"></a></span>
+<p><span>请注意，invoke 的输出仅包含输出模式。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-or1UJhmndYuiFVDhRHTArV"></a></span>
+<h3 id="section-8"><strong>在节点之间传递私有状态</strong></h3>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-kgerGXnZAoDix8V5UvEnUk"></a></span>
+<p><span>在某些情况下，您可能希望节点交换对中间逻辑至关重要但不需要成为图主模式一部分的信息。这些私有数据与图的整体输入/输出无关，应仅在特定节点之间共享。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-m0QxzvoanimZjFP8jYBYBD"></a></span>
+<p><span>下面，我们将创建一个由三个节点（node_1、node_2 和 node_3）组成的示例顺序图，其中私有数据在前两个步骤（node_1 和 node_2）之间传递，而第三个步骤（node_3）只能访问公共的整体状态。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-XQQpLeRUj2jnut6nCRKKNx"></a></span>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from typing_extensions import TypedDict
+
+# The overall state of the graph (this is the public state shared across nodes)
+class OverallState(TypedDict):
+a: str
+
+# Output from node_1 contains private data that is not part of the overall state
+class Node1Output(TypedDict):
+private_data: str
+
+# The private data is only shared between node_1 and node_2
+def node_1(state: OverallState) -> Node1Output:
+output = {"private_data": "set by node_1"}
+print(f"Entered node `node_1`:\n\tInput: {state}.\n\tReturned: {output}")
+return output
+
+# Node 2 input only requests the private data available after node_1
+class Node2Input(TypedDict):
+private_data: str
+
+def node_2(state: Node2Input) -> OverallState:
+output = {"a": "set by node_2"}
+print(f"Entered node `node_2`:\n\tInput: {state}.\n\tReturned: {output}")
+return output
+
+# Node 3 only has access to the overall state (no access to private data from node_1)
+def node_3(state: OverallState) -> OverallState:
+output = {"a": "set by node_3"}
+print(f"Entered node `node_3`:\n\tInput: {state}.\n\tReturned: {output}")
+return output
+
+# Connect nodes in a sequence
+# node_2 accepts private data from node_1, whereas
+# node_3 does not see the private data.
+builder = StateGraph(OverallState).add_sequence([node_1, node_2, node_3])
+builder.add_edge(START, "node_1")
+graph = builder.compile()
+
+# Invoke the graph with the initial state
+response = graph.invoke(
+{
+"a": "set at start",
+}
+)
+
+print()
+print(f"Output of graph invocation: {response}")
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-KRTHqUwLnTdR4woRUBowlU"></a></span>
+<pre><code>Entered node `node_1`:
+Input: {'a': 'set at start'}.
+Returned: {'private_data': 'set by node_1'}
+Entered node `node_2`:
+Input: {'private_data': 'set by node_1'}.
+Returned: {'a': 'set by node_2'}
+Entered node `node_3`:
+Input: {'a': 'set by node_2'}.
+Returned: {'a': 'set by node_3'}
+
+Output of graph invocation: {'a': 'set by node_3'}
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-Ihwy7CEQ6AfZFCm3fog1ko"></a></span>
+<h3 id="section-9"><strong>使用 pydantic 模型作为图状态</strong></h3>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-sLsNycfppd74kMvJpNTDYC"></a></span>
+<p><strong>StateGraph</strong><span> 在初始化时接受一个 </span><strong>state_schema</strong><span> 参数，该参数指定图中节点可以访问和更新的状态的"形状"。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-ut5epJtZv9vVnuEdT2dZTL"></a></span>
+<p><span>在我们的示例中，我们通常使用 Python 原生的 </span><span>TypedDict</span><span> 或 </span><strong>dataclass</strong><span> 作为 </span><span>state_schema</span><span>，但 </span><strong>state_schema</strong><span> 可以是任何</span><strong>类型</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-l5OtJoQuWXrIrUeCx1Kdz5"></a></span>
+<p><span>这里，我们将看到如何使用 </span><strong>Pydantic BaseModel</strong><span> 作为 </span><strong>state_schema</strong><span>，以在</span><strong>输入</strong><span>上添加运行时验证。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-zdYIoPmnAlXbMHygBM9iGs"></a></span>
+<p><strong>已知限制</strong></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-IIpndjG7Tnk3lCZliC6yML"></a></span>
+<ul>
+<li><span>目前，图的输出将</span><strong>不会</strong><span>是 pydantic 模型的实例。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-LwsMjGGVZkIbLEV1U9S35c"></a></span>
+<ul>
+<li><span>运行时验证仅发生在图中第一个节点的输入上，而不是后续节点或输出上。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-KOtjatFYmshkwZNMp5msFW"></a></span>
+<ul>
+<li><span>Pydantic 的验证错误追踪不会显示错误出现在哪个节点。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-lxkP0v9n6hPcxFQk00GFIp"></a></span>
+<ul>
+<li><span>Pydantic 的递归验证可能较慢。对于性能敏感的应用，您可能需要考虑使用</span><span>dataclass</span><span>代替。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-vJlhfZQ80Q3hgAGWPzOUt3"></a></span>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from typing_extensions import TypedDict
+from pydantic import BaseModel
+
+# The overall state of the graph (this is the public state shared across nodes)
+class OverallState(BaseModel):
+a: str
+
+def node(state: OverallState):
+return {"a": "goodbye"}
+
+# Build the state graph
+builder = StateGraph(OverallState)
+builder.add_node(node) # node_1 is the first node
+builder.add_edge(START, "node") # Start the graph with node_1
+builder.add_edge("node", END) # End the graph after node_1
+graph = builder.compile()
+
+# Test the graph with a valid input
+graph.invoke({"a": "hello"})
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-XOdbntwRxJp0TTOdVmRMaO"></a></span>
+<p><span>使用</span><strong>无效</strong><span>输入调用图</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-3ic0m7uL4XUQH5ZkNyrtwp"></a></span>
+<pre><code>try:
+graph.invoke({"a": 123}) # Should be a string
+except Exception as e:
+print("An exception was raised because `a` is an integer rather than a string.")
+print(e)
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-fQ7pxFB6X2FFJ52wRVinKS"></a></span>
+<pre><code>An exception was raised because `a` is an integer rather than a string.
+1 validation error for OverallState
+a
+Input should be a valid string [type=string_type, input_value=123, input_type=int]
+For further information visit https://errors.pydantic.dev/2.9/v/string_type
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-LyEG5PmgdaowVo46hyJNfp"></a></span>
+<p><span>有关 Pydantic 模型状态的更多功能，请参见下文：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-GuxRpGOcwSWbEF6eW07IO3"></a></span>
+<p><span>当使用 Pydantic 模型作为状态模式时，了解序列化的工作方式非常重要，尤其是在以下情况下：</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-1KRZunzfkkAwgZxHDPFQnc"></a></span>
+<ul>
+<li><span>将 Pydantic 对象作为输入传递</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-OJFrwe5iZQdosWi8sayraU"></a></span>
+<ul>
+<li><span>接收图的输出</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-mIdZ8VjCgkWCLZsidcfy84"></a></span>
+<ul>
+<li><span>使用嵌套的 Pydantic 模型</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-ulpnDdcT1NkZuU2qWe8s7W"></a></span>
+<p><span>让我们看看这些行为的具体表现。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-KeOYpYbyshd8n8GTzvKHnl"></a></span>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from pydantic import BaseModel
+
+class NestedModel(BaseModel):
+value: str
+
+class ComplexState(BaseModel):
+text: str
+count: int
+nested: NestedModel
+
+def process_node(state: ComplexState):
+# Node receives a validated Pydantic object
+print(f"Input state type: {type(state)}")
+print(f"Nested type: {type(state.nested)}")
+# Return a dictionary update
+return {"text": state.text + " processed", "count": state.count + 1}
+
+# Build the graph
+builder = StateGraph(ComplexState)
+builder.add_node("process", process_node)
+builder.add_edge(START, "process")
+builder.add_edge("process", END)
+graph = builder.compile()
+
+# Create a Pydantic instance for input
+input_state = ComplexState(text="hello", count=0, nested=NestedModel(value="test"))
+print(f"Input object type: {type(input_state)}")
+
+# Invoke graph with a Pydantic instance
+result = graph.invoke(input_state)
+print(f"Output type: {type(result)}")
+print(f"Output content: {result}")
+
+# Convert back to Pydantic model if needed
+output_model = ComplexState(**result)
+print(f"Converted back to Pydantic: {type(output_model)}")
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-Mt0Q2YL2idlqwB1kBGLPfx"></a></span>
+<p><span>Pydantic 对某些数据类型执行运行时类型强制转换。这可能有所帮助，但如果您不了解，也可能导致意外行为。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-cm2JlZWymsj1Zew8qbywH7"></a></span>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from pydantic import BaseModel
+
+class CoercionExample(BaseModel):
+# Pydantic will coerce string numbers to integers
+number: int
+# Pydantic will parse string booleans to bool
+flag: bool
+
+def inspect_node(state: CoercionExample):
+print(f"number: {state.number} (type: {type(state.number)})")
+print(f"flag: {state.flag} (type: {type(state.flag)})")
+return {}
+
+builder = StateGraph(CoercionExample)
+builder.add_node("inspect", inspect_node)
+builder.add_edge(START, "inspect")
+builder.add_edge("inspect", END)
+graph = builder.compile()
+
+# Demonstrate coercion with string inputs that will be converted
+result = graph.invoke({"number": "42", "flag": "true"})
+
+# This would fail with a validation error
+try:
+graph.invoke({"number": "not-a-number", "flag": "true"})
+except Exception as e:
+print(f"\nExpected validation error: {e}")
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-sI8RAfaeElOflsGoIZoWuM"></a></span>
+<p><span>在状态模式中使用 LangChain 消息类型时，序列化有重要的考虑因素。当通过网络使用消息对象时，您应该使用</span><span>AnyMessage</span><span>（而不是</span><span>BaseMessage</span><span>）以进行正确的序列化/反序列化。</span></p>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-5quDDam6PmcDeSVMQedQeI"></a></span>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from pydantic import BaseModel
+from langchain.messages import HumanMessage, AIMessage, AnyMessage
+from typing import List
+
+class ChatState(BaseModel):
+messages: List[AnyMessage]
+context: str
+
+def add_message(state: ChatState):
+return {"messages": state.messages + [AIMessage(content="Hello there!")]}
+
+builder = StateGraph(ChatState)
+builder.add_node("add_message", add_message)
+builder.add_edge(START, "add_message")
+builder.add_edge("add_message", END)
+graph = builder.compile()
+
+# Create input with a message
+initial_state = ChatState(
+messages=[HumanMessage(content="Hi")], context="Customer support chat"
+)
+
+result = graph.invoke(initial_state)
+print(f"Output: {result}")
+
+# Convert back to Pydantic model to see message types
+output_model = ChatState(**result)
+for i, msg in enumerate(output_model.messages):
+print(f"Message {i}: {type(msg).__name__} - {msg.content}")
+</code></pre>
+<span class="source-anchor-container"><a id="src-tencent-007-004-003-dyh8cqevTPTLf1AK1isVM3"></a></span></div><details class="notice" data-pagefind-ignore><summary>动手试一次 · 2 个配套例子</summary><p>这些完整教学代码已核对固定输入与结果，帮助理解本课主题；原文片段原有的上下文缺失或版本问题仍然存在。</p><ul><li><a class="text-link" href="/momomian/runnable-examples/?case=graph-state">状态更新为什么能累加 →</a><p class="small muted">实际运行LangGraph reducer，检查分数与动作顺序。</p></li><li><a class="text-link" href="/momomian/runnable-examples/?case=model-messages">工具结果要接回对应的调用 →</a><p class="small muted">实际构造消息类型并核对tool_call_id；没有真实模型请求。</p></li></ul></details></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-1" class="lesson-resource-group" data-lesson-resource-anchor="section-1" aria-label="覆盖更新与 Reducer"><p class="lesson-resource-label">配合这一段学习</p><h3 class="lesson-resource-title">覆盖更新与 Reducer</h3><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://docs.langchain.com/oss/python/langgraph/graph-api" target="_blank" rel="noopener noreferrer">LangGraph 官方文档 · Graph API：状态、节点与边 <span aria-hidden="true">↗</span></a><span class="reading-meta">英文 · 官方文档 · 入门</span><p>对照状态更新、Reducer 与条件边；接口细节按所用版本核对。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="tencent-007-004-003-61e37850b0" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：节点返回更新与字段归约。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-tencent-007-004-003-61e37850b0-1","version":1,"type":"single","stage":"lesson","concept":"tencent-007-004-003-61e37850b0","prompt":"节点更新状态推荐怎样做？","options":[{"id":"option-1","text":"返回所需字段的更新，而非原地随意修改输入","reason":"声明式返回让运行时按模式与归约规则处理更新，执行与恢复更可追踪。"},{"id":"option-2","text":"直接修改任意共享全局对象","reason":"会增加并发与持久化的不确定性。"},{"id":"option-3","text":"只能返回与输入完全相同的字典","reason":"节点可以返回需要更新的部分字段。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"返回所需字段的更新，而非原地随意修改输入。","explanation":"声明式返回让运行时按模式与归约规则处理更新，执行与恢复更可追踪。 会增加并发与持久化的不确定性。 节点可以返回需要更新的部分字段。","analysisSteps":["先确定本题条件：节点更新状态推荐怎样做？","再核对处理规则：声明式返回让运行时按模式与归约规则处理更新，执行与恢复更可追踪。","用例检查：节点返回extra_field=10，把合并职责交给图运行时。"],"workedExample":"节点返回extra_field=10，把合并职责交给图运行时。","evidence":{"quote":"节点应直接返回对状态的更新，而不是改变状态。","href":"/lessons/tencent-007-004-003-61e37850b0/#section-3"},"misconception":"会增加并发与持久化的不确定性。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-007-004-003-61e37850b0/#section-3"}]},{"id":"lx-tencent-007-004-003-61e37850b0-2","version":1,"type":"single","stage":"lesson","concept":"tencent-007-004-003-61e37850b0","prompt":"示例messages没有归约器时，为何返回旧列表加新消息？","options":[{"id":"option-1","text":"该字段默认覆盖，需要返回希望保留的完整列表","reason":"先看字段更新规则，再决定返回完整值还是增量，避免把两种写法混用。"},{"id":"option-2","text":"任意字段默认都会自动追加","reason":"追加需要对应归约逻辑。"},{"id":"option-3","text":"只返回新消息也必然保留历史","reason":"普通覆盖会丢失旧列表内容。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"该字段默认覆盖，需要返回希望保留的完整列表。","explanation":"先看字段更新规则，再决定返回完整值还是增量，避免把两种写法混用。 追加需要对应归约逻辑。 普通覆盖会丢失旧列表内容。","analysisSteps":["先确定本题条件：示例messages没有归约器时，为何返回旧列表加新消息？","再核对处理规则：先看字段更新规则，再决定返回完整值还是增量，避免把两种写法混用。","用例检查：原来有Hi，返回旧列表加Hello后才能在普通覆盖字段中保留两条。"],"workedExample":"原来有Hi，返回旧列表加Hello后才能在普通覆盖字段中保留两条。","evidence":{"quote":"!\") return {\"messages\": messages + [new_message], \"extra_field\": 10}","href":"/lessons/tencent-007-004-003-61e37850b0/#section-3"},"misconception":"追加需要对应归约逻辑。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-007-004-003-61e37850b0/#section-3"}]},{"id":"lx-tencent-007-004-003-61e37850b0-3","version":1,"type":"single","stage":"lesson","concept":"tencent-007-004-003-61e37850b0","prompt":"给列表字段指定追加归约器后，要注意什么？","options":[{"id":"option-1","text":"返回增量即可，重复返回全历史可能造成重复追加","reason":"更新代码要与模式定义保持一致，修改归约器时应复核每个写该字段的节点。"},{"id":"option-2","text":"仍必须每次返回全量历史","reason":"追加全量会把已有内容再次合并。"},{"id":"option-3","text":"归约器会自动删除历史中的重复项","reason":"追加归约器只合并，不自动执行语义去重。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"返回增量即可，重复返回全历史可能造成重复追加。","explanation":"更新代码要与模式定义保持一致，修改归约器时应复核每个写该字段的节点。 追加全量会把已有内容再次合并。 追加归约器只合并，不自动执行语义去重。","analysisSteps":["先确定本题条件：给列表字段指定追加归约器后，要注意什么？","再核对处理规则：更新代码要与模式定义保持一致，修改归约器时应复核每个写该字段的节点。","用例检查：已有[a]时返回[b]得[a,b]，返回[a,b]可能得[a,a,b]。"],"workedExample":"已有[a]时返回[b]得[a,b]，返回[a,b]可能得[a,a,b]。","evidence":{"quote":"如何使用 归约器 来控制状态更新的处理方式。","href":"/lessons/tencent-007-004-003-61e37850b0/#section-1"},"misconception":"追加全量会把已有内容再次合并。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/tencent-007-004-003-61e37850b0/#section-1"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-tencent-007-004-003-61e37850b0-1" disabled><legend><span class="quiet-tag">单选</span> 1. 节点更新状态推荐怎样做？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-1" value="option-1"><span>返回所需字段的更新，而非原地随意修改输入</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-1" value="option-3"><span>只能返回与输入完全相同的字典</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-1" value="option-2"><span>直接修改任意共享全局对象</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-1" value="unsure"><span>暂时不会，提交后看解析</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-007-004-003-61e37850b0-2" disabled><legend><span class="quiet-tag">单选</span> 2. 示例messages没有归约器时，为何返回旧列表加新消息？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-2" value="option-2"><span>任意字段默认都会自动追加</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-2" value="option-3"><span>只返回新消息也必然保留历史</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-2" value="option-1"><span>该字段默认覆盖，需要返回希望保留的完整列表</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-tencent-007-004-003-61e37850b0-3" disabled><legend><span class="quiet-tag">单选</span> 3. 给列表字段指定追加归约器后，要注意什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-3" value="option-1"><span>返回增量即可，重复返回全历史可能造成重复追加</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-3" value="option-3"><span>归约器会自动删除历史中的重复项</span></label><label class="lesson-choice-option"><input type="radio" name="lx-tencent-007-004-003-61e37850b0-3" value="option-2"><span>仍必须每次返回全量历史</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=tencent-007-004-003-61e37850b0">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>此前的单元复习与作答记录</summary><section class="lesson-course-quiz" id="lesson-legacy-unit-quiz" data-course-quiz="tencent-007-004-003-61e37850b0" data-course-mode="unit-review" data-legacy-unit="true" aria-labelledby="lesson-legacy-unit-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-legacy-unit-quiz-title">此前的单元复习</h2><p class="small muted">原来的题目和作答历史继续保留。需要时可以在这里复习，不影响本课新题。</p></div></div><p class="lesson-quiz-scope">复习范围：图中的状态、节点与路由。<a href="/momomian/lessons/tencent-007-004-003-ae9d8620f3/#lesson-source-body">回到主讲资料</a>。这些题不代表本篇全部内容；之前做过的题会保留上次作答。</p><script type="application/json" data-course-questions>[{"id":"lc-graph-route","version":1,"type":"single","stage":"lesson","concept":"graph","prompt":"条件边根据工具结果选择下一节点，路由应依赖什么？","options":[{"id":"answer","text":"当前有效状态和明确的条件","reason":"不同结果对应不同路径。"},{"id":"option-0","text":"只依赖节点名称是否好看","reason":"名称不能代表结果。"},{"id":"option-1","text":"无论结果如何都返回成功节点","reason":"这样没有实现条件判断。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先回看必答点，再用题目中的条件核对。"}],"correctIds":["answer"],"keyPoint":"条件路由要使用实际状态。","explanation":"明确状态字段、合并规则和终止路径；遇到无匹配条件时应有可解释的处理。","misconception":"名称不能代表结果。","condition":"只讨论题目给出的条件；具体接口和版本要对照原文。","sources":[{"title":"图中的状态、节点与路由 · 主讲资料","href":"/lessons/tencent-007-004-003-ae9d8620f3/#lesson-source-body"}],"workedExample":"节点把status从pending改成approved，条件边读取新状态再选execute或cancel。只添加无条件execute边，会使拒绝状态也进入执行节点。"},{"id":"q-checkpoint-gap","version":1,"type":"single","stage":"frameworks","concept":"mcp","prompt":"外部预约写入成功，但进程在保存成功检查点前退出。若恢复直接重跑该写入，主要风险是什么？","options":[{"id":"duplicate","text":"产生重复预约。","reason":"流程未记住成功，外部系统却可能已经生效。"},{"id":"none","text":"检查点保证外部不会重复。","reason":"流程状态保存与外部事务不自动原子提交。"},{"id":"rollback","text":"外部写入必然自动回滚。","reason":"另一个服务的成功事务不会因本进程退出自动撤销。"},{"id":"only-ui","text":"只影响页面显示。","reason":"重执行可能改变真实业务数据。"}],"correctIds":["duplicate"],"explanation":"稳定业务键、结果查询和服务端幂等用于协调该间隙，不能只依靠流程恢复。","misconception":"把检查点等同跨系统恰好一次事务。","condition":"若写入本身有可靠幂等约定，重放效果可受控；该保证来自业务协议而非检查点名称。","sources":[{"title":"关联面试答案","href":"/practice/#i-checkpoint"},{"title":"动手补练","href":"/capstone/"},{"title":"相关概念记忆卡","href":"/cards/#card-mcp-checkpoint"},{"title":"本阶段课程","href":"/lessons/tencent-007-004-002-6320b4a872/"}],"keyPoint":"图状态恢复不自动保证外部副作用不重复。","workedExample":"节点把status从pending改成approved，条件边读取新状态再选execute或cancel。只添加无条件execute边，会使拒绝状态也进入执行节点。"},{"id":"lc-graph-end","version":1,"type":"single","stage":"lesson","concept":"graph","prompt":"图中的一个环没有次数、预算或状态退出条件，主要风险是什么？","options":[{"id":"answer","text":"可能持续执行而无法完成任务","reason":"环需要可达的终止条件。"},{"id":"option-0","text":"有环一定代表程序语法错误","reason":"图可以合法有环。"},{"id":"option-1","text":"框架一定会替业务找到正确出口","reason":"框架无法推断所有业务结束条件。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先回看必答点，再用题目中的条件核对。"}],"correctIds":["answer"],"keyPoint":"允许循环，也要定义如何退出。","explanation":"用失败、重复结果和预算耗尽样例检查终止行为，而不是只测试一次成功。","misconception":"图可以合法有环。","condition":"只讨论题目给出的条件；具体接口和版本要对照原文。","sources":[{"title":"图中的状态、节点与路由 · 主讲资料","href":"/lessons/tencent-007-004-003-ae9d8620f3/#lesson-source-body"}],"workedExample":"节点把status从pending改成approved，条件边读取新状态再选execute或cancel。只添加无条件execute边，会使拒绝状态也进入执行节点。"}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lc-graph-route" disabled><legend><span class="quiet-tag">单选</span> 1. 条件边根据工具结果选择下一节点，路由应依赖什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lc-graph-route" value="option-0"><span>只依赖节点名称是否好看</span></label><label class="lesson-choice-option"><input type="radio" name="lc-graph-route" value="option-1"><span>无论结果如何都返回成功节点</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lc-graph-route" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lc-graph-route" value="answer"><span>当前有效状态和明确的条件</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="q-checkpoint-gap" disabled><legend><span class="quiet-tag">单选</span> 2. 外部预约写入成功，但进程在保存成功检查点前退出。若恢复直接重跑该写入，主要风险是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="q-checkpoint-gap" value="rollback"><span>外部写入必然自动回滚。</span></label><label class="lesson-choice-option"><input type="radio" name="q-checkpoint-gap" value="none"><span>检查点保证外部不会重复。</span></label><label class="lesson-choice-option"><input type="radio" name="q-checkpoint-gap" value="duplicate"><span>产生重复预约。</span></label><label class="lesson-choice-option"><input type="radio" name="q-checkpoint-gap" value="only-ui"><span>只影响页面显示。</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lc-graph-end" disabled><legend><span class="quiet-tag">单选</span> 3. 图中的一个环没有次数、预算或状态退出条件，主要风险是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lc-graph-end" value="option-0"><span>有环一定代表程序语法错误</span></label><label class="lesson-choice-option"><input type="radio" name="lc-graph-end" value="option-1"><span>框架一定会替业务找到正确出口</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lc-graph-end" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lc-graph-end" value="answer"><span>可能持续执行而无法完成任务</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=tencent-007-004-003-61e37850b0">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section></details><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="tencent-007-004-003-61e37850b0" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构根据本课原文自动整理，术语通用释义与迁移问题为本站补充。它不代表逐课人工审定或原文代码已运行。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><div class="lesson-guide-prerequisites"><h3>建议先修</h3><ul><li><a href="/momomian/roadmap/#langchain">LangChain 开发</a><span class="small muted"> · 先能解释这个单元的输入、输出与限制，再阅读「使用图形 API：定义和更新状态」。</span></li></ul></div><h3>这次阅读的目标</h3><ol><li>按返回字段更新状态并避免原地修改共享输入</li><li>在默认覆盖、追加reducer和Overwrite间选择正确写法</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-fwBO16VIdqwKNDrlZVcq8d">回看本课上下文</a></span></dd></div><div><dt>状态图</dt><dd>用节点、边和状态表达流程。需分别检查状态更新、路径条件、恢复和终止。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-CHmDj9g9DkQ1v6tIHsTfhY">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-rU0AiTe4V1JUPICff6fKNe">回看本课上下文</a></span></dd></div><div><dt>LangChain</dt><dd>模型、消息、工具等应用组件的框架生态。具体接口以课程标注版本和官方文档为准。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-48xphVhSNL7ClOIWl8NqtX">回看本课上下文</a></span></dd></div><div><dt>LangGraph</dt><dd>使用图与持久状态组织工作流的框架。图的结构不自动保证任务正确、终止或外部操作安全。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-8bLkSMsMRwW4yIT7zsvcHB">回看本课上下文</a></span></dd></div><div><dt>JSON</dt><dd>以对象、数组、字符串、数值等组成的数据交换格式。合法格式、符合约定结构和事实正确应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-sL2mXnH0sGAV2HK53uf07x">回看本课上下文</a></span></dd></div><div><dt>HTTP</dt><dd>客户端与服务端交换请求和响应的协议；方法、状态码、响应体和业务结果分别提供信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-fQ7pxFB6X2FFJ52wRVinKS">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-tencent-007-004-003-CwMXBRSNTul2Qdq8FdiIhE">回看本课上下文</a></span></dd></div><div><dt>状态</dt><dd>状态中的每个键都可以有自己的独立归约器函数，它控制如何应用来自节点的更新。如果没有明确指定归约器函数，则假定对该键的所有更新都应覆盖它。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-007-004-003-r7VxpFzmYyUqOBStQLjgB1">回看本课上下文</a></span></dd></div><div><dt>StateGraph</dt><dd>StateGraph 在初始化时接受一个 state_schema 参数，该参数指定图中节点可以访问和更新的状态的&quot;形状&quot;。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-tencent-007-004-003-sLsNycfppd74kMvJpNTDYC">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>原文中的代码或配置：定义状态</h3><p class="small muted">原文节选，可能截断；代码未因此获得运行验证。打开来源查看完整上下文。 <a href="#src-tencent-007-004-003-48xphVhSNL7ClOIWl8NqtX">打开完整来源段落</a></p><pre class="lesson-guide-example"><code>from langchain.messages import AnyMessage
+from typing_extensions import TypedDict
+
+class State(TypedDict):
+messages: list[AnyMessage]
+extra_field: int</code></pre><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-007-004-003-61e37850b0-explain"><h3>1. 使用图形 API：定义和更新状态 · 解释</h3><p>学习「使用图形 API：定义和更新状态」后，合上正文说明「定义状态」在解决什么问题。围绕原文“LangGraph 中的状态可以是 TypedDict、Pydantic 模型或数据类。下面我们将使用 TypedDict。。”复述一条具体关系，并区分已知与待确认的信息。</p><label class="lesson-task-field" for="task-lesson-card-tencent-007-004-003-61e37850b0-explain">先写自己的回答<textarea id="task-lesson-card-tencent-007-004-003-61e37850b0-explain" data-lesson-task-answer="lesson-card-tencent-007-004-003-61e37850b0-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-007-004-003-61e37850b0-explain">给一点提示</button><p class="lesson-task-hint" hidden>先回忆这一段：LangGraph 中的状态可以是 TypedDict、Pydantic 模型或数据类。下面我们将使用 TypedDict。。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：LangGraph 中的状态可以是 TypedDict、Pydantic 模型或数据类。下面我们将使用 TypedDict。。
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。</p><ul><li>指出「定义状态」讨论的对象或任务</li><li>复述原文中的一条具体关系：LangGraph 中的状态可以是 TypedDict、Pydantic 模型或数据类。下面我们将使用 TypedDict。。</li><li>区分原文说法与自己尚未验证的推断</li></ul><a href="#src-tencent-007-004-003-fwBO16VIdqwKNDrlZVcq8d">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-007-004-003-61e37850b0-explain">主要错因<select id="task-error-lesson-card-tencent-007-004-003-61e37850b0-explain" data-lesson-task-error="lesson-card-tencent-007-004-003-61e37850b0-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-007-004-003-61e37850b0#lesson-card-tencent-007-004-003-61e37850b0-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-tencent-007-004-003-61e37850b0-apply"><h3>2. 使用图形 API：定义和更新状态 · 实现</h3><p>在「使用图形 API：定义和更新状态」的「定义状态」代码中，State 如何接收输入或读取状态？指出一处会改变结果的调用，并说明你会怎样验证它。</p><label class="lesson-task-field" for="task-lesson-card-tencent-007-004-003-61e37850b0-apply">先写自己的回答<textarea id="task-lesson-card-tencent-007-004-003-61e37850b0-apply" data-lesson-task-answer="lesson-card-tencent-007-004-003-61e37850b0-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-tencent-007-004-003-61e37850b0-apply">给一点提示</button><p class="lesson-task-hint" hidden>先找 State 的调用位置、输入和紧随其后的结果处理。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">这是原文代码或配置阅读题，不代表代码已在本站运行。
+from langchain.messages import AnyMessage
+from typing_extensions import TypedDict
+
+class State(TypedDict):
+messages: list[AnyMessage]
+extra_field: int
+核对参数、返回/状态与外部副作用；原文没有给出的行为需用测试验证。</p><ul><li>能在来源代码定位 State</li><li>指出实际参数、状态或返回值中的至少一项</li><li>列出一个正常输入和一个失败/边界输入，并标明尚未执行的部分</li></ul><a href="#src-tencent-007-004-003-48xphVhSNL7ClOIWl8NqtX">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-tencent-007-004-003-61e37850b0-apply">主要错因<select id="task-error-lesson-card-tencent-007-004-003-61e37850b0-apply" data-lesson-task-error="lesson-card-tencent-007-004-003-61e37850b0-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=tencent-007-004-003-61e37850b0#lesson-card-tencent-007-004-003-61e37850b0-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>本课没有单独给出可直接运行的失败用例。围绕「使用图形 API：定义和更新状态」改变一个输入、版本或资源条件，写出需要检查的结果。</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>这里我们将展示如何在 LangGraph 中定义和更新状态。我们将演示：</blockquote><ul><li>说明改变了哪个输入或条件</li><li>写出预期结果和验证方法</li><li>未运行时明确标注为待验证，不编造日志或指标</li></ul><a href="#src-tencent-007-004-003-8bLkSMsMRwW4yIT7zsvcHB">回到原文依据</a></details><label class="lesson-task-field" for="boundary-tencent-007-004-003-61e37850b0">写下最小失败输入、预期和验证方法<textarea id="boundary-tencent-007-004-003-61e37850b0" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>将「使用图形 API：定义和更新状态」迁移到一个可以暂停并恢复的审批流程：遇到“恢复时可能再次触发外部写入”时，你会怎样调整？以本课“LangGraph 中的状态可以是 TypedDict、Pydantic 模型或数据类。下面我们将使用 TypedDict。。”为依据，说明哪些信息能沿用，检查持久状态、恢复位置与副作用。</p><ul><li>指出本课中实际采用的一点：LangGraph 中的状态可以是 TypedDict、Pydantic 模型或数据类。下面我们将使用 TypedDict。。</li><li>说明新场景与原例子的差别</li><li>留下一个输入、预期结果和可复现的检查步骤</li></ul><label class="lesson-task-field" for="transfer-tencent-007-004-003-61e37850b0">解释哪些能复用，哪些要重新验证<textarea id="transfer-tencent-007-004-003-61e37850b0" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>不看原文说明「定义状态」的作用与适用范围</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>能指出示例的输入/状态/返回，并区分代码阅读与实际运行</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>完成两次主动回忆并记录一个边界或失败问题</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>写下产物、验证方法和仍未确认的内容</span></label></fieldset><label class="lesson-task-field" for="artifact-tencent-007-004-003-61e37850b0">产物、实际验证与未决问题<textarea id="artifact-tencent-007-004-003-61e37850b0" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=tencent-007-004-003-61e37850b0#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=tencent-007-004-003-61e37850b0">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/lessons/tencent-012-004-011b22ad82/"><small>返回本单元主讲</small><span>LangGraph实战开发智能体：核心概念</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1">定义和更新状态</a><a href="#section-2" class="nested">定义状态</a><a href="#section-3" class="nested">更新状态</a><a href="#section-4" class="nested">使用归约器处理状态更新</a><a href="#section-5" class="nested">MessagesState</a><a href="#section-6" class="nested">使用 Overwrite 绕过归约器</a><a href="#section-7" class="nested">定义输入和输出模式</a><a href="#section-8" class="nested">在节点之间传递私有状态</a><a href="#section-9" class="nested">使用 pydantic 模型作为图状态</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

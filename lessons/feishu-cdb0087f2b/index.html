@@ -1,0 +1,555 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>面试真题（开发方向）：华林证券 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="feishu-cdb0087f2b"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>岗位能力地图与备考深度</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-872e863177/" data-record-id="feishu-872e863177">大模型岗位介绍</a><a href="/momomian/lessons/feishu-e8556c6409/" data-record-id="feishu-e8556c6409">大模型岗位介绍：不同岗位技术侧重点和面试技巧</a><a href="/momomian/lessons/feishu-4ba62ef841/" data-record-id="feishu-4ba62ef841">大模型岗位介绍：算法工程师</a><a href="/momomian/lessons/feishu-f2ddc84a7a/" data-record-id="feishu-f2ddc84a7a">大模型岗位介绍：大模型开发工程师</a><a href="/momomian/lessons/feishu-0c0c182e9c/" data-record-id="feishu-0c0c182e9c">大模型岗位介绍：大模型数据工程师</a><a href="/momomian/lessons/feishu-7c9d61a0c3/" data-record-id="feishu-7c9d61a0c3">大模型岗位介绍：推理工程师</a><a href="/momomian/lessons/feishu-30cc2018e8/" data-record-id="feishu-30cc2018e8">大模型岗位介绍：垂直领域微调工程师</a></details></div></details><details><summary>FDE岗位与真实交付</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3eb172c30b/" data-record-id="feishu-3eb172c30b">大模型岗位介绍：FDE（前线部署工程师）</a></details></div></details><details><summary>真实项目选择、经历和综合答疑</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-e0bf2395a7/" data-record-id="feishu-e0bf2395a7">前言：经验之谈</a><a href="/momomian/lessons/feishu-60292f9aa5/" data-record-id="feishu-60292f9aa5">答疑</a></details></div></details><details><summary>项目选题、产品形态与有界自我改进论述</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-a77120c97d/" data-record-id="feishu-a77120c97d">提升简历通过率，做深项目</a><a href="/momomian/lessons/feishu-1fc275882c/" data-record-id="feishu-1fc275882c">提升简历通过率，做深项目：2026年真正有价值的AI项目</a><a href="/momomian/lessons/feishu-337c761ed9/" data-record-id="feishu-337c761ed9">提升简历通过率，做深项目：2026年 Agent 新形态</a><a href="/momomian/lessons/feishu-4b68e7620b/" data-record-id="feishu-4b68e7620b">提升简历通过率，做深项目：RSI 进展</a></details></div></details><details><summary>预约、后训练及RAG项目的深化与事实证据</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-8c218425d9/" data-record-id="feishu-8c218425d9">项目使用和简历编写</a><a href="/momomian/lessons/feishu-990141b9a7/" data-record-id="feishu-990141b9a7">项目使用和简历编写：后训练项目</a><a href="/momomian/lessons/feishu-dc3dca6864/" data-record-id="feishu-dc3dca6864">项目使用和简历编写：RAG 项目</a></details></div></details><details><summary>项目必要性、自主性与Workflow答辩</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-8e7d22cdf4/" data-record-id="feishu-8e7d22cdf4">面试官压力项目应对方案</a><a href="/momomian/lessons/feishu-a111e65a39/" data-record-id="feishu-a111e65a39">面试官压力项目应对方案：你的就是个workflow，还能叫Agent吗？</a><a href="/momomian/lessons/feishu-0faae20217/" data-record-id="feishu-0faae20217">面试官压力项目应对方案：传统方法就能做，你用Agent做有必要吗？</a><a href="/momomian/lessons/feishu-5ae8e0818b/" data-record-id="feishu-5ae8e0818b">面试官压力项目应对方案：面试问题</a><a href="/momomian/lessons/feishu-5efcb86056/" data-record-id="feishu-5efcb86056">面试官压力项目应对方案：Agent的Agentic 性质体现在哪里？</a></details></div></details><details><summary>项目难题、端到端架构和个人贡献追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-1eaee24319/" data-record-id="feishu-1eaee24319">项目难题与面试复盘</a><a href="/momomian/lessons/feishu-1df54d766d/" data-record-id="feishu-1df54d766d">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）：面试前突击</a></details></div></details><details><summary>框架取舍与底层机制问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-b4ee0f86f9/" data-record-id="feishu-b4ee0f86f9">Agent开发框架：面试真题</a></details></div></details><details><summary>ReAct、工具、记忆和场景设计问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-1eb7018a6b/" data-record-id="feishu-1eb7018a6b">ReAct</a><a href="/momomian/lessons/feishu-c49fcee408/" data-record-id="feishu-c49fcee408">Function Calling</a><a href="/momomian/lessons/feishu-e37922f7a8/" data-record-id="feishu-e37922f7a8">Agent的记忆功能</a><a href="/momomian/lessons/feishu-301390ca94/" data-record-id="feishu-301390ca94">Agent场景题</a></details></div></details><details><summary>Agent必要性、工具贡献与基础编码题</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-0078fac0fa/" data-record-id="feishu-0078fac0fa">面试真题（开发方向）</a><a href="/momomian/lessons/feishu-141fe7e7d6/" data-record-id="feishu-141fe7e7d6">面试真题（开发方向）：滴滴Agent开发工程师</a><a href="/momomian/lessons/feishu-2407259c4b/" data-record-id="feishu-2407259c4b">面试真题（开发方向）：宇树科技Agent开发</a></details></div></details><details><summary>RAG、微调、多Agent规模与选型证据追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-72e778069d/" data-record-id="feishu-72e778069d">面试真题（开发方向）：京东零售平台算法开发</a><a href="/momomian/lessons/feishu-7149f20e12/" data-record-id="feishu-7149f20e12">面试真题（开发方向）：2025.11网龙科技</a><a href="/momomian/lessons/feishu-99dc3e8706/" data-record-id="feishu-99dc3e8706">面试真题（开发方向）：平安证券</a><a href="/momomian/lessons/feishu-d728f65e7a/" data-record-id="feishu-d728f65e7a">面试真题（开发方向）：小红书</a><a href="/momomian/lessons/feishu-a5977303c0/" data-record-id="feishu-a5977303c0">面试真题（开发方向）：英伟达大模型Agent开发</a></details></div></details><details><summary>上下文与长期记忆面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-003-1a022ddecb/" data-record-id="tencent-014-003-1a022ddecb">上下文管理与记忆：多 Agent / 多异步任务下，如何防止上下文污染？</a><a href="/momomian/lessons/tencent-014-003-90adc147fe/" data-record-id="tencent-014-003-90adc147fe">上下文管理与记忆：Agent 是怎么实现上下文记忆的？</a><a href="/momomian/lessons/tencent-014-003-9dad0b32d7/" data-record-id="tencent-014-003-9dad0b32d7">上下文管理与记忆：上下文管理是怎么做的，如何进行记忆？</a><a href="/momomian/lessons/tencent-014-003-e0b00f84e5/" data-record-id="tencent-014-003-e0b00f84e5">上下文管理与记忆：如何构建工具实现 memory 记忆，让大模型在长期对话中学习用户习惯？</a><a href="/momomian/lessons/tencent-014-003-cb6686b2eb/" data-record-id="tencent-014-003-cb6686b2eb">上下文管理与记忆：对 Cursor 记忆管理机制的了解</a><a href="/momomian/lessons/tencent-014-003-2ec5ef5f15/" data-record-id="tencent-014-003-2ec5ef5f15">上下文管理与记忆：Memory 上下文记忆功能的处理逻辑</a><a href="/momomian/lessons/tencent-014-003-9f1e98b6d0/" data-record-id="tencent-014-003-9f1e98b6d0">上下文管理与记忆：如何进行记忆管理，怎么处理长上下文，怎么进行持久化，后续怎么读取和关联？</a><a href="/momomian/lessons/tencent-014-003-d0afa3f60f/" data-record-id="tencent-014-003-d0afa3f60f">上下文管理与记忆：你的向量记忆库是如何更新用户画像的？如何区分短期记忆和长期记忆？</a><a href="/momomian/lessons/tencent-014-003-15a815a7c4/" data-record-id="tencent-014-003-15a815a7c4">上下文管理与记忆：记忆更新时能否精准替换指定片段，还是需要全量清空重建？</a><a href="/momomian/lessons/tencent-014-003-fe4b62ac04/" data-record-id="tencent-014-003-fe4b62ac04">上下文管理与记忆：存储时如果出现前后不一致的情况如何解决？</a><a href="/momomian/lessons/tencent-014-003-32683631eb/" data-record-id="tencent-014-003-32683631eb">上下文管理与记忆：多轮对话的实现方案</a></details></div></details><details><summary>会话记忆、恢复与并发压缩竞态</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-d30b8751ef/" data-record-id="feishu-d30b8751ef">面试真题（开发方向）：灵动时刻</a><a href="/momomian/lessons/feishu-f8ef41cf34/" data-record-id="feishu-f8ef41cf34">面试真题（开发方向）：腾讯AI Agent暑期实习</a><a href="/momomian/lessons/feishu-1b42a824e3/" data-record-id="feishu-1b42a824e3">面试真题（开发方向）：虾皮 AIAgent暑期实习面经</a></details></div></details><details><summary>工具、协议及多Agent面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-004-6ac6505f31/" data-record-id="tencent-014-004-6ac6505f31">Tool Calling / Function Call / MCP：你了解的 Tool 调用机制是怎样的？</a><a href="/momomian/lessons/tencent-014-004-5f2ceaebb5/" data-record-id="tencent-014-004-5f2ceaebb5">Tool Calling / Function Call / MCP：介绍一下 Function Call 原理，模型生成的 JSON 如何通过逻辑触发表层代码执行并返回给模型？</a><a href="/momomian/lessons/tencent-014-004-5e3a437e28/" data-record-id="tencent-014-004-5e3a437e28">Tool Calling / Function Call / MCP：MCP 协议的核心内容、介绍一下 MCP</a><a href="/momomian/lessons/tencent-014-004-5c910b113d/" data-record-id="tencent-014-004-5c910b113d">Tool Calling / Function Call / MCP：MCP 和 Skill 的区别，二者谁占用上下文窗口比较大？</a><a href="/momomian/lessons/tencent-014-004-66ba807714/" data-record-id="tencent-014-004-66ba807714">Tool Calling / Function Call / MCP：Skills 是怎么实现的，Skills 和 MCP 区别，怎么使用它们？</a><a href="/momomian/lessons/tencent-014-004-284571d6a1/" data-record-id="tencent-014-004-284571d6a1">Tool Calling / Function Call / MCP：Tool 层怎么定义的？Tool 层具体在 Agent 运行中是怎么被调用的？</a><a href="/momomian/lessons/tencent-014-004-a12ba166ff/" data-record-id="tencent-014-004-a12ba166ff">Tool Calling / Function Call / MCP：如何不用多智能体方案让 1000 个 Tools 正常工作？</a><a href="/momomian/lessons/tencent-014-004-4f54ebb622/" data-record-id="tencent-014-004-4f54ebb622">Tool Calling / Function Call / MCP：如果 MCP 特别多的话要怎么管理？</a><a href="/momomian/lessons/tencent-014-004-f222b19f4a/" data-record-id="tencent-014-004-f222b19f4a">Tool Calling / Function Call / MCP：特定推理模型不支持 MCP 的技术原因</a><a href="/momomian/lessons/tencent-014-004-b2db61c2e0/" data-record-id="tencent-014-004-b2db61c2e0">Tool Calling / Function Call / MCP：如何让大模型格式化输出消息，以及 Pydantic 相比 Prompt Engineering 在工程上的优势？</a><a href="/momomian/lessons/tencent-014-004-9b4330f3d9/" data-record-id="tencent-014-004-9b4330f3d9">Tool Calling / Function Call / MCP：A2A 协议、A2A 与 MCP 区别</a><a href="/momomian/lessons/tencent-014-004-3602596498/" data-record-id="tencent-014-004-3602596498">Tool Calling / Function Call / MCP：谈谈对 A2A 通信的理解。在 A2A 场景下，如何防止两个 Agent 陷入递归对话？</a><a href="/momomian/lessons/tencent-014-005/" data-record-id="tencent-014-005">Multi-Agent</a><a href="/momomian/lessons/tencent-014-006/" data-record-id="tencent-014-006">ReAct / 反思 / 任务规划</a></details></div></details><details><summary>MCP兼容、handoff与现场开源项目阅读</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9f98d898ee/" data-record-id="feishu-9f98d898ee">面试真题（开发方向）：字节跳动（抖音）</a><a href="/momomian/lessons/feishu-56174b693a/" data-record-id="feishu-56174b693a">面试真题（开发方向）：阿里国际站</a><a href="/momomian/lessons/feishu-eb349b3908/" data-record-id="feishu-eb349b3908">面试真题（开发方向）：盛大AI</a></details></div></details><details><summary>工具往返、Responses评估与图算法</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5188201aa8/" data-record-id="feishu-5188201aa8">面试真题（开发方向）：字节跳动（豆包）</a></details></div></details><details><summary>端侧量化与动态工具暴露</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5c48d98478/" data-record-id="feishu-5c48d98478">面试真题（开发方向）：Deepwisdom</a></details></div></details><details><summary>小模型分工、时间运算与前缀缓存</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c6ba154587/" data-record-id="feishu-c6ba154587">面试真题（开发方向）：阿里夸克千问</a></details></div></details><details><summary>多Agent架构问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3ca003789f/" data-record-id="feishu-3ca003789f">Multi-Agent 架构：面试问题</a></details></div></details><details><summary>评测与上线经历问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-f902dfdaa5/" data-record-id="feishu-f902dfdaa5">Agent评测：面试问题汇总</a><a href="/momomian/lessons/feishu-7324428422/" data-record-id="feishu-7324428422">Agent项目上线问题</a></details></div></details><details><summary>可靠性、模型、部署及应用设计面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-007/" data-record-id="tencent-014-007">异常处理 / 安全 / 熔断</a><a href="/momomian/lessons/tencent-014-008/" data-record-id="tencent-014-008">幻觉与评测</a><a href="/momomian/lessons/tencent-014-009/" data-record-id="tencent-014-009">Prompt 工程</a><a href="/momomian/lessons/tencent-014-010/" data-record-id="tencent-014-010">模型相关</a><a href="/momomian/lessons/tencent-014-011/" data-record-id="tencent-014-011">工程化与部署</a><a href="/momomian/lessons/tencent-014-012/" data-record-id="tencent-014-012">Agent 场景设计题</a></details></div></details><details><summary>后端服务化、压测和异步问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c959650ff7/" data-record-id="feishu-c959650ff7">按需深入：后端与服务化</a><a href="/momomian/lessons/feishu-f06d39781d/" data-record-id="feishu-f06d39781d">按需深入：后端与服务化：面试真题</a></details></div></details><details open><summary>金融业务架构、边界与欺诈决策闭环</summary><div class="lesson-nav"><details open><summary>补充与参考</summary><a href="/momomian/lessons/feishu-cdb0087f2b/" class="current" aria-current="page" data-record-id="feishu-cdb0087f2b">面试真题（开发方向）：华林证券</a><a href="/momomian/lessons/feishu-ffb96801c5/" data-record-id="feishu-ffb96801c5">面试真题（开发方向）：滴滴Agent开发</a></details></div></details><details><summary>Windows/C++资源生命周期与AI运行链路</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c1e19a157f/" data-record-id="feishu-c1e19a157f">面试真题（开发方向）：联想</a></details></div></details><details><summary>系统模块、个人分工与完成状态核验</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-2149c749e9/" data-record-id="feishu-2149c749e9">面试真题（开发方向）：深圳边端智能研究院大模型应用岗位</a><a href="/momomian/lessons/feishu-2086c96f4e/" data-record-id="feishu-2086c96f4e">面试真题（开发方向）：米连科技</a></details></div></details><details><summary>校招/转行项目的逐层实现一致性追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3acfe382dd/" data-record-id="feishu-3acfe382dd">面试真题（开发方向）：字节大模型开发暑期实习一面</a><a href="/momomian/lessons/feishu-83572da16d/" data-record-id="feishu-83572da16d">面试真题（开发方向）：安克暑期实习</a></details></div></details><details><summary>修复率基线、样本分布与Judge校准</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9407209664/" data-record-id="feishu-9407209664">面试真题（开发方向）：阿里淘天秋招大模型开发</a></details></div></details><details><summary>模块化RAG项目长篇追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-ff8b85db3d/" data-record-id="feishu-ff8b85db3d">模块化RAG项目：面试真题</a></details></div></details><details><summary>Harness方案、失败诊断与工程经验问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-87f52c1d95/" data-record-id="feishu-87f52c1d95">Harness Engineering：Harness 思想的运用</a><a href="/momomian/lessons/feishu-66f128b6c9/" data-record-id="feishu-66f128b6c9">Harness Engineering：面试问题速览</a></details></div></details><details><summary>Loop与Graph热点的工程判断</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-6aca377ead/" data-record-id="feishu-6aca377ead">Loop Engineering &amp; Graph工程</a><a href="/momomian/lessons/feishu-bf46788725/" data-record-id="feishu-bf46788725">Loop Engineering &amp; Graph工程：Graph 工程</a></details></div></details><details><summary>Pi与OpenClaw架构面试复盘</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-a61d80101e/" data-record-id="feishu-a61d80101e">开源框架解读 - PI-Agent：面试问题</a><a href="/momomian/lessons/feishu-46f3b40b7e/" data-record-id="feishu-46f3b40b7e">开源框架解读 - Openclaw：面试问题</a></details></div></details><details><summary>Hermes与DSH的源码架构问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-39aa485705/" data-record-id="feishu-39aa485705">开源框架解读 - Hermes Agent：面试问题</a><a href="/momomian/lessons/feishu-e1735cd571/" data-record-id="feishu-e1735cd571">开源框架解读- DeepSeek Harness：面试问题</a></details></div></details><details><summary>编程Agent机制口述与源码证据</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-013d790598/" data-record-id="feishu-013d790598">1Claude Code 从入门到精通：面试问答 Q&amp;A</a></details></div></details><details><summary>模型家族、特性与生态的历史问答参考</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-67ef783c54/" data-record-id="feishu-67ef783c54">简单介绍一下千问模型？</a><a href="/momomian/lessons/feishu-3c6683ca0b/" data-record-id="feishu-3c6683ca0b">简单介绍一下Gemini3模型？</a><a href="/momomian/lessons/feishu-d8dbe24001/" data-record-id="feishu-d8dbe24001">不同模型的对比和选择</a><a href="/momomian/lessons/feishu-65475e33b4/" data-record-id="feishu-65475e33b4">不同模型的对比和选择：热门模型特点介绍</a></details></div></details><details><summary>备考策略与简历：选材、表达、定稿和反馈</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-b83945d562/" data-record-id="feishu-b83945d562">简历编写技巧</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-39b488044d/" data-record-id="feishu-39b488044d">面试准备建议</a><a href="/momomian/lessons/feishu-aeffaf910c/" data-record-id="feishu-aeffaf910c">简历编写技巧：第二部分：动笔取舍</a><a href="/momomian/lessons/feishu-ab05bfe325/" data-record-id="feishu-ab05bfe325">简历编写技巧：第三部分：模块写法</a><a href="/momomian/lessons/feishu-5cf0f7db7c/" data-record-id="feishu-5cf0f7db7c">简历编写技巧：第四部分：表达打磨</a><a href="/momomian/lessons/feishu-2de4bcc2b8/" data-record-id="feishu-2de4bcc2b8">简历编写技巧：第五部分：定稿提交</a><a href="/momomian/lessons/feishu-fd239916a0/" data-record-id="feishu-fd239916a0">简历编写技巧：第六部分：反馈修改</a><a href="/momomian/lessons/feishu-00889b761f/" data-record-id="feishu-00889b761f">项目使用和简历编写：简历示范</a></details></div></details><details><summary>岗位搜索、人类确认投递与记录管理</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-116f52c0ef/" data-record-id="feishu-116f52c0ef">简历投递技巧</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-925a819008/" data-record-id="feishu-925a819008">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）：简历投递</a></details></div></details><details><summary>自我介绍、反问与岗位匹配判断</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-eac36b80fc/" data-record-id="feishu-eac36b80fc">自我介绍</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3610908248/" data-record-id="feishu-3610908248">反问</a></details></div></details><details><summary>个人求职过程记录与来源边界</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-388d54fd82/" data-record-id="feishu-388d54fd82">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=career">职业与面试</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">参考 · 按需查阅</p><h1 data-pagefind-meta="title">面试真题（开发方向）：华林证券</h1><div class="lesson-meta"><span>约 25 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：金融业务架构、边界与欺诈决策闭环 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="feishu-cdb0087f2b" data-task-title="面试真题（开发方向）：华林证券" data-task-href="/lessons/feishu-cdb0087f2b/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>OpenClaw 的固定压缩阈值、保留 token 数、子 Agent 默认上限和消息注入方式未注明版本或提交，尚不能视为当前默认行为。</p><p>“Bootstrap 免疫压缩”和“每种业务直接套模板”的说法依赖具体实现；本课仅能作为候选设计，不能视为生产验证。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">职业与面试 / 金融业务架构、边界与欺诈决策闭环</p><a class="text-link" href="/momomian/path/?topic=career&amp;unit=unit-career-949ac50f">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>分别测量首字延迟和任务完成延迟</li><li>按入口、路由与 Agent 执行职责解释三层方案</li><li>用 softmax 权重计算单头注意力，并说明结构化结果仍需验真</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">本课机制与检查方向</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">按本课三层架构示例，网关层的职责是什么？
+结论：路由、限速与管控，将准备好的任务交Agent层推理。
+理由：三层结构把事件入口与任务执行分开，网关处理分发和约束，Agent层再推理与行动，清晰边界有助排查是触发、路由还是模型过程的问题。
+配套示例：财报事件先按公司标识路由与限速，再交分析任务执行，不由网关生成估值文字。
+
+本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？
+结论：控制上下文膨胀并让主管按明确字段整合证据。
+理由：分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。
+配套示例：财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。</p><a class="text-link" href="#lesson-source-body">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 1 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>1 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><a class="text-link" href="/momomian/practice/?lesson=feishu-cdb0087f2b#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h3 id="section-1"><span>2025.12 华林证券</span></h3>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyNH6lV1oTFjEL54J2meM3f"></a></span>
+<h4 id="section-2"><span>岗位介绍</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnglTKMDH3Mah8QnARahWdBA"></a></span>
+<p><span>一共四面，没有HR面。4面应该是加了一面，因为我要的工资比较高，HR得专门申请。如果不是我这样的话，估计没有4面。1面是业务技术，2面是主管，3面是他们合作的博士导师，  4面是交叉面，找了做算法的同事来面。岗位Title叫：大模型应用工程师（智能体方向）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFw7rkwF7j2DUaYZF8IMxcg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqzzH0xS47tQFakTsLusYwc"></a></span>
+<h4 id="section-3"><span>反思</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXzv1jcB3WzwX12fRPTKfqg"></a></span>
+<p><span>一面技术面中规中矩，就是常见的基本经历考察，算法题，Agent,RAG考的也不难。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWQOyTn7AAAihaAm9GWfyMc"></a></span>
+<p><span>二面主管面：证券类的公司，最喜欢问的就是你能给证券行业带来什么？你了解证券行业的业务？你的技术如何用在我们的业务？一个建议是，你可以在技术面中好好询问清楚这个岗位的业务是做什么的，了解清楚以后想一下你在这个业务中有什么优势，可以给他们带来什么，想一想话术。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5d6OBXgZGgHwUwJH1er2ee"></a></span>
+<p><span>三面是个博士生导师吧：其实就是问了2个Agent场景设计题，这个可以笔记总结的：</span><span> 多Agent架构的论文 </span><span>我会整理在论文章节，其实在多Agent架构八股部分也提到了。通过这些前置知识结合三面的场景设计题来复习。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn787VhCUxApBrxvG1YjDeCc"></a></span>
+<p><span>四面就是纯粹一个交叉面和加面，因为涉及的涨幅比较高，所以他们加了一个做算法背景的人来面试。考察了我手写注意力机制。我估计是来摸底你算法的功底，因为前面的面试官是应用出身，岗位也是应用岗，前面的面试官摸不出来你的算法功底。 所以这也提醒我们，如果想要面试竞争力和价格再上一个台阶，学一点算法的东西也是有必要的。可以照着笔记中 </span><strong>大模型算法0基础学习全记录走一遍。</strong><span>不过再次强调，算法还是属于进阶路线，先把前面的应用部分弄好了，算法了解一点，offer肯定就有了，有余力再学习算法进阶部分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnawpRE7CZVRi0VTnOPboVTe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnm2Qtv7D0mPrF12PUFPdwjc"></a></span>
+<h4 id="section-4"><span>一面</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZ4USG8vCQjtxsOYNSBNd3e"></a></span>
+<p><span>1. 自我介绍。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrbZD0H59zKIigGw6RypbEf"></a></span>
+<p><span>2. 你在上一段工作主要做的是音频SDK吗？取得了一些什么样的成绩呀？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn33NsMOKRLijOl8uqiD4Rib"></a></span>
+<p><span>（好像社招面试普遍要问一下上一段经历，有朋友问社招要准备上一段经历的项目吗？所以答案是建议稍微准备一下，最少准备一下上一段经历做了啥，项目的描述这些基本问题）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsOjZq6THoJpUyoGTqI8DIN"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVhiNqcKCmQkkpnWNLOok0B"></a></span>
+<p><span>3. （追问）你觉得Unity WebGL的核心是啥？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYvZkTJ4xxhPKZxjLKwEGQb"></a></span>
+<p><span> （大家可以忽略，我上一段工作相关的内容）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLyrLHCodKuyL7ciPvSpkcb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVieBQqXb7F2cMOKhUXVtJb"></a></span>
+<p><span>4. 你可以讲一下音频sdk的原理吗？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN8M38u53Lwc5gdy7uHEqdf"></a></span>
+<p><span>（上一段工作相关内容，讨厌别人老问我音频的内容，我早都转行了，也投递的不是音频的岗位，还问那些有啥意义啊）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqO0FNCkpWl49JUmobYDlCh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnU4l2FiyDIgxiWiPAQbQcV5"></a></span>
+<p><span>5. 在上一段工作主要学到了什么？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJ9GTXm4oLto3hgeq2MIvlb"></a></span>
+<p><span> （问了5个问题了，还在聊上一段工作，还问这么虚的内容，这些问题我就不复盘了，我主要讲了一下学到的知识的广度，还有一些工程规范）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn57mpk1p1fDIbRWDSwf5oRh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2osYW6Zw13nFFYEq3UGqwb"></a></span>
+<p><span>6. 你这里讲的游戏主机迁移是啥意思？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnY6pywrbxrBoxN1i32yyABb"></a></span>
+<p><span>（还在扣我上一段工作的简历的具体细节。可能单纯是好奇吧，感觉和这个证券大模型智能体一点都不相干，但面试官就是要问）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcny7B1aoZAPtzaWj5umaYcac"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpPDEmnIiQUWYy8YLs1X2if"></a></span>
+<p><span>7. 你在现在的公司使用的主要语言？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPVu8VfFPVe9d56QCW7isIb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP3QeTgIHioMAea2H07K2xg"></a></span>
+<p><span>8. 介绍一下这个智能日历系统，当时为啥要做这个项目呢？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDp377lOuQXdJrP0BB5Mltf"></a></span>
+<p><span> (整体来说第8个问题其实就是介绍项目，询问项目的基本功能，其实没有什么特别要注意的，就是正常和面试官交流表达）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXgS8g7dbKktO2Rn3Pnf9Ag"></a></span>
+<p><span>（这个是我自己做的第一个Agent项目了）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOuXj5ShGongKoWVxXUL8oc"></a></span>
+<p><span>   8.1 这里为什么涉及多账号？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCEIJzb3Wh9b6D38ibJY2Eb"></a></span>
+<p><span>   8.2 这里会不会有隐私问题，因为要读邮箱。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkNKt0AOA5WFCIYubdIyOSf"></a></span>
+<p><span>    （这里就是说的需要用户授权）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPxn6Hvf5ew59Z6conx9f6b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrsrr8fYjZYosubhl9ur7qb"></a></span>
+<p><span>9. 你这里写的Semantic Kernel是啥？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnv3eT6p36bKBpry2F9Ld2j9"></a></span>
+<p><span>   （这个就是微软的一个Agent框架，因为我用了，所以简历写了，面试官就问了。其实可以看出来到目前为止，面试官根本就没问什么很难的问题，基本就在问你的经历。其实很多面试确实就是这样，面试官自己本身不一定也很懂，也问不出来个啥，更多的是问你，而不是考你，自己能讲清楚就行了）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuzCTunqo0xVFkmBhIn850b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsN6tvbkBsQqGWhcL9NmYzh"></a></span>
+<p><span>10. 介绍一下按摩房预约系统</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneBcj4oUvyKToXd2Lt9im2f"></a></span>
+<p><span> （这个就是在我的小红书上大家可以看到的一个项目，就是自己做的一个Agent项目，当时啥也不懂，要我现在看我肯定觉得有点搓。现在我设计一个Agent项目可能会从项目意义以及架构上去思考，而不是像当时一样啥也不想就拍脑袋就做一个。这个项目在小红书上可以搜到。就是这么一个，我自己也觉得不咋地的项目，我确实是把它放在简历上面，作为我的项目之一（当时一共写了2个Agent项目）。有些人觉得80w，那可能得有很好的项目做支持吧，但确实我就是用这些项目去面试的。其实不说自己做的AI项目，就是我的工作的一些项目，其实每天做的事我觉得也没啥可拿去说的，可能世界就是一个巨大的草台班子吧。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnak8aVOPCHZGNSKxXP27Cxg"></a></span>
+<p><span>   另外目前总结到这里，整个面试还是像流水账一样，基本上没问什么有深度难度的问题，基本上就是面试官提问，我在介绍，有时面试好像就真的没那么难）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnY0NHDY8Ah2AhJylHWO7ppb"></a></span>
+<p><span>10.1 为什么用Langchain不用Semantic Kernel？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXwogSsXuLcVGENdSD7S21Q"></a></span>
+<p><span>八股的Agent常见的框架，总结了二者的区别，照着回答一下就好。面试官也不追问。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnd8zYxvDNF3ScAAExpZmLXc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnbUsWKp46oGz5OjdIpa1Gg"></a></span>
+<p><span>11.为什么设计成多Agent？</span></p>
+<div><p id="src-feishu-doxcntLSzJsUoDI4vFJjuT43FGd"><span>  笔记的八股部分有总结：单Agent和多Agent的区别，结合业务去展开讲一下。</span></p><span id="src-feishu-doxcnABudlyS8eTuMB5z7FUX7od" class="source-anchor-container"><br></span></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcneXfUQIkXxCDt4QmHambQEc"></a></span>
+<p><span>12. 那有没有涉及到有同时要调多个的，或者说多个之间还有依赖关系的？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzdeZdkhQIgDpIun3F7EGpd"></a></span>
+<p><span>这个问题一般有6种模式。</span></p>
+<div><div id="src-feishu-doxcnwsJfMqPiF5leliCROojIsh"><span>a.</span><div><span>完全独立。比如对于UI debug面板，chat初始化等。</span></div></div><div id="src-feishu-doxcnswbzs2mElAn46hbF38oNCc"><span>b.</span><div><span>独立但是需要限流：适用于任务很多，但是不能全部同时跑的（比如因为资源限制，API Rate Limit的场景）比如媒体理解批量处理，Cron多job并发执行</span></div></div><div id="src-feishu-doxcnPPTEzjgtjx4KSb0V1HTlQb"><span>c.</span><div><span>严格顺序依赖：多个操作必须串行，比如同一个文件的读写，后一个操作依赖于前一个操作完成。</span></div></div><div id="src-feishu-doxcnaDf2HoHOL65eMRXsZT7z7d"><span>d.</span><div><span>重复请求合并：多个调用方同时触发同一个操作，只需真正执行一次，其余共享结果。比如消息处理去重，GateWay连接。</span></div></div><div id="src-feishu-doxcn1PQfdCu93wXxQeiMXTa1jf"><span>e.</span><div><span>Pipeline: 步骤之间有数据依赖，后一步必须拿到前一步的输入作为自己的输入。</span></div></div><div id="src-feishu-doxcnbRH7rEiIwBQZE1JAQEfRPu"><span>f.</span><div><span>异步父子编排：主任务派生子任务，子任务完成后回调给主任务继续。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcneVWIrMfV2k1dYGAmqYGS8f"></a></span>
+<p><span>可以结合自己的业务场景，使用这6种不同的模式。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIp8gyysiXJ0RFiBMb4BMKX"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTmHgm4agPq5CFoValWTlOe"></a></span>
+<p><span>13. 端对端的延迟是多少？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfmHzvlMCuoQjnJ84piBrac"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>请分别记录从输入到首次可见输出的延迟，以及从输入到最终结果或任务完成的总延迟，并明确起止事件。</p><details><summary>查看解释与参考资料</summary><p>输入到第一个输出是首字或首次响应延迟；端到端任务延迟通常还要量到最终结果或任务结束。</p></details></aside><p><span>这个指标请注意一下，面试官真的很喜欢问这个。包括我刚总结的RAG项目面试真题。这里指的是你的Agent从输入，到第一个输出的延迟。正是因为面试官喜欢问，所以我在rag项目才设计了详细的延时的记录。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOHbmN2QNX0tHrFOzv8NvFd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhFb3SHTnpWLIGAHr8rm5Ue"></a></span>
+<p><span>14 薪资和职级讨论</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDwcZ68VPLVTlenSewIV9he"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFy1yZMYzR6h1XANC9hRsle"></a></span>
+<p><span>15 算法题：</span><strong>复制带随机指针的链表</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlNFzS3bPwS1l70zzEI3mfd"></a></span>
+<p><span>（面试官原话如下，是个经典的题目，网上可以搜到）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnESv1YwtNrLFTv1rrkd1fhd"></a></span>
+<p><span>这有一个带随机指针的一个链表的一个拷贝，反正要求就是不借助于其他的东西，直接基于链表本身，能去拷贝一个跟它的结构一样的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKHXuQnw9cXjVfFjIyExKnb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrsgcb0Xkom3qsKur7teD1g"></a></span>
+<h4 id="section-5"><span>二面</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn59o24ZjbHutJdUZAyk0A5d"></a></span>
+<p><span>整体来说一点不难，全是总结过的内容啊，你把笔记认真看了，这些都是出现过的内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjNngSr92Cfw2NTdfNXjpYb"></a></span>
+<p><span>而且面试官本身又不追问，感觉都是靠你讲。都没啥标准答案好总结的。不过每一个题目都给了思路。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7XG2OKuAsAsHZraLsYbmHb"></a></span>
+<p><span>1. 自我介绍</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnX4uFuQe2T83aeVyRDXPRg"></a></span>
+<p><span>1.1 在腾讯当时是实习以后留用的吗？走的时候是多少职级，绩效呢？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlFZQBu30sM18OVj91hnKIc"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnlgTW9DDcU7tXuelJO2HMd"></a></span>
+<p><span>之前我觉得面试官问一些无关紧要的问题，比如什么实习转正，用什么VibeCoding的工具，这些是无关紧要的问题，但是现在我觉得每一个问题都有背后的逻辑和考察。比如实习转正，面试官估计觉得实习转正比较靠谱，算是一个正向信号。毕竟面试可能就是几个小时的了解，但是实习转正是几个月的考察，如果你实习转正了，说明你确实还是靠谱的。面试进腾讯 和 实习转正进腾讯，后者含金量更高。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvWcUNPHtBiI2nGsoHyoAzd"></a></span>
+<p><span>第二个问职级，问晋升。常规操作了。如果你一直没晋升，面试官可能会觉得你是晋升不了才换工作，绩效更是，面试官肯定喜欢高绩效。 但是大家也别过度焦虑了，面试官都想要落难凤凰，想要高绩效，火速晋升的。但高绩效，火速晋升的谁没事来找工作呀。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCrksK6ReNzczajPO8vBzyb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqLeDNGgqRCflVUmtii7l6g"></a></span>
+<p><span>1.3 "技术栈我看前面是c++，在微软呢，用的啥"</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN0yV7dDrWnVbKr1V7B1OOe"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6Xt2FzAod11G0qjFWLzL1f"></a></span>
+<p><span>不知道咋分析，技术栈就是匹配肯定更好吧，面试官有自己的考察，但你也没法强求。但是也说明了选择一个好的方向很重要，就比如你现在去做oc ios开发，那你技术栈太窄了，找工作多困难啊。但是你做大模型，岗位就多。所以尽量想好方向，尽量去找上限高，岗位多的技术栈吧。这也是为啥我一直在这折腾，之前大模型没火我要从客户端转后端，现在想从普通开发转大模型。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOfB1xj3HWOz2SMjTze0FrR"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhrYUFzOhNsDjjSZso80i9d"></a></span>
+<p><span>2. Agent开发项目介绍</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNenzDuDq0Uk681Lry8RWCd"></a></span>
+<p><span>   2.1 框架选择</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3Ci1GsvTRzJQOwP1oNhPkc"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWKEAp7GijfpJSRTG9IupUb"></a></span>
+<p><span>也是一个常考的问题了。主要是考察你为什么选这个框架，为什么不选xx框架。因为我的两个项目，一个用的langchain,一个用的semantic kernel。 所以经常被问这二者的对比。这些框架的特性笔记里已经有了，大家去看。Semantic Kernel对大家无参考价值，请大家忽略，我司自己研究的没什么人用的框架。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKGsaFbUFr3ITW8YDklwfoe"></a></span>
+<p><span>大家准备找个问题，就是准备主流的框架的特性，然后对比，说清楚自己的选型。有些人说Langchain怎么学，我觉得从面试的角度，你会用就行了，然后就是理解Langchain的特性，特点，结构，优缺点，组成模块，选型，面试基本问这些，笔记里总结的都有。倒是没有特别的必要去专门学什么langchain的语法啊之类的，因为问的少，而且框架的这个东西，很多公司都是用自己的框架，你把langchain学那么深，人家公司根本不用langchain，他也问不深啊。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZoVbryl5RpeoGzRfP03Ppg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4C6MpyAZZaPqsnxf5Rwlvc"></a></span>
+<p><span>   2.2 这两个框架在多智能体协同的之间怎么选？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0PUklIS8k0n77qwmPmdvzc"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcntYo0754oCQ2QNKqq2Y3clb"></a></span>
+<p><span>其实我觉得面试官可能本身也不是特别懂，也不会问深。我回答的就是langgraph 以图的状态机的形式，langgraph多Agent之间通信方式。这些都是常见八股了笔记里总结的有，而且langgraph本身就是来做multiagent的嘛，所以我就说langgraph这块的优势，其实是很常规的回答了。面试官也不追问。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMxeXVyGVXLJGLebDvDcA2d"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkWmkIueeAFbJhEGr53pkYb"></a></span>
+<p><span>3. 讲一个你做项目遇到的最难的问题？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKj3T0TcldZfjk1FCIz6hVh"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvCxROVKjbw3JZtmvHDlHUd"></a></span>
+<p><span>我之前就说，这个问题就是一个必须准备的问题，所有人，不同背景都要准备。这个题上限高，下限低。你要说得很出彩，面试官还要请教你，那你就稳了。我的建议是所有人都得准备找个答案。另外我笔记的： 其他问题- 你在项目中遇到的最难的问题，如何解决的？里面总结了两个问题，一个是agent模型调用，一个是rag - mcp的问题，这两个比较通用的问题，你都可以拿去回答。当然你自己总结，总结得更深入更好，但这个问题都得事先准备，因为深度和描述是靠挖掘的，别想着现场发挥。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFfX7Ng2rP8c3WEVRRNU0Ub"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhi7Rh5bJ66VJ31hk7beYld"></a></span>
+<p><span>4. 你们怎么做监控的？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9JzgkNe1ZeCCGN4qG5R5Ng"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcntExlNqVnWa0dyOeqwMQvbc"></a></span>
+<p><span>常考的问题，自己也要准备好答案。讲Agent评估的理论 笔记里有，包括还推荐了论文（美团龙猫的）。 监控有线上监控，线下使用测试集评估。测试集评估如何设计，设计那些方面（性能，轨迹，推理）等方面讲清楚，我经常就用美团龙猫那个方法，从三个维度：推理，工具调用，规划维度上 构建标准和面试官讲。这部分检测的部分，笔记里面有，并且面试真题也有，答案很多，大家可以自己看看笔记。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVxhNqulj5C55tIDxeF6kAd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0cf7tk0qCKbjCcBA2pdG2d"></a></span>
+<p><span>5. 智能体的就怎么去做优化以及说你们做了哪些优化？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRGI2Z8LKuVAOS8VRtPf8xh"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcniUMxdxj0RwTvuvlcl5OVxf"></a></span>
+<p><span>其实我觉得面试官也不太懂，因为所有的问题都是在问我，我也不知道他是不是都听懂了？所以完全是单向输出。单向输出的好处是不会被拷打，只要问题你准备了，面试不就那些常见问题吗？我们整理的都有。那你回答就完了，有点像背答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXvkoD5fUKjQlHseswl1Gvh"></a></span>
+<p><span>这个问题就是我回答的就是三点：1.架构选型。如何选Agent架构，为啥（依据是我给大家推荐的架构的论文，八股都有），讲清楚理论。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXvbSCAhRr98gdtgcuwm4jh"></a></span>
+<p><span> 2. 做微调，强化学习，量化。这一点在笔记部分你是怎么做微调，推理加速的总结的都有。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcni43JBzyt1FgchXnaorxOJc"></a></span>
+<p><span>3. 上线迭代，数据回收，监控，再训练（数据飞轮）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXATwSAT9NsVE0mCRUMUWNb"></a></span>
+<p><span> 这些内容笔记里都有，这里回答也是把他们串起来。其实我没有说我做第三步迭代，因为我的项目没上线嘛，自己做的，我实话说，我的项目没上线，但是上线后应该这么做。 反正最后面试官对我评价也非常正向，甚至是优秀地加了一面，我想说的是别太担心了项目没上线吧，当然有落地经验一定是好事，可是大家都是转行，怎么办呢？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRmy7Lllf7y7zYscqK4glUe"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>将已完成、仅在本地验证和计划上线的部分分别说明，用实际日志、测试和结果支撑经历；未上线的方案就按设计方案介绍。</p><details><summary>查看解释与参考资料</summary><p>把设想说成已上线会使后续追问失去事实依据，也误导学习者。</p></details></aside><p><span>这块上线这块，理论你也可以吹，自圆其说。但是我是偏保守的，我怕说漏了。但其实真的可以吹牛，我就说上线了咋了，只要能说清楚，我认识很多人其实比我大胆很多。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwXPqFeZA7YaPArhhd4xbib"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRoUdmOaQ0Qi6LuVwyYESiy"></a></span>
+<p><span>6. 怎么去测评你上线的数据?</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL9fak6b9NQNsv1Kve3NpZd"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6BqeRRsgWraOoWhQymThQf"></a></span>
+<p><span>从几个维度:</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnseQEVHEkRXd39gyqhbc0lf"></a></span>
+<p><span>1.比如有rag系统，可以统计ragas对吧，后台维护一个库，每次query都可以算ragas指标，ragas我们八股，项目都有。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvM89yMBmVdDVf4vZ3CMrSc"></a></span>
+<p><span>2. 各种指标，比如工具调用，任务完成率，轨迹正确性，延迟，成本，想好这些针对于你的项目是怎么衡量的，比如你让AI写一下衡量这些指标的方法，知道怎么实现的。然后你就说，实现后把它们打点传到云端监控。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnH1noJlq6tZYCZfmxUqRE6d"></a></span>
+<p><span>3. 可以设置一些具体的业务指标。这点是对于社招的同学，项目上线以后。校招可以就算了。校招项目你能做前两点都不错了。 这一点是你的业务增长，比如你做了Agent客服，那么上线后你的用户满意率增多了，用户日活等这些业务指标，也需要统计。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWyoIDYOsYmRqQ3teNGFXrc"></a></span>
+<p><span>想好这些维度，怎么做的，准备好一个答案。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBUrkB83koBwJsoDZv1RDEf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjVBqB7dLuwu4th56DAgIT0"></a></span>
+<p><span>7 你这个微调主要为了解决啥问题啊？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx7r7n9tnTZPstbr5lst87e"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb8n3ew0DmV7j2rI859eFyg"></a></span>
+<p><span>都是总结过的啊。其实这里也反映一个点就是，这个是我去年12月份的面经了，那时候我还没系统学算法，我一直在笔记里写的就是知道自己微调怎么做的，知道概念，让AI写个代码看看，实际我也真的微调。然后我准备了我是怎么做的微调，总结很好（在笔记中大家自己看）我就去面试，我就说我做了微调。其实你看面试官很多他问不深入，甚至我觉得他可能也不是很懂微调。当然我绝对不是说就没必要专门做微调了，我现在第二阶段是在学算法，深入学微调嘛。我说的意思是对于应用岗，大部分人来说没太多时间学算法，包括面试官也是做应用他可能也不太懂，所以你时间也没那么充足，你就少学点算法。 对于懂算法，真的做了微调的人，肯定会问得更深的。有时间深入学，我系统学习算法的时候其实都已经复习了8个多月了，不是每个人都有这么多时间的。没时间的话，微调就按我的笔记策略准备就行。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbsmZc4CtMeqIn2E7dmZtUb"></a></span>
+<p><span>回到问题本身。微调本身解决啥问题，这是八股，结合自己业务再说一下，比如精度下降，分类成功率降低就好了。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvkWlyv9BPmZb9knzSTcFqe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUhUlzzTqMWbcbHxaerxGBF"></a></span>
+<p><span>8. 我现在还没有听到你提rag项目，是没有吗？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpgGa5elnbVKe3vF4S0FWAg"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcndtcwp1CcbuiAEbXltyE2td"></a></span>
+<p><span>去年12月份，我确实项目以agent为主，rag比较弱，但是我确实是拿到了很多offer，即使我rag比较弱。但这也是为什么我12月又开始做一个rag项目，就是笔记里这个很多人都拿去面试了的项目了。做了这个项目，我再把RAG融入进去，技术栈就更完成。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqllfRPyGeIbx1iwNZf9HFd"></a></span>
+<p><span>面试官有的时候真的问不深，他可能自己也不懂太多rag。但是他要问你，你RAG经验，他会记在小本本上。如果确实没做或者经验浅，那么就扣点分呗。我当时我要是做了这个rag项目，我估计面试评分会更高。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKKEcgzXhJyLLdp9cbYT3Wh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN3AFKAbcdljvXQt5Cel3Yd"></a></span>
+<p><span> 8.1 RAG优化策略</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP78QuOtdI2DiGcmwEdqm8c"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYCkpx88amWRGOT7i9ysUEg"></a></span>
+<p><span>虽然我当时没做rag，但这题我会啊，这八股笔记总结的有。我可以答出来这个问题，但当时我没做项目，我底气不足，现在有了这个rag项目，我再回答这些问题，肯定答得更好，底气也更足。这个问题就看八股吧和我们项目吧，做了我们RAG项目，这个问题算啥呀，小case</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlqAX0m4xBcqevypbf6uKWy"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0yjMoTwX1UtWCUh6Zisz7c"></a></span>
+<p><span>9 基模选什么？有研究开源Deepseek吗？GPU用的啥？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTEEXiDWv56Bk2gY3VOL4dZ"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnre1EVRxy3E24ZxROL8eQsb"></a></span>
+<p><span>基模选择什么，要了解笔记八股部分不同模型对比，从性能，公司立场，消耗，业务场景等方面说明选择原因，自圆其说。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQDIrt0NEEuybnYIqExWBVf"></a></span>
+<p><span>开源模型学习，倒是我确实没有看，到时候带大家看看，不过这个有点偏算法了，我要准备一个相关的给不会算法的人也能照着回答的版本。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7C1L56uTsCHmU0rzVbM7Xg"></a></span>
+<p><span>GPU用的啥。因为我的场景使用cpu推理的嘛，所以我没GPU，直接回答了。我是建议这些问题，即使你不做算法，推理，都去了解一下，然后像我一样做一下，能说上这些问题。因为有时候面试官真的问不深，他只能问出来你做没做。所以你是算法高手和你做了一下算法是不一样的，我们掌握后者很容易，但是却可以cover掉很多面试场景。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPptEykpTCMc5SV2U2s8Jmh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJmqiIiJJmp2dDIuq5ouDGc"></a></span>
+<p><span>10 换工作原因</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLpLEPa0xvTUi3GKyeP4QRg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6tA3GrQbAHR1LLOAvDLSfc"></a></span>
+<p><span>11 拿了几个offer?想做什么方向？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFu5NuzelFYfMIpCLlrLoKd"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrSMUARXiRDS8XN7EzO7SKg"></a></span>
+<p><span>一般问到那几个offer就比较稳了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0waEr4nA3urJmjODcB7I9d"></a></span>
+<p><span>问想做什么方向，笔记面试技巧我讲过，意向度很重要。如果真是应用岗位，你得说你要做应用。要顺着业务说。之前同事面试英伟达，人家是应用岗，他是想做算法，还坦诚和人家说，让对面觉得他大概率不会去，offer发给别人了。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnE2zAGAtZSYKGKKJ89Tqlnf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCPdm82ofnv6ujNaK9icewg"></a></span>
+<p><span>12 反问环节</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhPzGxpv1ghO3YgxsE7xnjv"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkXKxwY8vTv3YtdAuRnnRsb"></a></span>
+<p><span>看一下我笔记总结的面试技巧，反问的技巧吧。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyeLoft0LR5rlHdlv4uAInc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2sISbK4SVN9Yzs5TCUdn0b"></a></span>
+<h4 id="section-6"><span>三面</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqrX0ZlnqLdfMndnwwq16y4"></a></span>
+<p><span>三面主要是一个博士来考察。整个时间30分钟，卡得很严格，而且面试官还迟到了几分钟，所以导致实际面试时间只有20多分钟。三面的考察内容其实很清晰，就是摸底 + 一个架构设计题。借助这个机会我最想讲一下的是架构设计这个面试问题怎么去做？通常这是个比较难的问题，要结合具体的应用场景设计一个架构。我这里给到一个模板供大家参考，大家可以套用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLSWbyQz75d7WbKf3ShQnjf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnK5ifaMRnFFCqZHMV2YVrbf"></a></span>
+<p><span>1. 自我介绍</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuSK7oQeVkMmexd9fQElcKJ"></a></span>
+<p><span>2. </span><strong>大语言模型相关经验（技术栈深度摸底）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntupziGIXXQE15VmLc50Taf"></a></span>
+<p><strong>面试官提问</strong><span>（原话）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPd3LOx3iWXQcdJ1kyT4hRb"></a></span>
+<p><span>"就你有做一些偏大语言模型相关的一些东西吗，就是跟语言模型相关的"</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjKUjZY9OazronmiLxWLHed"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzvOm4AcHCCoRQxClLQzmEe"></a></span>
+<p><span>我最开始分析这个问题表面上看很奇怪——我刚介绍完agent/RAG/reschedule这些本身就是LLM相关的项目，面试官又问"有没有做LLM相关的东西"，他到底想问什么？但结合他后续的追问（"所以你基本上就是处理数据啊、微调一下模型啊、做一下RAG"）来看，</span><strong>他真正想问的是：你在LLM技术栈中做到了哪一层深度？</strong><span> 是只在应用层调API搭Agent，还是也深入到了模型层（训练/微调/架构研究）？他的"偏大语言模型相关"重点在"偏"字——想了解你偏模型侧还是偏应用侧。所以这个问题其实在摸底，你做得多深入？（你的Agent就是API调用还是有一些深入的设计，比如手搓了一个Agent框架）你做得有多广？（有没有设计算法，对模型微调，提高参数，有没有做部署，你的技术栈到底是在哪一层）</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhzqCwDpRcKjXdwo1Cn9U7d"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnniaPhFTKedBY9NkSgRrlMh"></a></span>
+<p><span>所以我分析这个的时候，我觉得看似他是一个简单的问题，实际又是一个很难的问题。要想把这个问题答好，你必须做得比较深入，广度又有，或者恰好就是投其所好，比如面试官特别需要做过哪个方面，你恰好有这个技能点。这样面试官才会比较满意。不过大家压力也不用太大了，我们也不是神人，各个方面既广又深，我当时求职的是25年12月，对RAG做得不深，Agent项目比较浅，微调也就是理论走了一遍。不过我这个是一次通过的面经。我是按照100分的思路来给大家解析这个题目，但是不意味着大家必须做到100分才能通过面试。但是我觉得最好的一种方法是，即使你时间不够。你没有深入地做一遍，但是Agent，Rag,微调，强化学习，部署最少面试官问你的时候，你要说你会，你做过，然后准备一些你准备好的答案，如何做的部署，微调（参考上面笔记）。要是面试官不深入问就过去了，深入了问答不上来再承认做得不深。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPpQt2zzjUu7iCkdHqIJDud"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfYKtugB3C0af9IQ6fAAd4c"></a></span>
+<p><strong>我的回答</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnO1CFD5LI3KxzLWZnnoDX0b"></a></span>
+<p><span>我这里当时的回答就是澄清了我的技术栈。Agent做了什么，做得多深，RAG做了什么，算法了解多少，对于微调和强化学习也做了一遍（具体可以参考我上面的笔记（</span><span><span><a href="/momomian/lessons/feishu-3524f0c55b/#src-feishu-doxcngja5X6wbMkrcNzZLrPwk2g"><span>如何做的微调</span></a></span></span><span><span><a href="/momomian/lessons/feishu-fc0d56c341/#src-feishu-doxcn0XskrHYWieZNIKvk88pjch"><span>如何做的推理加速</span></a></span></span><span>））</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndO1a2NJb3dXiCNpxMhuOug"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlxCf8Br2C5Np8UcaeHGLEe"></a></span>
+<p><strong>追问：使用过什么模型</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqZVg1YAg7fM6ELfNDRdMHe"></a></span>
+<p><span>"那你基本上就是之前用过什么模型之类的对"</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbrenrUsdQoM205NVZftfKf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwojnqGUEK5uOaMLzjk45Df"></a></span>
+<p><strong>思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWIVHSFvi25TiOrERojqNvb"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr3nBMsIiz3qMMHQdVBwUzg"></a></span>
+<p><span>最好对国内的出名模型，比如Deepseek, 千问。国外的出名的模型，GPT,Claude 有一些使用经验，更好的是有一些微调经验，理解模型之间的差异优缺点。不过这个面试官并没有追问，他就是问了一嘴，我也不过度解读了。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrwmQAZ2snO4tE3rx2Nzk7t"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjShRyMSAdR1P0eniPucTbh"></a></span>
+<p><strong>3.</strong><strong>学历背景确认</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbKHf1hUGgFLYLmx9mMNIrg"></a></span>
+<p><span> "对所以你本科其实是偏计算机的对吧，只是说你选修了一个商务英语的第二学位对吧"</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS5R8rYAvmQgTI0ro4eHe0g"></a></span>
+<p><span>"硕士也是偏CS的对吧"</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKuvXo2SnvhltR3UmaCS2kf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPx4FYwSyXjRrj1gK38IHEf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnj8vgkeAhLd7xjf8IGenlRb"></a></span>
+<p><span>看出来这就是一个摸底的问题，很多时候技术问题只是决定你最终结果的一部分，但是你看这些问题，面试官在摸你的底，你的过往学历，工作经历，甚至是专业。其实已经给你打了一个潜在分了。不过这些也无法改变了。相对来说像国企啊，银行啊，这种就比较保守，对这些看得比较重。互联网相对来说更看重能力和项目经验。但是我们能改变的，也只有面试的问题和项目部分了。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcneseQmPcBcE2XfmOTaN6FZf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbNrVa79l4RLq2vQiHPEQZf"></a></span>
+<p><strong>4.</strong><strong>AI项目中最擅长什么</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntXk9IVnu1R1oGpETjiy4zb"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWvxn6KvJRVNgHtXCI5qibe"></a></span>
+<p><span>这个还是一个自己发挥的问题。AI行业，重要的技术点我在岗位介绍总结的有。Agent,rag, 后训练（Sft+强化学习），部署。 应用也看工程，后端经验。算法看论文，部署也更加重视后端经验。 所以你的优势是什么，你自己挖掘。比如我自己，那我说的点就是， 1. 有上亿用户项目落地经验，大厂工作，工程能力强。2.Agent应用方向理解深入，设计复杂的Agent架构，RAG各个环节都理解，完成多Agent，复杂记忆能力，自研rag系统集成（我的主要方向是深入应用，应用是我的强项，所以我在说我的理解深入） 3.对于现在Vibecoding的技巧的掌握。我觉得这个东西在新的时代也是重要的，就包括ClaudeCode的使用，里面的技巧面试官通常也感兴趣。 4. 算法，部署都有经验。能够完成专业显卡训练SFT,强化学习，自己部署并推理模型（我主要体现广度，算法部署不是我的专精项，但我知识广度够）。所以如果是我自己，我从这四个方向回答。  其实大家如果看这个笔记，大家也能够做到上面四点，因为在笔记里都有，包括项目。不过结合自己情况慢慢来吧。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMyCDDN4OJh9pZtc6ZBIMWf"></a></span>
+<p><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS2luTSzOo6uVJs3jzUYfRf"></a></span>
+<p><strong>第一，工程落地能力。</strong><span> 我在腾讯和微软都做过上亿用户级别的产品，比如xx全球上线的XX系统（我的工作项目就隐藏了），所以在大规模系统的工程能力上比较扎实，这也是我做AI项目的底子。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnq8fyASwQeuonCagBCgBRze"></a></span>
+<p><strong>第二，Agent和RAG应用方向，这是我最深入的。</strong><span> 我做过多个Agent项目，看过很多论文，深入理解目前主流的Agent开源项目，比如Openclaw, Hermes,ClaudeCode。对Agent的设计范式，架构，任务拆解都有深入理解。同时自己自研了RAG项目，实现RAG系统整个环节。对大模型开发的前沿技术保持持续学习。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn80oFVmiQQ2dQLY9cGp755f"></a></span>
+<p><strong>第三</strong><span>， 我对Vibecoding的技巧有深入的理解，包括ClaudeCode的各种高级使用功能，可以使用CC完成整个工作自动化的编排，比如代码-编译-测试的闭环。熟练使用各种模型，理解模型的边界，对于Harness工程，比如如何约束Agent的行为，沙箱机制等技巧都有实践和理解。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4Yo3ug9vumTJKMshct5PAd"></a></span>
+<p><strong>第四，算法和部署也都有实践。</strong><span> 我使用专业卡做了SFT微调、强化学习对齐、量化压缩，也自己用推理框架部署过本地模型，在Windows边缘设备上做过推理加速适配。这块不是我最专精的方向，但知识广度够，需要的时候能上手。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnURQqJBU6viIxVFr4G12Wyg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHU986jV3XlOtADGVNbU6ef"></a></span>
+<p><strong> 5 金融+LLM经验与兴趣</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhmE6o5V5fkGVqAFz8HDH6c"></a></span>
+<p><strong>面试官提问</strong><span>（原话）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3igZDlvarevZT4zXmdg0ef"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOscqmxFbZrC6Tuh1AGIafc"></a></span>
+<p><span>"我看你其实可能之前没有太多做金融相关的一些东西吧，就是比方说把LLM用在金融上面，就是对这个有什么了解，或者对这个做这个事情感兴趣对吧？</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcngjInnrL3ck0oTcnJY2KFZg"></a></span>
+<p><span>这个问题只对金融方向的大模型岗位有用（银行，证券）。如果你面试相关公司，一定要稍微了解一下金融的知识，想清楚金融和AI如何结合，你的AI技术能够在金融方面有什么用。 其实这个问题也适用于其他场合，比如我面试SAP，他们做供应链的，要准备的问题就是你的AI技能如何在供应链中发挥作用，你能带来什么价值？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXBwyA2Alma1FkzuV4PuKSb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDyIOnLoWV4ll4R0O5T6W3e"></a></span>
+<p><strong>6.</strong><strong>LLM股票估值系统设计（核心技术题）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn97WUCzE37n5xobkvLts4tb"></a></span>
+<p><strong> 面试官提问</strong><span>（原话）：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnolvPFh3Lyz4h3Gn2WWCtFg"></a></span>
+<p><span>比方说我们要用大语言模型来对是A股啊，或者说美股啊，或者说其他市场的所有公司来做一个估值上面的一些建模吧，比方说我有微软的所有，还有相关的一些公开的一些public的一些信息，比方说微软的财报啊，微软的分析师的一些报告，微软的earning call啊微软各种新闻啊，这些信息我都有，对然后我也能用啊，其他的各种工具之类的，就是我如果个用LM来建一个，来对微软或者说其他任意美股的公司，来做一个建模的话，然后这个事情来怎么做，就比方说呃我就是对微软呃，有可能就是选择呃，想用市盈率啊或者其他方式来对这个公司来估值之类的，对就是你觉得，就是这个整个这样一个系统之类的该怎么样来做呢？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPKw0fziiZhueLpBU0uWzlc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6dk0dk1Guv9WZuuhz6Xfsg"></a></span>
+<p><strong>思路: </strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlH7Cix1yiFxaM18hCtnDKh"></a></span>
+<p><span>我想借着这个题展开讲一下，因为这个题其实代表着一种题目类型。叫做针对具体场景设计Agent系统。设计一个系统本来就比较难，而且包含的东西太多了，你看我们分析ClaudeCode， Openclaw的源码，整个系统有那么多内容。想要现场设计一个，又结合具体的任务，本身就是个挺难的事。 这类题本身也没有标准答案，我在复盘的时候，觉得我们可以设计一个模板，在真正现场设计的时候就使用这个模板往里套，我们只用想清楚和业务相匹配的地方，然后进行修改。这样在极短的时间，我们可以设计一个复杂的成熟的架构。不过为了熟练使用这模板，也需要我们掌握清楚笔记的前置的一些知识：多Agent架构的八股，以及Openclaw, ClaudeCode笔记讲的开源项目的设计思想。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfx5C290CbxWrlsgykDZtsh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOdsYRoJ49s89MYVy0wv5Ud"></a></span>
+<p><strong>答题思路：骨架 + 定制（方法论）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVP3udq4fua4AfYXg9MtfSd"></a></span>
+<p><span>面对"设计一个 Agent 系统"的架构题，核心思路就两步：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN3ai0nxgOu0ciNhevHmuWc"></a></span>
+<p><strong>第一步：定骨架——直接套 OpenClaw 三层架构模板</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHaHRops1OZK1ZyZcZZvXXb"></a></span>
+<p><span>OpenClaw 的架构是 </span><strong>触发层 → 网关层(Gateway) → Agent层(Think+Act+Remember)</strong><span>，这是一个经过验证的事件驱动 Agent 执行引擎。不管什么业务场景，这三层骨架是通用的，直接套：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNlnbJ7kWpru2Z7Qyq8sZtP"></a></span>
+<pre><code class="language-text">触发层：产生事件的 5 种信号源（Messages / Cron / Heartbeat / Webhook / Hook）
+网关层：路由分发 + 管控（不做推理，不调 LLM）
+Agent层：Think（递归中心化，spawn 子 Agent）+ Act（工具执行）+ Remember（四层记忆）
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnchBUs7FMaKku9kcqy59EWb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxZ3oMbuCVsUUak1hLZ0bBd"></a></span>
+<p><strong>第二步：个性化定制——在 5 个关键节点注入业务理解</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMAKBeG3U2vlcOmxFN4yx0b"></a></span>
+<p><span>骨架不变，但以下 5 个地方必须结合具体场景做定制，这是答案拉开差距的地方：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3up47kepBOjgUNtKt7i5nK"></a></span>
+<p><span>1. </span><strong>触发层</strong><span>：除了用户消息，还有什么事件源？——结合场景想：有没有定时任务？有没有外部推送？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWlPrphIsfbYwkZ2yplJu7d"></a></span>
+<p><span>2. </span><strong>网关层</strong><span>：Gateway 要处理什么业务特有的管控？——数据预处理管道、限速、Session 路由规则</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnX4mvqt2RlIjrRRJRcTYfSc"></a></span>
+<p><span>3. </span><strong>选型原因</strong><span>：为什么选中心化而非去中心化/单Agent？——结合任务特征论证（可并行？要收敛？数据异构？）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqfIGMQ88xAckhKWqskHpId"></a></span>
+<p><span>4. </span><strong>Agent层-工具</strong><span>：子 Agent 需要什么领域工具？——内置什么专用工具 + 工具白名单怎么分</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwQ7vVLqcwDqZddiIvKk5Gb"></a></span>
+<p><span>5. </span><strong>Agent层-记忆</strong><span>：Bootstrap 写什么，压缩时保留什么？——SOUL.md 人格、MEMORY.md 领域知识、Compaction 策略</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWdhvJQVdpodwK7d44d0Kmd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqEtIel9PMDfLhSKXMDG10g"></a></span>
+<p><span>OpenClaw 模板是骨架（通用），5 个定制点是血肉（体现你懂业务）。面试的时候先讲骨架让面试官知道你有框架思维，再讲定制让面试官知道你懂这个领域。面试官问这个问题的时候，大家可以向面试官要个两三分钟，让他允许你连续思考三分钟。关键骨架直接套，关键是想清楚第二步的几个点，想一想如何串起来，如何组织答案，串成下面的答案再和面试官讲。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR58gksYTR8lXeAvkhta3vc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkQh7ouEQg45XJbqIKyqH4g"></a></span>
+<p><strong>完整答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOVqHj5K1ZCZZ8IB8slRrze"></a></span>
+<p><span>我会把整个系统设计成三层：</span><strong>触发层、网关层、Agent 层</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJsqGnJBmZBtUbdZQBjcQ0c"></a></span>
+<p><strong>先说触发层</strong><span>。系统应该是事件驱动、持续运转的，不能只靠手动输入。我会设计 5 种触发源：分析师手动输入、定时任务（季报后自动重估值）、心跳检测（盘中股价异动超阈值触发深度分析）、Webhook（对接 SEC EDGAR 财报推送和新闻 API）、内部钩子（子 Agent 完成触发主 Agent 整合）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnICVYzm6TEE1uKpB9nGLAvd"></a></span>
+<p><strong>然后是网关层</strong><span>。网关层不做推理、不调 LLM，只负责路由和管控：按公司 ticker 做 session 路由互不干扰、金融数据 API 并发控制与密钥轮换、数据预处理编排（财报 PDF 解析、Earning Call 转录、新闻抓取去重）。处理完才交给 Agent 层。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnK6AvzWJo0pUk9sbyyBCVxe"></a></span>
+<p><strong>最后是核心的 Agent 层</strong><span>，分为 Think、Act、Remember 三个部分。Think 部分用递归中心化架构，一个 Orchestrator 作为主 Agent，通过 Tool Call spawn 四个子 Agent 并行执行：财报分析、新闻情感、分析师报告、Earning Call。子 Agent 完成后只 push 结构化 JSON 结果回 Orchestrator，不传中间推理链，控制上下文膨胀。Orchestrator 收齐后做最终估值整合——相对估值、DCF 估值加定性调整，输出估值区间、置信度、核心假设和风险因素。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfHdldcGzLX5GylmAq59awg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMrnqCib2C6UQRLLbuu3WVb"></a></span>
+<p><span>Act 部分，每个子 Agent 配独立的工具白名单，按职责隔离，防止越权和减少幻觉。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbkdF7keIQUPcVTKqZBqrtK"></a></span>
+<p><span>Remember 部分设计四层记忆：Bootstrap Files 注入估值方法论且免疫压缩、Session Transcript 记录任务过程、Context Window 定制化压缩策略（保留财务精确数字）、Retrieval Index 按公司建独立知识库支持按需检索。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntahYTMlpKDq6eT5RLCQJVh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFktqsrvyA4z7xY4AZPANmg"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>将反馈作为待验证的改进线索，按时间切分数据，防止未来信息泄漏，并区分数据抽取正确性、估值假设与市场价格偏差；通过回归评测后再判断是否改善。</p><details><summary>查看解释与参考资料</summary><p>记录反馈不会自动提高准确率；市场价格与估值目标也不是可直接等同的真值。</p></details></aside><p><span>最后加一个评估验证的闭环：用历史数据回测，比如拿 2023 年的数据预测 2024 年的估值区间，和实际股价对比算偏差率。分析师 review 反馈，偏差分析写入记忆，系统越用越准。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngYGCmAF0In0Hj95fd0ZCnd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUhii9GKT3rPb24Rg4IWVCc"></a></span>
+<p><strong>面试官可能追问的细节</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkJ6NONyKVNwDSw4fgmPdwf"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF8YIpDIJ07ZMKLBCIAFHJw"></a></span>
+<p><span>我们在回答上面的问题的时候，不可能展示所有的设计细节，比如Agent间是如何通信？主Agent是如何产生子Agent的？为什么选择中心化的架构？上下文压缩策略等？我们不可能在第一个回答中，回答得很多，这样面试官会失去重点，上一个问题我们只讲大概。如果他真的感兴趣，问细节，我们再回答。不过问细节的时候其实大家不用怕，因为这个时候其实是我们掌握了主动权，具体的细节其实都是我们学过的知识，主要是八股多Agent架构部分和笔记看的开源项目部分的知识。如果我们掌握了笔记这部分，下面问题就很好回答。面试官在上面问的时间越多，整个面试环节在我们手上自己掌握的主动权就越多，这是好事。前提是我们对于笔记的理论知识部分要熟悉。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqks2afZlohsIOy1b4m00Ur"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQ8cSYuqjJmybB7yufsmwAd"></a></span>
+<p><strong>Q1：子 Agent 之间怎么通信的？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVOOB1Fxc5i33TzhTnKfjbe"></a></span>
+<p><span>OpenClaw 用 </span><strong>Tool Call 模式</strong><span>（不是 Handoff）。Orchestrator spawn 子 Agent 后不阻塞，子 Agent 完成后通过 push-based announce 把结果以"用户消息"注入 Orchestrator 的消息队列。</span><strong>仅传最终结构化 JSON，不传推理链</strong><span>——CoT 留在子 Agent 私有 session，控制上下文膨胀。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQUppe4sGlcf9Z2OXUMjvmg"></a></span>
+<p><span>此部分理论内容参考</span><span><span><a href="/momomian/lessons/feishu-e37922f7a8/#src-feishu-doxcntuQVjJ2aMEP4HF4qje1X9b"><span>八股的多Agent架构</span></a></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOXvhWtZLxZTYe3mPtGBj1e"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5Q5sUdfcOYMLxdq64xAIbh"></a></span>
+<p><strong>Q2：为什么不让子 Agent 互相通信？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfdot2PHD8FldMOgRaB1gOe"></a></span>
+<p><span>估值的每个子任务是独立的（财报、新闻、分析师报告、Earning Call 之间无交叉依赖），互相通信只增加开销没有收益。如果是网页导航这种高熵场景才需要去中心化让 Agent 互相纠偏。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnytHquMg6b7iFS1QxnyoNOc"></a></span>
+<p><span>此部分理论内容参考八股 </span><span><span><a href="/momomian/lessons/feishu-79104cc700/#src-feishu-doxcn1TzNz7iComMwOzkhLkwQ9d"><span>Agent通信机制</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaklScDWK317EDjw05pD2Tf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9LoFxfku77GNdVz6qPZwlb"></a></span>
+<p><strong>Q3：为什么选中心化而不是去中心化或单 Agent？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJJDx5xKNBTXqLhMovLLDgG"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>该研究在其实验设置下观察到独立 Agent 的错误放大约 17.2 倍、中心协调约 4.4 倍；这些结果不能直接替代当前任务的架构对照评测。</p><details><summary>查看解释与参考资料</summary><p>原论文摘要把 17.2 倍归于独立 Agent，而不是去中心化协作；也不是所有业务的固定倍数。</p><p><a href="https://arxiv.org/abs/2512.08296" target="_blank" rel="noopener noreferrer">官方文档 ↗</a></p></details></aside><p><span>因为估值任务有确定的入口和出口，子任务可并行但最终需要统一收敛，这天然适合中心化。不用单 Agent 是因为四种以上异构数据源处理方法完全不同，挤在一个上下文里模型容易混淆。不用去中心化是因为子任务输出的是确定性数据，不需要辩论，去中心化通信开销没有收益。Google 的论文数据也支持这个判断——中心化错误放大 4.4×，去中心化是 17.2×，金融场景对准确性要求高。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8pM9R5s1bb6pZDgmL4OmsB"></a></span>
+<p><span>此部分理论内容参考</span><span><span><a href="/momomian/lessons/feishu-e37922f7a8/#src-feishu-doxcntuQVjJ2aMEP4HF4qje1X9b"><span>八股的多Agent架构</span></a></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfVfLNuma5g2P1ohFEj8xvd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjj7vKMaXT0C8zHMx8TJbBd"></a></span>
+<p><strong>Q4：工具白名单具体怎么分的？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXU0KBnOdF7bkvImXbtEtdb"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>工具白名单限制可调用能力，上下文分离减少信息混杂；若要隔离文件、进程和网络等资源，还需运行时权限与沙箱机制。</p><details><summary>查看解释与参考资料</summary><p>上下文分离和工具白名单不是执行沙箱，仍可能共享文件、进程、密钥或网络权限。</p></details></aside><p><span>财报 Agent 只能用 pdf_parser、calculator、rag_search；新闻 Agent 只能用 web_search、sentiment_analyzer；分析师报告 Agent 只能用 pdf_parser 和 rag_search；Earning Call Agent 只能用 transcript_parser 和 rag_search。每个 Agent 只给必要的工具，减少不相关工具调用导致的幻觉和越权。这其实体现了沙箱隔离的思想，每个Agent有自己的上下文和工具，互不干扰。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnduhYAsRGchs268wdpqyPXk"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfoAP9HTzvVZl2tJIukVHqb"></a></span>
+<p><strong>Q5：模型怎么选型？子 Agent 都用同一个模型吗？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxdAHXxLksfzuQV6xFfveCb"></a></span>
+<p><span>不用。Orchestrator 用强模型比如 GPT-4o 做决策和整合，子 Agent 用轻量模型做信息提取，降低成本。安全上，子 Agent 不能再 spawn（maxSpawnDepth=1），单个 session 最多 5 个活跃子 Agent（maxChildrenPerAgent=5）做并发保护。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWySIcJ8jftxiBSRDV0QPCC"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcntcV4C25qMNErjwadZeVG6d"></a></span>
+<p><strong>Q6：上下文不够怎么压缩？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWaZojZHqC7DnTHGBR0uPmb"></a></span>
+<p><span>套用 OpenClaw Compaction：上下文达阈值（contextWindow − 20K reserve − 4K soft）自动触发 → 最近 ~20K tokens 原封保留 → 更早的分块逐块摘要 → 合并。金融定制的关键是压缩指令要求财务精确数字必须原样保留。另有 Pre-Compaction Memory Flush 机制——压缩前静默跑一轮让 Agent 把关键结论写入 memory 文件。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3Qr4y0QnKtSqXlNORYOSJv"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxXuYUdUhCK9ZKX4bJSpy1b"></a></span>
+<p><span>Q4, Q5,Q6 的理论部分其实都参考我们开源项目的解读，里面蕴含的一些思想，比如强弱模型换着用，沙箱隔离，压缩策略等。可以看我们笔记中的ClaudeCode解析，Openclaw解析，Hermes解析。所以这个问题虽然总结了模板，不过要想能够经得住面试官继续的追问，还是需要我们熟练掌握笔记中的其它章节的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGVEy5PPuqoTAafMxT2mjGf"></a></span>
+<h4 id="section-7"></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6ZBXbdj5mxpzhzlEJ6b2tc"></a></span>
+<h4 id="section-8"><span>四面</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkIwGXX4oLgfI8HbjNtyzzb"></a></span></div></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-reading" class="lesson-resource-group" data-lesson-resource-anchor="src-feishu-doxcnxZ3oMbuCVsUUak1hLZ0bBd" aria-label="状态、节点与路径"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">状态、节点与路径</h3><p class="resource-scope">补充本课主题的原理。具体接口与运行条件仍需结合本课及所用版本核对。</p><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://docs.langchain.com/oss/python/langgraph/graph-api" target="_blank" rel="noopener noreferrer">LangGraph 官方文档 · Graph API：状态、节点与边 <span aria-hidden="true">↗</span></a><span class="reading-meta">英文 · 官方文档 · 入门</span><p>对照状态更新、Reducer 与条件边；接口细节按所用版本核对。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="feishu-cdb0087f2b" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：面试真题（开发方向）：华林证券。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-feishu-cdb0087f2b-1","version":1,"type":"single","stage":"lesson","concept":"feishu-cdb0087f2b","prompt":"按本课三层架构示例，网关层的职责是什么？","options":[{"id":"option-1","text":"路由、限速与管控，将准备好的任务交Agent层推理","reason":"三层结构把事件入口与任务执行分开，网关处理分发和约束，Agent层再推理与行动，清晰边界有助排查是触发、路由还是模型过程的问题。"},{"id":"option-2","text":"直接承担全部推理并同时取消Agent层","reason":"这违背示例将网关与Think能力分开的职责。"},{"id":"option-3","text":"只负责存最终回答，不能处理会话分发","reason":"示例明确包含按对象进行Session路由的管控。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"三层结构把事件入口与任务执行分开。","explanation":"三层结构把事件入口与任务执行分开，网关处理分发和约束，Agent层再推理与行动，清晰边界有助排查是触发、路由还是模型过程的问题。","analysisSteps":["三层结构把事件入口与任务执行分开。","网关处理分发和约束。","Agent层再推理与行动，清晰边界有助排查是触发、路由还是模型过程的问题。"],"workedExample":"财报事件先按公司标识路由与限速，再交分析任务执行，不由网关生成估值文字。","evidence":{"quote":"网关层不做推理","href":"/lessons/feishu-cdb0087f2b/#src-feishu-doxcnICVYzm6TEE1uKpB9nGLAvd"},"misconception":"这违背示例将网关与Think能力分开的职责。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-cdb0087f2b/#src-feishu-doxcnICVYzm6TEE1uKpB9nGLAvd"}]},{"id":"lx-feishu-cdb0087f2b-2","version":1,"type":"single","stage":"lesson","concept":"feishu-cdb0087f2b","prompt":"本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？","options":[{"id":"option-1","text":"控制上下文膨胀并让主管按明确字段整合证据","reason":"分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。"},{"id":"option-2","text":"保证子Agent绝不会犯任何事实错误","reason":"结构化格式不等于内容已正确，需要质量检查。"},{"id":"option-3","text":"使主管完全无需来源与假设","reason":"整合仍需证据和边界，不能只留下没有依据的结论。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"分工会产生大量局部信息。","explanation":"分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。","analysisSteps":["分工会产生大量局部信息。","传递所需结果与证据更便于汇总。","结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。"],"workedExample":"财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。","evidence":{"quote":"结构化 JSON 结果","href":"/lessons/feishu-cdb0087f2b/#src-feishu-doxcnK6AvzWJo0pUk9sbyyBCVxe"},"misconception":"结构化格式不等于内容已正确，需要质量检查。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-cdb0087f2b/#src-feishu-doxcnK6AvzWJo0pUk9sbyyBCVxe"}]},{"id":"lx-feishu-cdb0087f2b-3","version":1,"type":"single","stage":"lesson","concept":"feishu-cdb0087f2b","prompt":"本课提到手写注意力。假设单头QK分数为[0,0]，两个V分别为[2,0]与[0,4]，输出是什么？","options":[{"id":"option-1","text":"[1,2]","reason":"本站按手写注意力考点补充数值练习，相同分数经softmax得到[0.5,0.5]，对两个Value加权求和为[1,2]，缩放相同零分数不改变结果。"},{"id":"option-2","text":"[2,4]","reason":"这是直接求和，漏了softmax得到各二分之一权重。"},{"id":"option-3","text":"[2,0]","reason":"分数相同不会自然只选择第一个Value。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"本站按手写注意力考点补充数值练习。","explanation":"本站按手写注意力考点补充数值练习，相同分数经softmax得到[0.5,0.5]，对两个Value加权求和为[1,2]，缩放相同零分数不改变结果。结果的两个坐标分别是零点五乘二加零、零加零点五乘四，不能直接取其中一个向量。","analysisSteps":["本站按手写注意力考点补充数值练习。","相同分数经softmax得到[0.5,0.5]。","对两个Value加权求和为[1,2]，缩放相同零分数不改变结果。"],"workedExample":"0.5×[2,0]+0.5×[0,4]=[1,2]，不是argmax只取一个向量。","evidence":{"quote":"手写注意力机制","href":"/lessons/feishu-cdb0087f2b/#src-feishu-doxcn787VhCUxApBrxvG1YjDeCc"},"misconception":"这是直接求和，漏了softmax得到各二分之一权重。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-cdb0087f2b/#src-feishu-doxcn787VhCUxApBrxvG1YjDeCc"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-cdb0087f2b-1" disabled><legend><span class="quiet-tag">单选</span> 1. 按本课三层架构示例，网关层的职责是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-1" value="option-2"><span>直接承担全部推理并同时取消Agent层</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-1" value="option-1"><span>路由、限速与管控，将准备好的任务交Agent层推理</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-cdb0087f2b-1" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-1" value="option-3"><span>只负责存最终回答，不能处理会话分发</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-cdb0087f2b-2" disabled><legend><span class="quiet-tag">单选</span> 2. 本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-2" value="option-3"><span>使主管完全无需来源与假设</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-cdb0087f2b-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-2" value="option-1"><span>控制上下文膨胀并让主管按明确字段整合证据</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-2" value="option-2"><span>保证子Agent绝不会犯任何事实错误</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-cdb0087f2b-3" disabled><legend><span class="quiet-tag">单选</span> 3. 本课提到手写注意力。假设单头QK分数为[0,0]，两个V分别为[2,0]与[0,4]，输出是什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-3" value="option-3"><span>[2,0]</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-cdb0087f2b-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-3" value="option-2"><span>[2,4]</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-cdb0087f2b-3" value="option-1"><span>[1,2]</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-cdb0087f2b">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="feishu-cdb0087f2b" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构已按本课原文与2026-10-29逐课审读修订；不是逐课人工验收，也不代表代码已运行或视频已全片审核。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><h3>这次阅读的目标</h3><ol><li>分别测量首字延迟和任务完成延迟</li><li>按入口、路由与 Agent 执行职责解释三层方案</li><li>用 softmax 权重计算单头注意力，并说明结构化结果仍需验真</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>反思</dt><dd>对已有结果进行检查和修正的过程。自我检查不是独立验证，仍需外部标准或测试。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnWQOyTn7AAAihaAm9GWfyMc">回看本课上下文</a></span></dd></div><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnglTKMDH3Mah8QnARahWdBA">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnuSK7oQeVkMmexd9fQElcKJ">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnWaZojZHqC7DnTHGBR0uPmb">回看本课上下文</a></span></dd></div><div><dt>上下文窗口</dt><dd>单次模型处理所能容纳的信息范围。放进窗口的信息与存到外部数据库的信息不同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnbkdF7keIQUPcVTKqZBqrtK">回看本课上下文</a></span></dd></div><div><dt>RAG</dt><dd>先从资料中取回相关内容，再将检索结果作为生成回答的上下文；检索与回答依据应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnXzv1jcB3WzwX12fRPTKfqg">回看本课上下文</a></span></dd></div><div><dt>Chunk</dt><dd>为索引和检索划分的内容片段。片段应保留必要上下文和来源，边界需要结合资料结构选择。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnWaZojZHqC7DnTHGBR0uPmb">回看本课上下文</a></span></dd></div><div><dt>工具调用</dt><dd>模型或策略提出结构化的操作请求，由程序校验参数与权限、执行工具并返回结果。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcntExlNqVnWa0dyOeqwMQvbc">回看本课上下文</a></span></dd></div><div><dt>记忆</dt><dd>为后续使用保留信息的机制。近期会话、跨会话偏好与操作审计的范围和用途应分开。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnWvxn6KvJRVNgHtXCI5qibe">回看本课上下文</a></span></dd></div><div><dt>摘要</dt><dd>压缩原始信息的表达。压缩会取舍细节，需要对照任务所需事实、纠正和约束检查遗漏。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnWaZojZHqC7DnTHGBR0uPmb">回看本课上下文</a></span></dd></div><div><dt>LangChain</dt><dd>模型、消息、工具等应用组件的框架生态。具体接口以课程标注版本和官方文档为准。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnY0NHDY8Ah2AhJylHWO7ppb">回看本课上下文</a></span></dd></div><div><dt>LangGraph</dt><dd>使用图与持久状态组织工作流的框架。图的结构不自动保证任务正确、终止或外部操作安全。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcntYo0754oCQ2QNKqq2Y3clb">回看本课上下文</a></span></dd></div><div><dt>MCP</dt><dd>连接模型应用与工具、资源等能力的协议。协议一致性不代替工具授权或业务安全检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnvCxROVKjbw3JZtmvHDlHUd">回看本课上下文</a></span></dd></div><div><dt>JSON</dt><dd>以对象、数组、字符串、数值等组成的数据交换格式。合法格式、符合约定结构和事实正确应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnK6AvzWJo0pUk9sbyyBCVxe">回看本课上下文</a></span></dd></div><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnzvOm4AcHCCoRQxClLQzmEe">回看本课上下文</a></span></dd></div><div><dt>SDK</dt><dd>帮助调用某种平台能力的一组开发工具或库。SDK 版本与服务端 API 版本需要区分。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnrbZD0H59zKIigGw6RypbEf">回看本课上下文</a></span></dd></div><div><dt>注意力</dt><dd>根据输入表示计算并汇总相关信息的机制。权重不是对模型所有行为的完整因果解释。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn787VhCUxApBrxvG1YjDeCc">回看本课上下文</a></span></dd></div><div><dt>GPT</dt><dd>常用于生成任务的一类自回归语言模型家族；具体上下文、能力和接口取决于所用模型。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnr3nBMsIiz3qMMHQdVBwUzg">回看本课上下文</a></span></dd></div><div><dt>微调</dt><dd>在已有模型基础上继续训练，使其适应特定任务或数据。训练收益应通过独立评测判断。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnXvbSCAhRr98gdtgcuwm4jh">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnbkdF7keIQUPcVTKqZBqrtK">回看本课上下文</a></span></dd></div><div><dt>规划</dt><dd>把目标转成步骤或下一步选择的过程。计划需要根据实际结果调整并限制执行资源。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcntExlNqVnWa0dyOeqwMQvbc">回看本课上下文</a></span></dd></div><div><dt>精排与召回</dt><dd>先取回候选再筛选或排序的过程。需要区分候选覆盖与最终结果的适用性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnbkdF7keIQUPcVTKqZBqrtK">回看本课上下文</a></span></dd></div><div><dt>3.</dt><dd>3. （追问）你觉得Unity WebGL的核心是啥？<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnVhiNqcKCmQkkpnWNLOok0B">回看本课上下文</a></span></dd></div><div><dt>4.</dt><dd>4. Agent层-工具：子 Agent 需要什么领域工具？——内置什么专用工具 + 工具白名单怎么分<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnqfIGMQ88xAckhKWqskHpId">回看本课上下文</a></span></dd></div><div><dt>第一，工程落地能力。</dt><dd>第一，工程落地能力。 我在腾讯和微软都做过上亿用户级别的产品，比如xx全球上线的XX系统（我的工作项目就隐藏了），所以在大规模系统的工程能力上比较扎实，这也是我做AI项目的底子。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnS2luTSzOo6uVJs3jzUYfRf">回看本课上下文</a></span></dd></div><div><dt>第二，Agent和RAG应用方向，这是我最深入的。</dt><dd>第二，Agent和RAG应用方向，这是我最深入的。 我做过多个Agent项目，看过很多论文，深入理解目前主流的Agent开源项目，比如Openclaw, Hermes,ClaudeCode。对Agent的设计范式，架构，任务拆解都有深入理解。同时自己自研了RAG项目，实现RAG系统整个环节。对大模型开发的前沿技术保持持续学习。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnq8fyASwQeuonCagBCgBRze">回看本课上下文</a></span></dd></div><div><dt>第三</dt><dd>第三， 我对Vibecoding的技巧有深入的理解，包括ClaudeCode的各种高级使用功能，可以使用CC完成整个工作自动化的编排，比如代码-编译-测试的闭环。熟练使用各种模型，理解模型的边界，对于Harness工程，比如如何约束Agent的行为，沙箱机制等技巧都有实践和理解。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcn80oFVmiQQ2dQLY9cGp755f">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>本课机制与检查方向</h3><p class="small muted">依据本课原文与就近审校整理的教学说明；原文代码和外部视频未因此获得运行或全片审核。 <a href="#lesson-source-body">打开完整来源段落</a></p><blockquote class="lesson-guide-excerpt">按本课三层架构示例，网关层的职责是什么？
+结论：路由、限速与管控，将准备好的任务交Agent层推理。
+理由：三层结构把事件入口与任务执行分开，网关处理分发和约束，Agent层再推理与行动，清晰边界有助排查是触发、路由还是模型过程的问题。
+配套示例：财报事件先按公司标识路由与限速，再交分析任务执行，不由网关生成估值文字。
+
+本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？
+结论：控制上下文膨胀并让主管按明确字段整合证据。
+理由：分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。
+配套示例：财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。</blockquote><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-cdb0087f2b-explain"><h3>1. 面试真题（开发方向）：华林证券 · 机制回忆</h3><p>按本课三层架构示例，网关层的职责是什么？</p><label class="lesson-task-field" for="task-lesson-card-feishu-cdb0087f2b-explain">先写自己的回答<textarea id="task-lesson-card-feishu-cdb0087f2b-explain" data-lesson-task-answer="lesson-card-feishu-cdb0087f2b-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-cdb0087f2b-explain">给一点提示</button><p class="lesson-task-hint" hidden>按本课三层架构示例，网关层的职责是什么？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">结论：路由、限速与管控，将准备好的任务交Agent层推理。
+理由：三层结构把事件入口与任务执行分开，网关处理分发和约束，Agent层再推理与行动，清晰边界有助排查是触发、路由还是模型过程的问题。
+配套示例：财报事件先按公司标识路由与限速，再交分析任务执行，不由网关生成估值文字。</p><ul><li>路由、限速与管控，将准备好的任务交Agent层推理</li><li>三层结构把事件入口与任务执行分开，网关处理分发和约束，Agent层再推理与行动，清晰边界有助排查是触发、路由还是模型过程的问题。</li><li>财报事件先按公司标识路由与限速，再交分析任务执行，不由网关生成估值文字。</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-cdb0087f2b-explain">主要错因<select id="task-error-lesson-card-feishu-cdb0087f2b-explain" data-lesson-task-error="lesson-card-feishu-cdb0087f2b-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-cdb0087f2b#lesson-card-feishu-cdb0087f2b-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-cdb0087f2b-apply"><h3>2. 面试真题（开发方向）：华林证券 · 条件判断</h3><p>本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？</p><label class="lesson-task-field" for="task-lesson-card-feishu-cdb0087f2b-apply">先写自己的回答<textarea id="task-lesson-card-feishu-cdb0087f2b-apply" data-lesson-task-answer="lesson-card-feishu-cdb0087f2b-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-cdb0087f2b-apply">给一点提示</button><p class="lesson-task-hint" hidden>本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">结论：控制上下文膨胀并让主管按明确字段整合证据。
+理由：分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。
+配套示例：财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。</p><ul><li>控制上下文膨胀并让主管按明确字段整合证据</li><li>分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。</li><li>财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-cdb0087f2b-apply">主要错因<select id="task-error-lesson-card-feishu-cdb0087f2b-apply" data-lesson-task-error="lesson-card-feishu-cdb0087f2b-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-cdb0087f2b#lesson-card-feishu-cdb0087f2b-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>结论：控制上下文膨胀并让主管按明确字段整合证据。
+理由：分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。
+配套示例：财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。</blockquote><ul><li>控制上下文膨胀并让主管按明确字段整合证据</li><li>分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。</li><li>财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。</li></ul><a href="#lesson-source-body">回到原文依据</a></details><label class="lesson-task-field" for="boundary-feishu-cdb0087f2b">写下最小失败输入、预期和验证方法<textarea id="boundary-feishu-cdb0087f2b" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>换一组输入或一个版本，重新判断：本课子Agent只回传结构化结果，不广播全部中间推理，主要收益是什么？</p><ul><li>控制上下文膨胀并让主管按明确字段整合证据</li><li>分工会产生大量局部信息，传递所需结果与证据更便于汇总，结构化还需字段与事实验证，不能把JSON格式当作推理质量的充分条件。</li><li>财报子任务返回指标、时期、来源与假设，主管据此整合而非读取全部聊天记录。</li></ul><label class="lesson-task-field" for="transfer-feishu-cdb0087f2b">解释哪些能复用，哪些要重新验证<textarea id="transfer-feishu-cdb0087f2b" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>分别测量首字延迟和任务完成延迟</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>按入口、路由与 Agent 执行职责解释三层方案</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>独立解释机制，并列出改变条件后需要重新核对的内容。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>区分资料说明、本站补充与自己的实际验证。</span></label></fieldset><label class="lesson-task-field" for="artifact-feishu-cdb0087f2b">产物、实际验证与未决问题<textarea id="artifact-feishu-cdb0087f2b" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=feishu-cdb0087f2b#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=feishu-cdb0087f2b">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/path/"><small>返回课程</small><span>查看教学顺序</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1" class="nested">2025.12 华林证券</a><a href="#section-2" class="nested">岗位介绍</a><a href="#section-3" class="nested">反思</a><a href="#section-4" class="nested">一面</a><a href="#section-5" class="nested">二面</a><a href="#section-6" class="nested">三面</a><a href="#section-8" class="nested">四面</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

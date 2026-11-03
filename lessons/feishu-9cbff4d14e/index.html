@@ -1,0 +1,1238 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>RAG：RAG的重要步骤 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="feishu-9cbff4d14e"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>先看懂有证据的问答流程</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-8f059f0e81/" data-record-id="feishu-8f059f0e81">RAG：RAG全局总览</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-0cd4965f06/" data-record-id="tencent-010-0cd4965f06">RAG从入门到精通：一、概览：Overview（RAG是什么？）</a><a href="/momomian/lessons/tencent-005-013/" data-record-id="tencent-005-013">RAG 与知识检索</a></details></div></details><details><summary>向量、相似度、Embedding与存储选择</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-47ea400dcb/" data-record-id="tencent-005-012-47ea400dcb">向量数据库</a><a href="/momomian/lessons/feishu-b92e147637/" data-record-id="feishu-b92e147637">RAG：嵌入向量</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5a4b641084/" data-record-id="feishu-5a4b641084">RAG：常见的向量数据库</a></details></div></details><details><summary>向量度量、精确基线与近似索引</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae/" data-record-id="tencent-005-012-cc43dc69ae">实例 · 示例</a><a href="/momomian/lessons/tencent-005-012-047e0786f8/" data-record-id="tencent-005-012-047e0786f8">向量数据库：向量索引算法</a></div></details><details open><summary>解析、分块、索引与增量更新</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-eb81779983/" data-record-id="tencent-010-eb81779983">RAG从入门到精通：一、概览：Indexing（索引构建：把知识装进&quot;大脑&quot;）</a><details open><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9cbff4d14e/" class="current" aria-current="page" data-record-id="feishu-9cbff4d14e">RAG：RAG的重要步骤</a><a href="/momomian/lessons/tencent-010-c20603cd5a/" data-record-id="tencent-010-c20603cd5a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧4：实时更新知识库</a><a href="/momomian/lessons/tencent-010-c20603cd5a-d7d573/" data-record-id="tencent-010-c20603cd5a-d7d573">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧4：实时更新知识库</a></details></div></details><details><summary>Chroma文档、查询、过滤和本地嵌入</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-52f14f/" data-record-id="tencent-005-012-cc43dc69ae-52f14f">向量数据库：向量索引算法 · 示例</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-1e5ee5/" data-record-id="tencent-005-012-cc43dc69ae-1e5ee5">向量数据库：向量索引算法 · 示例（2）</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-a20751/" data-record-id="tencent-005-012-cc43dc69ae-a20751">向量数据库：向量索引算法 · 示例（3）</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-fadb19/" data-record-id="tencent-005-012-cc43dc69ae-fadb19">向量数据库：向量索引算法 · 示例（4）</a></div></details><details><summary>pgvector接入和距离排序</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-793733/" data-record-id="tencent-005-012-cc43dc69ae-793733">向量数据库：向量索引算法 · 示例（5）</a></div></details><details><summary>召回、混合检索、RRF与重排</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-f863748d94/" data-record-id="tencent-010-f863748d94">RAG从入门到精通：一、概览：Retrieval（检索：快速找到相关知识）</a><a href="/momomian/lessons/tencent-010-febc1d8abe/" data-record-id="tencent-010-febc1d8abe">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧1：多路召回策略</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-2115728a6e/" data-record-id="tencent-010-2115728a6e">RAG从入门到精通：二、RAG查询优化策略：RAG-Fusion - 多查询结果融合策略</a><a href="/momomian/lessons/tencent-010-f203ebd20b/" data-record-id="tencent-010-f203ebd20b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：RRF算法详解（Reciprocal Rank Fusion）</a><a href="/momomian/lessons/tencent-010-c7f149de51/" data-record-id="tencent-010-c7f149de51">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Re-ranking重排</a><a href="/momomian/lessons/tencent-010-febc1d8abe-2f4e01/" data-record-id="tencent-010-febc1d8abe-2f4e01">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧1：多路召回策略</a></details></div></details><details><summary>上下文、引用与答案边界</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-8fd3bcfcc0/" data-record-id="tencent-010-8fd3bcfcc0">RAG从入门到精通：一、概览：4.Generation（生成：基于知识产生答案）</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-cb8199459d/" data-record-id="tencent-010-cb8199459d">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🔥 难题2：上下文窗口限制</a></details></div></details><details><summary>实现基础RAG并核对结果</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-011-007/" data-record-id="tencent-011-007">RAG 与知识检索</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-512fe4609f/" data-record-id="tencent-010-512fe4609f">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🛠️ 完整代码实现</a><a href="/momomian/lessons/tencent-010-eeb178258e/" data-record-id="tencent-010-eeb178258e">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🎯 运行效果示例</a><a href="/momomian/lessons/tencent-010-eeb178258e-74ac6b/" data-record-id="tencent-010-eeb178258e-74ac6b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🎯 运行效果示例</a></details></div></details><details><summary>LangChain检索—格式化—生成最短链</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-010-cc43dc69ae-ba689a/" data-record-id="tencent-013-010-cc43dc69ae-ba689a">LangChain 制作智能体：核心组件详解 · 示例</a></div></details><details><summary>Dify知识库：分块、词面信号与检索评测</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-018-5387de5f7e/" data-record-id="tencent-013-018-5387de5f7e">Dify 入门教程：知识库（RAG）：让 AI 回答你的私有数据</a></div></details><details><summary>先诊断，再选择查询优化</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-010-9f630938c4/" data-record-id="tencent-010-9f630938c4">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🔥 难题1：检索不准确（最核心的痛点）</a><a href="/momomian/lessons/tencent-010-f46bf0e47b/" data-record-id="tencent-010-f46bf0e47b">RAG从入门到精通：二、RAG查询优化策略：Multi Query - 多查询策略</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-6dabb90a5b/" data-record-id="tencent-010-6dabb90a5b">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Retrieval检索优化策略</a><a href="/momomian/lessons/tencent-010-2e46a4d6b5/" data-record-id="tencent-010-2e46a4d6b5">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧2：查询改写</a><a href="/momomian/lessons/tencent-010-2e46a4d6b5-ed5154/" data-record-id="tencent-010-2e46a4d6b5-ed5154">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：🚀 技巧2：查询改写</a><a href="/momomian/lessons/tencent-010-f2a65b8cb0/" data-record-id="tencent-010-f2a65b8cb0">RAG从入门到精通：二、RAG查询优化策略：Decomposition - 问题分解策略</a></details></div></details><details><summary>抽象问题、HyDE与查询路由</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-4db1a2ea03/" data-record-id="tencent-010-4db1a2ea03">RAG从入门到精通：二、RAG查询优化策略：Step Back问答回退策略</a><a href="/momomian/lessons/tencent-010-eeaa7a9fda/" data-record-id="tencent-010-eeaa7a9fda">RAG从入门到精通：二、RAG查询优化策略：HyDE（假设性文档嵌入）</a><a href="/momomian/lessons/tencent-010-7f91e97d0b/" data-record-id="tencent-010-7f91e97d0b">RAG从入门到精通：三、路由优化和问题构建策略</a></details></div></details><details><summary>多表示、RAPTOR与ColBERT</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-010-56cafff398/" data-record-id="tencent-010-56cafff398">RAG从入门到精通：一、传统RAG索引的痛点</a><a href="/momomian/lessons/tencent-010-2279c2d079/" data-record-id="tencent-010-2279c2d079">RAG从入门到精通：二、Multi-representation Indexing（多表示索引）</a><a href="/momomian/lessons/tencent-010-da6b45ec59/" data-record-id="tencent-010-da6b45ec59">RAG从入门到精通：三、RAPTOR（递归抽象处理树状检索）</a><a href="/momomian/lessons/tencent-010-425203d49f/" data-record-id="tencent-010-425203d49f">RAG从入门到精通：四、ColBERT（Token级别上下文检索）</a><a href="/momomian/lessons/tencent-010-bed182a5f1/" data-record-id="tencent-010-bed182a5f1">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：TM2C2算法：RRF的进化版</a></details></div></details><details><summary>Agentic、Graph、CRAG与Self-RAG</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-2ba396d889/" data-record-id="feishu-2ba396d889">RAG：RAG进阶</a><a href="/momomian/lessons/tencent-010-a48b31b24a/" data-record-id="tencent-010-a48b31b24a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：CRAG：纠错检索增强生成</a><a href="/momomian/lessons/tencent-010-2e1383ef6a/" data-record-id="tencent-010-2e1383ef6a">RAG从入门到精通：六、Retrieval检索和Generation生成优化策略：Self-RAG：自反思检索增强生成</a></details></div></details><details><summary>Agent按需检索与检索预算</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-005-015-cc43dc69ae-421c0a/" data-record-id="tencent-005-015-cc43dc69ae-421c0a">Agent 架构：架构二：规划 + 执行（Plan &amp; Execute） · 示例（4）</a></div></details><details><summary>GraphRAG原理、测试数据、配置与索引产物</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-013-241302f4a9/" data-record-id="tencent-013-013-241302f4a9">GraphRAG 入门教程：什么是 GraphRAG</a><a href="/momomian/lessons/tencent-013-013-9080a076a6/" data-record-id="tencent-013-013-9080a076a6">GraphRAG 入门教程：初始化工作区</a><a href="/momomian/lessons/tencent-013-013-85715ff48e/" data-record-id="tencent-013-013-85715ff48e">GraphRAG 入门教程：准备测试文档</a><a href="/momomian/lessons/tencent-013-013-cc43dc69ae/" data-record-id="tencent-013-013-cc43dc69ae">GraphRAG 入门教程：准备测试文档 · 示例</a><a href="/momomian/lessons/tencent-013-013-05db982f3a/" data-record-id="tencent-013-013-05db982f3a">GraphRAG 入门教程：开始索引</a></div></details><details><summary>GraphRAG查询模式、来源核查与抽取Prompt调优</summary><div class="lesson-nav"><a href="/momomian/lessons/tencent-013-013-cc43dc69ae-a77b6c/" data-record-id="tencent-013-013-cc43dc69ae-a77b6c">GraphRAG 入门教程：开始索引 · 示例</a><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-013-10cc00de17/" data-record-id="tencent-013-013-10cc00de17">GraphRAG 入门教程：Prompt 自动调优</a></details></div></details><details><summary>GraphRAG版本字段、恢复调优及资料索引</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-013-013-31f13d3717/" data-record-id="tencent-013-013-31f13d3717">GraphRAG 入门教程：完整 settings.yaml 字段说明</a><a href="/momomian/lessons/tencent-013-013-45a6d115fd/" data-record-id="tencent-013-013-45a6d115fd">GraphRAG 入门教程：常见问题</a><a href="/momomian/lessons/tencent-013-013-743a19f0bd/" data-record-id="tencent-013-013-743a19f0bd">GraphRAG 入门教程：延伸阅读</a></details></div></details><details><summary>检索选型、维护和模型迁移</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-005-012-f1f54e5e10/" data-record-id="tencent-005-012-f1f54e5e10">向量数据库：选型建议与最佳实践</a><a href="/momomian/lessons/tencent-005-012-cc43dc69ae-b6bc07/" data-record-id="tencent-005-012-cc43dc69ae-b6bc07">向量数据库：选型建议与最佳实践 · 示例</a></details></div></details><details><summary>长上下文、检索与Grep怎样选</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-b182165a33/" data-record-id="feishu-b182165a33">RAG：RAG的趋势探讨</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=rag">RAG 与知识检索</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">补充 · 按需查阅</p><h1 data-pagefind-meta="title">RAG：RAG的重要步骤</h1><div class="lesson-meta"><span>约 60 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：解析、分块、索引与增量更新 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="feishu-9cbff4d14e" data-task-title="RAG：RAG的重要步骤" data-task-href="/lessons/feishu-9cbff4d14e/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>PDF处理方法、统一结果字段和验收清单等段落存在未展开内容，尚未逐张验证原图；本课3题不依赖这些省略清单。</p><p>命题级切分及各框架示例未在固定依赖环境运行；LlamaIndex是否提供对应通用解析器的排他说法仍需按版本确认。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">RAG 与知识检索 / 解析、分块、索引与增量更新</p><a class="text-link" href="/momomian/path/?topic=rag&amp;unit=unit-rag-7e0f6c28">查看本单元讲解、练习和补充 →</a><p><a href="/momomian/lessons/tencent-010-eb81779983/">先看本单元主讲：RAG从入门到精通：一、概览：Indexing（索引构建：把知识装进&quot;大脑&quot;）</a></p></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>把政策查询中的主题、地区、年份和流程意图写成检索条件，并识别需要澄清的指代。</li><li>区分字符与token预算，说明标题解析、递归切分、语义切分各自负责的边界。</li><li>用首个相关结果的排名计算倒数排名，并判断同一结果是否命中Hit@K。</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">RAG：RAG的重要步骤</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">给定知识库含多地历年政策，可先过滤上海2024相关文档再查办理流程。</p><a class="text-link" href="#src-feishu-doxcnSx2vU95p6G3PjUdnQzjiFc">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 19 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>12 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><p>1 个选定片段未通过原样运行核验，请查看对应代码旁的修正版与限制。</p><p>其中 2 个片段需要补足上下文或修正，可能涉及缩进、占位内容或截断。请结合完整代码核对。</p><a class="text-link" href="/momomian/practice/?lesson=feishu-9cbff4d14e#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h3 id="section-1"><span>16.5 RAG的重要步骤 </span></h3>
+<span class="source-anchor-container"><a id="src-feishu-doxcn81p93kLpcHWYpd6exxbccg"></a></span>
+<p><span>参考视频</span></p>
+<div id="src-feishu-doxcnLTavvJk7pwMrWqqTi2802d"><div><div><div><div><div><div><div><div><div><a href="https://open.douyin.com/player/video?vid=7522119790514998591&#x26;mode=pc" target="_blank" rel="noopener noreferrer">嵌入视频 / 原始播放器</a></div></div></div></div></div></div></div></div></div></div>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSE2sZbBp4rKiFKAthfloxf"></a></span>
+<h4 id="section-2"><span>16.5.1 意图识别</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnv3CYzehb1xP4BfIYT6XMTe"></a></span>
+<p><span>意图识别位于 </span><span><span><a href="/momomian/lessons/feishu-f77fb5fc13/#src-feishu-doxcnhrP7JmcDSM0cUFbeOqfaxb"><span>RAG全局总览</span></a></span></span><span>的第3，4（图中橙色的部分）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSeRDII72vNJbOiBYh4v6xe"></a></span>
+<p><strong>是什么？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyf0U1YvwlOTssvxck5zcWg"></a></span>
+<p><span>意图识别位于 RAG 的检索前处理阶段，核心作用是先理解用户到底想问什么，再决定后面应该如何检索。它不是简单给用户问题打一个分类标签，而是要把用户的自然语言问题转成后续 RAG 可以执行的检索计划。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbakNbuS1erLDshdiu5dFDe"></a></span>
+<p><span>在实际场景中，用户的问题经常是不完整、口语化、依赖上下文的。比如用户问“这个怎么申请？”“它和那个有什么区别？”如果直接把原句送进向量数据库，很容易召回错误内容。因此在正式检索前，系统需要先判断用户的真实意图、问题中的关键对象、时间地点等限制条件，以及这个问题是否需要先澄清。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3LU1KmfQGsaev00v0hdgQg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcngLtRbCunqCtkIPSWCYYgch"></a></span>
+<p><strong>怎么做？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8n9d4HkvbDZOx1LO1b1BIc"></a></span>
+<p><span>意图识别通常会做三件事。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQ4ztEQZeWx7GOpHZflD2oc"></a></span>
+<p><span>第一，</span><strong>判断用户的问题类型</strong><span>。比如用户是在问定义、查事实、问流程、做比较、要总结、查政策，还是排查问题。不同类型的问题适合不同的处理方式：事实类问题通常适合精确检索，比较类问题适合拆成多个子问题，总结类问题需要召回更大范围的上下文，政策类问题则通常需要结合地区、时间、政策类型等元数据过滤。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSx2vU95p6G3PjUdnQzjiFc"></a></span>
+<p><span>第二，</span><strong>抽取实体和槽位</strong><span>。实体是用户问题中真正关心的对象，槽位是检索时需要用到的限制条件。例如“2024 年上海人才补贴怎么申请？”中，主题是“人才补贴”，地区是“上海”，时间是“2024 年”，问题类型是“申请流程”。这些信息可以直接用于过滤文档集合，避免在整个知识库里盲目检索。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnawYvXiP3WKaOYFcwroBWi"></a></span>
+<p><span>第三，</span><strong>决定检索策略</strong><span>。如果用户问题已经明确，可以直接检索；如果问题表达口语化或依赖上下文，可以先做查询改写；如果用户用词和文档用词可能不一致，可以做查询扩展；如果问题比较短、抽象，可以用 HyDE 生成假设性文档辅助召回；如果问题包含多个子目标，可以进行查询分解；如果缺少关键信息，就应该先向用户澄清，而不是强行检索。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJMl5IvLzV3TuoUvdqTxYZk"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnisfDxOP90lvmDZiv4YkMef"></a></span>
+<p><span>比如用户问“这个怎么申请？”，如果上一轮正在讨论“上海人才租房补贴”，系统就可以把它改写成“上海人才租房补贴怎么申请？”再检索。如果没有上下文，系统就应该追问“你想申请的是哪类事项？比如人才补贴、项目申报、发票报销，还是其他业务？”这就是意图识别在多轮 RAG 中的价值：能补全的自动补全，不能确定的先澄清。</span></p>
+<div id="src-feishu-doxcnOfCoBVsljpyt67bmT1EpFf"><img src="/momomian/assets/41af01fe3b687790e756.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYxkXFywFwQ6fgz4qvHHSed"></a></span>
+<p><span>在工程实现上，可以用规则、小模型分类器，也可以直接用大模型做结构化理解。现在</span><strong>更常见的方式是让大模型输出一个结构化结果</strong><span>，例如：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFyuHX5Y0K7pyPOeT007PHe"></a></span>
+<pre><code class="language-json">{
+  "intent": "policy_query",
+  "entities": ["人才补贴"],
+  "filters": {
+    "region": "上海",
+    "year": "2024"
+  },
+  "needs_clarification": false,
+  "route": "policy_knowledge_base",
+  "retrieval_strategy": "metadata_filter",
+  "rewrite_query": "2024年上海人才补贴政策的申请条件、补贴标准和办理流程是什么？"
+}
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcneenzkceqhrqGYdtsEFI3ld"></a></span>
+<p><span>这个结果比单纯输出一个 </span><span><span><span>policy_query</span></span></span><span> 更有用，因为它可以直接驱动后续流程：</span><span><span><span>intent</span></span></span><span> 决定问题类型，</span><span><span><span>filters</span></span></span><span> 用于元数据过滤，</span><span><span><span>route</span></span></span><span> 决定去哪个知识库，</span><span><span><span>retrieval_strategy</span></span></span><span> 决定是直接检索、改写、扩展、HyDE、分解还是澄清。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnVFKQTPM3x0wxEnNbkjHpg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJYlg2AQ3degIWb4NUFkZQg"></a></span>
+<p><strong>如何判断意图识别做得好不好？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCfkalQHrvyyH3aOp7kitMc"></a></span>
+<p><span>我们需要从意图分类，槽位抽取，是否需要澄清，路由是否正确这几个维度来综合评估。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoclHSG6aYE9iAAkIs2B4Rf"></a></span>
+<p><strong>意图分类</strong><span>可以看 整体准确率、精确率、召回率、F1；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnf4jcw9FphSLxH38pqUa1Th"></a></span>
+<p><strong>实体和槽位抽取</strong><span>可以看 Slot 精确率、Slot 召回率、Slot F1；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoecgEqtaQxASy0zeUfgqBe"></a></span>
+<p><strong>是否需要澄清</strong><span>可以单独看澄清判断的准确率和召回率；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSoutXThj5VKFtq4PPXbvtf"></a></span>
+<p><strong>路由是否正确</strong><span>可以看 Route Accuracy；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFQztYd6Bmkj2Gn0GRdnz3c"></a></span>
+<p><span>最终还要看加入意图识别后，正确文档</span><strong>是否更容易进入 Top-K，答案准确率是否提升。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnab1IoIX8BjOGwQH18kyw6c"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfzuKnumNrRn37twdr5yU4e"></a></span>
+<p><strong>指标释义</strong><span>：</span><strong>❗如果还不明白就问AI，都是标准指标，也确实有点难绕。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVhcE8gR2psU6dhO82n3PLv"></a></span>
+<p><strong>整体准确率 (Accuracy)</strong><span>：所有判断里预测对（包括对和错两类判定都对）的样本占总体的比例。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZx8wg9NL84vDJ6V5lOeFac"></a></span>
+<p><strong>精确率 (Precision)</strong><span>：模型预测为“是”的结果里，真正正确的比例（主要防误报、防乱判）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsfG4E3VhtqTxBLnnKH82kh"></a></span>
+<p><strong>召回率 (Recall)</strong><span>：在实际为“是”的所有样本中，模型成功找出来多少的比例（主要防漏报、防漏判）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4GHehREwDxiLaeQBAC9hke"></a></span>
+<p><strong>F1 值 (F1-Score)</strong><span>：精确率和召回率的调和平均值，两者双高才能拿到高分，反映综合好坏。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWyqMa7MWeDeb8TauSmMEGd"></a></span>
+<p><strong>槽位 (Slot)</strong><span>：从用户提问里抽出来的结构化属性约束条件，如时间、地区、主题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnLXRDgHQcQxGFJlr4fuIWc"></a></span>
+<p><strong>前 K 个检索结果 (Top-K)</strong><span>：指搜索引擎按相关性排序最终返回给用户的前 K 个文档片段。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkcwNIQD6LJcQpHTd4cp4Of"></a></span>
+<p><strong>平均倒数排名 (MRR)</strong><span>：评判第一个正确结果排在第几名，排名越靠前（第一名倒数为1，第二名倒数为0.5）分值越高。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIpRDktrBbmFvCMKxVXrkEf"></a></span>
+<p><strong>前 K 个命中率 (Hit@K)</strong><span>：测试样本集中，检索前 K 个文档包含有正确答案的样本比例。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnulYwmL7SkgpSeqbypGUwYc"></a></span>
+<p><strong>归一化折损累计增益 (nDCG)</strong><span>：不仅衡量找回的文档是否相关，还非常看重最相关的文档是不是排在最前排</span></p>
+</blockquote>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb2YC7Vpe2VuLAvjyNeJrik"></a></span>
+<h4 id="section-3"><em>16.5.2 输入文件处理</em></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8ghsXAYND1n1oFtWi3U2Mb"></a></span>
+<p><span>在进行文档分割前，我们先要对输入的各种类型的文件进行处理，转换成文本内容，进行切块。这个地方倒是算不上是RAG里面的重要内容，属于传统方法的内容。不过我们的项目是以PDF作为输入，转换成Markdown的文本，进行后续切块的，根据粉丝朋友们反馈，</span><strong>这里面面试被问得很多</strong><span>，所以我干脆把这里沉淀成专题笔记：PDF到MarkDown的处理，相关的面试真题可以参考这里：</span><span><span><a href="/momomian/lessons/feishu-ff8b85db3d/#src-feishu-doxcnnbMYD5vpjPBU2aHDrzevVi"><span>PDF处理问题</span></a></span></span><span>。 </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTB2M8U5uL6IrJk1XRqxmFg"></a></span>
+<p><span>我觉得这个知识点</span><strong>纯粹是为了应付你使用我们笔记RAG项目，面试官可能会问到的相关的问题。</strong><span>如果你没有用我们项目，我觉得你可以放一放这个问题，这个问题不算是RAG里面很重要的知识点。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS8o80n1dvDz9HY3gGwVboh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpsomnMXJL47jFv68Jrd7bc"></a></span>
+<h4 id="section-4"><strong>16.5.2.1 整体处理逻辑</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb6d4QVNpD8ayMwyQk7UmUe"></a></span>
+<p><span>整体处理逻辑很清晰，我们把工业化的处理分成5个连续的阶段：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnh9fcO9Ncqqm0osa17YJgkc"></a></span>
+<p><strong>文件体检</strong><span>：检查 PDF 是否重复、加密、损坏或方向异常，确认文件可以正常处理。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEgvoh1QEUapfvV2eHe17Uc"></a></span>
+<p><strong>逐页判断</strong><span>：判断每页属于原生文本、扫描、混合、复杂布局还是异常页面。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfG4YRmc6nGeoDEvqVbvYsf"></a></span>
+<p><strong>按页面类型解析</strong><span>：为不同类型的页面选择对应的解析方法。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhCZ2k7ozHRd0gE8lykk1Zc"></a></span>
+<p><strong>统一结果</strong><span>：将不同解析结果按页码和阅读顺序整理成统一格式。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnjSIDxZ5KWCb45Xppjvp2f"></a></span>
+<p><strong>结果检查</strong><span>：检查漏页、乱码、重复、错序及表格错误，确保最终内容完整、准确、可用。</span></p>
+<div id="src-feishu-doxcnDuagPRyHdDTAfhMvtGKPRd"><img src="/momomian/assets/37ddbb292a1bc8652266.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYNiZFZ6N19mutyAjxVJMJb"></a></span>
+<p><span>很好理解对吗？接下来我们逐一讲解。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOcX26dUmaNoPe0qGvDACad"></a></span>
+<h4 id="section-5"><span>16.5.2.2 步骤一：文件基础体检</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOUDpeJeKIpsHm8f7Qpv0Gh"></a></span>
+<p><span>基础体检只负责文件级别的准入和预处理，不负责提取正文。</span></p>
+<div><div id="src-feishu-doxcnsHtTwURLNhy4E0HQJCHu2b"><span>◦</span><div><strong>文件哈希已经存在</strong><span>：视为重复文件，跳过处理或复用已有结果。</span></div></div><div id="src-feishu-doxcnHYgINLJmXwMR8HwMdoYGVd"><span>◦</span><div><strong>文件哈希发生变化</strong><span>：视为文件新版本，重新处理。</span></div></div><div id="src-feishu-doxcnSowI1fvEQoDbLNSSLBaEeh"><span>◦</span><div><strong>PDF 有密码</strong><span>：先获取密码或解密；无法解密则停止处理并记录原因。</span></div></div><div id="src-feishu-doxcnuEJ4cvB1HXzdscIor9Pvr5"><span>◦</span><div><strong>PDF 损坏或无法打开</strong><span>：尝试修复；修复失败则要求重新提供文件。</span></div></div><div id="src-feishu-doxcnaPyFFZqD2D3DohnfFo6YDc"><span>◦</span><div><strong>页面方向错误</strong><span>：在文字提取或 OCR 前进行方向校正。</span></div></div><div id="src-feishu-doxcndEUlWjKgCmRUQwYsoTRDBg"><span>◦</span><div><strong>总页数可以读取</strong><span>：记录总页数，处理完成后用于检查是否漏页。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnalx8LEXamxEDLPivhIFYkc"></a></span>
+<p><span>文件通过基础体检后，进入逐页分类。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfkwyvrGEExImP1eIB6exGh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbeD1xfEyAv1NsVdELrHPDh"></a></span>
+<h4 id="section-6"><span>16.5.2.3 步骤二：逐页判断类型</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyGa0DFcWO1U1wVrRcV33lg"></a></span>
+<p><span>页面类型通常通过程序规则判断。可以使用 PyMuPDF 读取每页的文字、图片和位置信息，再综合判断：</span></p>
+<div><div id="src-feishu-doxcngveGRokV03bdE5hBnymjr5"><span>◦</span><div><span>页面中有多少可正常读取的文字；</span></div></div><div id="src-feishu-doxcnL1jpbo5a8FGNLCmeZHiHvg"><span>◦</span><div><span>页面是否主要被一张或多张图片覆盖；</span></div></div><div id="src-feishu-doxcnecnHET9ydnRbqnVsigVGvd"><span>◦</span><div><span>提取出来的文字是否存在大量异常字符；</span></div></div><div id="src-feishu-doxcnQOKYBTLFTBCDh5eok8bh4d"><span>◦</span><div><span>少量文字是否只是跨页重复的水印、页眉或页脚；</span></div></div><div id="src-feishu-doxcnMcZi821WL5YOATifilHIvc"><span>◦</span><div><span>页面是否存在多栏、表格、表单等复杂布局。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8fFNuMYd7bwwiMNCBMCLZl"></a></span>
+<p><span>根据这些信息，将页面分为以下类型。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndhq0jGTJd3yXDWkskmMZEc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5ja1PfZPinlgpOrlYJzWmd"></a></span>
+<p><strong>原生文本页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFGLMEZ37hl4mYoBLjAv7Cc"></a></span>
+<p><span>页面存在完整、可正常读取的文字层。文字通常可以在 PDF 阅读器中选中、复制和搜索</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjBNcGe38XEJ78istyiYBVf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNZkg6RQG486kdPHcUO0SGh"></a></span>
+<p><strong>扫描页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBNOVxIs2jp2Z3UygUMql8g"></a></span>
+<p><span>页面主体是一张扫描图片，没有可靠的正文文字层。人可以看到图片中的文字，但普通 PDF 文字提取工具无法直接读取。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfmDDNdOZLTZlwMQgWsAVbG"></a></span>
+<p><span>有些扫描页可能带有页码或水印文字层，因此不能仅根据“是否提取到文字”判断，还需要结合有效正文数量和图片覆盖情况。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFuHotrg2BkbkxhZxdvNyRc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOKsQA512VwlGDngw1XSC7b"></a></span>
+<p><strong>混合页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkpoodg4aUFNbsC0yiGXNqf"></a></span>
+<p><span>页面既包含可以直接提取的正文，又包含图片中的重要文字或信息。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnM4G3MSVkcYBr6DZQoVXw5e"></a></span>
+<p><span>例如正文是原生文字，但页面中插入了带文字的软件截图。普通装饰图片或 Logo 不会使页面自动成为混合页，关键是图片中是否存在需要提取的信息。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlJGTgWZdFyxxLN8IGh7w53"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlWIg9IjAiqWuy2Wm9rgOWg"></a></span>
+<p><strong> 复杂布局页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4QymckcxpsWMb3mnT1SBsf"></a></span>
+<p><span>页面包含多栏、表单、复杂表格、重要图表、公式或大量图文混排内容。虽然可能存在文字层，但普通提取方式容易打乱阅读顺序，或者丢失表格、图片和公式所表达的信息。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneIUMFyzs8DHxRaiIRh28Hc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoeGRyKOyyUMbVgz19qdROg"></a></span>
+<p><strong>异常页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9Hydq7f6m1tOKBLfHQR32c"></a></span>
+<p><span>页面出现文字乱码、解析报错、内容为空，或者无法可靠判断属于上述哪种类型。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMHbZSj0NsiCTn7xhYBchSg"></a></span>
+<p><span>页面分类不一定百分之百准确。规则能够明确判断的页面自动处理，判断不清的页面交给更强的解析工具、多模态模型或人工复核。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRW7dHMpyVJueazENxkjl8I"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoLAn2NRcaLvHFCX5nBWI9f"></a></span>
+<h4 id="section-7"><span>16.5.2.4 步骤三：按页面类型解析</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb5AnSKZKywrsfKM9HXHE7d"></a></span>
+<p><span>第二步得到页面类型后，第三步与其逐项对应。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWTl42BRXh0TEKCJoCPUdfc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnA4v4LmGvBQdSMcmnC5F1Ef"></a></span>
+<p><strong>处理原生文本页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxKVcWTeIPOaIDGzQjN8vhc"></a></span>
+<p><span>使用 </span><strong>PyMuPDF</strong><span> 提取页面文字及基本位置信息。如果还需要识别标题、正文、列表等文档结构，可以使用 </span><strong>Unstructured、LlamaParse</strong><span> 等工具。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnD6nsK5SbahiQ58VGypcamh"></a></span>
+<p><strong>PyMuPDF 更擅长快速获取 PDF 中已有的文字、图片和坐标</strong><span>；</span><strong>Unstructured、LlamaParse </strong><span>更擅长将内容整理成标题、正文、列表和表格等结构化元素。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndHvnFdzCVoSTloLu7Hbrcc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnagMhNr4s4ct00hQ9RvnlOc"></a></span>
+<p><strong>处理扫描页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpKE9CnKIReOMXDPM4Rgqdd"></a></span>
+<p><span>先将 PDF 页面渲染成图片，再使用 OCR 识别图片中的文字。中文文档应选择支持中文的 OCR 模型。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxazw3Myh0qRk5VTtpMlTte"></a></span>
+<p><span>如果扫描质量较差，可以先进行旋转校正、去噪、倾斜校正或对比度增强，再执行 OCR。OCR 结果应保留页码，低质量页面需要重新识别或人工检查。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmOaWaKsAE0XZ0dlJH1U1nd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzAQieOVPcF2HrKzQGWBwcg"></a></span>
+<p><strong>处理混合页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2PutJYWZold6czN9loo8QU"></a></span>
+<p><span>混合页需要同时使用两种方式：</span></p>
+<div><div id="src-feishu-doxcnOVLDDi4f9eLF22DzMX83Ke"><span>a.</span><div><span>直接提取页面中已有的原生文字。</span></div></div><div id="src-feishu-doxcntxcXPd9gD904Kv2LAhWo6g"><span>b.</span><div><span>提取或截取包含重要信息的图片区域。</span></div></div><div id="src-feishu-doxcnu9ukTcZRxUAFUi4mQSsfHc"><span>c.</span><div><span>对这些图片区域执行 OCR，或者使用多模态模型理解图表内容。</span></div></div><div id="src-feishu-doxcnLRs8CR60f5MLTdcK9KzKOg"><span>d.</span><div><span>合并原生文字和图片识别结果，并删除重复内容。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhQE2iNqaatI7ab3gqzqLNc"></a></span>
+<p><span>PyMuPDF 可以发现和提取图片，但通常不能理解图片内容；OCR 负责识别图片中的文字，多模态模型可用于理解图表、流程图等更复杂的视觉信息。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfK5FJ0iirwCa2yrEwwo0Qb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlHW1ACvljnVZwAdZyABNpe"></a></span>
+<p><strong>处理复杂布局页</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSfSfX1tOqE7GVjpZ8YVYYd"></a></span>
+<p><span>复杂布局页可以先交给 Unstructured、LlamaParse 等工具进行版面解析。这些工具会识别标题、正文、栏位、表格和图片区域，并返回元素类型、页面位置和大致阅读顺序。程序再按照这些结果组合内容，不应让大模型随意改写原文。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPFORi6ZvTqSzbvoPM5hRGe"></a></span>
+<p><span>具体处理方法如下：</span></p>
+<div><div id="src-feishu-doxcnM61gjfrD4wLdNmjMVl6pGf"><span>◦</span><div><strong>分栏页面</strong><span>：使用 Unstructured、LlamaParse 或布局模型识别左右栏及各文本块的位置，按照“先读完一栏，再读取下一栏”的顺序重新排列文本。工具给出的顺序不正确时，可以根据文本块坐标补充排序规则。</span></div></div><div id="src-feishu-doxcnycozkeAuhvvANnBz4xHiCg"><span>◦</span><div><strong>表格</strong><span>：原生 PDF 中边界较清楚的表格可以使用 Camelot 提取；扫描表格先通过 OCR 或表格识别模型识别单元格；图文混排文档也可以直接使用 Unstructured 或 LlamaParse 提取表格。提取结果转换成 Markdown、HTML 或 CSV，并抽查表头、合并单元格、跨页表格和关键数字。如果自动提取破坏了行列关系，则保留表格截图并进入人工复核。</span></div></div><div id="src-feishu-doxcnoHCctytxPjo2EdeHTJ86cb"><span>◦</span><div><strong>含文字的图片</strong><span>：先用 PyMuPDF 或版面解析工具确定并提取图片区域，再使用 OCR 识别其中的文字，最后按照图片在页面中的位置插回正文。</span></div></div><div id="src-feishu-doxcnZDPQeRXreNwS90GFmGSbfL"><span>◦</span><div><strong>流程图、架构图和统计图</strong><span>：普通 OCR 只能读取图中的文字，无法完整理解节点、箭头和数据关系，因此可以将图片及附近正文交给多模态模型生成说明，并保留原图和页码以便核对。</span></div></div><div id="src-feishu-doxcnl2zC4WWGQKeIpDIEO5yrzq"><span>◦</span><div><strong>公式</strong><span>：使用支持公式识别的 OCR 或文档解析工具转换为 LaTeX；识别不可靠时保留公式图片，并将它与前后正文关联。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEtpNXrGm5eEl7neRMqSA4g"></a></span>
+<p><span>自动工具仍然无法正确恢复阅读顺序或内容结构时，将该页标记为需要人工复核。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUj0d6IsR5GKsDfwzKaTcdb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpfn5kRiJdVitxo4NmfWVOR"></a></span>
+<p><strong> 处理异常页</strong></p>
+<div><div id="src-feishu-doxcn9g79j2KYrjwCB8E0ZzYkah"><span>◦</span><div><strong>文字乱码</strong><span>：先更换一种 PDF 解析器重新提取；仍然乱码时，将页面渲染成图片并使用 OCR。</span></div></div><div id="src-feishu-doxcnvcf4vtNqsTo5HT9bM5yW4g"><span>◦</span><div><strong>空白页面</strong><span>：保留页码和页面记录，不输出正文。</span></div></div><div id="src-feishu-doxcnLwB2hJUXDdfUIvCZTzbuMb"><span>◦</span><div><strong>解析报错或类型无法确定</strong><span>：使用多模态模型辅助判断；仍无法可靠处理时进入人工复核。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7S3lObh2eo8ECdOBGlqPBe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR3AnbDI0N6h31vN59EObfh"></a></span>
+<p><span>无论页面采用哪种解析方式，得到文字和位置信息后，还要处理页眉、页脚、页码和水印。具体方法是比较连续页面中处于相同顶部或底部位置的文本；如果同一内容反复出现，就将其识别为页眉、页脚或水印并从正文中移除。页码可以通过固定位置和连续数字识别。处理完成后再进入统一结果阶段。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOmlaupIEIuW5GFurBObKbe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcno1UHS6Qmqx1RuS9d1KcgCf"></a></span>
+<h4 id="section-8"><span>16.5.2.5 步骤四：统一结果</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTlscHMDvRhfLsnuoYAQ3Gj"></a></span>
+<p><span>走过不同解析路线的页面，可能分别产生普通文字、OCR 文字或结构化元素。最后一步不再重新判断和处理页面问题，只负责把这些结果整理成统一形式：</span></p>
+<div><div id="src-feishu-doxcnDvd4Ei6ZNrCDy0UqTzPa4b"><span>a.</span><div><span>将不同工具的输出转换成相同的文本结构。</span></div></div><div id="src-feishu-doxcnalvyu1EJa6JPANf9wVOgqb"><span>b.</span><div><span>按 PDF 原始页码排列所有页面。</span></div></div><div id="src-feishu-doxcn5VEcOstQn2NRMMuSt8V6J9"><span>c.</span><div><span>将同一页内已经确认顺序的标题、正文、列表和特殊元素组合起来。</span></div></div><div id="src-feishu-doxcnJNLtr1b7Lco6k9c3QMubSg"><span>d.</span><div><span>输出为 Markdown 或带页码的结构化文本。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyYImYDYqiudG1dwZVaKyWg"></a></span>
+<p><span>最终结果建议至少保留：</span></p>
+<div><div id="src-feishu-doxcnMMImwYhZgO78WmlCc12Wsg"><span>◦</span><div><span>原始文件名；</span></div></div><div id="src-feishu-doxcna5hcAN3f4VoCBaDwfzY5cA"><span>◦</span><div><span>PDF 页码；</span></div></div><div id="src-feishu-doxcnQ2i4rK9vQz2A3A81h2aRtH"><span>◦</span><div><span>标题和正文；</span></div></div><div id="src-feishu-doxcnMB75XzFD8oRGg6dptttqLf"><span>◦</span><div><span>列表结构；</span></div></div><div id="src-feishu-doxcnhyNdF9OpVoITNG5sVvkZrd"><span>◦</span><div><span>可以可靠恢复的表格；</span></div></div><div id="src-feishu-doxcnPpq7beyZMS4kezj1eYapqb"><span>◦</span><div><span>图片或公式的说明及对应位置；</span></div></div><div id="src-feishu-doxcn8yqao9Tupc4ZOKPZeW4rXc"><span>◦</span><div><span>需要人工复核的页面标记。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6UkQZOcR5jyLHY2JEtoXxf"></a></span>
+<p><span>无论输出成哪种格式，都应能从文本追溯到原始 PDF 页面。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcna55bEx0LV23g9wLLA4XVAf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnG7LIr9g3UM4t1U0S4a0I2f"></a></span>
+<h4 id="section-9"><span>16.5.2.6 步骤五：结果检查</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnI9qAHuvj5daKZUOMRikW1g"></a></span>
+<p><span>PDF 转文本完成后，应进行一次简单验收：</span></p>
+<div><div id="src-feishu-doxcn5vD9J7nKjNOpyKABXLqRRb"><span>◦</span><div><span>输出页数是否与原 PDF 对应，是否漏页；</span></div></div><div id="src-feishu-doxcnZhBwtwys0QbuB4BN8NM2Vd"><span>◦</span><div><span>是否仍存在大量乱码；</span></div></div><div id="src-feishu-doxcniKQ6Aq4BtD5cSKyAXZkSIy"><span>◦</span><div><span>页眉、页脚和水印是否大量残留；</span></div></div><div id="src-feishu-doxcnBTvqUeKt5y0glrKO6Ro8Rg"><span>◦</span><div><span>多栏页面的阅读顺序是否正确；</span></div></div><div id="src-feishu-doxcnexS87wRuMCv1BoVWK7xZrd"><span>◦</span><div><span>OCR 是否遗漏整页或大段内容；</span></div></div><div id="src-feishu-doxcn70z64xrfr5kc7rX3AhSrwI"><span>◦</span><div><span>表格的表头、行列和关键数字是否正确；</span></div></div><div id="src-feishu-doxcnBIH3QpD2TQorvHaL4nzB6g"><span>◦</span><div><span>原生文字与 OCR 文字是否重复；</span></div></div><div id="src-feishu-doxcnTqQ123EfCo5XG5o73uXWdf"><span>◦</span><div><span>标记为异常的页面是否已经复核。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTllsCdmfvFTS2bK0wptU1d"></a></span>
+<p><span>检查通过后，才得到可供后续系统使用的最终文本。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUtOkMcYLwSjz0RcDqVUj7c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrpaYiayyLpFvdCrnSaaVXc"></a></span>
+<h4 id="section-10"><span>16.5.2.7 讲解视频</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1FPfHa0Oi6uhCCWm1FOc8e"></a></span>
+<p><span><span><a href="https://www.bilibili.com/video/BV1gF8Z6WEGW/?spm_id_from=333.1387.homepage.video_card.click&#x26;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer"></a><a href="https://www.bilibili.com/video/BV1gF8Z6WEGW/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1gF8Z6WEGW/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b</a></span></span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkq9ZaSj6JxrEd5ZPmLkxxc"></a></span>
+<h4 id="section-11"><em>16.5.3 切割</em></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmYDzPzN97tnsspGfY2iNmd"></a></span>
+<p><span>分块策略，在RAG这个面试模块里，</span><strong>算是比较高频的考点了</strong><span>，在25年的12月份，我去面试的时候，很多公司就问过，到今年的2026年7月，宇树科技Agent开发一面面试，依旧在问RAG切块的策略。 本篇笔记重构于2026年8月份，我查阅了一些数据，彻底将这一部分重构了。同时加入了若干面试真题，放在该小节最后，同时也录制了讲解视频，我希望达到的目标是：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzY3jXquhdb13NOFnwJeShe"></a></span>
+<ol>
+<li><span>即使你没有RAG切块方面的前置知识基础，你看了本篇笔记对应的讲解视频，能够理解这些切块的基本思路，不同方法是干什么，选型策略。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsLjaXdKm5ZcBd2exmuNJtf"></a></span>
+<ol start="2">
+<li><span>结合对应的笔记，能够进一步巩固和背诵相关知识点。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCtlrwr3JDKWWFvW6XBJBch"></a></span>
+<ol start="3">
+<li><span>结合章节后面的面试真题，彻底让你在面试中，对于RAG切块问题能够胸有成竹。 今本上本小节所有的内容，都是面试考察过的内容，对应着一些面试问题的回答思路，该小节的内容还是值得大家背诵一下的。</span></li>
+</ol>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMWDxTqQtke9UXXa7msfdEh"></a></span>
+<h4 id="section-12"><span>16.5.3.1 基本概念</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn93Hb7j3jGawQxoSU8wzrfV"></a></span>
+<p><strong>什么是文档分块</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQYTqPMXcsqJdxpsR11Hk5b"></a></span>
+<p><strong>文档分块（Chunking）</strong><span>是指把一篇长文档拆分成多个较小且相对完整的文本块（Chunk），再分别进行向量化、索引和检索。在 RAG 系统中，分块连接了文档解析、向量检索和大模型生成，是影响召回质量的关键环节。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHkfaSyf5O9162ncHLNohQh"></a></span>
+<p><span>一个理想的 Chunk 应同时满足以下要求：</span></p>
+<div><div id="src-feishu-doxcnz4HsuRvrYUJa9fcgB9hJJb"><span>◦</span><div><span>长度不超过嵌入模型和大语言模型的输入限制；</span></div></div><div id="src-feishu-doxcndbtAgddHq02KXwQqhveKi0"><span>◦</span><div><span>块内尽量只表达一个完整、集中的主题；</span></div></div><div id="src-feishu-doxcnuiOSL5SbdbX33Ygzy7aPJf"><span>◦</span><div><span>脱离原文后仍具有足够的上下文，可以被独立理解；</span></div></div><div id="src-feishu-doxcnuzgZslJ0Xgp3n6IA67pxrf"><span>◦</span><div><span>保留标题路径、页码、来源和父文档 ID 等元数据，便于追溯原文。</span></div></div><span id="src-feishu-doxcnLVZiVR9lOeGobSohflC3eb" class="source-anchor-container"><br></span></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxCYU5WingOBjBDurUnfKnd"></a></span>
+<p><strong>为什么需要分块</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn04NL9AGy0Cz211QIH8KXBe"></a></span>
+<p><span>第一，</span><strong>满足大语言模型的上下文窗口限制</strong><span>。直接输入整篇长文档可能超过模型的最大上下文长度。分块后只把与问题相关的内容送入模型，可以控制上下文规模。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcniqyeLNo0t8TcojSfN6jYWh"></a></span>
+<p><span>第二，</span><strong>提高生成上下文的质量</strong><span>。召回内容过多、过长会增加 Token 成本，并产生“Lost in the Middle”问题，使真正有用的信息被大量无关内容掩盖。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJp6gZHSP5SM9QE2L739NIg"></a></span>
+<p><span>第三，</span><strong>满足嵌入模型的输入限制</strong><span>。嵌入模型通常存在最大 Token 数，超出后可能被截断。例如部分 BGE 或 Sentence-Transformers 模型的上限为 512 Tokens，过长文本会造成后半部分语义丢失。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1GMgu7fwwa2WIYi7xdPQxh"></a></span>
+<p><span>第四，</span><strong>提高检索精度</strong><span>。一个文本块如果同时包含多个主题，其向量表示会被不同语义平均和稀释，用户查询某个细节时不容易准确召回。较小且主题集中的文本块通常更容易与查询匹配。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoXE5KmPdtHDVOYZSvSGW1b"></a></span>
+<br>
+<div id="src-feishu-doxcnlLpycrGPIeNh7aJf6uhwgc"><img src="/momomian/assets/385c836532f848d4e437.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwzRrEmSfcx8t4EaJbvCGge"></a></span>
+<h4 id="section-13"><span>16.5.3.2 常见分块策略</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaNVFcrS4Xa9JelSdngwR6g"></a></span>
+<h4 id="section-14"><span>16.5.3.2.1 固定长度分块</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWidKubO8W5R9cOHORZCnXe"></a></span>
+<p><strong>固定长度分块</strong><span>按照固定字符数或 Token 数切分文档，并可设置 Overlap，使相邻块保留一部分重复内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbB3x8axyfQpYrED7OoA89c"></a></span>
+<p><span>LlamaIndex 中可以使用 </span><span><span><span>TokenTextSplitter</span></span></span><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHrJVJdj10psLc8FJzvUh9Q"></a></span>
+<pre><code class="language-python">from llama_index.core.node_parser import TokenTextSplitter
+
+splitter = TokenTextSplitter(
+    chunk_size=500,
+    chunk_overlap=50,
+)
+nodes = splitter.get_nodes_from_documents(documents)
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwncKtMM8uW20BmbAnKSVcf"></a></span>
+<p><span>例如，将一篇 1500 Tokens 的文档按照 500 Tokens 切分：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNCgZevfDWnna4HmIvkD24d"></a></span>
+<pre><code class="language-text">输入文档：
+[1 ...................................................... 1500 Tokens]
+
+输出：
+Chunk 1：[1-----------500]
+Chunk 2：                [501--------1000]
+Chunk 3：                                  [1001--------1500]
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6qVmpCytFxGlmFXUQck2hc"></a></span>
+<p><span>为了避免关键信息恰好落在两个块的边界，可以让相邻块保留部分重复内容：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzTAVskZXvXS4KZqdzKFXm0"></a></span>
+<pre><code class="language-text">Chunk 1：[--------------------]
+Chunk 2：                [--------------------]
+                         ↑ Overlap
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZzckcMR7xw0A9OYRHkq6sd"></a></span>
+<p><strong>优点</strong><span>：实现简单、速度快、块大小稳定，便于控制索引规模和成本，适合作为快速验证 RAG 流程的基线。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNvNab0CX0gKaxNof6X6zcf"></a></span>
+<p><strong>缺点</strong><span>：可能从句子或段落中间切断，不理解文档结构和语义；Overlap 过大还会导致索引冗余和重复召回。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmbCibAYZnFMXFBjQaUFYKf"></a></span>
+<p><strong>适用场景</strong><span>：文本结构不明显、需要快速建立基线、对切分边界要求不高的场景。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHfMOBdij3M25bIAThedNDa"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIY91oaNRaCLX1iJJzu7cAg"></a></span>
+<h4 id="section-15"><span>16.5.3.2.2 递归分块</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXwwZuaDToha3zx2BVmRYhd"></a></span>
+<p><strong>递归分块</strong><span>按照一组从粗到细的分隔符逐级切分。它通常先尝试段落，再尝试句子、标点、空格，最后使用字符或 Token 强制切分作为兜底。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVMqlHNgQdtWoakJ5c8uhjg"></a></span>
+<pre><code class="language-text">段落 → 换行 → 句子 → 标点 → 空格 → 字符或 Token
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqavOuZ0VPZgnzk8c5RniPg"></a></span>
+<p><span>LlamaIndex 中可以使用 </span><span><span><span>SentenceSplitter</span></span></span><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjC1e4yXVkROkslDKBYE0Ig"></a></span>
+<pre><code class="language-python">from llama_index.core.node_parser import SentenceSplitter
+
+splitter = SentenceSplitter(
+    chunk_size=500,
+    chunk_overlap=50,
+)
+nodes = splitter.get_nodes_from_documents(documents)
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkGWxXSxM2WMsQaaAfAJsGg"></a></span>
+<p><span>LangChain 中的对应工具是 </span><span><span><span>RecursiveCharacterTextSplitter</span></span></span><span>。两者名称不同，但都具有从自然边界到细粒度边界逐级切分的思想。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQPPslfXgACnbcLUVKNsjrb"></a></span>
+<p><strong>递归分块</strong><span>的完整过程如下：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkr5DjOoP3QXolXvdMnt3BL"></a></span>
+<ol>
+<li><span>先按照段落切分；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXgUt3HHCy6TrsY8mjEhbB9"></a></span>
+<ol start="2">
+<li><span>检查每个片段是否超过 </span><span><span><span>chunk_size</span></span></span><span>；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9aGgdaXgKJ6p1Zm7lw3N8g"></a></span>
+<ol start="3">
+<li><span>如果某个段落仍然太长，再按照句子切分；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZvB5brvToU2mkGxWt63fpe"></a></span>
+<ol start="4">
+<li><span>如果句子仍然太长，再按照标点、空格等更细的边界切分；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnftB58gqQkqWgLmfdt7pVCg"></a></span>
+<ol start="5">
+<li><span>最后使用字符或 Token 强制切分作为兜底；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJNIRxFBihcxbSfp4OAww1o"></a></span>
+<ol start="6">
+<li><span>将较小片段重新合并成接近目标长度的 Chunk，并保留适量 Overlap。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnT7aIwYfDIBLaJIJULkyCTc"></a></span>
+<pre><code class="language-text">输入：一篇长文档
+        ↓ 按段落切
+  [段落 A] [超长段落 B] [段落 C]
+                  ↓ 按句子继续切
+           [句 1] [句 2] [超长句 3]
+                              ↓ 按标点或字符切
+                         [片段 3.1] [片段 3.2]
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnW9RLfUiGCUaNByuQTZ5tdd"></a></span>
+<p><span>递归分块器本身通常不真正识别标题。标题层级需要由前面的文档解析器提取，再作为结构边界或元数据传给分块器。如果输入没有段落换行和正常标点，递归分块仍能运行，但会逐步退化为字符或 Token 级强制切分，只能保证长度不超限，不能保证</span><strong>语义边界</strong><span>正确。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFZENZUHBFmtE5F9ekrqpDe"></a></span>
+<p><strong>优点</strong><span>：尽量保留段落和句子的完整性；速度快，不需要调用模型；是普通 RAG 项目中最常用的分块方式。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhL4r6yVcN4pmiRRp4lnkPd"></a></span>
+<p><strong>缺点</strong><span>：依赖文本解析和清洗质量；OCR 错误换行可能造成误切；它并不真正理解标题和主题变化，输入没有正常换行或标点时会退化为固定长度切分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbm24gg1Wraix2HUKst6RIg"></a></span>
+<p><strong>适用场景</strong><span>：普通文章、说明书、制度和技术文档，以及已经完成基本清洗的非结构化文本。</span></p>
+<div id="src-feishu-doxcn1d7sauqUJXlehGOFnYkArb"><img src="/momomian/assets/186f87b834d507c1f0a2.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqIBS7vLmHv6wb63V8NL0WW"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn51Tb2aUgXBUUE4Iidv4v2f"></a></span>
+<h4 id="section-16"><span>16.5.3.2.3 结构化分块</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUF411gBbtpBtaZ3VvdLQIc"></a></span>
+<p><strong>结构化分块</strong><span>利用文件本身的组织结构确定边界，而不是只根据长度切分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbwGICdS2RpBlMbKLFtAjEg"></a></span>
+<ul>
+<li><strong>Markdown</strong><span>：按照标题、段落和代码块切分；</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZUDK5mYZFIckRlHPP9CaEh"></a></span>
+<ul>
+<li><strong>HTML</strong><span>：按照 </span><span><span><span>h1</span></span></span><span>～</span><span><span><span>h6</span></span></span><span>、</span><span><span><span>p</span></span></span><span>、</span><span><span><span>li</span></span></span><span>、</span><span><span><span>table</span></span></span><span> 等标签切分；</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr0A5CPLsYNdEmszEy54E1f"></a></span>
+<ul>
+<li><strong>DOCX</strong><span>：按照 Heading 样式、段落、列表和表格切分；</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuaj4qqx2buEhH6fLWjr2pe"></a></span>
+<ul>
+<li><strong>代码</strong><span>：按照文件、类、函数和方法切分；</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkwcqzM2ZnZn5fTjEkzNoTd"></a></span>
+<ul>
+<li><strong>PDF/PPT</strong><span>：按照标题、正文、列表、表格、图片和页面区域切分。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIZa0doHqz6oUWIE7zBlw4e"></a></span>
+<p><span>LlamaIndex 提供了 </span><span><span><span>MarkdownNodeParser</span></span></span><span>、</span><span><span><span>HTMLNodeParser</span></span></span><span>、</span><span><span><span>JSONNodeParser</span></span></span><span>、</span><span><span><span>CodeSplitter</span></span></span><span> 等解析器。例如：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRwUuBf51WfNbKcr5T4Kpaf"></a></span>
+<pre><code class="language-python">from llama_index.core.node_parser import MarkdownNodeParser
+
+parser = MarkdownNodeParser()
+nodes = parser.get_nodes_from_documents(documents)
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQo2OW4JMS2UidKTDH63stg"></a></span>
+<p><strong>结构化分块</strong><span>的典型处理流程如下：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnY4whxAMUBtpKKGXCCSzPkc"></a></span>
+<pre><code class="language-text">原始文件
+→ 文档解析或版面分析
+→ 识别标题、正文、表格、列表和代码等结构单元
+→ 在超长结构单元内部继续递归切分
+→ 生成 Chunks，并保存标题路径、页码和来源等元数据
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR0cOhT4bK60WFYWIIQs3Gc"></a></span>
+<p><span>Reader 负责读取和提取文件内容，NodeParser 负责形成最终用于索引的节点。对于复杂 PDF，仅提取纯文本通常无法保留正确阅读顺序，需要结合字号、坐标、页面区域和版面模型识别标题、分栏、表格与图片；扫描 PDF 还需要先进行 OCR。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXb7c0riXALj081hLQNkVJb"></a></span>
+<p><span>如果一个章节仍然过长，可以先按标题进行结构化分块，再在章节内部使用</span><strong>递归分块</strong><span>。因此，结构化分块和</span><strong>递归分块</strong><span>经常组合使用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcniN60Bo2tt7oNDPfrarPrwc"></a></span>
+<p><strong>优点</strong><span>：能够保留标题与正文、表头与数据、函数与代码之间的关系，结果更容易引用和追溯。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9zm5z5Tx2GovrSKC3NqFsc"></a></span>
+<p><strong>缺点</strong><span>：不同文件需要不同解析器；复杂 PDF 需要根据字号、坐标和版面推断结构；解析错误会直接影响后续分块质量。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlbf61VctsTC5zcsGMrOLOb"></a></span>
+<p><strong>适用场景</strong><span>：Markdown、HTML、Word、代码，以及包含标题、列表和表格的 PDF/PPT。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1rbrKaD4mBzAMUhnhGA89e"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnN5YDgQtaQs1Fm36mw69ESd"></a></span>
+<h4 id="section-17"><span>16.5.3.2.4 语义分块</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqHa7tpMdaktxavG7gZLoOg"></a></span>
+<p><strong>语义分块</strong><span>根据主题或语义变化确定边界。常见实现会先切句，再使用嵌入模型计算相邻句子或</span><strong>句子窗口</strong><span>的语义距离，在语义突变的位置设置断点，并将连续且语义相近的句子合并成一个 Chunk。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngC6UGBkYBW4O8dGFiLrNvd"></a></span>
+<p><span>LlamaIndex 中可以使用 </span><span><span><span>SemanticSplitterNodeParser</span></span></span><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQKn8ro9XkJ75Th0VKb6Pgh"></a></span>
+<pre><code class="language-python">from llama_index.core.node_parser import SemanticSplitterNodeParser
+
+splitter = SemanticSplitterNodeParser(
+    embed_model=embed_model,
+    breakpoint_percentile_threshold=85,
+)
+nodes = splitter.get_nodes_from_documents(documents)
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF7NBBqjBIlAwHsPyfURloc"></a></span>
+<p><span>阈值需要根据真实语料调整，数值越低通常越容易产生更多分块。</span><strong>语义分块</strong><span>仍需设置最大 Token 上限，避免产生过长的 Chunk。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZWSl67kdUrT2fzPm9ZESJf"></a></span>
+<p><span>基于 Embedding 的语义分块通常包含以下步骤：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1C0Oqybcjmd75VeB8bX8Bb"></a></span>
+<ol>
+<li><span>先把文档切成句子；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDlwu5xLuUo7UFuvc0ojfuf"></a></span>
+<ol start="2">
+<li><span>为单个句子或</span><strong>句子窗口</strong><span>生成向量；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF8wh5ZznKMNMLfExfHKLDh"></a></span>
+<ol start="3">
+<li><span>计算相邻句子的语义相似度或距离；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqyodF0raAJzR3EfzZvJAPg"></a></span>
+<ol start="4">
+<li><span>在语义差异明显的位置设置断点；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNtg97PNraYEB5Lguul7hjd"></a></span>
+<ol start="5">
+<li><span>将语义相近的连续句子合并为一个 Chunk；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrwCYLbnVgbRVzDKVKU0GRc"></a></span>
+<ol start="6">
+<li><span>使用最大 Token 数限制 Chunk 上限。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0NcTSciejDVLtDQFSo9hnc"></a></span>
+<pre><code class="language-text">句 1 ──相似── 句 2 ──相似── 句 3 ║语义突变║ 句 4 ──相似── 句 5
+
+输出：
+Chunk 1：句 1 + 句 2 + 句 3
+Chunk 2：句 4 + 句 5
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2KoneN9w8kb9H2BwMk5pZe"></a></span>
+<p><span>语义分块比</span><strong>递归分块</strong><span>慢，是因为</span><strong>递归分块</strong><span>主要执行字符串操作，而语义分块需要对大量句子运行嵌入模型、计算相似度，有些算法还需要进行多轮合并。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnA1U43jzFepqA8RYxq9guGf"></a></span>
+<p><strong>优点</strong><span>：块内主题更一致，不完全依赖换行和格式，能够缓解语义在错误位置被切断的问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOWeJzVFuob97PbqDklVWWh"></a></span>
+<p><strong>缺点</strong><span>：需要对大量句子计算 Embedding 和相似度，建库速度较慢；阈值需要实验调整；块大小不固定。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuMcvs98QhgOn65ggpMDF1g"></a></span>
+<p><strong>适用场景</strong><span>：会议纪要、访谈、长篇报告、OCR 后段落结构不可靠的文本，以及一个自然段中经常包含多个主题的内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEkYGQQR5Tnfv9Xmuz82vMe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjNSnYQ9swO5nArf2F5ZP6g"></a></span>
+<h4 id="section-18"><span>16.5.3.2.5 命题分块</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJntdTs6dBVfLOByZLeggyh"></a></span>
+<p><strong>命题分块</strong><span>使用大语言模型把原文转换成多条能够独立理解的事实或观点。它可能拆开复合句、补全省略主语、消解代词指代，并进行少量改写，因此不仅是文本切割，也属于内容转换和索引增强。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnq20QHAvtmJvoIl7fOUYf6x"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnI7jRDR4y070kv5oXkzvDsg"></a></span>
+<p><span>LlamaIndex 没有像 </span><span><span><span>SentenceSplitter</span></span></span><span> 一样通用的内置</span><strong>命题分块</strong><span>器。因此，命题提取逻辑需要开发者自己实现，LlamaIndex 主要负责承载节点和建立索引。通常需要自行组合以下流程：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKsLv6g5MlvwFnZXHr6MRgb"></a></span>
+<pre><code class="language-text">使用 SentenceSplitter 粗切原文
+→ 调用 LLM 提取命题列表
+→ 每条命题创建一个 TextNode
+→ 在 metadata 中保存 parent_id、页码和来源
+→ 使用 VectorStoreIndex 建立索引
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnewd82sy0fa3LPzi72MRj5c"></a></span>
+<p><span>下面是命题分块的流程伪代码。它用于说明职责划分，并不是可以直接运行的 LlamaIndex 内置 API：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1jf4980bWw2mKc8R3Zoqne"></a></span>
+<pre><code class="language-python">parent_chunks = sentence_splitter.get_nodes_from_documents(documents)
+
+proposition_nodes = []
+
+for parent_chunk in parent_chunks:
+ # 核心步骤需要自己实现：调用 LLM，把原始段落拆成命题列表
+    propositions = extract_propositions_with_llm(parent_chunk.text)
+
+ for proposition in propositions:
+        proposition_node = create_llamaindex_node(
+            text=proposition,
+            parent_node=parent_chunk,
+        )
+        proposition_nodes.append(proposition_node)
+
+index = VectorStoreIndex(proposition_nodes)
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnO9zuRZEHUqkUwgWrmm8R18"></a></span>
+<p><span>这里的 </span><span><span><span>extract_propositions_with_llm()</span></span></span><span> 和 </span><span><span><span>create_llamaindex_node()</span></span></span><span> 都是为了说明流程而写的自定义函数名，不是 LlamaIndex 自带方法。前者负责通过 Prompt 和 LLM 提取命题，后者负责把命题包装为 LlamaIndex 节点。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJFsxBOhjQIJdVM2xJcrP9c"></a></span>
+<p><span>其中，“把已经提取出的命题包装成节点”可以使用 LlamaIndex 自带的 </span><span><span><span>TextNode</span></span></span><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnny5yrh4Lsq3LkZ5okEeHYf"></a></span>
+<pre><code class="language-python">from llama_index.core.schema import TextNode
+
+nodes = [
+    TextNode(
+        text=proposition,
+        metadata={
+ "parent_id": parent_id,
+ "source": source,
+ "page": page,
+        },
+    )
+ for proposition in propositions
+]
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSsZ9NNPtNbq0LQyxcVlGtc"></a></span>
+<p><span>这段 </span><span><span><span>TextNode</span></span></span><span> 代码本身不负责切分，也不会自动生成命题。它成立的前提是业务代码已经完成以下工作：</span></p>
+<div><div id="src-feishu-doxcnaTQp5Ta3Jj2o1hsL6kjLgh"><span>a.</span><div><span>调用 LLM 分析原始段落；</span></div></div><div id="src-feishu-doxcn9EWUVIdl57L6zLpIeO0gjg"><span>b.</span><div><span>得到 </span><span><span><span>propositions</span></span></span><span> 命题列表；</span></div></div><div id="src-feishu-doxcn3hKi9HjnrhsrPIqlQvrbsb"><span>c.</span><div><span>记录每组命题对应的原始段落 ID；</span></div></div><div id="src-feishu-doxcnUzuFs9yVv9TC2ZHj0ke9VN"><span>d.</span><div><span>再把每条命题保存为 </span><span><span><span>TextNode</span></span></span><span>。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUm1VqqkTsQyVen15uaKn6d"></a></span>
+<p><span><span><span>text</span></span></span><span> 和 </span><span><span><span>metadata</span></span></span><span> 是 </span><span><span><span>TextNode</span></span></span><span> 提供的字段；</span><span><span><span>parent_id</span></span></span><span>、</span><span><span><span>source</span></span></span><span> 和 </span><span><span><span>page</span></span></span><span> 是项目自定义的 metadata 键，并不是 LlamaIndex 自动生成的属性。如果需要使用 LlamaIndex 原生的父子节点关系，也可以通过节点的 </span><span><span><span>relationships</span></span></span><span> 字段保存父节点关系。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQs5wMlwBZ5v9wE2C9ZzAUc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnss7BiZVsSLyjQS8PDfaYZe"></a></span>
+<p><span>例如，原文为：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnf0yQ0ezdqdzl000jRXj7c"></a></span>
+<pre><code class="language-text">张三于 2024 年加入公司，并担任技术负责人。
+他此前在 A 公司工作了五年。
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyS2NokHoUw8GGfyHTZvgIf"></a></span>
+<p><span>经过命题转换后可以得到：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr73z6XzetK6P0bWR6uq7md"></a></span>
+<pre><code class="language-text">1. 张三于 2024 年加入当前公司。
+2. 张三担任当前公司的技术负责人。
+3. 张三此前在 A 公司工作了五年。
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKk4oLiLfqM4c1ahTkhtk0e"></a></span>
+<p><span>这里不仅拆开了复合句，还把“他”还原成了“张三”，使每条事实脱离原段落后仍能独立参与检索。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXvYT2NyeUQHyv7aI8exZm6"></a></span>
+<p><span>命题文本适合生成向量和参与检索，但不应直接替代原文作为最终事实依据。系统应同时保存命题与原文的映射，回答和引用时通过 </span><span><span><span>parent_id</span></span></span><span> 回到原始段落。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHcRCbGoEeyOlkITRedDcnf"></a></span>
+<p><span>推荐同时保存以下信息：</span></p>
+<div><div id="src-feishu-doxcnRpqeXfIXOkNkXlGoC9nS4b"><span>◦</span><div><strong>命题文本</strong><span>：用于生成向量和检索；</span></div></div><div id="src-feishu-doxcn3opTPgN6524rl3AMVEQTgb"><span>◦</span><div><strong>原始段落</strong><span>：用于回答、引用和事实核对；</span></div></div><div id="src-feishu-doxcn48kSJ5efYWr9FSNxwdCXke"><span>◦</span><div><strong><span><span>parent_id</span></span></strong><span>：连接命题与原始段落；</span></div></div><div id="src-feishu-doxcnkp6Qqe4ASe94eBzEEy3aqg"><span>◦</span><div><strong>页码和来源</strong><span>：用于定位和追溯原文。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxbyHVRbld9DCnVWXEVzKBc"></a></span>
+<p><span>检索到命题后，再根据 </span><span><span><span>parent_id</span></span></span><span> 找到对应原始段落，并把原文而不是孤立命题交给大模型生成答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHlnGuX9crPrI6sQO560sFb"></a></span>
+<p><strong>优点</strong><span>：每个检索单元只表达一个事实，粒度精细；能够补全指代，适合事实型问答。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsFEn8MVhb3lWnF42q3SPBK"></a></span>
+<p><strong>缺点</strong><span>：需要调用 LLM，速度慢、成本高；模型可能遗漏、误解或错误改写事实。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBLaICbxmVnICNCohe3PwGf"></a></span>
+<p><strong>适用场景</strong><span>：事实密集的企业知识库，以及人物、产品属性、事件和关系检索。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrLcOMQyUj9fcR5K6mKJ0nf"></a></span>
+<h4 id="section-19"><span>16.5.3.3 分块选型技巧和原则</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx6tCeMQPX6k0O8galzaDWd"></a></span>
+<h4 id="section-20"><span>16.5.3.3.1 核心原则：先选主策略，再调分块粒度</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVfJVSjjlPHab4WFbHqigRc"></a></span>
+<p><span>分块选型不是从多种方法中随意挑选，也不是把所有方法同时使用，而是按照一条明确的决策链进行：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzoCosVAYG9LtO2CEqbLvVg"></a></span>
+<pre><code class="language-text">判断文档是否具有可靠结构
+→ 选择主分块策略
+→ 根据检索目标调整 Chunk 粒度
+→ 使用 Overlap 或上下文扩充解决边界问题
+→ 根据召回结果继续调优
+→ 通过评测确定最终方案
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzADeKfPrG18WLMxZQNt2Vg"></a></span>
+<p><span>其中，文档结构决定“在哪里切”，检索目标决定“切多大”，Overlap、</span><strong>句子窗口</strong><span>和父子块决定“切完后如何补充上下文”，评测负责验证整个方案是否有效。几类因素承担的作用不同，不应混为同一级别的选型条件。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJ5G1vVGKfFmY5aW2Ol40Zd"></a></span>
+<br>
+<div id="src-feishu-doxcnf2IfL8WqesQ2GMtZXisVyc"><img src="/momomian/assets/7089a27c329ef1d860fa.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcndOy44W3XRjN2HP3uETddhb"></a></span>
+<h4 id="section-21"></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJZulINJn4ICk9jqb1t8aud"></a></span>
+<h4 id="section-22"><span>16.5.3.3.2 第一步：根据文档结构选择主分块策略</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcngX45xWfjUhqiLcbTH59bp2"></a></span>
+<p><span>首先判断文档是否存在可靠的自然边界。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTNWW9GsNx2Qbpxd48LE0Se"></a></span>
+<p><span>如果文档结构清晰，应优先尊重原始结构：</span></p>
+<div><div id="src-feishu-doxcnFSrcYjE9pJoB7qJ9TxpHtf"><span>◦</span><div><strong>Markdown、HTML、Word</strong><span>：先按照标题、章节、段落等结构切分；</span></div></div><div id="src-feishu-doxcnaBZpRP81pMYarqexWRAJwc"><span>◦</span><div><strong>代码</strong><span>：按照文件、类、函数和方法切分；</span></div></div><div id="src-feishu-doxcnb0wO4oZelEvbMKJi2lRlwg"><span>◦</span><div><strong>PDF/PPT</strong><span>：先完成版面解析，再按照标题、正文、列表和表格等结构切分；</span></div></div><div id="src-feishu-doxcnhT5jgG52kfIMBVFFidsP3b"><span>◦</span><div><strong>FAQ、商品资料、人物信息等强结构化数据</strong><span>：一条完整记录本身就是一个语义实体，可以直接作为一个 Chunk，不必强行拆分。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcniNWlnmvx1Qj9thkQ9JgaIs"></a></span>
+<p><span>如果结构单元仍然过长，再在结构单元内部使用</span><strong>递归分块</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3Iemdow6VpswP0I2G20tit"></a></span>
+<p><span>如果文档缺少可靠结构，则根据文本质量选择：</span></p>
+<div><div id="src-feishu-doxcnmhLZ58hDeuhs8Va5ygQNWb"><span>◦</span><div><strong>普通文章、说明书、制度</strong><span>：使用</span><strong>递归分块</strong><span>；</span></div></div><div id="src-feishu-doxcnF4OUjW1oTYkymGkhQruYTY"><span>◦</span><div><strong>OCR 错乱、换行不可靠但句子语义仍可识别</strong><span>：先清洗文本，再考虑递归分块或</span><strong>语义分块</strong><span>；</span></div></div><div id="src-feishu-doxcn8gxl3LYwLfoC26I7cV0PZg"><span>◦</span><div><strong>会议纪要、访谈、长篇报告等主题频繁变化的文本</strong><span>：考虑</span><strong>语义分块</strong><span>；</span></div></div><div id="src-feishu-doxcnuWy76Ve3Fws0PyXMOdXoah"><span>◦</span><div><span>事实高度密集，并且需要检索独立人物、属性或关系：考虑</span><strong>命题分块</strong><span>，同时保留命题与原文的映射。</span></div></div><p id="src-feishu-doxcny29bsDfAS0qFtX3Ns6bwcc"><span>因此，</span><strong>结构化分块</strong><span>、递归分块、语义分块和</span><strong>命题分块</strong><span>不是简单的优劣关系，而是分别解决不同的数据形态问题。</span></p><span id="src-feishu-doxcnjrMP2mxFmK4zYeC10b3SDb" class="source-anchor-container"><br></span></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQaivYbOwoLQk1GIVJ861Og"></a></span>
+<h4 id="section-23"><span>16.5.3.3.3 第二步：根据检索目标确定 Chunk 粒度</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcndON2dQ3zgeKroxYI8FpiUK"></a></span>
+<p><span>确定主分块策略后，再根据用户问题所需的证据粒度决定 Chunk 大小。</span></p>
+<div><div id="src-feishu-doxcnktt4iIru1h44kbJQPWin4c"><span>◦</span><div><strong>只需要定位相关文档或章节</strong><span>：Chunk 可以相对大，以保留完整上下文；</span></div></div><div id="src-feishu-doxcn7QE5i9x7KseF4Q0r2rRPdL"><span>◦</span><div><strong>需要定位具体条款、步骤、句子或事实</strong><span>：Chunk 应相对小，以提高</span><strong>检索精度</strong><span>；</span></div></div><div id="src-feishu-doxcnLQ1KwoUoD8O2tsejiLRsqc"><span>◦</span><div><strong>用户问题通常对应一个完整段落</strong><span>：让 Chunk 尽量覆盖一个自然段落或语义单元；</span></div></div><div id="src-feishu-doxcndBs4K11bGxfKqcr4SpUw2f"><span>◦</span><div><strong>一个 Chunk 中经常包含多个主题</strong><span>：说明粒度过大，应减小 Chunk，或者使用语义分块寻找主题边界；</span></div></div><div id="src-feishu-doxcn7mmnXV4GK3RV7qGF7WBHri"><span>◦</span><div><strong>检索结果很准确，但回答缺少前后文</strong><span>：说明检索粒度合适、生成上下文不足，不应直接增大所有 Chunk，而应使用</span><strong>句子窗口</strong><span>、父子块或</span><strong>层级索引</strong><span>扩充上下文。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLLzaoTbrmYi48itgdfG2lb"></a></span>
+<p><span>理想状态不是 Chunk 越小或越大越好，而是一个 Chunk 尽量对应用户问题所需要的最小完整证据单元。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPQxWbRA0jRFSS1hdiptVuh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUknBPRJnrPnH9tT8m4BoAe"></a></span>
+<h4 id="section-24"><span>16.5.3.3.4 第三步：使用默认方案建立实验基线</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnk0SLxxIarFepYoLyWXB7Mf"></a></span>
+<p><span>当项目处于早期阶段，尚未积累足够的真实问题和评测数据时，可以先采用一个低成本、容易解释的基线方案：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnj3VJA5cEBEuXnRANL5A2bg"></a></span>
+<pre><code class="language-text">结构化解析
+→ 在超长结构单元内部递归分块
+→ 设置有限 Overlap
+→ 保存标题、页码和来源等元数据
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0DWHcKx8QAyBVOpqsiaqDd"></a></span>
+<p><span>初始实验可以从约 400～600 Tokens 的 </span><span><span><span>chunk_size</span></span></span><span> 和 10%～20% 的 Overlap 开始。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCIDYQqnh2TLEQe7fCmPhId"></a></span>
+<p><span>默认方案不是最终选型原则，也不与“根据文档类型选择”冲突。它只是在信息不足时提供一个可运行的起点。获得真实召回结果后，仍然要根据文档特点和问题类型进行调整。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJE0rMmucZVVaouCYQRfred"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5mYEFwyro7F8pEW5iSG0th"></a></span>
+<h4 id="section-25"><span>16.5.3.3.5 第四步：根据召回问题定向调整</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQTYnZKAAfMpnD06AM7twwe"></a></span>
+<p><span>运行基线方案后，应根据实际问题判断需要修改哪一层，而不是盲目调大或调小 Chunk。</span></p>
+<div><div id="src-feishu-doxcnFp1jWCIoABgm4f3oi1or3f"><span>◦</span><div><strong>正确内容经常召回不到</strong><span>：Chunk 可能过大或结构边界不合理，应减小 Chunk、改善结构解析，或调整检索方式；</span></div></div><div id="src-feishu-doxcnZTI0HXoNJi2NJoo6HiG5wf"><span>◦</span><div><strong>已召回正确内容，但上下文不完整</strong><span>：适当增加 Overlap，或使用句子窗口、父子块扩充上下文；</span></div></div><div id="src-feishu-doxcnjmppofJRBwdcElUyRNkcJe"><span>◦</span><div><strong>一个 Chunk 中经常存在多个主题</strong><span>：减小 Chunk，或改用语义分块；</span></div></div><div id="src-feishu-doxcneBbBWLtFhSQZMss1MNYOph"><span>◦</span><div><strong>Top-K 结果高度重复</strong><span>：减少 Overlap，并对召回结果去重；</span></div></div><div id="src-feishu-doxcnttVEbcHefInuJhGpEEkXff"><span>◦</span><div><strong>标题与正文经常分离</strong><span>：改善结构解析，并把标题路径写入 Chunk 元数据；</span></div></div><div id="src-feishu-doxcn8LMqqh0iN0fosXSEeMfyfb"><span>◦</span><div><strong>表格问题效果差</strong><span>：将表头与数据行绑定，按照完整记录或逻辑区域分块；</span></div></div><div id="src-feishu-doxcnN3HH8fDfsuAYF4iuUxRqKf"><span>◦</span><div><strong>OCR 文档切分混乱</strong><span>：先清理页眉页脚、水印和错误换行，再调整分块策略。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP6jwdayXzM21W7xPzi6Elc"></a></span>
+<p><span>这一步的关键是先定位问题属于“解析错误、边界错误、粒度错误还是上下文不足”，再采取对应措施。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3LcGUS0wVUbdISyJAuG1Yg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwOM0M9gbukhqsVmx2iUq8d"></a></span>
+<h4 id="section-26"><span>16.5.3.3.6 第五步：通过评测确定最终方案</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnO7bflk5hhqnMBjlOd1Rvkg"></a></span>
+<p><span>不存在适用于所有项目的统一 Chunk Size。最终方案应由真实问题的评测结果决定。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7hqgL3eIGvNkKkRWErrhyg"></a></span>
+<p><span>可以准备一批真实查询，并标注每个问题对应的正确证据，分别测试不同的主策略、Chunk Size 和 Overlap。重点观察：</span></p>
+<div><div id="src-feishu-doxcnEDpXKFodl1nvWNKOQ7mDSc"><span>◦</span><div><span>正确证据是否出现在 Top-K 中；</span></div></div><div id="src-feishu-doxcngOvwbmz7C3qhC1T0K5SdYx"><span>◦</span><div><span>正确证据的排序是否靠前；</span></div></div><div id="src-feishu-doxcn23SkyHziE8znyfD6Lyd0Kf"><span>◦</span><div><span>回答是否得到召回证据支持；</span></div></div><div id="src-feishu-doxcn3BNSSAE2SpdzZEoFLsORIg"><span>◦</span><div><span>页码、章节和来源引用是否正确；</span></div></div><div id="src-feishu-doxcnLyEDLyPL3WS4wfSO112lde"><span>◦</span><div><span>检索结果的重复率；</span></div></div><div id="src-feishu-doxcncKPbRc8syPPc5hisKlBArd"><span>◦</span><div><span>平均上下文 Token 数；</span></div></div><div id="src-feishu-doxcneHmZhnK94xU5LkHFbZm2Sb"><span>◦</span><div><span>索引规模、建库时间和查询延迟。</span></div></div></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8aFbniNRuFtYp58F9EYmTf"></a></span>
+<p><span>最终选择的方案，应是在真实语料和真实问题上，</span><strong>检索精度</strong><span>、</span><strong>上下文完整性</strong><span>、成本与延迟之间取得最好平衡的方案。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnILnyXQdYhafjqBb5y9rxaf"></a></span>
+<h4 id="section-27"><span>16.5.3.4 常见面试问题</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIuBFE3LVqVf5YZO98xAJ7c"></a></span>
+<h4 id="section-28"><span>16.5.3.4.1 常见的分块策略有哪些？各自有什么优缺点？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvfRtjPAP1xSOg0WzcOw0Ig"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTidcJlN4vsfdog3gYyybCg"></a></span>
+<p><span>这个问题并</span><strong>不是出自真实面试题</strong><span>，而是我为了帮助大家掌握基础知识主动添加的。现实面试中通常不会直接这样问，因为这种问法比较固定，也比较偏向概念背诵。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnucMpgattGGTcXX1TgYvoBn"></a></span>
+<p><span>但我仍然把它放在这里，是希望大家能够有意识地记住常见分块策略，以及每种策略的基本原理、优缺点和适用场景。后面可以看到，真实面试中的问题通常会比这道题更深入，例如追问项目为什么选择某种策略、内容跨块怎么办、Chunk Size 如何确定，以及分块效果如何评测。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0tQgZHVKNjndkCCgTI7R0d"></a></span>
+<p><span>这些真实问题虽然问法不同，但回答的思路和出发点仍然来自本题涉及的理论基础。只有先掌握不同分块策略的特点，后面才能根据文档类型和实际问题完成选型与调优。（参考答案有点长，面试可以稍微简化一点）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnn6tiudGkovou6wcijYhsKb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7u3H4mbRFldTBqm2fE1VbA"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsLHmIQCLfWogmExIAp46db"></a></span>
+<p><span>RAG 中常见的分块策略主要包括</span><strong>固定长度分块</strong><span>、</span><strong>递归分块</strong><span>、</span><strong>结构化分块</strong><span>、</span><strong>语义分块</strong><span>和</span><strong>命题分块</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrgbLLmr45RH0lseFfiESOb"></a></span>
+<p><span>第一种是</span><strong>固定长度分块</strong><span>，也就是按照固定的字符数或 Token 数切分文档。它的优点是实现简单、速度快、块大小稳定，便于控制索引规模和成本；缺点是不理解文档结构和语义，可能把一个完整句子、段落或步骤从中间切断。因此，它适合快速建立基线，或者处理结构不明显且对</span><strong>语义边界</strong><span>要求不高的文本。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndQcfnNP1f61QTI0FKhASgf"></a></span>
+<p><span>第二种是</span><strong>递归分块</strong><span>。它会按照从粗到细的分隔符逐级尝试切分，例如先按段落，再按换行、句子、标点、空格切分，最后才使用字符或 Token 强制切分。它的优点是速度快、不需要调用模型，并且能尽量保留自然</span><strong>语义边界</strong><span>；缺点是依赖文本解析和清洗质量，遇到 OCR 错误换行、标点缺失或格式混乱时，仍然可能产生不合理的分块。它是普通文章、说明书和技术文档中最常用的基线方案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcno1UBV3mRvIbyIwzYVB2lsf"></a></span>
+<p><span>第三种是</span><strong>结构化分块</strong><span>，也就是利用文档自身的结构进行切分，例如 Markdown 标题、HTML 标签、Word Heading、代码中的类和函数，以及 PDF 中识别出的标题、正文和表格。它的优点是能够保留标题与正文、表头与数据、函数与代码之间的关系，结果也更容易引用和追溯；缺点是依赖文档解析器，不同文件需要不同的处理方式，复杂 PDF 或扫描件还需要版面分析和 OCR。实际项目中通常先进行结构化分块，如果某个结构单元仍然过长，再在内部使用递归分块。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIBuw1x0jr1bXXnTEpswejh"></a></span>
+<p><span>第四种是</span><strong>语义分块</strong><span>。它通常先把文档切成句子，再使用 Embedding 计算相邻句子的语义相似度，在主题发生明显变化的位置建立边界。它的优点是块内主题更加集中，不完全依赖换行和格式；缺点是需要额外进行向量计算，建库速度较慢，分块阈值也需要通过实验调整。它适合会议纪要、访谈和主题变化频繁的长文本。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkUyf3JDCSPiEi0L4kIDuhf"></a></span>
+<p><span>第五种是</span><strong>命题分块</strong><span>。它使用大语言模型把原文转换成多条能够独立理解的事实或观点，例如拆开复合句、补全省略的主语并消解代词指代。它的优点是检索粒度非常精细，适合人物、属性和事实关系检索；缺点是需要调用 LLM，成本和延迟较高，而且模型可能遗漏或错误改写事实。因此，命题不能直接替代原文，通常需要通过 </span><span><span><span>parent_id</span></span></span><span> 保留命题与原始段落的映射。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcny4qjlx3tRQ509GMXsGJJnf"></a></span>
+<p><span>此外，Overlap、</span><strong>句子窗口</strong><span>和父子块不完全属于与上述方法并列的主分块策略，而是用于缓解边界信息丢失和上下文不足的辅助机制。Overlap 让相邻 Chunk 保留部分重复内容；</span><strong>句子窗口</strong><span>和父子块则通过“</span><strong>小块检索、大块生成</strong><span>”同时兼顾</span><strong>检索精度</strong><span>和</span><strong>上下文完整性</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpzMjQzrVDiX8RaKtYuhrvh"></a></span>
+<p><span>总的来说，固定长度分块适合快速建立基线，递归分块适合普通非结构化文本，结构化分块适合结构清晰的文档，语义分块适合主题边界不稳定的文本，命题分块适合高精度事实检索。实际项目中通常不是只使用一种方法，而是先尊重文档结构，再在超长结构单元内部递归切分，并结合有限的 Overlap 或上下文扩充策略。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxszem3uSL6bWK02wYBHoBd"></a></span>
+<h4 id="section-29"><span>16.5.3.4.2 你的项目中是如何确定分块策略的？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbwbhoLP64jSQtui5dTXc44"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHp0R48qyWKVLzx9CgOciQf"></a></span>
+<p><strong>这道题的理论基础就是 </strong><strong><span><span>5.3.3 分块选型技巧和原则</span></span></strong><strong>。</strong><span> 但 </span><span><span><span>5.3.3</span></span></span><span> 讲的是通用方法论，真正回答这道题时，需要把方法论落到自己的项目中，答得具体一些，让面试官能够看出你确实理解项目中的数据、问题和技术取舍，而不是只会背诵几种分块方法。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKPp2X3qfZGhIu514nasP9e"></a></span>
+<p><strong>我知道，大部分人在个人项目中不一定会把每一个技术选型都做得如此规范。</strong><span> 即使在真实企业项目中，也不是所有选型都会进行非常完整的实验。因此不需要因为自己的项目没有覆盖全部流程而怀疑自己，但需要理解每一步为什么这样设计，并提前结合自己的项目组织答案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWO1v792FSBupHZD5Kb2KSh"></a></span>
+<p><strong>这里需要灵活运用理论和项目表达技巧。</strong><span> 所谓“包装”，不是捏造不存在的数据或结果，而是把自己已经做过的方案、遇到的问题、能够解释的取舍，以及后续可以采用的验证方式组织成一条完整逻辑。没有实际执行过的实验，可以表述为后续验证方案，不要把计划说成已经取得的结果。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFsbR6DvVTqxOjUekxLxpad"></a></span>
+<p><strong>面试前最好针对自己的文档类型、分块方式、Chunk Size、Overlap、异常情况和评测方法准备一版项目化答案。</strong><span> 但也不可能预先准备所有追问。面对新的问题时，需要以扎实的理论基础为底层依据，再结合项目场景灵活分析和随机应变。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIZS33VhAlF14u4On6HsZ6e"></a></span>
+<p><strong>下面以“企业内部技术文档知识库”为例组织答案。</strong><span> 回答时可以按照一条标准流程展开：先介绍文档特点，再说明如何选择主分块策略，然后解释参数如何建立基线、遇到了什么问题、如何定向调整，最后说明怎样通过评测确定最终方案。 （参考答案有点长，面试可以稍微简化一点）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEDaJ838SECtRKMnK7sBy5b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzowbpGSIVyYFbDsiExFYOQ"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrlZ1vcu8sP5frn85YQxjWx"></a></span>
+<p><strong>我们做的是一个企业内部技术文档知识库，主要处理 Markdown、Word 和 PDF 格式的 API 文档、架构设计文档、部署手册和故障复盘。</strong><span> 我们没有直接对所有文档使用固定长度切分，而是先分析文档结构和实际查询目标，再选择分块方案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIWpPYxR4iGcG2fYMyRxRIh"></a></span>
+<p><strong>第一步是根据文档结构选择主策略。</strong><span> 这类技术文档通常具有比较明确的标题、章节、段落、代码块和接口说明，因此我们先进行结构化解析。Markdown 和 Word 按照标题层级解析；PDF 先转换成能够保留标题和段落关系的结构化文本，同时清理页眉、页脚和错误换行。这样可以避免把不同章节或不同接口的内容混在同一个 Chunk 中。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZ12qVC3G0qa7JyxThXTi5g"></a></span>
+<p><strong>但是，只按标题切分还不够，因为有些章节可能非常长。</strong><span> 所以在每个结构单元内部，我们继续使用 </span><strong>递归分块</strong><span>，优先按照段落、换行、句子和标点寻找边界，只有内容仍然超过长度限制时，才使用 Token 长度进行兜底切分。最终采用的是“ </span><strong>结构化解析加递归分块</strong><span>，而不是单纯固定长度切分。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZmVyzzX3M3JsMPn35oyEwf"></a></span>
+<p><strong>第二步是根据检索目标确定粒度。</strong><span> 我们的用户通常会查询某个接口的参数、配置项、部署步骤或故障处理方法，需要定位到比较具体的证据，因此 Chunk 不能太大；但技术说明又经常包含前置条件、操作步骤和注意事项，Chunk 太小会导致上下文不完整。因此我们的目标是让一个 Chunk 尽量覆盖一个完整的接口说明、操作步骤或自然段落。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfOyqBZRm3y21RueZzLQgTc"></a></span>
+<p><strong>第三步是建立参数基线。</strong><span> 项目早期我们先以大约 500 Tokens 的 </span><span><span><span>chunk_size</span></span></span><span> 和 10%～20% 的 </span><span><span><span>chunk_overlap</span></span></span><span> 作为起点，并保留文档 ID、标题路径、页码、Chunk 序号等元数据。500 Tokens 不是最终答案，只是一个兼顾检索粒度、Embedding 输入和上下文成本的初始值。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0D5uczTCw1Xy6Pe9JJKhNd"></a></span>
+<p><strong>第四步是根据实际问题进行调整。</strong><span> 测试过程中主要发现了两类问题。第一类是接口名称、参数解释和限制条件偶尔落在相邻 Chunk 中，检索命中参数说明后，模型拿不到接口名称或前置条件。对于这种边界问题，我们保留适量 Overlap，并通过 </span><span><span><span>chunk_index</span></span></span><span> 扩充前后相邻块。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHTXu4J5lH65zRt8WU7Ek2d"></a></span>
+<p><strong>第二类问题是部分架构文档的单个章节很长，即使递归切分后，一个小块虽然容易检索，但不足以支持完整回答。</strong><span> 对于这种情况，我们没有盲目增大所有 Chunk，而是保留父子关系：小的子块负责生成向量和参与检索，命中后再根据 </span><span><span><span>parent_id</span></span></span><span> 返回对应的较大父段落，让系统实现“</span><strong>小块检索、大块生成 ”。这样既保留了 检索精度</strong><span>，也补充了生成所需的上下文。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpFziTkH6F011JU8B2WP3Lf"></a></span>
+<p><span>我们也评估过 </span><strong>语义分块</strong><span> 和 </span><strong>命题分块</strong><span>。** 语义分块 </span><strong>需要为大量句子额外计算 Embedding，并且阈值需要针对语料调试；</strong><span> 命题分块 </span><strong>还需要调用 LLM 对原文进行转换，存在成本和事实改写风险。考虑到我们的技术文档结构比较稳定，</strong><span> 结构化解析加递归分块**已经能够解决大部分问题，因此没有把语义分块或命题分块作为默认主链路，只把它们作为特殊文档的候选方案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCA8Kiuh2CG6qK8CWUvpqUb"></a></span>
+<p><strong>最后，分块参数需要通过真实问题验证。</strong><span> 我们会准备一批覆盖接口查询、部署步骤、故障原因和配置说明的测试问题，分别比较不同 Chunk Size 和 Overlap 下的 Hit Rate、正确证据排序、</span><strong>上下文完整性</strong><span>、召回重复率、Token 成本和查询延迟。如果小块方案召回更准确但上下文不足，就优先使用父子块或相邻块扩充；如果大块中经常混入多个主题，就减小 Chunk。最终选择的是评测结果最均衡的方案，而不是直接套用某个固定参数。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLbt8eWwdJM7g1epHwGQdzq"></a></span>
+<p><strong>所以，我们的整体选型逻辑可以概括为：先根据技术文档的结构选择“结构化解析加递归分块”，再根据查询目标设置初始粒度，通过 Overlap 和父子块解决边界与上下文问题，最后使用真实问题评测确定最终参数。</strong><span> 这个过程中的每一步都有对应的数据特点和问题依据。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcntrQQAmxR2N1cBikXcwTofd"></a></span>
+<h4 id="section-30"><span>16.5.3.4.3 RAG 的 Chunking 策略如何设计？遇到过哪些问题？如何调整？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcngIxqHyJ4LoWKwLLcI2vv2d"></a></span>
+<p><em>选自 </em><span><em><a href="/momomian/lessons/feishu-2407259c4b/#src-feishu-doxcn4xdf6ZtUuTSfTLjA5ke0uc"><span>宇树科技 Agent 开发二面面试真题</span></a></em></span><em>。</em></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9s1RIc397iSPSMUuij9KJg"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDP0C6IxY123zSwiTZxWOdb"></a></span>
+<p><strong>这道题比“项目中使用了什么分块策略”更进一步。</strong><span> 面试官不仅要听最终方案，还希望看到完整的问题解决过程。建议按照“初始设计—暴露问题—定位原因—定向调整—评测验证”回答。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnywMnfwOUl0QatUXoANjfPf"></a></span>
+<p><strong>回答时不要只罗列技术名词。</strong><span> 每一个调整都要对应一个实际问题，例如语义被切断、一个 Chunk 混入多个主题、召回准确但上下文不足、结果高度重复、标题与正文分离等。这样才能体现自己具备真实的调试和迭代经验。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJK0iOufUyzEdwO1x4aLVhd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP4wEbITNSdVv4WTZWfeR5b"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRdJBAMXBw69csMmL3e4Aae"></a></span>
+<p><strong>我们的知识库主要处理企业内部技术文档。</strong><span> 初始方案是先保留标题和章节结构，再在超长章节内部使用 </span><strong>递归分块</strong><span>，以 500 Tokens 左右的 Chunk 和约 15% 的 Overlap 建立基线，同时保存标题路径、页码、</span><span><span><span>source_id</span></span></span><span> 和 </span><span><span><span>chunk_index</span></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndo7zr7Y86lSZ558uIQCyud"></a></span>
+<p><strong>第一轮测试发现，部分接口名称、参数说明和限制条件被分到相邻 Chunk 中。</strong><span> 检索虽然命中了参数说明，但模型不知道它属于哪个接口。我们先改善结构解析，把标题路径补充到每个 Chunk；然后保留适量 Overlap，降低边界信息丢失的概率。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqtkAYKE9AKXxOmUt2rUdmb"></a></span>
+<p><strong>第二个问题是小块检索比较准确，但回答复杂部署流程时上下文不够。</strong><span> 这个问题不适合简单增大所有 Chunk，因为大块会混入多个主题，降低向量匹配精度。我们给 Chunk 保存父子关系和顺序信息，使用子块检索，命中后根据 </span><span><span><span>parent_id</span></span></span><span> 返回父段落，或者根据 </span><span><span><span>chunk_index</span></span></span><span> 补充前后相邻块，实现“</span><strong>小块检索、大块生成</strong><span>”。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOvYo2KfaPoSwhN1kFtF0Ve"></a></span>
+<p><strong>第三个问题是增加 Overlap 后，Top-K 中经常出现内容高度相似的相邻块。</strong><span> 我们把 Overlap 控制在 10%～20%，并在召回后根据来源和文本相似度去重，避免重复内容占满上下文。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbxdzd8I2vbcGW9zfwgfooc"></a></span>
+<p><strong>调整过程中，我们不会只看最终答案，而是分别观察正确证据能否进入 Top-K、正确证据的排序、召回重复率、输入 Token 数和查询延迟。</strong><span> 通过对比不同 Chunk Size、Overlap 和上下文扩充方案，选择综合效果最好的配置。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcng4XWRaH5loE0677l70ozLc"></a></span>
+<p><span>整体来说，我们先用 </span><strong>结构化解析加递归分块</strong><span> 建立基线，再根据边界丢失、上下文不足和重复召回等具体问题，分别使用标题元数据、Overlap、父子块和结果去重进行调整，最后通过真实问题集验证效果。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUMBDmjROY4bTPvJGTExUFg"></a></span>
+<h4 id="section-31"><span>16.5.3.4.4 手写算法：按照句子边界进行文本分块，避免截断句子</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcngfLa0KkPCRzAHyeG66W7Lh"></a></span>
+<p><span><em><a href="/momomian/lessons/feishu-2407259c4b/#src-feishu-doxcn4xdf6ZtUuTSfTLjA5ke0uc"><span>选自 宇树科技 Agent 开发二面面试真题</span></a></em></span><em>。</em></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnM9WQdQRbAcWtwCU1bfjC7g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnenERHYZpNQIVS5ME8HL2dh"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntohX6GZrbmhiqxXqDeW5ch"></a></span>
+<p><strong>就是手撕代码题目，如果以力扣的标准来判断这个题目，这个题算不上一个难题，最多是个中等的题目。</strong><span> 不过就是没法像力扣一样，可以期待能碰到原题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnprWMSrwg7JbeaXBQZlxpTd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWEu5H7F30JkTNE2ZgkhN5p"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzGLVVRmDhTPzNNymmI4Elb"></a></span>
+<p><strong>我会先使用中英文句末标点切句，然后按顺序合并句子。</strong><span> 只要加入下一句后不超过最大长度，就继续累加；如果超过，就先保存当前 Chunk，再从下一句开始构建新 Chunk。这样正常情况下不会从句子中间截断。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnc23oHvQOYQaFIHzglAhyMf"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>将 current = "" 与 for sentence in sentences: 分成两行，并恢复循环体、if/else、continue 与 range 循环的独立行和缩进；运行前还应校验 max_length 为正整数。当前文本仅能用于阅读算法思路。</p><details><summary>查看解释与参考资料</summary><p>这段代码的多处换行和缩进丢失，按页面文本复制会产生SyntaxError，不能据此认定示例可直接运行。</p></details></aside><aside class="lesson-clarification" id="lesson-clarification-9" data-source-runtime-check="9"><p><strong>离线核验：</strong>离线核验未通过（SyntaxError），没有取得结果通过证据。原片段未改写。</p><details class="lesson-runtime-correction" data-source-corrected-code="true"><summary>查看修正版与验证结果</summary><p>Python 3.12.14，langgraph 1.2.17，langchain-core 1.7.0，typing-extensions 4.16.0，pydantic 2.14.1：修正版通过6项断言。原缩进或语句边界有误。修正版按本课逻辑恢复结构，原样失败保留。补入有限测试输入，不调用模型或外部服务。补回4处被吞并的换行，并恢复if/for/continue结构；以字符计长度，非token；会移除句间空白，不保证逐字原文可逆；正整数参数才适用。</p><pre><code class="language-python">import re
+
+def split_by_sentence(text: str, max_length: int = 500) -> list[str]:
+    sentences = re.split(r"(?&#x3C;=[。！？.!?])\s*", text.strip())
+    chunks = []
+    current = ""
+    for sentence in sentences:
+        if not sentence:
+            continue
+        # 单个句子已经超过上限，只能使用长度切分兜底
+        if len(sentence) > max_length:
+            if current:
+                chunks.append(current)
+                current = ""
+            for start in range(0, len(sentence), max_length):
+                chunks.append(sentence[start:start + max_length])
+            continue
+        if len(current) + len(sentence) &#x3C;= max_length:
+            current += sentence
+        else:
+            if current:
+                chunks.append(current)
+            current = sentence
+    if current:
+        chunks.append(current)
+    return chunks</code></pre><p>本次核验输出：</p><pre><code>甲。乙！丙？切成甲。乙！和丙？；abcdef可按2字符兜底切分。</code></pre></details></aside><pre><code class="language-python">import re
+
+
+def split_by_sentence(text: str, max_length: int = 500) -> list[str]:
+    sentences = re.split(r"(?&#x3C;=[。！？.!?])\s*", text.strip())
+    chunks = []
+    current = ""for sentence in sentences:
+ if not sentence:
+ continue# 单个句子已经超过上限，只能使用长度切分兜底if len(sentence) > max_length:
+ if current:
+                chunks.append(current)
+                current = ""for start in range(0, len(sentence), max_length):
+                chunks.append(sentence[start:start + max_length])
+            continueif len(current) + len(sentence) &#x3C;= max_length:
+            current += sentence
+ else:
+ if current:
+                chunks.append(current)
+            current = sentence
+
+ if current:
+        chunks.append(current)
+
+ return chunks
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcny2M1oRlQyFcbPh4yChljRd"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>若改为token预算，应同时用相同分词器计数、按token或经验证的文本边界切出超长句，再复核每块的token数；仅替换len()无法保证不超限。</p><details><summary>查看解释与参考资料</summary><p>字符计数函数替换成token计数还不够：超长句的range步长和字符串切片仍按字符执行。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><strong>这段实现保证普通句子不会被截断，并对超长单句进行了兜底。</strong><span> 真实项目中还可以把 </span><span><span><span>len()</span></span></span><span> 替换为 Tokenizer 的计数函数，并进一步处理小数点、英文缩写、代码和列表等特殊情况。</span></p></details>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWO0kmRPxDxFQ8qynFpIMLc"></a></span>
+<h4 id="section-32"><span>16.5.3.4.5 技术文档的相关内容跨越多个 Chunk，应该如何优化？什么时候需要扩充上下文？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcns98G9nNEDswjnyl9LwDwde"></a></span>
+<p><em>选自 </em><span><em><a href="/momomian/lessons/feishu-72e778069d/#src-feishu-doxcn24LOoBY4eOFpv9ie4CKbsg"><span>2025.11 网龙科技一面面试真题。</span></a></em></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlYqR7U1orFI76XWrgD3ZG8"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyDN7Mgv32MuLHkLu4T82ic"></a></span>
+<p><strong>这是一组连续追问。</strong><span> 第一问考察如何解决跨块问题，第二问考察是否知道上下文扩充的使用条件。回答时先区分“检索不到正确位置”和“已经检索正确但上下文不足”：前者需要调整分块或检索，后者才适合扩充上下文。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEDSWGo2mD1WseHCDA7UZ0f"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDH02yg1pdaZlKzBkIkhL7c"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMPAsTFQgjjabd7qyVM5rjb"></a></span>
+<p><strong>技术文档中的接口名称、参数、前置条件和限制说明可能跨越多个 Chunk。</strong><span> 我们会先通过结构化解析和 </span><strong>递归分块</strong><span> 尽量保留自然边界，并设置有限的 Overlap，降低内容在边界处完全断开的风险。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1hcdUzTqfzBsvw7i08aJXc"></a></span>
+<p><strong>如果仍然存在跨块问题，我们会给每个 Chunk 保存 </strong><strong><span><span>source_id</span></span></strong><strong>、</strong><strong><span><span>chunk_index</span></span></strong><strong> 和 </strong><strong><span><span>parent_id</span></span></strong><strong>。</strong><span> 检索命中某个子块后，可以根据 </span><span><span><span>chunk_index</span></span></span><span> 补充同一文档中的前后相邻块，或者根据 </span><span><span><span>parent_id</span></span></span><span> 返回包含它的完整父段落。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNWyIb5VgORkcx0RCsrzPib"></a></span>
+<p><strong>上下文扩充主要适用于“短文本容易检索，但不足以支持完整回答”的情况。</strong><span> 例如，已经准确命中了某个配置参数，但回答还需要它的适用条件和异常说明；或者命中了流程中的一个步骤，但问题要求解释完整流程。这时适合采用小块检索、相邻块或父块扩充。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLYfRe8TjcAdfbJp7owb3Fe"></a></span>
+<p><span>如果正确内容根本没有进入 Top-K，直接扩充上下文没有意义，应先检查 Chunk 是否过大、</span><strong>语义边界</strong><span> 是否错误、查询表达是否需要改写，以及检索策略是否合适。扩充时还要限制同源范围、扩充数量和总 Token 预算，并进行去重，防止引入过多无关内容。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjUB5th2N0jAOKzhMz5BKac"></a></span>
+<h4 id="section-33"><span>16.5.3.4.6 你的文档分块会使用滑动窗口吗？滑窗长度一般是多少？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzxQKa9XkaOIPJuTScLvWie"></a></span>
+<p><em>选自</em><span><em><a href="/momomian/lessons/feishu-72e778069d/#src-feishu-doxcn24LOoBY4eOFpv9ie4CKbsg"><span> 2025.11 网龙科技一面面试真题。</span></a></em></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBICCgRScew6ecbnH7Vpmwf"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmQ9eZiBVJq5CHUtLTc483e"></a></span>
+<p><strong>面试语境中的“滑窗长度”通常是在追问相邻 Chunk 的重叠长度，也就是 </strong><strong><span><span>chunk_overlap</span></span></strong><strong>。</strong><span> 回答时最好同时说明窗口大小、滑动步长和 Overlap 的关系，并区分严格的固定滑窗与 </span><strong>递归分块</strong><span> 中的重叠机制。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzjGmnwG3wV81RNYN0Mu7Pg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGahhauFWF3OYOPoVwwZI2b"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncSzc7siJ4PFPE9NBkkDgCg"></a></span>
+<p><span>我们使用 </span><strong>递归分块</strong><span>，并为相邻 Chunk 设置了重叠区域。严格来说，它不是完全按照固定步长进行机械滑窗，而是优先在段落、句子和标点等自然边界切分，然后保留适量 </span><span><span><span>chunk_overlap</span></span></span><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOeM2694sVrGvLWicHp0Cxc"></a></span>
+<p><strong>在严格的固定滑窗中，窗口大小就是 </strong><strong><span><span>chunk_size</span></span></strong><strong>，相邻窗口重复的长度是 </strong><strong><span><span>chunk_overlap</span></span></strong><strong>，滑动步长等于 </strong><strong><span><span>chunk_size - chunk_overlap</span></span></strong><strong>。</strong><span> 例如窗口大小为 500 Tokens、Overlap 为 100 Tokens，那么每次向后移动约 400 Tokens。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPZn3u1uOK2nyqxcoXjN00e"></a></span>
+<p><strong>项目中通常可以先把 Overlap 设置为 Chunk Size 的 10%～20%。</strong><span> 设置重叠是为了避免接口名、条件或半句话恰好落在边界处而丢失；但 Overlap 过大会增加索引规模，并导致 Top-K 结果高度重复。因此最终比例需要结合边界信息丢失率、召回重复率和 Token 成本进行调整。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnj3FVa455lQJ2TOvgJUq7Ef"></a></span>
+<h4 id="section-34"><span>16.5.3.4.7 你的系统中有没有使用更高级的召回或分块方案？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcniymtU7C1mY0QYK9oPJbzwK"></a></span>
+<p><em>选自 </em><span><em><a href="/momomian/lessons/feishu-72e778069d/#src-feishu-doxcn24LOoBY4eOFpv9ie4CKbsg"><span>2025.11 网龙科技一面面试真题。</span></a></em></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEK4mUScSrUiDO6Mgvaiq7b"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn23QvYbOY7Y1gsJEBRi9Zne"></a></span>
+<p><strong>虽然面试官问有没有更高级的技巧，但是建议也不要特别盲目地说或者编造。</strong><span> 实在不行就讲我们的策略是基于这个科学的方法论驱动的，把这个5.3.3 的方法论再讲一遍。如果想要将一些高级的技巧，比如说根据子块检索，召回父块这些策略，一定要找到明确的需求出发点，说明选择这个技术是合理的。能现场包装当然是更好的，但是如果包装露馅无法自圆其说，还不如不包装。这块是我自己面试的素材，我当时估计回答的就是没有，最后也通过了，面试官对我评价还挺高的，有可能这个也是压力测试，不要因为面试官这么追问就盲目现场包装，然后露馅，反而得不偿失。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsyloUCtSlD615VqcwROixc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVa6fKd3OxlJMlCdCdO6Vhb"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbQJwywtCnYN3WJpjAg5EIg"></a></span>
+<p><span>我们的默认主链路仍然是 </span><strong>结构化解析加递归分块</strong><span>，因为企业技术文档结构比较稳定，这套方案成本低、速度快，也容易解释和调试。在此基础上，我们针对不同问题设计了几种增强方式。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9yCjMNdt4UeyMzB1lCuXdh"></a></span>
+<p><span>对于“小块召回准确但上下文不足”的问题，我们使用 </span><strong>父子块检索</strong><span>：子块负责 Embedding 和匹配，命中后通过 </span><span><span><span>parent_id</span></span></span><span> 返回完整父段落。对于只需要补充局部上下文的场景，则使用 ** 句子窗口**或 </span><span><span><span>chunk_index</span></span></span><span> 扩充前后相邻内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAd4d5dct96d2mxzYp83yHe"></a></span>
+<p><span>对于主题切换频繁、自然段落不可靠的会议纪要，可以评估 </span><strong>语义分块</strong><span>，根据相邻句子的向量距离确定主题断点。对于事实密集且需要精确检索人物、属性和关系的数据，可以评估 ** 命题分块**，但需要保留命题与原文映射，避免把 LLM 改写结果直接作为事实依据。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnW59xPnGFkGuAAgjTVkA5ih"></a></span>
+<p><span>此外，还可以建立 </span><strong>层级索引</strong><span>：先定位文档或章节，再在命中的范围内进行细粒度检索。这样可以减少跨文档噪声。是否启用这些方案，要根据错误案例和评测结果决定，而不是把所有策略同时堆到系统中。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAFawTk7ZKjs1FUYEqgT7Og"></a></span>
+<h4 id="section-35"><span>16.5.3.4.8 Embedding 切 Chunk 应该怎么做？为什么固定长度切分经常不够？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMUIUov6c3u67Pp3WD5O8Sh"></a></span>
+<p><em>选自 </em><span><em><a href="/momomian/lessons/feishu-3acfe382dd/#src-feishu-doxcnEzp8GDSc3cwzZgNbPWBXDd"><span>202604 腾讯 AI Agent 开发暑期实习面试真题</span></a></em></span><em>。</em></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn10ZHRTF8raJt2a9yo2xzwd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVj7rpErWM7Sk9qoiSAhqdd"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkzl2XGd1dd6cy6KovS7hZk"></a></span>
+<p><strong>这是一道由两个基础问题组合而成的复合题，可以先把它拆开，再分别使用前文的知识回答。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJxn5Ik0jQ70UfqLXRYNzNf"></a></span>
+<p><strong>第一问“Embedding 切 Chunk 应该怎么做”，本质上是在问“应该如何确定分块策略”，对应 </strong><strong><span><span>5.3.3 分块选型技巧和原则</span></span></strong><strong>。</strong><span> 回答时按照完整的选型流程展开：先分析文档结构，选择主分块策略；再根据检索目标确定 Chunk 粒度；然后设置必要的 Overlap 或上下文扩充机制；最后根据召回问题调整，并通过真实问题评测确定最终方案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnu2opToUMi3wc1LRaN2RpPU"></a></span>
+<p><span>第二问“为什么固定长度切分经常不够”，本质上是在问“</span><strong>固定长度分块 ** 有什么缺点”，对应 </strong><strong><span><span>5.3.2.1 固定长度分块</span></span></strong><strong>。固定长度切分只保证长度可控，不理解标题、段落、句子和</strong><span>语义边界**，因此可能切断完整信息，也可能把多个主题混在同一个 Chunk 中，最终影响 Embedding 表达和召回效果。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnytbdH9s1QYQJEdcaJfjsMg"></a></span>
+<p><strong>所以这道题不需要单独背一套新答案。</strong><span> 先用分块选型方法论回答“应该怎么做”，再用 </span><strong>固定长度分块</strong><span> 的缺点回答“为什么不够”，最后把两部分串联成“结构或语义优先、长度约束兜底、实验评测定型”的完整结论。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5Jcz6a8taNkXSf5f42PIOg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4FzuMZMRwisjO1X9lCCjlh"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0fCbpjDiegqBWWqOowpf1Q"></a></span>
+<p><strong>Embedding 切 Chunk 时，我不会只使用固定长度切分，而是先按照分块选型流程确定方案。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3D8mFKwlXzSiHM2x0mMNRg"></a></span>
+<p><strong>首先看文档是否具有可靠结构。</strong><span> 如果是 FAQ、商品信息或人物资料等强结构化数据，一条完整记录本身就是一个语义实体，可以直接作为一个 Chunk；如果是 Markdown、Word、HTML 或技术文档，则先按照标题、章节和段落进行 </span><strong>结构化分块</strong><span>，再在过长的结构单元内部使用 ** 递归分块**；如果文本结构不可靠、主题切换又比较频繁，可以进一步评估 ** 语义分块**。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbLVqSnHQbBUhOsqdU8L5th"></a></span>
+<p><strong>确定主策略后，还要根据检索目标决定 Chunk 粒度。</strong><span> 需要定位具体条款、参数或事实时，Chunk 应相对小；需要回答完整流程或复杂原因时，则需要更多上下文。对于“小块检索准确但上下文不足”的情况，我不会直接增大所有 Chunk，而是通过 Overlap、</span><strong>句子窗口 、相邻块扩充或父子块实现“ 小块检索、大块生成</strong><span>”。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSVegdi83TQGEpuXDp9En7e"></a></span>
+<p><strong>Chunk Size 可以先设置一个实验基线，例如 400～600 Tokens，并设置约 10%～20% 的 Overlap。</strong><span> 但这只是起点，最终还要比较不同参数下的 Hit Rate、正确证据排序、召回重复率、上下文 Token 数和查询延迟。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAD3s9SOcfplUblc42mQc4g"></a></span>
+<p><span>固定长度切分之所以经常不够，是因为它只考虑长度，不理解文档结构和 </span><strong>语义边界</strong><span>。一个定义、操作步骤、接口说明或实体资料可能被从中间切断，使单个 Chunk 只包含残缺语义；也可能把多个不相关主题放进同一个 Chunk，使生成的向量变成多个主题的“平均语义”，降低具体问题的匹配精度。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUBMboHBwPVudkigDDzXXqd"></a></span>
+<p><strong>因此，长度应该作为 Chunk 的上限约束和最终兜底，而不应该是唯一的切分依据。</strong><span> 更合理的方案是优先保留文档结构和自然语义边界，在必要时设置 Overlap 或扩充上下文，最后通过真实问题评测确定最终分块策略。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnew7Nz8WruuTWbUa5IuFQjp"></a></span>
+<h4 id="section-36"><span>16.5.3.4.9 硬切分在实际场景中有哪些弊端？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSxSph9NpabkdFy52jntU7f"></a></span>
+<p><em>选自 </em><span><em><a href="/momomian/lessons/feishu-3acfe382dd/#src-feishu-doxcnEzp8GDSc3cwzZgNbPWBXDd"><span>202604 腾讯 AI Agent 开发暑期实习面试真题</span></a></em></span><em>。</em></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneJFlpMfG3ctwwyG0MSkfZe"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPczGvaRfe10FG8S2Ln8NZe"></a></span>
+<p><span>这道题翻译过来，其实就是在问“</span><strong>固定长度分块</strong><span> 有什么缺点”，对应前文 </span><span><span><span>5.3.2.1 固定长度分块</span></span></span><span> 中讲过的内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6PIcLS1MnRo3vghu7of5wh"></a></span>
+<p><span>面试中遇到这种题目，可以先把它转换成自己已经掌握的基础知识：硬切分只根据字符数、Token 数、页码或行数确定边界，本质上就是没有考虑文档结构和 </span><strong>语义边界</strong><span> 的固定切分。回答时直接从 </span><strong>固定长度分块</strong><span> 的缺点展开即可。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyFuz5kWae0gPPYPDT2Hs3b"></a></span>
+<p><strong>为了让回答更完整，可以沿着 RAG 链路组织：</strong><span> 首先说明它可能破坏标题、段落、句子和完整事实；然后说明残缺语义或多个主题混合会影响 Embedding 表达；接着说明这会降低召回的准确性和稳定性；最后说明系统可能需要使用 Overlap、上下文补全和 Rerank 等后处理进行补救，从而增加成本和复杂度。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqC4364OJ16FSYpMhQfpw9e"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNKF450d7yPSanThNtlAfEb"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnziw1coi2xpZdIki7ckK4Fc"></a></span>
+<p><span>硬切分最大的问题是破坏 </span><strong>语义边界</strong><span>。它只按照固定字符数、Token 数、页码或行数切分，不关心标题、段落、句子和逻辑结构，因此可能把一个完整概念、操作步骤、接口说明或实体资料切断。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneF4psIk3LEs40zSeGDIw71"></a></span>
+<p><span>第二，</span><strong>边界信息容易丢失</strong><span>。如果接口名称、错误码、配置项和适用条件落在两个 Chunk 的交界处，两个 Chunk 都可能只包含一部分证据，最终都无法与查询形成足够高的相似度。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVAtvLOb0vIsi6Thofotoye"></a></span>
+<p><span>第三，</span><strong>它会影响 Embedding 的语义表示</strong><span>。包含半个技术点的 Chunk 表达的是残缺语义；混入多个主题的 Chunk 表达的是被平均后的语义。这会使相关结果和不相关结果之间的相似度差距变小，导致召回不稳定。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIAn5yaL19pH1ToIMr4h2u3"></a></span>
+<p><span>第四，</span><strong>硬切分会把问题推给后续链路</strong><span>。系统不得不增加 Overlap、相邻块补全、Rerank 或 LLM 重组来修复切分阶段造成的问题，从而增加存储、Token 成本、延迟和调试复杂度。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPilEPclMA45EysODYL9kCg"></a></span>
+<p><strong>因此，固定长度可以作为最终兜底和长度上限，但不应成为唯一边界。</strong><span> 更常见的做法是优先按照结构、段落和句子切分，无法满足长度约束时才进行强制切分。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZmUv0KOLN44NnHfDwN4uDe"></a></span>
+<h4 id="section-37"><span>16.5.3.4.10 为什么内部文档需要设置 </span><span><span><span>chunk_size=1000</span></span></span><span>？1000 是不是太大了？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnq7siJGF3I2xzSUxp3tzXSb"></a></span>
+<p><em>选自 </em><span><em><a href="/momomian/lessons/feishu-ff8b85db3d/#src-feishu-doxcnz7tm7ZLuUjxSbHJvWQTVpd"><span>RAG 项目面试真题 3.9：某大厂一面</span></a></em></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmriaxxHvO5DOhL1sIDYuDb"></a></span>
+<p><span>💡 </span><strong>答题思路</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVJazVMcSPBkvIEY8pjoTKh"></a></span>
+<p><strong>这个问题通常不是面试官凭空提出的。</strong><span> 更可能是候选人在介绍项目、简历或配置参数时，主动说到自己的 </span><strong><span><span>chunk_size=1000</span></span></strong><span>，于是面试官继续追问：</span><strong>“为什么是 1000？这个值是不是太大了？”</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntVayNYaGBa2UZNSNfo9pEh"></a></span>
+<p><strong>这道题仍然可以转换成前文已经讲过的内容。</strong><span> 第一部分“为什么设置 1000”，本质上是在考察 **如何确定 Chunk Size </span><strong>，应借鉴 </strong><strong><span><span>5.3.3 分块选型技巧和原则</span></span></strong><strong>，按照 “建立参数基线—运行真实问题—观察召回问题—调整参数—通过评测定型” 的 ** 实验驱动</strong><span>方法回答。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZQ3gBUbIgfwruB6tGCYvDb"></a></span>
+<p><span>第二部分“1000 是不是太大”，是在考察候选人的 **现场分析和灵活变通能力 </span><strong>。不能看到 1000 就直接回答大或不大，而要先确认它的 ** 计量单位、文档语言、自然语义粒度、Embedding 模型输入范围，以及 Top-K 上下文预算</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCp9NG0BNtaHoYdPtjYCzId"></a></span>
+<p><span>面试官临时挑战简历中的参数时，需要懂得 </span><strong>现场发挥 ，根据项目场景迅速找到能够支撑该参数的合理依据。例如，可以从计量单位、文档语言、 自然语义粒度 、Embedding 模型输入范围、Top-K 上下文预算和实验调优等角度组织理由。 如果 1000 指英文字符，它可能只有约 200～250 Tokens，并不算大；如果是 1000 个中文字符，就需要结合文档段落长度重新解释或调整。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZU59sdKEZXDFwKhPwIu8HO"></a></span>
+<p><span>这里需要适度使用 </span><strong>项目包装技巧 。即使个人项目中没有完整执行每一轮选型实验，也要把前文的方法论理解透彻，能够结合自己的项目组织出一套合理的参数选择过程。回答的重点是让面试官看到： 这个参数不是随手填写的，而是经过文档分析、基线设置、问题观察和实验调整得到的。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcncdLxz4ZSAdOXP6RegFwu0f"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF5VBJBwPpeIcfITyhFfAqh"></a></span>
+<p><span>📝 </span><strong>参考答案</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxWNRzJlrh6VBv5xHbyliMh"></a></span>
+<p><span>我们项目中的 </span><strong><span><span>chunk_size=1000</span></span></strong><strong> 不是适用于所有文档的固定经验值</strong><span>，而是结合当前文档场景建立基线，并通过实际查询逐步调整得到的候选参数。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJGCmawZlMwYhxNxLH690jc"></a></span>
+<p><span>首先需要明确，</span><strong>项目中的 1000 指字符，不是 Tokens 。我们使用的长度函数按照字符计数，知识库主要存储英文 API 文档、架构决策记录、Runbook 和故障复盘。 1000 个英文字符通常约为 200～250 Tokens</strong><span>，大致对应一个完整的技术段落，所以在这个场景下并不算大。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLMQzWNKtvtHFERoso7bE3c"></a></span>
+<p><span>在分块策略上，我们也不是每到 1000 个字符就强制截断，而是先保留标题和章节结构，再使用 </span><strong>递归分块</strong><span>，优先在段落、换行和句子边界切分。** 1000 只是单个 Chunk 的长度上限**，实际生成的 Chunk 通常不会全部达到 1000 个字符。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnw4Q2jdPWC91zLmCYaYMpth"></a></span>
+<p><span>参数确定采用的是 **实验驱动思路 </span><strong>。项目早期先使用 1000 字符建立基线，然后选择多组候选值，例如 ** 600、1000、1500 字符</strong><span>，使用同一批接口查询、配置查询、部署步骤和故障排查问题运行完整检索流程。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMgvqNOpX9MDSMf40FE9YMe"></a></span>
+<p><span>对比时主要观察 **正确证据是否进入 Top-K、正确证据的排序、语义完整性、召回重复率、Token 成本和查询延迟 </span><strong>。如果 Chunk 太小，接口名称、参数说明和限制条件容易分散到不同块中；如果 Chunk 太大，一个块中又可能混入多个主题，使向量语义被稀释。我们选择的是 ** 在检索精度和上下文完整性之间表现更均衡的参数</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr07wH6V83e8z9BK3pv5XPf"></a></span>
+<p><strong>从下游窗口预算看，假设一个 Chunk 约 250 Tokens，召回 10 个 Chunk 大约占用 2500 Tokens，不会明显挤压模型的推理和生成空间。</strong><span> 相邻块还会设置有限的 Overlap，并通过标题路径、页码和来源元数据保留上下文。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYwGO542LPqCizplLFToYVg"></a></span>
+<p><span>但 </span><strong>1000 是否合理高度依赖场景 。如果项目换成中文文档，1000 个中文字符对应的 Token 数会明显增加，也可能跨越多个自然段落，这时我会重新降低 Chunk Size，并使用同一套评测流程重新选型。因此， 1000 不是天然合理，而是在当前英文技术文档、字符计量和评测条件下合理</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr8bLSK5FjkePEfyctY4XDf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhNixcsN8ZU5mGLXZnUFmvh"></a></span>
+<h4 id="section-38"><strong>16.5.3.5 视频讲解</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSsyod73FdwA66Y920hDsQg"></a></span>
+<p><span><span><a href="https://www.bilibili.com/video/BV1extE6jEHu/?spm_id_from=333.1387.homepage.video_card.click&#x26;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer"></a><a href="https://www.bilibili.com/video/BV1extE6jEHu/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1extE6jEHu/?spm_id_from=333.1387.homepage.video_card.click&#x26;amp;vd_source=144bec9c3f54e465073138bed788be1b</a></span></span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNcElk2KEUsY6OzqGZpcHyb"></a></span>
+<h4 id="section-39"><em>16.5.4 召回</em></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEqaOiqD25SoyhnsbQIVzQc"></a></span>
+<h4 id="section-40"><span>16.5.4.1 召回的常用策略</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhBxxTbHA6Wi8UUlCaj4oQg"></a></span>
+<p><span>RAG系统可以使用</span><strong>粗排</strong><span> + </span><strong>重排</strong><span>两个阶段来完成召回。 粗排通常使用</span><strong>稠密向量检索模型</strong><span>来做</span><strong>语义匹配，召回语义相关文档。</strong><span>当然也可以再结合</span><strong>稀疏向量检索模型</strong><span>来补充使用，因为</span><strong>稀疏向量检索模型</strong><span>更擅长</span><strong>捕捉关键信息</strong><span>来提高召回效果。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOcmp0GP8smCTC26KFd7Sub"></a></span>
+<p><span>粗排后，可以使用</span><strong>交叉编码器</strong><span>，比如BERT来对候选文档进行</span><strong>深入语义排序</strong><span>，提高召回质量。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9bDJxFihATiqdPrNPC4Xkh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzOsliFRozUewFJmCnLBypb"></a></span>
+<h4 id="section-41"><span>16.5.4.2 稠密向量和稀疏向量</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzzuZNgq743USFHzV3h3hTd"></a></span>
+<p><span>参考书籍《大模型RAG实战》 第三章文本召回模型</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn94escpjevalmL7XeXBu7le"></a></span>
+<p><span>RAG系统中的文本向量检索模型大致分成两类：一类是基于</span><strong>BERT， GPT等深度学习模型</strong><span>的</span><strong>稠密向量检索模型</strong><span>，另一类是以</span><strong>TF-IDF, BM 25 为代表的稀疏向量检索模型。 稠密向量检索模型更擅长提取文本中语义信息</strong><span>，</span><strong>稀疏向量检索模型更擅长提取关键信息</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvXbnenBWg9sSs2lceuUtmh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWKQkoHG73dtpe6zf4kRRHc"></a></span>
+<h4 id="section-42"><span>16.5.4.3 对称检索和非对称检索</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNdMrKP7Hi3Ug9liVCPuhGc"></a></span>
+<p><span>参考书籍《大模型RAG实战》 第三章文本召回模型</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTCCqgJg51nSqm8ramF0sac"></a></span>
+<p><strong>对称检索是找到相似的句子</strong><span>，与向量检索基于计算向量相似度的原理天然匹配，只需要模型具有较强的内容抽象的能力即可。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndnZBr6Nr4fNbAtrNDkPDEe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwo9HzaLoz0odnQcumxB51b"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>应选择适用于query–document检索的模型，并按其要求分别编码查询与文档；不能仅凭是否使用大量问答数据判断支持与否。</p><details><summary>查看解释与参考资料</summary><p>这里把常见训练方案写成了必要条件。非对称检索首先描述短查询与长文档的任务关系，能否适用要看具体模型的训练目标、提示与实测。</p><p><a href="https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html" target="_blank" rel="noopener noreferrer">Sentence Transformers：对称与非对称语义检索 ↗</a></p></details></aside><p><strong>非对称搜索是根据问题召回答案</strong><span>，要求模型能够将问题和答案映射到同一空间，而问题和答案通常具有不同的文本结构。并非所有的向量化模型都支持非对称检索，只有经过大量问答数据的模型才能提供支持。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnl9f3fAxD82GohmkNMDJcpb"></a></span>
+<h4 id="section-43"><span>16.5.5 召回优化策略</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6n09xyKf4L7SWavbBZjdae"></a></span>
+<h4 id="section-44"><span>16.5.5.1 短文本全局信息增强</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFva2m0WX727DQ8rrhclWvb"></a></span>
+<p><span>    因为切块的过程难免会造成全局文本信息的丢失，因此我们为切块后的短文补充其所属的长文本信息。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhbBYFE6LqSf1TYqj2g1mWd"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>DAPR比较了前置文档标题、前置关键词等方法；“取前三句话”可作为另行提出的工程候选，不能在未定位原段落时归为论文结论，效果需按数据集验证。</p><details><summary>查看解释与参考资料</summary><p>DAPR论文确有标题、关键词等文档上下文实验，但本次未在论文中定位到“前三句话”这一具体做法。补充上下文也并非对所有数据集都增益。</p><p><a href="https://aclanthology.org/2024.acl-long.236.pdf" target="_blank" rel="noopener noreferrer">DAPR论文，4.2.2及6.2节 ↗</a></p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><span>    比如以论文《DAPR: A Benchmark on Document-Aware Passage Retrieval》中提到，我们可以将</span><strong>长文本的前三句话， 长文本的标题，长文本的关键词</strong><span> 作为全局信息，和切块后的文本一起保存。</span></p></details>
+<span class="source-anchor-container"><a id="src-feishu-doxcngHhBQzYeOc746xbt2KfX4c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3I1q3cDmkRjz4ElNFiHooc"></a></span>
+<h4 id="section-45"><span>16.5.5.2 召回内容上下文扩充</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnggnlKJ2ZWjhPQYwmUb2s1b"></a></span>
+<p><span>    在RAG切块的时候，对长文本切块后，可能会有较大的信息损失，因为我们从数据库中召回的通常是短文本。这时我们可以采用召回内容上下文补充的方法：</span><strong>召回的是短文本，但是输入LLM处理的是短文本的父文本（长文本）</strong><span>。 好处是既</span><strong>精准</strong><span>（基于短文本匹配），</span><strong>又完整</strong><span>（基于长文本输入）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2767utCEHXltYLYoMzgtUd"></a></span>
+<p><span>    在Langchain中，我们可以使用</span><strong>ParentDocumentRetriever</strong><span> 来完成这一功能，它使用了两个分割器，</span><strong>Parent_splitter</strong><span>和</span><strong>child_splitter</strong><span>。 前者用于确定在RAG场景下输入到大模型的父文本块的大小，后者确定从向量数据库中召回的子文本块的大小。同时还会存储父子文本块的映射关系。 当使用get_relevant_documents召回时，返回的实际上是父文本的内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnA7bmX5nZhosbdtahehs82g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBAdALOGDfYjVAvtUnMFKad"></a></span>
+<h4 id="section-46"><span>16.5.5.3 文本多向量表示</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7URz6ymbBCaatp78Wrf2ng"></a></span>
+<p><span>     在构建向量数据库的时候，可以使用多种向量来表示同一段文本。比如有一段文本A，我们不仅可以使用完整的A来生成向量，还可以使用它的</span><strong>子集</strong><span>，</span><strong>总结句</strong><span>来生成补充向量。当召回任意的补充向量对应的文本后，并不是将其输入大模型中，而是将其对应的文本A输入。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGVvx4G9BXUrVpldxoyi3ff"></a></span>
+<p><span>常见的生成补充向量的方法有：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnY5HNmKJsX4KHQGMHYrkVrh"></a></span>
+<p><strong>  文本切块: </strong><span>将原始文本切块后保存到数据库中，可以在召回时增强对更细粒度的表示。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNEJ346YpOqFujYLs2R32me"></a></span>
+<p><strong>文章摘要：</strong><span>利用LLM生成摘要。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7yzgiVPTfCM4pEQwvJKZpe"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>假设性问题：从文档生成可能的用户问题，以问题向量检索并回到原文取证。</p><details><summary>查看解释与参考资料</summary><p>后文是从文档生成可被询问的问题，名称应与生成假设答案再检索的HyDE区分。</p></details></aside><p><strong>假设性回答：</strong><span>可以利用大模型的能力，根据文本提出问题，把问题作为补充信息。这种方法的思想是用问题召回问题会比用问题召回答案更容易。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwt4CAMAMVcmmiiQ2uxNv1g"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsoWySTgFsPHidIHKl6Mz0U"></a></span>
+<h4 id="section-47"><span>16.5.5.4 内容查询优化</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOMIlcgsArip09LxxjgmOeb"></a></span>
+<p><span>     很多情况下，用户提出的内容有口语化，语义模糊，无关内容多的问题。 因此直接将问题变成向量可能和用户的真实意图不相关，从而影响RAG场景下的召回效果。因此，我们可以对用户的原始问题进行改写和扩充，再进行召回。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL0PDi7x3s5uhovkT4BAIPc"></a></span>
+<p><span>常见的对原始问题优化的方法有：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJAg4smeLZIplYr3uu1AMBv"></a></span>
+<p><span>1.使用LLM 改写和扩充，比如LangChain提供的MultiQueryRetriever就集成了这个功能。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMY9I4RwThqSp6tuI37qrqd"></a></span>
+<p><span>2.对历史问题进行总结，然后再进行召回，这个特别适用于多轮对话中。比如 </span></p>
+<div><p id="src-feishu-doxcn4KQ25keoWfFjKsCmiAgmFh"><span>    用户：中国的首都在哪里？</span></p><p id="src-feishu-doxcnUue5v89U2NUHfjsEIfx5Vd"><span>    LLM：北京</span></p><p id="src-feishu-doxcnfZmWpDQaivQJdkkO3SrTjf"><span>    用户：那里有哪些好玩的景点？</span></p><p id="src-feishu-doxcnIDDjHPxtMoTC0zpRz1YYpb"><span>    这时直接用原来的问题召回显然太模糊，如果用LLM总结后，问题就变成了北京有哪些好玩的景点。</span></p><span id="src-feishu-doxcnt8899WWih8beWEqyV2jGsf" class="source-anchor-container"><br></span></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQDQZ7Pdw6KHJk26yyWKHlf"></a></span>
+<h4 id="section-48"><span>16.5.5.5 召回文本重排序</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnisI0dTE0sSsb1f5EjXHs4g"></a></span>
+<p><span>        在RAG场景下，默认使用的是向量召回，检索效率高。但是由于文本向量化的过程中存在着信息损失，并且在召回过程无法考虑查询用户和候选文本上下文关系，因此召回精度不高。 所以在召回向量后，通常还会进行召回文本的重排序的精筛。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2Upcab6IFWl19sXx8d3buf"></a></span>
+<p><span>最常用的重排序的模型是基于</span><strong>Transformer编码器架构的交叉编码器</strong><span>。将用户查询和一段候选文本同时输入到模型之中，预测它们之间的相关性分布。使用这种方法可以考虑到用户查询和候选文本的上下文关系，因此有更高的精度。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYpTGLN0sIybQYRRYBNLSoe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn64jTOlcQVgjANTOjDouaEb"></a></span>
+<h4 id="section-49"><span>16.5.5.6 结合元数据召回</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLGHOb5655n76hFgnZUZayh"></a></span>
+<p><span>在实际场景中，很多情况我们不需要在整个向量数据库中进行召回。如果在存储文本向量的时候同时记录了每个向量相关的标签，就可以在召回时先根据标签信息过滤出所需的向量子集，有利于提高检索速率，避免检索无用的信息。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqeHOaPqEk7XYDV6R8TeXEg"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-6" data-course-correction="6"><p><strong>更正：</strong>create_metadata_tagger（按所用langchain-community版本核对导入路径与模型兼容性）</p><details><summary>查看解释与参考资料</summary><p>Python函数名区分大小写，官方接口使用小写create_metadata_tagger；还需对应langchain-community版本及支持函数调用的模型。</p><p><a href="https://reference.langchain.com/python/langchain-community/document_transformers/openai_functions/create_metadata_tagger" target="_blank" rel="noopener noreferrer">LangChain：create_metadata_tagger ↗</a></p></details></aside><p><span>现在的大模型应用框架，Langchain就基于多种向量数据库，集成了元数据写入和召回过滤的能力。我们可以使用</span><strong>Langchain的Create_metadata_tagger</strong><span>的接口，借助大模型的能力，自动生成元数据。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxG3l0DLNVV1GQYs2gO7nTM"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcntiIqLdB9yrHLtRNm1BaCrd"></a></span>
+<h4 id="section-50"><span>16.5.6 精排</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsziaAI6xUeXh6QC6kxk3ve"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcntFXnarHq1ol4GgAsoa5Lgh"></a></span>
+<p><span>第四小节的各个部分其实就是RAG最基本的模块和环节。是弄懂RAG的基础，不管是我推荐的书籍还是项目（实战都有），大家结合笔记，书籍，自己搜的资料，把这几个环节理解一下。可以多搜索视频啊，书籍来理解这些基础知识点。我这里写得不是很详细，知识概括，方便大家背诵。如果说学习的话，其实可以找我推荐的书籍啊，视频啊，自己也能找。这些都是最基础的东西，网上很多讲解。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEuVi4zWHhWrZrbKuKj5fLc"></a></span>
+<p><span>精排是 RAG 检索链路里位于召回之后的一层排序环节。粗排或者向量召回的目标是从大规模语料里快速找出一批候选文档，而精排的目标是对这批候选文档做更细粒度的相关性判断，把真正能回答问题、信息质量更高、业务上更适合进入上下文的内容排到前面。常见的精排方法主要有 Cross Encoder 精排、LLM 精排、规则精排，以及混合精排。它们都不是用来替代召回的，而是在候选集已经比较小的情况下，对候选内容进行二次排序、过滤和质量控制。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIFgpnP1LdPoPTMygGdUXch"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLH3yFPEF967XK5mvovfs9d"></a></span>
+<p><span>具体来说，Cross Encoder 会把 query 和每个候选文档拼在一起输入模型，让模型直接判断二者相关性。它的优点是语义匹配能力强，相关性分数比较稳定，适合做通用的语义相关性排序。缺点是每个候选都要单独过模型，延迟和算力成本较高，而且它主要判断语义相关，不一定能很好处理业务规则、字段完整性、时效性、来源可信度这些约束。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPV1IKZX38p5Kh0m9g5RoRh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4SOeo4S32z1nWX2ueftysf"></a></span>
+<p><span>LLM 精排可以让大模型结合问题、候选文档和业务要求做综合判断。它的优点是解释性强，也能处理复杂意图和多维标准，比如不仅判断相关，还可以判断这段内容能不能支撑最终回答。缺点是成本更高、延迟更高，输出稳定性和可控性也需要额外约束。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJlfrHc4VlLARTBTPepK1Ug"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL3DNJU8ST0nfzJI0Hwc0rd"></a></span>
+<p><span>规则精排是根据项目里的明确业务目标来打分或过滤，比如优先保留字段完整、标题匹配、时间更新、来源可靠、包含关键实体的内容。它的优点是可解释、成本低、延迟低、容易调试，也更适合把业务经验沉淀到系统里。缺点是语义泛化能力弱，规则覆盖不到的情况容易漏掉。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMsKjsFwsrnnWK78ohX5LYb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLpZK7BtGUUuSZodRU4WpOd"></a></span>
+<p><span>混合精排则是把模型相关性和规则约束结合起来。它的优点是效果更均衡，既能利用模型判断语义相关性，也能用规则保证业务可用性。缺点是工程复杂度更高，需要调权重，也需要用评估集持续验证不同策略的收益。</span></p>
+<div id="src-feishu-doxcnF7rIWJf4LFecV2XxrHZqdb"><img src="/momomian/assets/e6be0535c30c749949b1.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7L77WiK41KvwO2PWMTDZUf"></a></span>
+<h4 id="section-51"><span>16.5.7 面试问题精选</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVVrS9bv6v3EVscTXnUC8bh"></a></span>
+<h4 id="section-52"><span>16.5.7.1 Embedding 切 Chunk 应该怎么做，为什么固定长度切分经常不够？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIIRmTQQr2IAcwgdTKjD6Uc"></a></span>
+<p><strong>Embedding 切 chunk 不能只按固定长度一刀切，而是要尽量让一个 chunk 对应一个完整的语义单元。</strong><span>实际做的时候，我会</span><strong>先看文档类型</strong><span>：如果是 FAQ这类强结构化数据，本身就是完整实体，就可以一条作为一个 Document，不强行切；如果是技术文档、用户协议、SOP 这类长文本，就用递归切分，优先按标题、段落、句子切，最后才按长度兜底。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnax1kJhCB6PYkfp9a7olVmh"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-7" data-course-correction="7"><p><strong>更正：</strong>先查具体模型与分词器的输入上限，再把块长及重叠比例作为候选参数，在固定评测集上比较召回、答案支持、延迟与成本；此处数值仅作实验起点。</p><details><summary>查看解释与参考资料</summary><p>512上限、100–400最佳范围以及10%–20%重叠不能推广到整个BGE或Sentence Transformers模型家族；文中未给出支持“最佳”的对比实验。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><strong>chunk 大小也不是拍脑袋，要结合 embedding 模型的输入限制和最佳区间</strong><span>，比如很多 BGE / Sentence-Transformers 模型虽然有 512 token 上限，但最佳效果通常在 100-400 token 或几百 token 区间。太短信息不够，太长语义会被稀释。还要设置 10%-20% 的 overlap，避免关键信息刚好落在边界被切断。</span></p></details>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx008oTBamySIXGuM5g7qJh"></a></span>
+<p><strong>固定长度切分的问题是，它只保证长度，不保证语义完整</strong><span>。比如一个定义、一个步骤、一个实体画像可能被切成两半，向量表示就会变成残缺语义；或者一个 chunk 里混了多个主题，embedding 变成“平均语义”，用户问具体问题时反而召回不到。所以更好的做法是“语义优先 + 长度约束 + overlap + 评估验证”，最后用真实 query 的 hit_rate、MRR 来调 chunk size。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZAHV0DaD9tZYsHFeh5cooh"></a></span>
+<p><span>选自202604</span><span><span><a href="/momomian/lessons/feishu-3acfe382dd/#src-feishu-doxcnEzp8GDSc3cwzZgNbPWBXDd"><span> 腾讯AI Agent开发暑期实习面试</span></a></span></span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMJgCUhpzn5qlV6c5UPyWBc"></a></span>
+<h4 id="section-53"><span>16.5.7.2 硬切分在实际场景中有哪些弊端？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZvKOFflUxMS3c49LVjtzMb"></a></span>
+<p><strong>硬切分最大的问题是破坏语义边界</strong><span>。它通常按固定字符数、固定 token 数、页码或行数切分，不管文本本身的标题、段落、句子和逻辑结构，所以很容易把一个完整概念、一个操作步骤、一个接口说明切断。比如接口文档里本来应该把接口名、参数、错误码、限制条件放在一起，如果硬切分刚好切开，后面检索到的 chunk 就可能只有条件说明，却没有对应的接口上下文。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCqyoUb8sebqtPTgtVUOjAd"></a></span>
+<p><strong>第二是边界信息容易丢失</strong><span>。版本号、接口名、错误码、配置项、前置条件这类信息，如果刚好落在两个 chunk 的交界处，单个 chunk 里就没有完整证据。检索时可能两个 chunk 都和用户问题“不够像”，最后都排不上来，导致模型拿不到关键上下文。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmCbcpT8L6AMQScoqw2OpYe"></a></span>
+<p><strong>第三是会影响 embedding 的语义表达</strong><span>。这里不是说硬切分一定导致 chunk 长短不合适，而是说它只保证长度可控，不保证语义完整。一个长度合适的 chunk，如果只包含半个技术点，embedding 表达的就是残缺语义；如果一个 chunk 里混进多个主题，embedding 又会变成“平均语义”。这会导致相关和不相关结果的相似度分数拉不开，召回结果不稳定。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHVrSI6ffaK9OmqtUGnSd4b"></a></span>
+<p><strong>第四是增加后处理成本。</strong><span>切分阶段如果把段落、步骤、表格说明切碎了，后面可能还要靠 overlap、rerank、LLM 重组、上下文补全去补救。这样不仅增加计算成本和延迟，也会让整个 RAG 链路更难调试。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPlykYO9g38p7oxFkT2ld7d"></a></span>
+<p><span>选自202604</span><span><span><a href="/momomian/lessons/feishu-3acfe382dd/#src-feishu-doxcnEzp8GDSc3cwzZgNbPWBXDd"><span> 腾讯AI Agent开发暑期实习面试</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5W29UrK5uuulUeRqAO5cdg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn9BdqwnSKuvdseD5V7yKkmf"></a></span>
+<h4 id="section-54"><span>16.5.7.3 微调（模型训练）vs RAG，如何选择？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnq6j3nkGF5SuxmaOaXry5Wg"></a></span>
+<p><span>我会先区分这个项目的问题到底出在哪里。不是所有效果不好都应该重训练模型，很多时候只是知识没接上、检索没做好、规则没兜住。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWwJeAlX8yOS3FxjfaiPW5g"></a></span>
+<p><strong>如果问题主要是知识更新、企业内部资料、产品文档、政策制度、FAQ、接口说明这类外部知识缺失，我更倾向于用 RAG</strong><span>。因为这些内容变化快、可追溯性要求高，放进知识库可以随时更新，也方便引用来源。如果为了这些动态知识去微调模型，成本高、更新慢，而且模型还可能记混或者幻觉。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmqWJIp2MijI00ux0CI80vf"></a></span>
+<p><strong>如果问题主要是确定性的业务规则，比如权限判断、价格计算、流程状态流转、字段校验、风控规则、格式约束，我不会优先训练模型，而是用规则、代码、工作流或者工具调用来增强。</strong><span>因为这些东西要求稳定、可解释、可审计，不能靠模型“猜”。更适合继续做模型重训练的项目，一般是模型的能力模式本身不符合业务需求。比如模型长期不会按某种专业风格回答，不能稳定遵守某种输出格式，对领域术语理解差，分类/抽取/意图识别这类任务在大量样本上都表现不好，或者有大量高质量标注数据可以让模型学到稳定模式。这时候微调才有价值，因为它改变的是模型的行为分布，而不是临时塞几段知识。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntQwWuK1oB2YjYqnnJUQ1oc"></a></span>
+<p><span>选自202604</span><span><span><a href="/momomian/lessons/feishu-3acfe382dd/#src-feishu-doxcnEzp8GDSc3cwzZgNbPWBXDd"><span> 腾讯AI Agent开发暑期实习面试</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb6XAjWQgauP8znDOndMmXc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsjdIIWxDbPSEKI3RQRwcag"></a></span>
+<h4 id="section-55"><span>16.5.7.4 RAG 检索相关性差的原因与优化思路？</span></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnq7gtkNoFkkaME9I434uCzb"></a></span>
+<p><span>💡 </span><strong>思路：</strong><span> 这个题也不难回答，我们的RAG项目中，做了很多操作：</span><strong>RRF</strong><span>,双路检索，</span><strong>Rerank</strong><span>, 基于Metadata 过滤答案后筛选，这些做法都是在提高检索内容的相关性。同时我们在RAG知识部分，也讲解了RAG的一些高级策略，也是回答优化方向的点。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUY5ahOeGVA6gR9RQUPleqR"></a></span>
+<p><span>同时我们之前专门讲了</span><span><strong><a href="/momomian/lessons/feishu-2ba396d889/#src-feishu-doxcnuLIexZJT9vCqgUe8Csx1zb"><span>Self-RAG</span></a></strong></span><span>技术（因为面试官问如何保证系统生成回答的准确性），这几个技术都是来回答优化思路的出发点。因此即使我们没有专门准备过这个问题，但是我觉得不应该答不出来。如果从这个题目本身来说，我下面给的参考答案，其实有点多了，不过我还是没有删减，因为我觉得这些内容挺有价值的，从相关性差的原因，到如何解决，顺着整个链路把RAG系统串了起来。回答的时候，挑着说，简化着说就好了，我都列出来，是想给大家复习。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndesUgT50QoFw6XIMXVnHJA"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4Zvd5NVKQDiwVn6cPIv6jb"></a></span>
+<p><span>📝 </span><strong>答案：</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfVuGtjq4hrHUAmhDhEEr84"></a></span>
+<p><span>RAG 检索相关性差，通常不是单一环节的问题，我会沿着“</span><strong>知识入库、用户查询、候选召回、结果排序</strong><span>”这条链路逐层排查。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwu5QZqQ16AXkn9zoq7Myeg"></a></span>
+<p><strong>首先是知识入库的问题</strong><span>。比如原始文档质量不高、包含大量噪声或重复内容，或者 </span><strong>Chunk</strong><span> 切得不合理。</span><strong>Chunk</strong><span> 太大容易混入无关信息，太小又会破坏完整语义；如果标题、章节、时间、文档类型等 </span><strong>Metadata</strong><span> 没有保留下来，检索时也很难利用这些结构化信息进行过滤。另外，</span><strong>Embedding 模型</strong><span>如果不适合中文或业务领域，也会导致向量表达不准确。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBcEgqe5m8bLGk0uP2vUhfg"></a></span>
+<p><span>其次是用户 </span><strong>Query</strong><span> 本身的问题。用户的问题可能很短、存在歧义，或者使用了知识库中没有出现过的表达。对于复杂问题，如果直接把原始 </span><strong>Query</strong><span> 做一次</span><strong>向量检索</strong><span>，也可能因为包含多个意图而召回不准。这种情况可以通过 </span><strong>Query Rewrite</strong><span> 补全上下文，把口语化问题改写成更适合检索的表达；也可以通过 </span><strong>Query Decomposition</strong><span>，把复杂问题拆成多个子问题分别检索。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0DZcifVyvg8vB0uOiebDEt"></a></span>
+<p><strong>在召回阶段</strong><span>，我不会只依赖单路</span><strong>向量检索</strong><span>。</span><strong>向量检索</strong><span>擅长语义匹配，但对产品编号、专有名词和精确关键词不一定敏感；</span><strong>BM25</strong><span> 关键词检索正好可以弥补这一点。因此可以采用</span><strong>双路混合检索</strong><span>，同时执行</span><strong>向量检索</strong><span>和 </span><strong>BM25</strong><span>，再使用 </span><strong>RRF</strong><span> 根据两路结果的排名进行融合。这样既能利用语义相似性，也能保留关键词精确匹配能力，提高候选集的召回率。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2bCVdZGD8gurZbwkiekf0b"></a></span>
+<p><strong>如果业务数据带有明确的结构化条件</strong><span>，我还会在检索前或检索后使用 </span><strong>Metadata 过滤</strong><span>。例如，用户查询某个产品最新版本的使用说明，可以先按照产品型号、文档类型、版本和时间进行过滤，再进行</span><strong>向量检索</strong><span>，避免把其他产品或旧版本的内容送入候选集。这里还需要根据评测结果调整 </span><strong>Top-K</strong><span>、相似度阈值和索引参数，防止 </span><strong>Top-K</strong><span> 太小导致漏召回，或者太大引入过多噪声。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjWYTVYQnQTQ4LR2mD1vr6c"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-8" data-course-correction="8"><p><strong>更正：</strong>粗召回尽量提高覆盖率，精排序减少候选噪声；分别测量候选召回与重排后的效果。</p><details><summary>查看解释与参考资料</summary><p>有限候选的粗召回可能漏掉证据，后续重排也无法恢复未进入候选集的内容。</p></details></aside><p><span>召回之后还需要做 </span><strong>Rerank</strong><span>。向量数据库返回的相似度主要适合快速筛选候选，并不代表排序结果一定最符合用户问题。我会先通过混合检索召回较多候选，再使用 </span><strong>Cross-Encoder</strong><span> 或专门的 </span><strong>Reranker</strong><span>，让模型同时理解 </span><strong>Query</strong><span> 和每个候选 </span><strong>Chunk</strong><span>，重新计算相关性，最后只把排名靠前的内容交给大模型。整体上就是“</span><strong>粗召回保证不漏，精排序减少噪声</strong><span>”。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnD3VXEauR5B1BoPRcqvL95d"></a></span>
+<p><span>对于复杂场景，还可以引入 </span><strong>Self-RAG</strong><span> 的反馈机制。模型先判断当前问题是否需要检索，再检查检索内容是否相关、是否足以支持回答；如果证据不足，就改写 </span><strong>Query</strong><span> 或继续检索，而不是拿着低质量上下文强行生成。生成以后还可以检查回答是否忠实于检索证据，从而减少检索质量问题进一步演变成回答幻觉。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAsjTHdQ6bx6Oqx1jfhurOg"></a></span>
+<p><span>最后，这些优化不能只靠主观观察，还要通过评测集验证。检索阶段可以看 </span><strong>Context Precision</strong><span>、</span><strong>Context Recall</strong><span>、</span><strong>MRR</strong><span>、</span><strong>NDCG</strong><span> 等指标；生成阶段可以看 </span><strong>Faithfulness</strong><span> 和答案正确性。同时记录每个失败案例，判断问题究竟出在 </span><strong>Chunk</strong><span>、Embedding、</span><strong>Query</strong><span>、召回还是 </span><strong>Rerank</strong><span>，再针对性调整。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbSrbODe90ncJU6mUNq5m7g"></a></span>
+<p><span>总结来说，我的优化思路是：先提升知识和 </span><strong>Chunk</strong><span> 质量，再通过 </span><strong>Query Rewrite</strong><span> 或问题拆解改善查询，使用 </span><strong>BM25</strong><span> 与</span><strong>向量检索</strong><span>双路召回、</span><strong>RRF</strong><span> 融合，通过 </span><strong>Metadata</strong><span> 缩小范围，再利用 </span><strong>Rerank</strong><span> 精排；复杂场景下加入 </span><strong>Self-RAG</strong><span> 的</span><strong>检索与反思闭环</strong><span>，最后用离线评测指标验证优化效果。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndmhGVnq7oyRup0oje2VBSd"></a></span>
+<p><span><span><a href="/momomian/lessons/feishu-2407259c4b/#src-feishu-doxcniHdKHXE5xMaoyusgSIUbRc"><span>选自202607 宇树科技一面</span></a></span></span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx7ckpsZwM5qMqdu9ZAiu2y"></a></span></div><details class="notice" data-pagefind-ignore><summary>动手试一次 · 1 个配套例子</summary><p>这些完整教学代码已核对固定输入与结果，帮助理解本课主题；原文片段原有的上下文缺失或版本问题仍然存在。</p><ul><li><a class="text-link" href="/momomian/runnable-examples/?case=rag-evidence">有依据才回答，没有就说明 →</a><p class="small muted">从合成资料找到证据、加引用；找不到资料时不编答案。</p></li></ul></details></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-topic" class="lesson-resource-group" aria-label="主题补充（选看）"><p class="lesson-resource-label">主题补充</p><h3 class="lesson-resource-title">主题补充（选看）</h3><p class="resource-scope">按课程标题关联，帮助补充原理；不对应本课的具体代码版本或每个知识点。</p><p class="resource-topic-link"><a class="text-link" href="/momomian/lessons/feishu-8f059f0e81/#lesson-resource-1">在主讲课复习此视频 →</a><span class="reading-meta">RAG：原理、实践和应用场景</span></p><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://adp.xindoo.xyz/chapters/Chapter%2014_%20Knowledge%20Retrieval%20(RAG)/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 14 章：知识检索（RAG） <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 入门</span><p>对照检索、上下文组织和生成链路，检查证据在哪里进入回答。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="feishu-9cbff4d14e" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：RAG：RAG的重要步骤。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-feishu-9cbff4d14e-1","version":1,"type":"single","stage":"lesson","concept":"feishu-9cbff4d14e","prompt":"“2024年上海人才补贴怎么申请”在检索前应提取哪些约束？","options":[{"id":"option-1","text":"主题人才补贴、地区上海、年份2024和流程意图","reason":"检索计划要把问题中的对象和限制变成可执行条件，地区与时间可帮助筛选政策，流程意图则明确要找的内容。"},{"id":"option-2","text":"只提取“申请”二字，忽略地区年份","reason":"仅保留动词会失去政策地域与有效时间，容易检索错误版本。"},{"id":"option-3","text":"把2024当作向量维数，把上海当作文档作者","reason":"年份与地区具有问题语义，不能随意改作系统配置和作者字段。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"主题人才补贴、地区上海、年份2024和流程意图。","explanation":"检索计划要把问题中的对象和限制变成可执行条件，地区与时间可帮助筛选政策，流程意图则明确要找的内容。需要区分的是：仅保留动词会失去政策地域与有效时间，容易检索错误版本。年份与地区具有问题语义，不能随意改作系统配置和作者字段。","analysisSteps":["检索计划要把问题中的对象和限制变成可执行条件，地区与时间可帮助筛选政策，流程意图则明确要找的内容。","排除“只提取“申请”二字，忽略地区年份”：仅保留动词会失去政策地域与有效时间，容易检索错误版本。","代入案例检查：给定知识库含多地历年政策，可先过滤上海2024相关文档再查办理流程。"],"workedExample":"给定知识库含多地历年政策，可先过滤上海2024相关文档再查办理流程。","evidence":{"quote":"地区是“上海”，时间是“2024 年”","href":"/lessons/feishu-9cbff4d14e/#src-feishu-doxcnSx2vU95p6G3PjUdnQzjiFc"},"misconception":"仅保留动词会失去政策地域与有效时间，容易检索错误版本。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-9cbff4d14e/#src-feishu-doxcnSx2vU95p6G3PjUdnQzjiFc"}]},{"id":"lx-feishu-9cbff4d14e-2","version":1,"type":"single","stage":"lesson","concept":"feishu-9cbff4d14e","prompt":"用户只问“这个怎么申请”，且没有可用前文，应怎样处理？","options":[{"id":"option-1","text":"先澄清具体事项，避免强行猜测检索主题","reason":"代词缺少指向时无法确定检索对象，澄清能补齐关键条件；若前文已经明确对象，才适合利用上下文改写。"},{"id":"option-2","text":"任意选最近的一篇政策作为“这个”","reason":"没有前文就无法证明最近文章是用户目标，容易误导查询。"},{"id":"option-3","text":"同时把全部申请流程不加区分地返回","reason":"无筛选返回全部流程会增加负担，也未解决真正对象缺失。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"先澄清具体事项，避免强行猜测检索主题。","explanation":"代词缺少指向时无法确定检索对象，澄清能补齐关键条件；若前文已经明确对象，才适合利用上下文改写。需要区分的是：没有前文就无法证明最近文章是用户目标，容易误导查询。无筛选返回全部流程会增加负担，也未解决真正对象缺失。","analysisSteps":["代词缺少指向时无法确定检索对象，澄清能补齐关键条件；若前文已经明确对象，才适合利用上下文改写。","排除“任意选最近的一篇政策作为“这个””：没有前文就无法证明最近文章是用户目标，容易误导查询。","代入案例检查：给定不知用户问补贴还是报销，先问申请事项，再构造具体查询。"],"workedExample":"给定不知用户问补贴还是报销，先问申请事项，再构造具体查询。","evidence":{"quote":"如果没有上下文，系统就应该追问","href":"/lessons/feishu-9cbff4d14e/#src-feishu-doxcnisfDxOP90lvmDZiv4YkMef"},"misconception":"没有前文就无法证明最近文章是用户目标，容易误导查询。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-9cbff4d14e/#src-feishu-doxcnisfDxOP90lvmDZiv4YkMef"}]},{"id":"lx-feishu-9cbff4d14e-3","version":1,"type":"single","stage":"lesson","concept":"feishu-9cbff4d14e","prompt":"MRR 与 Hit@K 的关注点有何区别？","options":[{"id":"option-1","text":"MRR重视首个正确结果的位置，Hit@K看前K是否包含正确结果","reason":"两项指标都可观察检索效果，但MRR对首个相关结果位置敏感，Hit@K强调候选范围内有没有命中，适合从不同角度诊断。"},{"id":"option-2","text":"MRR只看回答长度，Hit@K只看文档总数","reason":"输出长度和集合总数不直接表达正确结果的排名和命中情况。"},{"id":"option-3","text":"只要前K命中，MRR就不再区分第1或第K名","reason":"首个正确结果从第1降到第K时倒数排名会改变，不能视为同分。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"MRR重视首个正确结果的位置，Hit@K看前K是否包含正确结果。","explanation":"两项指标都可观察检索效果，但MRR对首个相关结果位置敏感，Hit@K强调候选范围内有没有命中，适合从不同角度诊断。需要区分的是：输出长度和集合总数不直接表达正确结果的排名和命中情况。首个正确结果从第1降到第K时倒数排名会改变，不能视为同分。","analysisSteps":["两项指标都可观察检索效果，但MRR对首个相关结果位置敏感，Hit@K强调候选范围内有没有命中，适合从不同角度诊断。","排除“MRR只看回答长度，Hit@K只看文档总数”：输出长度和集合总数不直接表达正确结果的排名和命中情况。","代入案例检查：给定正确片段从第1降至第3，Hit@3仍命中，而倒数排名由1变为1/3。"],"workedExample":"给定正确片段从第1降至第3，Hit@3仍命中，而倒数排名由1变为1/3。","evidence":{"quote":"平均倒数排名 (MRR)","href":"/lessons/feishu-9cbff4d14e/#src-feishu-doxcnkcwNIQD6LJcQpHTd4cp4Of"},"misconception":"输出长度和集合总数不直接表达正确结果的排名和命中情况。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-9cbff4d14e/#src-feishu-doxcnkcwNIQD6LJcQpHTd4cp4Of"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-9cbff4d14e-1" disabled><legend><span class="quiet-tag">单选</span> 1. “2024年上海人才补贴怎么申请”在检索前应提取哪些约束？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-1" value="option-2"><span>只提取“申请”二字，忽略地区年份</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-9cbff4d14e-1" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-1" value="option-3"><span>把2024当作向量维数，把上海当作文档作者</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-1" value="option-1"><span>主题人才补贴、地区上海、年份2024和流程意图</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-9cbff4d14e-2" disabled><legend><span class="quiet-tag">单选</span> 2. 用户只问“这个怎么申请”，且没有可用前文，应怎样处理？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-2" value="option-1"><span>先澄清具体事项，避免强行猜测检索主题</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-2" value="option-2"><span>任意选最近的一篇政策作为“这个”</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-2" value="option-3"><span>同时把全部申请流程不加区分地返回</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-9cbff4d14e-2" value="unsure"><span>暂时不会，提交后看解析</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-9cbff4d14e-3" disabled><legend><span class="quiet-tag">单选</span> 3. MRR 与 Hit@K 的关注点有何区别？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-3" value="option-2"><span>MRR只看回答长度，Hit@K只看文档总数</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-9cbff4d14e-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-3" value="option-1"><span>MRR重视首个正确结果的位置，Hit@K看前K是否包含正确结果</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-9cbff4d14e-3" value="option-3"><span>只要前K命中，MRR就不再区分第1或第K名</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-9cbff4d14e">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="feishu-9cbff4d14e" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构根据本课原文自动整理，术语通用释义与迁移问题为本站补充。它不代表逐课人工审定或原文代码已运行。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><div class="lesson-guide-prerequisites"><h3>建议先修</h3><ul><li><a href="/momomian/roadmap/#agent">手写 Agent 与记忆</a><span class="small muted"> · 先能解释这个单元的输入、输出与限制，再阅读「RAG：RAG的重要步骤」。</span></li></ul></div><h3>这次阅读的目标</h3><ol><li>把政策查询中的主题、地区、年份和流程意图写成检索条件，并识别需要澄清的指代。</li><li>区分字符与token预算，说明标题解析、递归切分、语义切分各自负责的边界。</li><li>用首个相关结果的排名计算倒数排名，并判断同一结果是否命中Hit@K。</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>RAG</dt><dd>先从资料中取回相关内容，再将检索结果作为生成回答的上下文；检索与回答依据应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnv3CYzehb1xP4BfIYT6XMTe">回看本课上下文</a></span></dd></div><div><dt>Embedding</dt><dd>将文本等对象表示为数值向量的方法，用于比较或检索；向量相近不自动证明事实正确。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnQYTqPMXcsqJdxpsR11Hk5b">回看本课上下文</a></span></dd></div><div><dt>Chunk</dt><dd>为索引和检索划分的内容片段。片段应保留必要上下文和来源，边界需要结合资料结构选择。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnmYDzPzN97tnsspGfY2iNmd">回看本课上下文</a></span></dd></div><div><dt>Rerank</dt><dd>对已经召回的候选重新排序。重排只能处理进入候选集的内容，不能保证补回遗漏资料。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnyFuz5kWae0gPPYPDT2Hs3b">回看本课上下文</a></span></dd></div><div><dt>微调</dt><dd>在已有模型基础上继续训练，使其适应特定任务或数据。训练收益应通过独立评测判断。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnWwJeAlX8yOS3FxjfaiPW5g">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnFyuHX5Y0K7pyPOeT007PHe">回看本课上下文</a></span></dd></div><div><dt>精排与召回</dt><dd>先取回候选再筛选或排序的过程。需要区分候选覆盖与最终结果的适用性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnyf0U1YvwlOTssvxck5zcWg">回看本课上下文</a></span></dd></div><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnmYDzPzN97tnsspGfY2iNmd">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn04NL9AGy0Cz211QIH8KXBe">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcniqyeLNo0t8TcojSfN6jYWh">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnO9zuRZEHUqkUwgWrmm8R18">回看本课上下文</a></span></dd></div><div><dt>上下文窗口</dt><dd>单次模型处理所能容纳的信息范围。放进窗口的信息与存到外部数据库的信息不同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn04NL9AGy0Cz211QIH8KXBe">回看本课上下文</a></span></dd></div><div><dt>Top-k</dt><dd>按指定分数或顺序取前 k 个候选。候选数量、排序质量与回答可信度是不同问题。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnFQztYd6Bmkj2Gn0GRdnz3c">回看本课上下文</a></span></dd></div><div><dt>召回率</dt><dd>相关对象中被找回的比例。需要先定义这次任务的相关集合和标注方式。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnoclHSG6aYE9iAAkIs2B4Rf">回看本课上下文</a></span></dd></div><div><dt>精确率</dt><dd>被返回的对象中相关对象所占的比例。应与召回率及实际错误成本一起理解。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnoclHSG6aYE9iAAkIs2B4Rf">回看本课上下文</a></span></dd></div><div><dt>忠实度</dt><dd>回答是否受到给定证据支持的检查维度；证据支持与客观事实正确性并不完全相同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnAsjTHdQ6bx6Oqx1jfhurOg">回看本课上下文</a></span></dd></div><div><dt>工具调用</dt><dd>模型或策略提出结构化的操作请求，由程序校验参数与权限、执行工具并返回结果。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnmqWJIp2MijI00ux0CI80vf">回看本课上下文</a></span></dd></div><div><dt>摘要</dt><dd>压缩原始信息的表达。压缩会取舍细节，需要对照任务所需事实、纠正和约束检查遗漏。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnNEJ346YpOqFujYLs2R32me">回看本课上下文</a></span></dd></div><div><dt>LangChain</dt><dd>模型、消息、工具等应用组件的框架生态。具体接口以课程标注版本和官方文档为准。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnkGWxXSxM2WMsQaaAfAJsGg">回看本课上下文</a></span></dd></div><div><dt>HTTP</dt><dd>客户端与服务端交换请求和响应的协议；方法、状态码、响应体和业务结果分别提供信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn1FPfHa0Oi6uhCCWm1FOc8e">回看本课上下文</a></span></dd></div><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnewd82sy0fa3LPzi72MRj5c">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnuaj4qqx2buEhH6fLWjr2pe">回看本课上下文</a></span></dd></div><div><dt>Transformer</dt><dd>利用注意力等结构处理序列表示的一类模型架构。具体结构、输入与训练目标随模型而异。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnJp6gZHSP5SM9QE2L739NIg">回看本课上下文</a></span></dd></div><div><dt>Q/K/V</dt><dd>注意力计算中常用的查询、键和值表示；它们的含义依赖具体张量来源与计算位置。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnyf0U1YvwlOTssvxck5zcWg">回看本课上下文</a></span></dd></div><div><dt>BERT</dt><dd>以编码器结构和预训练目标学习文本表示的模型家族。不能仅用名称代替对具体模型任务的说明。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnOcmp0GP8smCTC26KFd7Sub">回看本课上下文</a></span></dd></div><div><dt>GPT</dt><dd>常用于生成任务的一类自回归语言模型家族；具体上下文、能力和接口取决于所用模型。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn94escpjevalmL7XeXBu7le">回看本课上下文</a></span></dd></div><div><dt>向量数据库与索引</dt><dd>组织向量并提供相似检索的系统或组件。是否支持元数据、持久化和更新取决于具体实现，需要分别核对。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnbakNbuS1erLDshdiu5dFDe">回看本课上下文</a></span></dd></div><div><dt>反思</dt><dd>对已有结果进行检查和修正的过程。自我检查不是独立验证，仍需外部标准或测试。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnbSrbODe90ncJU6mUNq5m7g">回看本课上下文</a></span></dd></div><div><dt>分词器</dt><dd>按模型约定将输入转成词元序列的组件；不同分词器的计数可能不同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcny2M1oRlQyFcbPh4yChljRd">回看本课上下文</a></span></dd></div><div><dt>命令行</dt><dd>通过文本命令操作程序的界面。先确认当前目录、输入参数和命令的实际副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn1FPfHa0Oi6uhCCWm1FOc8e">回看本课上下文</a></span></dd></div><div><dt>意图分类</dt><dd>意图分类可以看 整体准确率、精确率、召回率、F1；<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnoclHSG6aYE9iAAkIs2B4Rf">回看本课上下文</a></span></dd></div><div><dt>实体和槽位抽取</dt><dd>实体和槽位抽取可以看 Slot 精确率、Slot 召回率、Slot F1；<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnf4jcw9FphSLxH38pqUa1Th">回看本课上下文</a></span></dd></div><div><dt>指标释义</dt><dd>指标释义：❗如果还不明白就问AI，都是标准指标，也确实有点难绕。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnfzuKnumNrRn37twdr5yU4e">回看本课上下文</a></span></dd></div><div><dt>整体准确率 (Accuracy)</dt><dd>整体准确率 (Accuracy)：所有判断里预测对（包括对和错两类判定都对）的样本占总体的比例。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnVhcE8gR2psU6dhO82n3PLv">回看本课上下文</a></span></dd></div><div><dt>精确率 (Precision)</dt><dd>精确率 (Precision)：模型预测为“是”的结果里，真正正确的比例（主要防误报、防乱判）。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnZx8wg9NL84vDJ6V5lOeFac">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>原文中的代码或配置：意图识别</h3><p class="small muted">原文节选，可能截断；代码未因此获得运行验证。打开来源查看完整上下文。 <a href="#src-feishu-doxcnFyuHX5Y0K7pyPOeT007PHe">打开完整来源段落</a></p><pre class="lesson-guide-example"><code>{
+  &quot;intent&quot;: &quot;policy_query&quot;,
+  &quot;entities&quot;: [&quot;人才补贴&quot;],
+  &quot;filters&quot;: {
+    &quot;region&quot;: &quot;上海&quot;,
+    &quot;year&quot;: &quot;2024&quot;
+  },
+  &quot;needs_clarification&quot;: false,
+  &quot;route&quot;: &quot;policy_knowledge_base&quot;,
+  &quot;retrieval_strategy&quot;: &quot;metadata_filter&quot;,
+  &quot;rewrite_query&quot;: &quot;2024年上海人才补贴政策的申请条件、补贴标准和办理流程是什么？&quot;
+}</code></pre><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-9cbff4d14e-explain"><h3>1. RAG：RAG的重要步骤 · 解释</h3><p>学习「RAG：RAG的重要步骤」后，合上正文说明「意图识别」在解决什么问题。围绕原文“意图识别位于 RAG 的检索前处理阶段，核心作用是先理解用户到底想问什么，再决定后面应该如何检索。它不是简单给用户问题打一个分类标…”复述一条具体关系，并区分已知与待确认的信息。</p><label class="lesson-task-field" for="task-lesson-card-feishu-9cbff4d14e-explain">先写自己的回答<textarea id="task-lesson-card-feishu-9cbff4d14e-explain" data-lesson-task-answer="lesson-card-feishu-9cbff4d14e-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-9cbff4d14e-explain">给一点提示</button><p class="lesson-task-hint" hidden>先回忆这一段：意图识别位于 RAG 的检索前处理阶段，核心作用是先理解用户到底想问什么，再决定后面应该如何检索。它不是简单给用户问题打一个分类标签，而是要…</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">原文参考（尚未独立核验技术结论）：意图识别位于 RAG 的检索前处理阶段，核心作用是先理解用户到底想问什么，再决定后面应该如何检索。它不是简单给用户问题打一个分类标签，而是要把用户的自然语言问题转成后续 RAG 可以执行的检索计划。
+阅读检查：指出这段实际提供的步骤、关系或状态；缺少说明的部分须回到上下文或另行验证。</p><ul><li>指出「意图识别」讨论的对象或任务</li><li>复述原文中的一条具体关系：意图识别位于 RAG 的检索前处理阶段，核心作用是先理解用户到底想问什么，再决定后面应该如何检索。它不是简单给用户问题打一个分类标签，而是要把用户的自然语言问题转成后续 RAG 可…</li><li>区分原文说法与自己尚未验证的推断</li></ul><a href="#src-feishu-doxcnyf0U1YvwlOTssvxck5zcWg">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-9cbff4d14e-explain">主要错因<select id="task-error-lesson-card-feishu-9cbff4d14e-explain" data-lesson-task-error="lesson-card-feishu-9cbff4d14e-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-9cbff4d14e#lesson-card-feishu-9cbff4d14e-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-9cbff4d14e-apply"><h3>2. RAG：RAG的重要步骤 · 实现</h3><p>阅读「RAG：RAG的重要步骤」的「意图识别」节选“{ &quot;intent&quot;: &quot;policy_query&quot;, &quot;entities&quot;: [&quot;人才补贴&quot;], &quot;filters&quot;: { &quot;r…”。指出一项明确给出的参数、命令或查询条件；改变它之前需要核对哪项环境或数据前提？</p><label class="lesson-task-field" for="task-lesson-card-feishu-9cbff4d14e-apply">先写自己的回答<textarea id="task-lesson-card-feishu-9cbff4d14e-apply" data-lesson-task-answer="lesson-card-feishu-9cbff4d14e-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-9cbff4d14e-apply">给一点提示</button><p class="lesson-task-hint" hidden>先区分命令、参数、查询对象与环境前提；缺少的配置不能假定已经存在。</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">这是原文代码或配置阅读题，不代表代码已在本站运行。
+{
+  &quot;intent&quot;: &quot;policy_query&quot;,
+  &quot;entities&quot;: [&quot;人才补贴&quot;],
+  &quot;filters&quot;: {
+    &quot;region&quot;: &quot;上海&quot;,
+    &quot;year&quot;: &quot;2024&quot;
+  },
+  &quot;needs_clarification&quot;: false,
+  &quot;route&quot;: &quot;policy_knowledge_base&quot;,
+  &quot;retrieval_strategy&quot;: &quot;metadata_filter&quot;,
+  &quot;rewrite_query&quot;: &quot;2024年上海人才补贴政策的申请条件、补贴标准和办理流程是什么？&quot;
+}
+核对参数、返回/状态与外部副作用；原文没有给出的行为需用测试验证。</p><ul><li>能在来源片段定位明确参数或命令：{ &quot;intent&quot;: &quot;policy_query&quot;, &quot;entities&quot;: [&quot;人才补贴&quot;], &quot;filters&quot;: { &quot;region&quot;: &quot;上…</li><li>指出实际参数、状态或返回值中的至少一项</li><li>列出一个正常输入和一个失败/边界输入，并标明尚未执行的部分</li></ul><a href="#src-feishu-doxcnFyuHX5Y0K7pyPOeT007PHe">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-9cbff4d14e-apply">主要错因<select id="task-error-lesson-card-feishu-9cbff4d14e-apply" data-lesson-task-error="lesson-card-feishu-9cbff4d14e-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-9cbff4d14e#lesson-card-feishu-9cbff4d14e-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>原文提到「在实际场景中，用户的问题经常是不完整、口语化、依赖上下文的。比如用户问“这个怎么申请？”“它和那个有什么区别？”如果直接把原句送进…」。如果这个条件不满足，会影响「RAG：RAG的重要步骤」的哪一步？设计一个最小失败例子。</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>在实际场景中，用户的问题经常是不完整、口语化、依赖上下文的。比如用户问“这个怎么申请？”“它和那个有什么区别？”如果直接把原句送进向量数据库，很容易召回错误内容。因此在正式检索前，系统需要先判断用户的真实意图、问题中的关键对象、时间地点等限制条件，以及这个问题是否需要先澄清。</blockquote><ul><li>说明改变了哪个输入或条件</li><li>写出预期结果和验证方法</li><li>未运行时明确标注为待验证，不编造日志或指标</li></ul><a href="#src-feishu-doxcnbakNbuS1erLDshdiu5dFDe">回到原文依据</a></details><label class="lesson-task-field" for="boundary-feishu-9cbff4d14e">写下最小失败输入、预期和验证方法<textarea id="boundary-feishu-9cbff4d14e" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>将「RAG：RAG的重要步骤」迁移到一份按日期更新的员工政策知识库：遇到“相似片段过期或互相冲突”时，你会怎样调整？以本课“意图识别位于 RAG 的检索前处理阶段，核心作用是先理解用户到底想问什么，再决定后面应该如何检索。它不是简单给用户问题打一个分类标…”为依据，说明哪些信息能沿用，检查版本、检索覆盖和引用支持。</p><ul><li>指出本课中实际采用的一点：意图识别位于 RAG 的检索前处理阶段，核心作用是先理解用户到底想问什么，再决定后面应该如何检索。它不是简单给用户问题打一个分类标签，而是要把用户的自…</li><li>说明新场景与原例子的差别</li><li>留下一个输入、预期结果和可复现的检查步骤</li></ul><label class="lesson-task-field" for="transfer-feishu-9cbff4d14e">解释哪些能复用，哪些要重新验证<textarea id="transfer-feishu-9cbff4d14e" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>不看原文说明「意图识别」的作用与适用范围</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>能指出示例的输入/状态/返回，并区分代码阅读与实际运行</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>完成两次主动回忆并记录一个边界或失败问题</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>写下产物、验证方法和仍未确认的内容</span></label></fieldset><label class="lesson-task-field" for="artifact-feishu-9cbff4d14e">产物、实际验证与未决问题<textarea id="artifact-feishu-9cbff4d14e" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=feishu-9cbff4d14e#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=feishu-9cbff4d14e">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/lessons/tencent-010-eb81779983/"><small>返回本单元主讲</small><span>RAG从入门到精通：一、概览：Indexing（索引构建：把知识装进&quot;大脑&quot;）</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1" class="nested">16.5 RAG的重要步骤</a><a href="#section-2" class="nested">16.5.1 意图识别</a><a href="#section-3" class="nested">16.5.2 输入文件处理</a><a href="#section-4" class="nested">16.5.2.1 整体处理逻辑</a><a href="#section-5" class="nested">16.5.2.2 步骤一：文件基础体检</a><a href="#section-6" class="nested">16.5.2.3 步骤二：逐页判断类型</a><a href="#section-7" class="nested">16.5.2.4 步骤三：按页面类型解析</a><a href="#section-8" class="nested">16.5.2.5 步骤四：统一结果</a><a href="#section-9" class="nested">16.5.2.6 步骤五：结果检查</a><a href="#section-10" class="nested">16.5.2.7 讲解视频</a><a href="#section-11" class="nested">16.5.3 切割</a><a href="#section-12" class="nested">16.5.3.1 基本概念</a><a href="#section-13" class="nested">16.5.3.2 常见分块策略</a><a href="#section-14" class="nested">16.5.3.2.1 固定长度分块</a><a href="#section-15" class="nested">16.5.3.2.2 递归分块</a><a href="#section-16" class="nested">16.5.3.2.3 结构化分块</a><a href="#section-17" class="nested">16.5.3.2.4 语义分块</a><a href="#section-18" class="nested">16.5.3.2.5 命题分块</a><a href="#section-19" class="nested">16.5.3.3 分块选型技巧和原则</a><a href="#section-20" class="nested">16.5.3.3.1 核心原则：先选主策略，再调分块粒度</a><a href="#section-22" class="nested">16.5.3.3.2 第一步：根据文档结构选择主分块策略</a><a href="#section-23" class="nested">16.5.3.3.3 第二步：根据检索目标确定 Chunk 粒度</a><a href="#section-24" class="nested">16.5.3.3.4 第三步：使用默认方案建立实验基线</a><a href="#section-25" class="nested">16.5.3.3.5 第四步：根据召回问题定向调整</a><a href="#section-26" class="nested">16.5.3.3.6 第五步：通过评测确定最终方案</a><a href="#section-27" class="nested">16.5.3.4 常见面试问题</a><a href="#section-28" class="nested">16.5.3.4.1 常见的分块策略有哪些？各自有什么优缺点？</a><a href="#section-29" class="nested">16.5.3.4.2 你的项目中是如何确定分块策略的？</a><a href="#section-30" class="nested">16.5.3.4.3 RAG 的 Chunking 策略如何设计？遇到过哪些问题？如何调整？</a><a href="#section-31" class="nested">16.5.3.4.4 手写算法：按照句子边界进行文本分块，避免截断句子</a><a href="#section-32" class="nested">16.5.3.4.5 技术文档的相关内容跨越多个 Chunk，应该如何优化？什么时候需要扩充上下文？</a><a href="#section-33" class="nested">16.5.3.4.6 你的文档分块会使用滑动窗口吗？滑窗长度一般是多少？</a><a href="#section-34" class="nested">16.5.3.4.7 你的系统中有没有使用更高级的召回或分块方案？</a><a href="#section-35" class="nested">16.5.3.4.8 Embedding 切 Chunk 应该怎么做？为什么固定长度切分经常不够？</a><a href="#section-36" class="nested">16.5.3.4.9 硬切分在实际场景中有哪些弊端？</a><a href="#section-37" class="nested">16.5.3.4.10 为什么内部文档需要设置 chunk_size=1000 ？1000 是不是太大了？</a><a href="#section-38" class="nested">16.5.3.5 视频讲解</a><a href="#section-39" class="nested">16.5.4 召回</a><a href="#section-40" class="nested">16.5.4.1 召回的常用策略</a><a href="#section-41" class="nested">16.5.4.2 稠密向量和稀疏向量</a><a href="#section-42" class="nested">16.5.4.3 对称检索和非对称检索</a><a href="#section-43" class="nested">16.5.5 召回优化策略</a><a href="#section-44" class="nested">16.5.5.1 短文本全局信息增强</a><a href="#section-45" class="nested">16.5.5.2 召回内容上下文扩充</a><a href="#section-46" class="nested">16.5.5.3 文本多向量表示</a><a href="#section-47" class="nested">16.5.5.4 内容查询优化</a><a href="#section-48" class="nested">16.5.5.5 召回文本重排序</a><a href="#section-49" class="nested">16.5.5.6 结合元数据召回</a><a href="#section-50" class="nested">16.5.6 精排</a><a href="#section-51" class="nested">16.5.7 面试问题精选</a><a href="#section-52" class="nested">16.5.7.1 Embedding 切 Chunk 应该怎么做，为什么固定长度切分经常不够？</a><a href="#section-53" class="nested">16.5.7.2 硬切分在实际场景中有哪些弊端？</a><a href="#section-54" class="nested">16.5.7.3 微调（模型训练）vs RAG，如何选择？</a><a href="#section-55" class="nested">16.5.7.4 RAG 检索相关性差的原因与优化思路？</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>

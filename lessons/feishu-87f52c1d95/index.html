@@ -1,0 +1,595 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="默默面 momomian：学习 Agent 课程，整理自己的面试题，与老师一起审核，在独立回忆中逐步掌握。"><meta name="color-scheme" content="light dark"><link rel="icon" href="/momomian/favicon.svg" type="image/svg+xml"><title>Harness Engineering：Harness 思想的运用 · 默默面 momomian</title><meta name="momomian-base" content="/momomian/"><script>(function(){const base = "/momomian/";
+
+  if (base !== '/') {
+    const map = value => typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') && value !== base.slice(0,-1) && !value.startsWith(base) ? base.slice(0,-1) + value : value;
+    const nativeFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => nativeFetch(typeof input === 'string' && (!input.startsWith('/api/') || input.startsWith('/api/lesson-cards/')) ? map(input) : input, init);
+    const attributes = ['href','src','action','poster'];
+    const adapt = root => {
+      if (!(root instanceof Element) && root !== document) return;
+      const elements = root instanceof Element ? [root,...root.querySelectorAll('[href],[src],[action],[poster]')] : [...document.querySelectorAll('[href],[src],[action],[poster]')];
+      for (const element of elements) for (const attribute of attributes) {
+        const before = element.getAttribute(attribute), after = map(before);
+        if (before !== after) element.setAttribute(attribute, after);
+      }
+    };
+    new MutationObserver(records => { for (const record of records) if (record.type === 'attributes') adapt(record.target); else for (const added of record.addedNodes) adapt(added); }).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:attributes});
+    document.addEventListener('DOMContentLoaded',()=>adapt(document),{once:true});
+    document.addEventListener('click',event=>{ const link=event.target instanceof Element ? event.target.closest('a[href]') : null; if(link)adapt(link); },true);
+  }
+})();</script><script>try { document.documentElement.dataset.theme = localStorage.getItem('agent-handbook-theme') || 'light'; } catch {}</script><link rel="stylesheet" href="/momomian/_astro/shell._wNgNrOU.css"><link rel="stylesheet" href="/momomian/_astro/lesson-learning.CsCgtMtr.css"><link rel="stylesheet" href="/momomian/_astro/video-recommendations.BCKBam8e.css"><link rel="stylesheet" href="/momomian/_astro/_id_.B15Sou8z.css"></head><body data-lesson-id="feishu-87f52c1d95"><a class="skip-link" href="#main-content">跳转到正文</a><header class="topbar" data-pagefind-ignore><a class="brand momomian-brand" href="/momomian/" aria-label="默默面 momomian 首页"><img src="/momomian/favicon.svg" width="34" height="34" alt=""><span><strong>默默面</strong><small>momomian</small></span></a><span class="local-label">学习与面试空间</span><div class="topbar-actions"><button class="search-trigger" data-open-search aria-label="搜索知识点"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7"></path></svg><span>搜索知识点</span><kbd aria-hidden="true">Ctrl K</kbd></button><button class="icon-button reading-open-button" data-open-reading aria-label="阅读设置" title="字号与阅读设置">Aa</button><button class="icon-button" id="theme-toggle" aria-label="切换深色模式" title="切换主题">◐</button><a class="account-link" data-account-link href="/momomian/login/"><span data-account-label>登录</span></a><button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" aria-expanded="false">☰</button></div></header><aside class="sidebar" id="sidebar" data-pagefind-ignore><nav aria-label="主导航"><a class="nav-link" href="/momomian/"><span aria-hidden="true">⌂</span>学习首页</a><a class="nav-link selected" href="/momomian/path/" aria-current="page"><span aria-hidden="true">▤</span>课程</a><div class="training-nav"><p class="nav-caption" id="training-nav-title">学习空间</p><div role="group" aria-labelledby="training-nav-title"><a class="nav-link" href="/momomian/coding/">手写代码训练</a><a class="nav-link" href="/momomian/interviews/">课程面试题</a><a class="nav-link" href="/momomian/practice/">选择题</a></div></div><a class="nav-link" href="/momomian/interview-training/"><span aria-hidden="true">◈</span>面试训练</a><a class="nav-link" href="/momomian/interview-review/"><span aria-hidden="true">☑</span>审核</a><a class="nav-link" href="/momomian/wiki/"><span aria-hidden="true">◎</span>Agent 百科</a><a class="nav-link" href="/momomian/learning/"><span aria-hidden="true">◇</span>学习记录</a><a class="nav-link" href="/momomian/settings/"><span aria-hidden="true">⚙</span>设置</a></nav><details class="sidebar-directory sidebar-modules"><summary>课程资料</summary><a class="module-nav" href="/momomian/path/">按主题学习</a><a class="module-nav" href="/momomian/library/?view=search&topic=all">查找全部课程与资料</a><a class="module-nav" href="/momomian/resources/">视频与中文章节</a><details open><summary>本主题单元</summary><details><summary>岗位能力地图与备考深度</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-872e863177/" data-record-id="feishu-872e863177">大模型岗位介绍</a><a href="/momomian/lessons/feishu-e8556c6409/" data-record-id="feishu-e8556c6409">大模型岗位介绍：不同岗位技术侧重点和面试技巧</a><a href="/momomian/lessons/feishu-4ba62ef841/" data-record-id="feishu-4ba62ef841">大模型岗位介绍：算法工程师</a><a href="/momomian/lessons/feishu-f2ddc84a7a/" data-record-id="feishu-f2ddc84a7a">大模型岗位介绍：大模型开发工程师</a><a href="/momomian/lessons/feishu-0c0c182e9c/" data-record-id="feishu-0c0c182e9c">大模型岗位介绍：大模型数据工程师</a><a href="/momomian/lessons/feishu-7c9d61a0c3/" data-record-id="feishu-7c9d61a0c3">大模型岗位介绍：推理工程师</a><a href="/momomian/lessons/feishu-30cc2018e8/" data-record-id="feishu-30cc2018e8">大模型岗位介绍：垂直领域微调工程师</a></details></div></details><details><summary>FDE岗位与真实交付</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3eb172c30b/" data-record-id="feishu-3eb172c30b">大模型岗位介绍：FDE（前线部署工程师）</a></details></div></details><details><summary>真实项目选择、经历和综合答疑</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-e0bf2395a7/" data-record-id="feishu-e0bf2395a7">前言：经验之谈</a><a href="/momomian/lessons/feishu-60292f9aa5/" data-record-id="feishu-60292f9aa5">答疑</a></details></div></details><details><summary>项目选题、产品形态与有界自我改进论述</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-a77120c97d/" data-record-id="feishu-a77120c97d">提升简历通过率，做深项目</a><a href="/momomian/lessons/feishu-1fc275882c/" data-record-id="feishu-1fc275882c">提升简历通过率，做深项目：2026年真正有价值的AI项目</a><a href="/momomian/lessons/feishu-337c761ed9/" data-record-id="feishu-337c761ed9">提升简历通过率，做深项目：2026年 Agent 新形态</a><a href="/momomian/lessons/feishu-4b68e7620b/" data-record-id="feishu-4b68e7620b">提升简历通过率，做深项目：RSI 进展</a></details></div></details><details><summary>预约、后训练及RAG项目的深化与事实证据</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-8c218425d9/" data-record-id="feishu-8c218425d9">项目使用和简历编写</a><a href="/momomian/lessons/feishu-990141b9a7/" data-record-id="feishu-990141b9a7">项目使用和简历编写：后训练项目</a><a href="/momomian/lessons/feishu-dc3dca6864/" data-record-id="feishu-dc3dca6864">项目使用和简历编写：RAG 项目</a></details></div></details><details><summary>项目必要性、自主性与Workflow答辩</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-8e7d22cdf4/" data-record-id="feishu-8e7d22cdf4">面试官压力项目应对方案</a><a href="/momomian/lessons/feishu-a111e65a39/" data-record-id="feishu-a111e65a39">面试官压力项目应对方案：你的就是个workflow，还能叫Agent吗？</a><a href="/momomian/lessons/feishu-0faae20217/" data-record-id="feishu-0faae20217">面试官压力项目应对方案：传统方法就能做，你用Agent做有必要吗？</a><a href="/momomian/lessons/feishu-5ae8e0818b/" data-record-id="feishu-5ae8e0818b">面试官压力项目应对方案：面试问题</a><a href="/momomian/lessons/feishu-5efcb86056/" data-record-id="feishu-5efcb86056">面试官压力项目应对方案：Agent的Agentic 性质体现在哪里？</a></details></div></details><details><summary>项目难题、端到端架构和个人贡献追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-1eaee24319/" data-record-id="feishu-1eaee24319">项目难题与面试复盘</a><a href="/momomian/lessons/feishu-1df54d766d/" data-record-id="feishu-1df54d766d">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）：面试前突击</a></details></div></details><details><summary>框架取舍与底层机制问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-b4ee0f86f9/" data-record-id="feishu-b4ee0f86f9">Agent开发框架：面试真题</a></details></div></details><details><summary>ReAct、工具、记忆和场景设计问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-1eb7018a6b/" data-record-id="feishu-1eb7018a6b">ReAct</a><a href="/momomian/lessons/feishu-c49fcee408/" data-record-id="feishu-c49fcee408">Function Calling</a><a href="/momomian/lessons/feishu-e37922f7a8/" data-record-id="feishu-e37922f7a8">Agent的记忆功能</a><a href="/momomian/lessons/feishu-301390ca94/" data-record-id="feishu-301390ca94">Agent场景题</a></details></div></details><details><summary>Agent必要性、工具贡献与基础编码题</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-0078fac0fa/" data-record-id="feishu-0078fac0fa">面试真题（开发方向）</a><a href="/momomian/lessons/feishu-141fe7e7d6/" data-record-id="feishu-141fe7e7d6">面试真题（开发方向）：滴滴Agent开发工程师</a><a href="/momomian/lessons/feishu-2407259c4b/" data-record-id="feishu-2407259c4b">面试真题（开发方向）：宇树科技Agent开发</a></details></div></details><details><summary>RAG、微调、多Agent规模与选型证据追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-72e778069d/" data-record-id="feishu-72e778069d">面试真题（开发方向）：京东零售平台算法开发</a><a href="/momomian/lessons/feishu-7149f20e12/" data-record-id="feishu-7149f20e12">面试真题（开发方向）：2025.11网龙科技</a><a href="/momomian/lessons/feishu-99dc3e8706/" data-record-id="feishu-99dc3e8706">面试真题（开发方向）：平安证券</a><a href="/momomian/lessons/feishu-d728f65e7a/" data-record-id="feishu-d728f65e7a">面试真题（开发方向）：小红书</a><a href="/momomian/lessons/feishu-a5977303c0/" data-record-id="feishu-a5977303c0">面试真题（开发方向）：英伟达大模型Agent开发</a></details></div></details><details><summary>上下文与长期记忆面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-003-1a022ddecb/" data-record-id="tencent-014-003-1a022ddecb">上下文管理与记忆：多 Agent / 多异步任务下，如何防止上下文污染？</a><a href="/momomian/lessons/tencent-014-003-90adc147fe/" data-record-id="tencent-014-003-90adc147fe">上下文管理与记忆：Agent 是怎么实现上下文记忆的？</a><a href="/momomian/lessons/tencent-014-003-9dad0b32d7/" data-record-id="tencent-014-003-9dad0b32d7">上下文管理与记忆：上下文管理是怎么做的，如何进行记忆？</a><a href="/momomian/lessons/tencent-014-003-e0b00f84e5/" data-record-id="tencent-014-003-e0b00f84e5">上下文管理与记忆：如何构建工具实现 memory 记忆，让大模型在长期对话中学习用户习惯？</a><a href="/momomian/lessons/tencent-014-003-cb6686b2eb/" data-record-id="tencent-014-003-cb6686b2eb">上下文管理与记忆：对 Cursor 记忆管理机制的了解</a><a href="/momomian/lessons/tencent-014-003-2ec5ef5f15/" data-record-id="tencent-014-003-2ec5ef5f15">上下文管理与记忆：Memory 上下文记忆功能的处理逻辑</a><a href="/momomian/lessons/tencent-014-003-9f1e98b6d0/" data-record-id="tencent-014-003-9f1e98b6d0">上下文管理与记忆：如何进行记忆管理，怎么处理长上下文，怎么进行持久化，后续怎么读取和关联？</a><a href="/momomian/lessons/tencent-014-003-d0afa3f60f/" data-record-id="tencent-014-003-d0afa3f60f">上下文管理与记忆：你的向量记忆库是如何更新用户画像的？如何区分短期记忆和长期记忆？</a><a href="/momomian/lessons/tencent-014-003-15a815a7c4/" data-record-id="tencent-014-003-15a815a7c4">上下文管理与记忆：记忆更新时能否精准替换指定片段，还是需要全量清空重建？</a><a href="/momomian/lessons/tencent-014-003-fe4b62ac04/" data-record-id="tencent-014-003-fe4b62ac04">上下文管理与记忆：存储时如果出现前后不一致的情况如何解决？</a><a href="/momomian/lessons/tencent-014-003-32683631eb/" data-record-id="tencent-014-003-32683631eb">上下文管理与记忆：多轮对话的实现方案</a></details></div></details><details><summary>会话记忆、恢复与并发压缩竞态</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-d30b8751ef/" data-record-id="feishu-d30b8751ef">面试真题（开发方向）：灵动时刻</a><a href="/momomian/lessons/feishu-f8ef41cf34/" data-record-id="feishu-f8ef41cf34">面试真题（开发方向）：腾讯AI Agent暑期实习</a><a href="/momomian/lessons/feishu-1b42a824e3/" data-record-id="feishu-1b42a824e3">面试真题（开发方向）：虾皮 AIAgent暑期实习面经</a></details></div></details><details><summary>工具、协议及多Agent面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-004-6ac6505f31/" data-record-id="tencent-014-004-6ac6505f31">Tool Calling / Function Call / MCP：你了解的 Tool 调用机制是怎样的？</a><a href="/momomian/lessons/tencent-014-004-5f2ceaebb5/" data-record-id="tencent-014-004-5f2ceaebb5">Tool Calling / Function Call / MCP：介绍一下 Function Call 原理，模型生成的 JSON 如何通过逻辑触发表层代码执行并返回给模型？</a><a href="/momomian/lessons/tencent-014-004-5e3a437e28/" data-record-id="tencent-014-004-5e3a437e28">Tool Calling / Function Call / MCP：MCP 协议的核心内容、介绍一下 MCP</a><a href="/momomian/lessons/tencent-014-004-5c910b113d/" data-record-id="tencent-014-004-5c910b113d">Tool Calling / Function Call / MCP：MCP 和 Skill 的区别，二者谁占用上下文窗口比较大？</a><a href="/momomian/lessons/tencent-014-004-66ba807714/" data-record-id="tencent-014-004-66ba807714">Tool Calling / Function Call / MCP：Skills 是怎么实现的，Skills 和 MCP 区别，怎么使用它们？</a><a href="/momomian/lessons/tencent-014-004-284571d6a1/" data-record-id="tencent-014-004-284571d6a1">Tool Calling / Function Call / MCP：Tool 层怎么定义的？Tool 层具体在 Agent 运行中是怎么被调用的？</a><a href="/momomian/lessons/tencent-014-004-a12ba166ff/" data-record-id="tencent-014-004-a12ba166ff">Tool Calling / Function Call / MCP：如何不用多智能体方案让 1000 个 Tools 正常工作？</a><a href="/momomian/lessons/tencent-014-004-4f54ebb622/" data-record-id="tencent-014-004-4f54ebb622">Tool Calling / Function Call / MCP：如果 MCP 特别多的话要怎么管理？</a><a href="/momomian/lessons/tencent-014-004-f222b19f4a/" data-record-id="tencent-014-004-f222b19f4a">Tool Calling / Function Call / MCP：特定推理模型不支持 MCP 的技术原因</a><a href="/momomian/lessons/tencent-014-004-b2db61c2e0/" data-record-id="tencent-014-004-b2db61c2e0">Tool Calling / Function Call / MCP：如何让大模型格式化输出消息，以及 Pydantic 相比 Prompt Engineering 在工程上的优势？</a><a href="/momomian/lessons/tencent-014-004-9b4330f3d9/" data-record-id="tencent-014-004-9b4330f3d9">Tool Calling / Function Call / MCP：A2A 协议、A2A 与 MCP 区别</a><a href="/momomian/lessons/tencent-014-004-3602596498/" data-record-id="tencent-014-004-3602596498">Tool Calling / Function Call / MCP：谈谈对 A2A 通信的理解。在 A2A 场景下，如何防止两个 Agent 陷入递归对话？</a><a href="/momomian/lessons/tencent-014-005/" data-record-id="tencent-014-005">Multi-Agent</a><a href="/momomian/lessons/tencent-014-006/" data-record-id="tencent-014-006">ReAct / 反思 / 任务规划</a></details></div></details><details><summary>MCP兼容、handoff与现场开源项目阅读</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9f98d898ee/" data-record-id="feishu-9f98d898ee">面试真题（开发方向）：字节跳动（抖音）</a><a href="/momomian/lessons/feishu-56174b693a/" data-record-id="feishu-56174b693a">面试真题（开发方向）：阿里国际站</a><a href="/momomian/lessons/feishu-eb349b3908/" data-record-id="feishu-eb349b3908">面试真题（开发方向）：盛大AI</a></details></div></details><details><summary>工具往返、Responses评估与图算法</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5188201aa8/" data-record-id="feishu-5188201aa8">面试真题（开发方向）：字节跳动（豆包）</a></details></div></details><details><summary>端侧量化与动态工具暴露</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-5c48d98478/" data-record-id="feishu-5c48d98478">面试真题（开发方向）：Deepwisdom</a></details></div></details><details><summary>小模型分工、时间运算与前缀缓存</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c6ba154587/" data-record-id="feishu-c6ba154587">面试真题（开发方向）：阿里夸克千问</a></details></div></details><details><summary>多Agent架构问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3ca003789f/" data-record-id="feishu-3ca003789f">Multi-Agent 架构：面试问题</a></details></div></details><details><summary>评测与上线经历问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-f902dfdaa5/" data-record-id="feishu-f902dfdaa5">Agent评测：面试问题汇总</a><a href="/momomian/lessons/feishu-7324428422/" data-record-id="feishu-7324428422">Agent项目上线问题</a></details></div></details><details><summary>可靠性、模型、部署及应用设计面试</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/tencent-014-007/" data-record-id="tencent-014-007">异常处理 / 安全 / 熔断</a><a href="/momomian/lessons/tencent-014-008/" data-record-id="tencent-014-008">幻觉与评测</a><a href="/momomian/lessons/tencent-014-009/" data-record-id="tencent-014-009">Prompt 工程</a><a href="/momomian/lessons/tencent-014-010/" data-record-id="tencent-014-010">模型相关</a><a href="/momomian/lessons/tencent-014-011/" data-record-id="tencent-014-011">工程化与部署</a><a href="/momomian/lessons/tencent-014-012/" data-record-id="tencent-014-012">Agent 场景设计题</a></details></div></details><details><summary>后端服务化、压测和异步问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c959650ff7/" data-record-id="feishu-c959650ff7">按需深入：后端与服务化</a><a href="/momomian/lessons/feishu-f06d39781d/" data-record-id="feishu-f06d39781d">按需深入：后端与服务化：面试真题</a></details></div></details><details><summary>金融业务架构、边界与欺诈决策闭环</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-cdb0087f2b/" data-record-id="feishu-cdb0087f2b">面试真题（开发方向）：华林证券</a><a href="/momomian/lessons/feishu-ffb96801c5/" data-record-id="feishu-ffb96801c5">面试真题（开发方向）：滴滴Agent开发</a></details></div></details><details><summary>Windows/C++资源生命周期与AI运行链路</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-c1e19a157f/" data-record-id="feishu-c1e19a157f">面试真题（开发方向）：联想</a></details></div></details><details><summary>系统模块、个人分工与完成状态核验</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-2149c749e9/" data-record-id="feishu-2149c749e9">面试真题（开发方向）：深圳边端智能研究院大模型应用岗位</a><a href="/momomian/lessons/feishu-2086c96f4e/" data-record-id="feishu-2086c96f4e">面试真题（开发方向）：米连科技</a></details></div></details><details><summary>校招/转行项目的逐层实现一致性追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3acfe382dd/" data-record-id="feishu-3acfe382dd">面试真题（开发方向）：字节大模型开发暑期实习一面</a><a href="/momomian/lessons/feishu-83572da16d/" data-record-id="feishu-83572da16d">面试真题（开发方向）：安克暑期实习</a></details></div></details><details><summary>修复率基线、样本分布与Judge校准</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-9407209664/" data-record-id="feishu-9407209664">面试真题（开发方向）：阿里淘天秋招大模型开发</a></details></div></details><details><summary>模块化RAG项目长篇追问</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-ff8b85db3d/" data-record-id="feishu-ff8b85db3d">模块化RAG项目：面试真题</a></details></div></details><details open><summary>Harness方案、失败诊断与工程经验问答</summary><div class="lesson-nav"><details open><summary>补充与参考</summary><a href="/momomian/lessons/feishu-87f52c1d95/" class="current" aria-current="page" data-record-id="feishu-87f52c1d95">Harness Engineering：Harness 思想的运用</a><a href="/momomian/lessons/feishu-66f128b6c9/" data-record-id="feishu-66f128b6c9">Harness Engineering：面试问题速览</a></details></div></details><details><summary>Loop与Graph热点的工程判断</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-6aca377ead/" data-record-id="feishu-6aca377ead">Loop Engineering &amp; Graph工程</a><a href="/momomian/lessons/feishu-bf46788725/" data-record-id="feishu-bf46788725">Loop Engineering &amp; Graph工程：Graph 工程</a></details></div></details><details><summary>Pi与OpenClaw架构面试复盘</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-a61d80101e/" data-record-id="feishu-a61d80101e">开源框架解读 - PI-Agent：面试问题</a><a href="/momomian/lessons/feishu-46f3b40b7e/" data-record-id="feishu-46f3b40b7e">开源框架解读 - Openclaw：面试问题</a></details></div></details><details><summary>Hermes与DSH的源码架构问答</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-39aa485705/" data-record-id="feishu-39aa485705">开源框架解读 - Hermes Agent：面试问题</a><a href="/momomian/lessons/feishu-e1735cd571/" data-record-id="feishu-e1735cd571">开源框架解读- DeepSeek Harness：面试问题</a></details></div></details><details><summary>编程Agent机制口述与源码证据</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-013d790598/" data-record-id="feishu-013d790598">1Claude Code 从入门到精通：面试问答 Q&amp;A</a></details></div></details><details><summary>模型家族、特性与生态的历史问答参考</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-67ef783c54/" data-record-id="feishu-67ef783c54">简单介绍一下千问模型？</a><a href="/momomian/lessons/feishu-3c6683ca0b/" data-record-id="feishu-3c6683ca0b">简单介绍一下Gemini3模型？</a><a href="/momomian/lessons/feishu-d8dbe24001/" data-record-id="feishu-d8dbe24001">不同模型的对比和选择</a><a href="/momomian/lessons/feishu-65475e33b4/" data-record-id="feishu-65475e33b4">不同模型的对比和选择：热门模型特点介绍</a></details></div></details><details><summary>备考策略与简历：选材、表达、定稿和反馈</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-b83945d562/" data-record-id="feishu-b83945d562">简历编写技巧</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-39b488044d/" data-record-id="feishu-39b488044d">面试准备建议</a><a href="/momomian/lessons/feishu-aeffaf910c/" data-record-id="feishu-aeffaf910c">简历编写技巧：第二部分：动笔取舍</a><a href="/momomian/lessons/feishu-ab05bfe325/" data-record-id="feishu-ab05bfe325">简历编写技巧：第三部分：模块写法</a><a href="/momomian/lessons/feishu-5cf0f7db7c/" data-record-id="feishu-5cf0f7db7c">简历编写技巧：第四部分：表达打磨</a><a href="/momomian/lessons/feishu-2de4bcc2b8/" data-record-id="feishu-2de4bcc2b8">简历编写技巧：第五部分：定稿提交</a><a href="/momomian/lessons/feishu-fd239916a0/" data-record-id="feishu-fd239916a0">简历编写技巧：第六部分：反馈修改</a><a href="/momomian/lessons/feishu-00889b761f/" data-record-id="feishu-00889b761f">项目使用和简历编写：简历示范</a></details></div></details><details><summary>岗位搜索、人类确认投递与记录管理</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-116f52c0ef/" data-record-id="feishu-116f52c0ef">简历投递技巧</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-925a819008/" data-record-id="feishu-925a819008">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）：简历投递</a></details></div></details><details><summary>自我介绍、反问与岗位匹配判断</summary><div class="lesson-nav"><a href="/momomian/lessons/feishu-eac36b80fc/" data-record-id="feishu-eac36b80fc">自我介绍</a><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-3610908248/" data-record-id="feishu-3610908248">反问</a></details></div></details><details><summary>个人求职过程记录与来源边界</summary><div class="lesson-nav"><details><summary>补充与参考</summary><a href="/momomian/lessons/feishu-388d54fd82/" data-record-id="feishu-388d54fd82">真实面试过程记录（面试前突击技巧，简历投递方法等，我的真实经历供大家参考）</a></details></div></details></details></details><div class="sidebar-bottom"><p data-cloud-status>正在读取账户状态…</p><a href="/momomian/settings/#data">数据与同步</a></div></aside><div id="sidebar-shade" hidden></div><main id="main-content" class="main reader-main" tabindex="-1"><aside id="startup-notice" class="startup-notice" hidden aria-labelledby="startup-notice-title" data-pagefind-ignore data-astro-cid-flwl6xmi><div class="startup-notice-heading" data-astro-cid-flwl6xmi><p id="startup-notice-title" data-astro-cid-flwl6xmi><strong data-astro-cid-flwl6xmi>本次使用了新的学习地址</strong></p><button type="button" class="icon-button" data-dismiss-startup-notice aria-label="关闭学习地址提示" data-astro-cid-flwl6xmi>×</button></div><p data-astro-cid-flwl6xmi>学习进度按地址分别保存。原来的记录没有删除，但不会自动显示在新地址中。</p><dl data-astro-cid-flwl6xmi><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>原学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-previous data-astro-cid-flwl6xmi></code></dd></div><div data-astro-cid-flwl6xmi><dt data-astro-cid-flwl6xmi>本次学习地址</dt><dd data-astro-cid-flwl6xmi><code data-startup-current data-astro-cid-flwl6xmi></code></dd></div></dl><details data-astro-cid-flwl6xmi><summary data-astro-cid-flwl6xmi>查看恢复方法</summary><ol data-astro-cid-flwl6xmi><li data-astro-cid-flwl6xmi>如果其他程序占用了原端口，先关闭那个程序。在项目根目录运行下方命令，回到原学习地址。</li><li data-astro-cid-flwl6xmi>在原地址打开“我的”，导出学习备份。</li><li data-astro-cid-flwl6xmi>回到本次学习地址，导入刚才的备份。导入前可查看备份内容，并保留当前记录。</li></ol><pre data-astro-cid-flwl6xmi><code data-startup-command data-astro-cid-flwl6xmi></code></pre><p data-astro-cid-flwl6xmi>启动器不会自动关闭其他程序，也不会迁移或清空学习记录。</p></details><a class="text-link" href="/momomian/learning/#backup" data-astro-cid-flwl6xmi>导入学习备份 →</a></aside><script type="module">function e(e){let t;try{t=new URL(e)}catch{return}if(t.protocol!==`http:`||t.hostname!==`127.0.0.1`||t.username||t.password)return;let n=t.searchParams.getAll(`previous-learning-port`);if(n.length!==1||!/^[1-9]\d{0,4}$/.test(n[0]))return;let r=Number(n[0]),i=Number(t.port||80);if(!(r>65535||i<1||i>65535||r===i))return{previousPort:r,previousOrigin:new URL(`http://127.0.0.1:${r}/`).origin,currentOrigin:t.origin,command:`powershell -NoProfile -ExecutionPolicy Bypass -File .\\start-site.ps1 -Port ${r}`}}function t(e){let t=new URL(e);return t.searchParams.delete(`previous-learning-port`),`${t.pathname}${t.search}${t.hash}`}if(typeof document<`u`){let n=document.getElementById(`startup-notice`),r=e(location.href);if(n&&r){let e=n.querySelector(`[data-startup-previous]`),i=n.querySelector(`[data-startup-current]`),a=n.querySelector(`[data-startup-command]`);e&&i&&a&&(e.textContent=r.previousOrigin,i.textContent=r.currentOrigin,a.textContent=r.command,n.hidden=!1,n.querySelector(`[data-dismiss-startup-notice]`)?.addEventListener(`click`,()=>{n.hidden=!0,history.replaceState(history.state,``,t(location.href)),document.getElementById(`main-content`)?.focus({preventScroll:!0})}))}}</script><div class="reader-grid"><div class="reader-column"><nav class="breadcrumb" data-pagefind-ignore><a href="/momomian/path/">课程</a><span>/</span><a href="/momomian/path/?topic=career">职业与面试</a></nav><article data-pagefind-body><header class="lesson-header"><p class="lesson-number">参考 · 按需查阅</p><h1 data-pagefind-meta="title">Harness Engineering：Harness 思想的运用</h1><div class="lesson-meta"><span>约 28 分钟</span><a href="/momomian/path/">查看课程目录</a></div><span class="sr-only"></span></header><section class="lesson-current-task" data-pagefind-ignore aria-label="本课学习任务"><p class="small muted" id="lesson-browse-mode">自由查阅 · 不改变当前学习任务</p><h2>按顺序学完这一课</h2><p class="small muted">所属单元：Harness方案、失败诊断与工程经验问答 · 补充与参考，不计入零基础主线</p><button class="button primary" id="start-this-lesson" data-start-task="lesson" data-task-id="feishu-87f52c1d95" data-task-title="Harness Engineering：Harness 思想的运用" data-task-href="/lessons/feishu-87f52c1d95/" data-task-step="阅读本课目标与例子">把这一课设为当前学习</button><ol class="lesson-session-steps"><li><a href="#lesson-source-body" data-lesson-step="阅读本课材料">阅读材料</a></li><li><a href="#lesson-course-quiz" data-lesson-step="完成本课小测">完成小测</a></li><li><a href="#lesson-finish" data-lesson-step="回忆与结束本课">结束本课</a></li></ol><a class="text-link" href="#lesson-core-example">先看入门例子</a><nav class="lesson-mobile-tools" aria-label="阅读工具快捷入口"><a href="#lesson-reader-panel">目录</a><a href="#lesson-note">记笔记</a></nav></section><details class="notice" data-pagefind-ignore><summary>示例的适用版本与注意事项</summary><p>90%、2–5 倍与5–10倍 token、固定50%压缩、单代理普遍更强及反思 ROI 最高等结论缺少本课可复核实验条件；三次/五步等只是作者经验。</p></details><section class="notice curriculum-unit" data-pagefind-ignore><p class="small muted">职业与面试 / Harness方案、失败诊断与工程经验问答</p><a class="text-link" href="/momomian/path/?topic=career&amp;unit=unit-career-641c9140">查看本单元讲解、练习和补充 →</a></section><!-- The original source and historical records stay available under their existing anchors. --><section class="lesson-course-intro" aria-labelledby="lesson-core-title" data-pagefind-ignore><h2 id="lesson-core-title">本课目标</h2><ul><li>按查询形态选择词法、语义或结构化检索，并比较实际结果。</li><li>为长任务设计结果文件、反馈与检查门禁，记录预算和并发边界。</li></ul><section id="lesson-core-example" class="lesson-core-example" tabindex="-1" aria-labelledby="lesson-core-example-title"><h3 id="lesson-core-example-title">本课机制与检查方向</h3><p class="small muted">先用这个入门例子理解流程，再看下方完整讲解。</p><p class="lesson-example-flow">按本课建议，按明确函数名定位普通代码时应先尝试什么？
+结论：grep 等轻量关键词搜索。
+理由：精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度。
+配套示例：假设要找 get_user_profile 的定义，先按名称检索，再读取相关文件。
+
+本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？
+结论：需要考虑同义表达的语义检索。
+理由：用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。
+配套示例：假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。</p><a class="text-link" href="#lesson-source-body">继续阅读本课 →</a></section></section><section><h2 id="lesson-explanation-title" class="lesson-explanation-title">知识点讲解</h2><details class="notice" data-pagefind-ignore data-source-example-guide><summary>本课示例怎么用</summary><p>本课包含 1 个代码或示例块。运行代码前，请核对接口版本、依赖和完整上下文。</p><p>1 个块用于展示输出、图示或文字说明，可直接阅读，无须作为独立程序执行。</p><a class="text-link" href="/momomian/practice/?lesson=feishu-87f52c1d95#choices">先做对应的动手练习 →</a></details><div class="prose" id="lesson-source-body"><h3 id="section-1"><strong>4.4 Harness 思想的运用</strong></h3>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5We7Z9wELuOx5RK8Mihtzg"></a></span>
+<p><span>本期视频来源：Raj 的 "Engineering Coding Harnesses Deep Dive" 视频精读。我觉得这个视频是一个很好的视频，因为他足够细节，讲解了Harness在日常工作的应用，并且这些结论他做了实验，看了论文来支撑它。这个视频让我们更好的理解如何在日常使用Harness工程的思想，对应的一些最佳实践。我看完觉得这是非常好的视频，</span><strong>对面试，实战，做项目都有极大帮助！</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqrMeHfSHOJ1hzzP9twV28c"></a></span>
+<p><span>所以我也是反复看了几遍，总结出来了要点，也录制了一个讲解视频。因为原视频是英文，所以如果觉得看这不方便，结合笔记和我录制的讲解视频看就行，不用去看原视频了。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnDDeVoe39cnZZflKq1Y5Uef"></a></span>
+<p><span>这一节从四个方面： </span><strong>Retrieval / Context &#x26; Memory / Loops &#x26; Tools / Orchestration</strong><span> 来讲解了Harness工程在我们使用AI，或者说构造AIAgent应用过程中的具体做法。这里面每一个部分，给出的建议都特别具体。这一小节，结合了大量面试问题讲解，消化好这一部分对于面试非常有帮助。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoRvBt3HPRP4L6PsFmOBoaf"></a></span>
+<h4 id="section-2"><strong>4.4.1 Retrieval（检索）</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn42p8krJyH14oqO0EwoxUjg"></a></span>
+<h4 id="section-3"><strong>4.4.1.1 背景 / 基础知识</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSR9Qwkf5ULidX9Zv22Y3zg"></a></span>
+<p><span>我们需要根据自己的任务场景，来提供给 AI 检索的工具。虽然 Claude Code 里其实内置了 Grep 工具，但 Claude Code 是通用的，而我们的任务是定制的。这是一个实用的建议——不管你是使用 AI 还是构建 AI，都可以想一下：什么样的检索工具对我的场景是合适的？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6G7ucfRJKaAAnQBopmJgvf"></a></span>
+<p><span>举个例子：如果你的项目是一个超大型项目（比如 100GB 代码库），直接让 Claude Code 用 grep 线性扫盘会很慢；这时候你可能要给它建立一个 BM25 倒排索引，再以 Skill 的形式装上去让 CC 调用这个搜索工具。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQNgLSzGQd1sN2ybYBzkppg"></a></span>
+<p><span>检索工具从"词法"到"语义"是一条谱系，不是非此即彼：</span></p>
+<div id="src-feishu-doxcnn7PpTzkIbaA8AXL4dnmdzh"><img src="/momomian/assets/19619ee895e3fea6b987.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2kKlQQ7jp4NXB3cuLK7qnh"></a></span>
+<p><span>视频里 Raj 跑的实验是"</span><strong>Agentic + 纯 BM25</strong><span>"反超了"</span><strong>One-shot + embedding 切块</strong><span>"，但这是"embedding 从必选变可选"，不是"BM25 取代 embedding"。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnOGwboKT9h6P6YL9zWiNHUb"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQf8CfkZ7em7WOGfVc7IkNc"></a></span>
+<p><span>注：表中 ">5GB / >10w" 等具体阈值是工程经验值，源视频只笼统说 "as you get more and more files"。下方"最佳实践建议"沿用同一组阈值。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnFqr3Phub0pxvcE8ItBe0Gd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn41lp9mbavsHRp2UXJk1gTU"></a></span>
+<h4 id="section-4"><strong>4.4.1.2 最佳实践建议</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnV7yZ54vWKUGJxi0uNlQ1lc"></a></span>
+<p><span>- </span><strong>默认 grep 起手</strong><span>：90% 的代码搜索靠 grep 就够，不要一上来就上向量库。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcniHeEc6O4LTkPM6yiEAO0sc"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-1" data-course-correction="1"><p><strong>更正：</strong>使用明确的 BM25 库建立倒排索引，并封装为 Agent 工具；普通 ripgrep 用于直接文本搜索。</p><details><summary>查看解释与参考资料</summary><p>这不是官方常规 ripgrep 索引命令，不能据此建立 BM25 索引；需使用独立索引实现或说明具体扩展。</p><p><a href="https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md" target="_blank" rel="noopener noreferrer">ripgrep official guide ↗</a></p></details></aside><p><span>- </span><strong>代码库 > 5GB 或文件数 > 10w，加 BM25</strong><span>：典型做法是包一个 SKILL（封装 <code>ripgrep --index</code> 或开源 BM25 库），让模型像调工具一样用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwKN45SC2HEgYwg0BunSrUe"></a></span>
+<p><span>- </span><strong>跨语言/跨同义词的查找才用 embedding</strong><span>：比如查"用户鉴权相关代码"，关键词散在 <code>auth/login/session/jwt</code>——这种 case 上 semantic search。日常代码定位别用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4AihEzn7dBaMHl3vCK5Pob"></a></span>
+<p><span>- </span><strong>配好模型（Opus/GPT-5 级别）就上 Agentic RAG</strong><span>：让模型自己重写 query、按文件级别迭代，比预先 chunk 切片更准；前提是你愿意多花 2–5x token。底层用 BM25 / embedding / 混合都可以。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEvWVHVRt4ZUXt7iyMBNuVd"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-2" data-course-correction="2"><p><strong>更正：</strong>优先保留必要的文件级关系；大文件可按结构选段或切块，不能固定认为整文件总优于片段。</p><details><summary>查看解释与参考资料</summary><p>整文件能保留关系，但大文件可能超预算或引入噪声，应按查询、文件结构和上下文预算比较。</p></details></aside><details class="lesson-source-before-correction"><summary>查看更正前的原段落</summary><p><span>- </span><strong>文件级 > chunk 级</strong><span>：能不切块就不切块，整文件交给模型，避免上下文撕裂。</span></p></details>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuXrV5z6eK1DWTflfZaeLPb"></a></span>
+<p><span>- </span><strong>什么时候迁数据库</strong><span>：当你需要"按 author 过滤 + 按 commit 时间排序 + 按路径匹配"这种 </span><strong>metadata join</strong><span> 时，才考虑结构化索引/数据库；纯文本搜索别上 DB。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcno3pkYCLkW9y9GImcC8fkUf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnR64cAdKTvLTQivYFiTNkSb"></a></span>
+<h4 id="section-5"><strong>4.4.1.3 面试问题</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYIMDMTAA2LyBQSoGJy6Ivb"></a></span>
+<p><strong>Q1：Harness 工程对你的工程实践、使用模型有什么启发？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnF9HJu2rrlqnVTFKw4S0b0c"></a></span>
+<p><span>最大的启发是：</span><strong>不要把通用 AI 工具当万能工具，而要根据业务场景给它配检索工具</strong><span>。Claude Code 内置的 grep 在通用场景下够用，但任何严肃业务都是定制的——代码库可能有 100GB，文档可能跨多个仓库，查询可能带 metadata 过滤。这时通用工具会很慢甚至搜不到。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMfgLiDwEy1QAwQ0Hqnhdpf"></a></span>
+<p><span>落到具体做法是三步：1) 先看任务量级和查询形态——文件多大、查询是纯文本还是带字段过滤；2) 按谱系选工具——grep / BM25 / embedding / 结构化 DB，能用轻的就不上重的；3) 用 Skill 把这个定制工具封装好让 agent 调用。这其实是 harness 工程的核心——agent 的能力上限不只取决于模型，更取决于你给它配的工具链。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUYWkZkJmzps2MiuI7Qtbyd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGRiCUPCo1nE6BMT2gIkD7b"></a></span>
+<p><strong>Q2：如何看待 RAG 的发展趋势？会不会被取代？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4yt4RGNdx8Mqr1hHRWK5Yb"></a></span>
+<p><span>我的判断是</span><strong>至少目前没有被取代，但它在 stack 里的位置变了</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjFKMy3CDWG4tJCysWLPPnd"></a></span>
+<p><span>首先，现在的趋势确实不再是"什么场景都先上 RAG"：1) 一般中小项目，</span><strong>grep / BM25 + 模型自身能力</strong><span>就能解决大部分检索问题，Claude Code 默认就是这套；2) 即使在高级场景，有实验表明 </span><strong>Agentic RAG（哪怕底层只用 BM25）也能反超传统切块 + embedding RAG</strong><span>——这说明随着模型变强，"语义近似"这层不一定非要靠 embedding 来做，模型自己重写 query 就行。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKRDEgZa2NKtCdVhfDoLMoe"></a></span>
+<p><span>但这不等于 RAG 被取代：1) </span><strong>范式上</strong><span>，Agentic RAG 本身就是 RAG，只是把"一次检索"换成"迭代检索"；2) </span><strong>工具上</strong><span>，embedding 在跨语言、跨同义词、海量文档场景仍是性价比最高的选择；3) </span><strong>架构上</strong><span>，企业级场景往往需要 metadata join，这又得叠结构化数据库 + RAG 的混合方案。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnt1JBYnmGMugTG7F3d625Ah"></a></span>
+<p><span>所以更准确的说法是：RAG 没被取代，而是</span><strong>从"默认必选"降级成"按需启用的一档"</strong><span>。判断要不要用，看三个条件：模型强度、文档规模、查询是否需要跨同义词或跨字段。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6uqZacZFC5eI0juFMg3Fbc"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvBHQJFoSABxBdgqNasWyWc"></a></span>
+<h4 id="section-6"><strong>4.4.2 Context &#x26; Memory（上下文与记忆）</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwZuGJNCXlU5uyn2p8Gquz5"></a></span>
+<h4 id="section-7"><strong>4.4.2.1 背景</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnB0AFnibjxSolWS0sLW6fsY"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-3" data-course-correction="3"><p><strong>更正：</strong>有效窗口应通过目标任务评测确定，不能把 30–50% 当作所有模型的可靠上限。</p><details><summary>查看解释与参考资料</summary><p>可靠比例依模型、任务和信息位置而变，本课未提供支撑通用阈值的评测。</p></details></aside><p><span>虽然主流模型号称 1M token 上下文，但实测</span><strong>填越多越退化</strong><span>——通常超过一半就开始丢信息。所以"有 1M 窗口"≠"能用 1M 窗口"，真正能可靠使用的往往只有前 30–50%。这就引出一个问题：信息越来越多（长对话、错误日志、跨会话的项目知识），但能放进窗口的就这么多，</span><strong>该把什么放进来、什么放出去、什么留到下次</strong><span>？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoVXwqXu7HjaT1FiQRY4Wnd"></a></span>
+<p><span>视频博主把这件事拆成三层记忆来处理：</span><strong>Active Context Window、Working State、Durable Memory</strong><span>。下面就只讲清楚这三层各自负责什么。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnifOes9VwZDVDao5lyIXWed"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMQliPIl58WyYMtCelhPdph"></a></span>
+<p><span>关于记忆的分类有很多说法（短期/长期、工作记忆/情景记忆等），笔记里讲开源架构（CC、OpenHands、Claude Code）时也各有各的叫法。本质都是一回事，只是切分粒度不同。本节更重要的还是使用这些记忆背后的最佳实践和蕴含的思想。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnquA8ElLrUz4H6IrytwSxie"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1q7rsHsCBIjs88Jj3Um1kc"></a></span>
+<h4 id="section-8"><strong>4.4.2.2 基础知识：三层记忆分别干什么</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcngydA6emY5lRJ99MtcpL9Cm"></a></span>
+<p><strong>Layer 1：Active Context Window（当前上下文）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcng3ZURRkiwyhYe58jsTI6Rb"></a></span>
+<p><span>就是这一轮 API 调用真正发给模型的那段 token。它的职责是</span><strong>管好"现在"</strong><span>——决定这次推理时模型眼前能看到什么。因为窗口会退化，所以这一层的核心工作是"瘦身"：用 sliding window 只保留最近几轮、用 compaction 把老对话压成摘要、用 rewind 把走错的分支直接砍掉，避免错误内容继续占着窗口。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZwTrze7RkgQPcB0srinnUh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnplxJjQ4P3Np9CMjQG2iVqh"></a></span>
+<p><strong>Layer 2：Working State（临时工作文件）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPgAAEtE19lB4jb9IfmD2pd"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnESZxFUmGX4eicatqKej3We"></a></span>
+<p><span>和跨会话记忆相同的地方都是用外部文件存储。不同的地方在于这个是给当前对话用的，当前对话用完就丢。而长期记忆的文件是跨会话的。这里其实对我们做Agent有一个启示，就是不要什么东西都往上下文塞，我们可以把一些结果保存在磁盘，运行的时候动态查找。因为上下文很宝贵。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAQ5KsvsF1e3VkQGiIsqQbe"></a></span>
+<p><span>任务进行中、但塞不进窗口的中间状态，落到</span><strong>文件系统</strong><span>里。它的职责是</span><strong>管好"这次任务"</strong><span>——给 agent 一个比 context window 大得多的"草稿纸"。最典型的就是 <code>plan.md</code> / <code>todo.md</code>：让 agent 边做边勾选，目标不会在长循环中走丢。再激进一点是 Recursive Language Models 范式：把所有历史都落盘，用 Python REPL 按需检索，相当于"无限上下文"。任务结束这层就可以扔掉。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0lJ7Axt0EswjTSYxRr69gb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAIOMze4ZPw6a5qMp03VcIc"></a></span>
+<p><strong>Layer 3：Durable Memory（跨会话长期记忆）</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyC1GDnxpcLJILMtXH0zKzd"></a></span>
+<p><strong>跨会话</strong><span>留下来的知识，下次开新会话还能用。它的职责是</span><strong>管好"这个项目/这个 agent"</strong><span>——把经验沉淀下来不要每次重学。两种主流形态：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbNJXU7mt5KHpjbsDzDoocc"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-4" data-course-correction="4"><p><strong>更正：</strong>按宿主文档确认 AGENTS.md 的支持、作用域与加载方式。</p><details><summary>查看解释与参考资料</summary><p>指令文件支持、加载范围及注入位置依宿主而定，不能保证所有框架均如此。</p></details></aside><p><span>- </span><strong>AGENTS.md</strong><span>：项目级事实（构建命令、目录约定、坑），主流 harness 都会自动注入 system prompt。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYx0QRJA4MrSHZJar7RO1bd"></a></span>
+<p><span>- </span><strong>Skills</strong><span>：博主把SKILL定义成了新的一种Agent的持久记忆的表现形式。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGhzrm3nCNxBrYeU2K7ZFEg"></a></span>
+<p><span>三层是</span><strong>自下而上递进</strong><span>的：窗口装不下 → 落到 working files；任务结束还想留 → 升级成 durable memory。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1qpx1LYZlW8ZeY6QuKaxeh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5DJLiXNg1LPizYbilHIWrf"></a></span>
+<h4 id="section-9"><strong>4.4.2.3 最佳实践建议</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIDEdJ5asGqq1triqIBYtWf"></a></span>
+<p><span>按三层记忆分别给出操作建议，</span><strong>自下而上</strong><span>对应"管现在 / 管这次任务 / 管这个项目"：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7tRjrcLOgNLCFbNThkjvtb"></a></span>
+<p><strong>Layer 1：Active Context Window —— 管好"现在"</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmzlkyuQRxOwijRIPhfGkUd"></a></span>
+<p><span>- </span><strong>主动管理上下文</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrti2MsOE1vAuDdRQzOS0zd"></a></span>
+<ol>
+<li><span>主动压缩上下文，不要等满了再压缩，因为模型能力会随着窗口增大而退化。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLAWP4mF1qwUGTmWpazblgf"></a></span>
+<ol start="2">
+<li><span>不要过于依赖模型的compaction, 因为很多compaction是黑盒，你不知道它发生了什么。另外主动压缩，指定它保留哪些信息，是好的工程实践（主动使用claude code的/compaction，后面加上参数，指定compaction的时候保留哪些信息。(关于这两个指令，不明白的也可以参考这两个文章：</span><span><span><a href="https://x-sir.blog.csdn.net/article/details/159156069" target="_blank" rel="noopener noreferrer"><span>Claudecode compaction指令</span></a></span></span><span>，</span><span><span><a href="https://www.zhihu.com/question/2001668790279245831" target="_blank" rel="noopener noreferrer"><span>rewind指令</span></a></span></span><span> )</span></li>
+</ol>
+<div id="src-feishu-doxcnM6ZfQHtDYXFzKEEnHoJSig"><img src="/momomian/assets/94469714a3b161c5ae2f.png" alt="原文学习图示（点击放大）" loading="lazy" decoding="async"></div>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuSTPTmshdUoGSuXXwrbObb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnfnSW1Fqyr0oLoSPaQ5emVe"></a></span>
+<pre><code class="language-text">/compact 保留所有架构决策和待办事项。
+</code></pre>
+<span class="source-anchor-container"><a id="src-feishu-doxcnz1rZ5WUwXQzoPQ6IRuhfCc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnuPhXj3yBGZhxNM67tXQujc"></a></span>
+<ol start="3">
+<li><span>只保留关键的信息在上下文，避免挤爆上下文。比如长 stack trace、20000 行日志先在 Agent 层截断/抽取关键帧再喂回去。使用Claudecode的rewind功能，直接把走错的分支砍掉，不要让错误信息继续占着窗口。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkXMVMfJ3VD51c5whFSto5b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3kGNDd7102wEIstFHuiJUR"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVECGyNtnRESpjUHLvPSWU3"></a></span>
+<p><span>这些原则其实对我们实践也好，做Agent应用也好都有帮助。包括面试官问你使用CC有什么心得？你觉得ClaudeCode比其他coding工具好用在哪里，都是我们面试的素材，我们后面会展示。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAWZYzzrAMtUtoOcU3fGXxf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZ0cKN0G1ugp0EojQqRXXUh"></a></span>
+<p><strong>Layer 2：Working State —— 管好"这次任务"</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxJwog3KLCweV16k0tbvTae"></a></span>
+<p><span>- </span><strong>长任务先写一个 todo markdown</strong><span>：把计划落盘成 <code>plan.md</code> / <code>todo.md</code>，让 agent 每完成一步勾选；避免任务在长循环中丢目标。（Langchain的Deep Agent就是这么做的）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnd9z86Qg2seUos5fWCFUROe"></a></span>
+<p><span>- </span><strong>能落盘就别塞上下文</strong><span>：中间产物（搜索结果、抓取的网页、生成的代码片段）写文件，让 agent 按需读，不要全堆进窗口。上下文很贵，磁盘很便宜。（博主举了一个例子，让Agent 所有历史落盘，用 Python REPL 按需检索，相当于给 agent 一张"无限大草稿纸"  相比不使用这个技巧，效果更好）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZqSYkAHOiTk4JAaY1WkeRe"></a></span>
+<p><span>- </span><strong>任务结束就清理</strong><span>：working files 是一次性的，任务完成后归档或删除，别让它污染下一次任务。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBFmtP3xZDHsoRGi7QACOYb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnE529wfDC8kZMoqWKjiqcEh"></a></span>
+<p><strong>Layer 3：Durable Memory —— 管好"这个项目 / 这个 agent"</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnB9zwLojiIykzwTplfDUVXg"></a></span>
+<p><span>- </span><strong>AGENTS.md 铁律</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaum8pTC0PJP90mFOkvp5Zb"></a></span>
+<ol>
+<li><span>手写不自动生成；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHSB2Vcoq4FsUpM4mD36LEd"></a></span>
+<ol start="2">
+<li><span>只写"项目特有的事实"（构建命令、目录约定、坑），不写通用编程知识；</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQNvw8VpOu6hyOoB9bOATlf"></a></span>
+<ol start="3">
+<li><span>Boris(CC的开发者）建议每次大模型升级或每季度复盘一次，删掉过时条目。（也许这个写得有点夸张，不过定期检查Agent.md是一个很好的习惯）</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmEKQewWyn4NEeUU9FFkISf"></a></span>
+<ol start="4">
+<li><span>Agents.md写废话，反而会误导模型。 具体这里可以参考笔记论文部分。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZSz6hUMEV6lYSKdEki7bqd"></a></span>
+<p><span>- </span><strong>写 Skill 的判定标准</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntvZLN4k2mHW4fa5nqd8Rpg"></a></span>
+<ol>
+<li><span>同一类操作做过 3 次以上 + 步骤超过 5 步 + 通用模型容易做错 —— 才值得沉淀成 Skill。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXwUoo9H4BLADEadyrpeRXK"></a></span>
+<p><span>2. </span><strong>Skill 建议配上 eval</strong><span>：如果你的SKILL写了很多模型已经知道的废话，反而会降低模型性能。所以可以给每个 Skill 准备一个小评测集，定期跑 </span><strong>with skill vs without skill</strong><span> 两组对照；模型升级后重跑，发现负贡献立刻下线（旧 Skill 可能被新模型的原生能力 superseded）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJlw0EqNIMfQJWTIQgNk7Nh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIviHgeuwS878pOaqlT5Dug"></a></span>
+<h4 id="section-10"><strong>4.4.2.4 面试问题</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYwRzsbWypTyMAnSomNhimg"></a></span>
+<p><strong>Q1：请你分享一下使用 Claude Code 的小技巧。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7t8b81QWKdEAloLL7Y8xIh"></a></span>
+<p><span>我用下来最大的心得是：</span><strong>要主动管理上下文，别赌模型自己能管好</strong><span>。这件事的底层原因是——虽然现在主流模型号称 1M token 窗口，但实测填得越满模型越退化，可靠的部分往往只有前 30%~50%。所以"窗口大"不等于"能用满"，主动瘦身是必须的。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5giVd92GLdL7OdKOs9Rfae"></a></span>
+<p><span>落到 Claude Code 上，我常用两个原生功能：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnX8jnmwe3uwqPf0VHmrjFJh"></a></span>
+<p><span>1. </span><strong><strong>主动 <code>/compact</code> 而不是等它自己压</strong></strong><span>：CC 自带的自动 compaction 是黑盒，你不知道它丢了什么。我的做法是在上下文用到 50% 左右就主动触发，而且 <code>/compact</code> 后面加参数，明确告诉它"保留所有架构决策和待办事项"——指定要保留什么比让它自己挑要靠谱得多。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8FjwW7RzTVwR8lgdpjMutb"></a></span>
+<p><span>2. </span><strong>走错路用 Rewind（双击 ESC）直接砍掉</strong><span>：如果模型沿着错误方向跑了几轮，最忌讳的就是"说服它改回来"——因为错误的推理过程已经污染上下文了，再多解释只是叠 buff。Rewind 是直接把那段分支从历史里删掉，相当于"假装没发生过"，比纠错干净得多。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZ6bTwATZg14hsBs9AS4RXd"></a></span>
+<p><span>更普适的原则是：长 stack trace、几千行日志这种噪声，不要原样塞回窗口；要么截断要么先落盘再按需读。</span><strong>上下文是稀缺资源，要像管显存一样管它。</strong></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcniUvcWLTF0XzmiOEUr7ynzb"></a></span>
+<p><strong>Q2：Harness 工程给你使用 AI 工具带来什么启示？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqZaNUFjLLqCpscPqUlLK3f"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbbzHKgyMUtdR4aUDb89zwf"></a></span>
+<p><span>根据本章学习的内容，总结两个可参考方向的回答。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIVpIcGqo4MzjwIXToeBVyh"></a></span>
+<p><strong>版本一（记忆管理视角）</strong><span>：我想谈一下关于Agent记忆管理的一些心得，我把Agent的记忆分成三层：1.上下文窗口 2.临时工作文件 3.持久记忆。在使用它们的时候，谈一下我的心得：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRXnQln3fEdpmXi0OYfQFFh"></a></span>
+<ol>
+<li><span>上下文窗口非常宝贵，我们需要很小心管理他，同时虽然现在模型的窗口越来越大，最大的上下文可以支持1M，但是当上下文增大，模型性能也会退化，所以我们不必等到上下文满了再压缩，可以在上下文50%的时候，主动压缩。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbpqsEeJGOKLyBlMX4A5Nxh"></a></span>
+<ol start="2">
+<li><span>临时工作文件这一层，我们让AI存一些当前任务的中间产物，比如搜索结果，长日志。我们不把他放在上下文中，而是放在磁盘里，因为磁盘很便宜。通过Agent搜索磁盘文件，可以让Agent处理很久之前的任务记录，同时也不污染上下文。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLxcY4zU1fj1UnRM34pWOdf"></a></span>
+<ol start="3">
+<li><span>持久记忆常见的有Agent.md和Skill.我们应该手动写Agent.md，不要依赖AI生成。同时对于SKILL，如果同一操作重复超过3次以上，我们应该建立SKILL，但也应该建立测试集评估SKILL，因为模型升级，或者SKILL过啰嗦，也会影响Agent的性能，所以定期检查SKILL是一个好习惯。</span></li>
+</ol>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWNb31Aom4BcsVAw8puvNwg"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnPeavfrFvjg3n8NLKzyNlib"></a></span>
+<p><strong>版本二（AGENTS.md 管理视角）</strong><span>：最大启示是</span><strong>项目级知识要外化，但要克制</strong><span>。以前我习惯把所有约定写在 README 里靠人脑记，现在我会用 <code>AGENTS.md</code> 把"项目特有的事实"喂给 agent——构建命令、目录约定、踩过的坑。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMgk6FlyTZ1iMcx29wt60o8"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-5" data-course-correction="5"><p><strong>更正：</strong>在论文的指定任务与模型设置中，上下文文件增加了超过 20% 的推理成本；结果不能直接推广为所有项目。</p><details><summary>查看解释与参考资料</summary><p>论文报告的是推理成本增加超过 20%，不能直接改称 token 数；成功率变化也限论文任务和模型。</p><p><a href="https://arxiv.org/html/2602.11988v1" target="_blank" rel="noopener noreferrer">Evaluating AGENTS.md v1 ↗</a></p></details></aside><p><span>但管理 <code>AGENTS.md</code> 有几条铁律我是踩坑学到的，最近也有一篇论文 </span><em>Evaluating AGENTS.md — Are Repository-Level Context Files Helpful for Coding Agents?</em><span>（arxiv 2602.11988）做了实证支撑：作者在 AGENTBENCH 上对比"无 context file / LLM 自动生成 / 人类手写"三档设置，发现 </span><strong>LLM 自动生成的 AGENTS.md 反而让任务成功率下降 ~3%、token 消耗上升 ~20%</strong><span>，人工手写也只有 +4% 的提升。原因是 context file 里每一条额外要求都是一个约束，Agent 会认真履行但同时也分散了注意力。所以我的做法是：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSZZXnBTHF6OEelpK5FJ9Hd"></a></span>
+<p><span>1. </span><strong>手写不自动生成</strong><span>——自动生成的 <code>AGENTS.md</code> 充斥废话，论文实验里直接成了负贡献；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzpoH2DzHU3hjLeQPIO33Mf"></a></span>
+<p><span>2. </span><strong>只写项目特有的事实</strong><span>——构建命令、测试命令、特定工具（如"用 uv 不用 pip"）这类 AI 猜不到的；目录结构、"保持代码整洁"这类废话不要写，AI 自己知道；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnabdpBBPHeaN6B9O7dbLltg"></a></span>
+<p><span>3. </span><strong>定期复盘删过时条目</strong><span>——模型升级后，老的"提醒"可能反而成为干扰；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpmuciDCx8d4BfoP57LTXae"></a></span>
+<p><span>4. </span><strong>简洁第一，少即是多</strong><span>——<code>AGENTS.md</code> 写得越长，注入 system prompt 的开销越大，而且容易稀释关键信息。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhgBktIBI0aZRplkt1o9uBc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCMekd3B8UcRvtnbAKZzl9f"></a></span>
+<p><span>这件事让我意识到：harness 不是越多上下文越好，而是</span><strong>信号-噪声比</strong><span>的工程。</span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4GsvzPtBzBQv8UYytf0uwb"></a></span>
+<p><strong>Q3：使用 Skill 有什么心得吗</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntG07p3aZm29DzG4opNSnrc"></a></span>
+<p><span>我的核心心得是：</span><strong>Skill 不是越多越好，滥用会反向降低性能</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnVdnRvH9ctrr1KTakHtsPId"></a></span>
+<p><span>直觉上 Skill 是好东西——把一类可复用流程外化成 prompt + 代码 + 参考资料，让 agent 像调工具一样用。Cursor 就有过用 200 行 Skill 替掉 15000 行编排代码的例子。但实际用下来我发现两个坑：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnudPbyJ7rLZrKN4ZjIzX0He"></a></span>
+<p><span>1. </span><strong>Skill 写多了反而干扰模型</strong><span>：如果 Skill 里写了很多模型本来就知道的常识，等于在 system prompt 里加噪声，</span><strong>结果是 with skill 比 without skill 还差</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSNBayUdlHq51281K303xed"></a></span>
+<p><span>2. </span><strong>Skill 会过时</strong><span>：新模型原生支持多模态文件解析后，老的"教它怎么解析 PDF"的 Skill 就成了负担。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7y3lKHt7oJZSnQ0co6EyLb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmLnDXkyGSqjiCZFfVbxDBh"></a></span>
+<p><span>所以我建立了两条纪律：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7oSz1GfXV5oAMpGA6nOdm8"></a></span>
+<p><span>- </span><strong>判定标准</strong><span>：同一类操作做过 3 次以上 + 步骤超过 5 步 + 通用模型容易做错——同时满足这三个条件才值得做成 Skill。一次性的别做。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnV2m9U4yEVHRIU8RguFyrUb"></a></span>
+<p><span>- </span><strong>每个 Skill 必须配 eval</strong><span>：准备一个小评测集，定期跑 </span><strong>with skill vs without skill</strong><span> 对照。模型升级后重跑，发现负贡献立刻下线。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngGJpggslgVqk2OVMxjo1oh"></a></span>
+<p><span>总结来说：</span><strong>Skill 是杠杆，但它也有成本；要用 eval 来证明它真的在帮你，而不是凭感觉攒一堆</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnffzJLpIrJnU6KsA3WTevwb"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnofzuMKgWATcpcWiNrd5N4g"></a></span>
+<h4 id="section-11"><strong>4.4.3 Loops, Tool Use, and Feedback（循环、工具与反馈）</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSyLOgmdsvMa2z0876JMe1d"></a></span>
+<h4 id="section-12"><strong>4.4.3.1 背景</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnbqZ8Sc4DJ9UYM7Hb7p712d"></a></span>
+<p><span>Agent 之所以比单次 LLM 调用强，核心是</span><strong>循环 + 反馈</strong><span>——给它时间思考、跑工具、看结果、再调整。从 模型o1 开始，模型就不再是"一锤子买卖"，而是默认要在 harness 里循环跑、反复 refine。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSkjX2aNYZZxC7zpq7q1ftb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3B2hKLoGpe3Su3LFVqm48c"></a></span>
+<p><span>但"循环跑起来"只是第一步。真正决定循环跑得好不好的，是</span><strong>循环周围的那一圈配套</strong><span>：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL67qiB9SbPeQ2wRF4xplzg"></a></span>
+<ul>
+<li><span>循环本身要够聪明（不能每次啥也没学会，就盲目重试）；</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBmhmG3C0aPVIcrSwHZr2He"></a></span>
+<ul>
+<li><span>循环里跑的工具不能反过来污染循环（一条 20000 行的日志就能撑爆窗口，后面循环全废，参考杠杆 2）；</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnmiD0DF4OpcVXhxPpC7L6ti"></a></span>
+<ul>
+<li><span>循环不能放任 agent 写出越来越大的文件、越来越乱的结构；</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnNqhVUa3ghK7B657jMwdMb"></a></span>
+<ul>
+<li><span>循环出错时不能炸掉真机（API key、</span><span><span><span>~/.ssh</span></span></span><span> 直接暴露）。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcneQVIpVyCer66GLjWgW62dd"></a></span>
+<p><span>所以这一节真正讲的是一件事的四个层面：</span><strong>让循环本身更聪明 + 让工具 I/O 不污染循环 + 给循环加结构性约束 + 给循环加安全边界</strong><span>。下面就按这四块展开。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpssmgOK7Mul3b5HrYIcmvd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnSFKMZBZ8GCKXofWEULI5IC"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnk3xnLNEDyfhq8PkUES8XGg"></a></span>
+<p><span>SWE-bench 论文留下的三条设计原则贯穿全节：actions 简单紧凑、environmental feedback 信息量足且简洁、guardrails 抑制错误扩散且便于恢复。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcn8kSYGzzehUYiZV14qfEKId"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnokhtw7HN6jxDhUv7leR9ab"></a></span>
+<h4 id="section-13"><strong>4.4.3.2 基础知识</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcndm01vDPFDQcCWdgCg0bULc"></a></span>
+<p><strong>1. 循环范式（Loop Strategies）—— 让循环本身更聪明</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMbULKIlAMMpJ2vjhKzHJ6b"></a></span>
+<p><span>循环不是一种东西，而是一条从"暴力重试"到"假设-验证"的谱系，越靠后越省 token、越快收敛：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn3RL12EPtWTAxQ2fbwMUUPd"></a></span>
+<p><span>1. </span><strong>Ralph Wiggum loop</strong><span>（最朴素）：失败就清空重来、什么也不学 → 极度耗 token，但能 work。视频里举了用这种方式硬怼出一个 C compiler 的例子。（但这种方式很蠢啊，感觉也会陷入死循环，感觉谁会用这种方式写Agent啊。。）</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnzXtoC4vXRbUgNQ27L1YTnb"></a></span>
+<p><span>2. </span><strong>Plan-then-Execute</strong><span>：先规划再执行，中途守住计划。大多数现代 harness 默认就这么做。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnHVuUhtJ10BqFfVGV7Vuysg"></a></span>
+<p><span>3. </span><strong>Hypothesis → Verification loop</strong><span>（Karpathy 的 auto-research 范式）：假设 → 跑实验 → 看结果 → 反馈进下一轮 → 螺旋上升。这是当前性价比最高的循环形态。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnk9Jm9ucZhTQIJ3iP04pkjf"></a></span>
+<p><span>4. </span><strong>Test-Driven Development for Agents</strong><span>：把测试当作循环的成功判据。Factory 的提醒——</span><strong>务必先写测试再写代码</strong><span>，反过来会把已有 bug 也"橡皮图章"进测试。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKJfKc2AHBRSt9W4U3hwU0c"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnrEhMIzn0sth7XZSCbVwGye"></a></span>
+<p><strong>2. 工具 I/O 卫生（Tool Hygiene）—— 别让工具污染循环</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoIPeIMcjdnBXGswtlbxRwS"></a></span>
+<p><span>循环每跑一轮，工具的输出都会回灌进上下文。如果不管 I/O，工具一次吐 20000 行日志，几轮下来窗口就废了（参考杠杆 2 的"窗口退化"）。所以 harness 必须替 agent 做这件事：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsQk0OuGf9d0Z6yw9oJYqwd"></a></span>
+<p><span>- </span><strong>截断</strong><span>：harness 自动只保留尾部 2000 行而不是整段 20000 行。看似简单，但能直接救活后续 N 轮循环。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKuCE7d4daxSTwJ0loUCppd"></a></span>
+<p><span>- </span><strong>抽帧</strong><span>：长 stack trace 只保留报错那几帧 + 失败的测试名，而不是整段 traceback。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnIoFU1f193Z7SbSiJx7igJc"></a></span>
+<p><span>- </span><strong>落盘</strong><span>：超大输出（>5MB）直接写文件，agent 按需读，不要全堆进窗口。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnctUUFlwNfNWCVBVMiD04Sh"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvWS18wk641EsbGCy4eVHmc"></a></span>
+<p><strong>3. 结构性约束（Structural Constraints）—— 替循环挡掉错误方向</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnr67ylqo0JeVMyy9MjsH9xb"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-6" data-course-correction="6"><p><strong>更正：</strong>提示中说明约束，并对必须满足的条件配套 linter、测试或权限检查。</p><details><summary>查看解释与参考资料</summary><p>自然语言约束不是确定性门禁，不能保证禁止的结构或操作不会出现。</p></details></aside><p><span>这部分是 OpenAI 反复强调的点："开发者正在变成 AI 系统的管理者"——写代码已经不是瓶颈，</span><strong>给系统设边界</strong><span>才是。具体做法是把约束写死进 instructions / system prompt，让 agent 在循环里被动遵守，比如可以规定以下规则：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsDxEUKu7hmr0GUO0ROKFmg"></a></span>
+<ul>
+<li><span>单文件不超过 200 行 → 强迫 agent 分解，而不是堆一个巨大的 god file。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGhoV14Q8j01pFgsYHN3Jtb"></a></span>
+<ul>
+<li><span>函数 / 模块大小限制 → 同理。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnAxNYVmXESCPk0dinyzr5gb"></a></span>
+<ul>
+<li><span>新增依赖必须先问 → 防止循环里悄悄引入一堆库。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcna7IyXlQawhDDCWCdQexCAh"></a></span>
+<p><span>这些约束的本质是：</span><strong>用 harness 替你做"代码 review"的硬性那一半</strong><span>，让模型不会沿着错误方向越跑越远。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnagRIE7Di3myyiRBam1pYie"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn6VKqgG38BakYIuckDQIhqe"></a></span>
+<p><strong>4. 安全护栏（Safety &#x26; Guardrails）—— 让循环出错不致命</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKk6MYo1vOuiu7vmTzuRpNb"></a></span>
+<p><span>视频里 Raj 反复警告：</span><strong>不要在 laptop 上直接跑陌生 agent</strong><span>。宿主机上有 API key、<code>~/.ssh</code>、浏览器 cookie，循环一旦失控代价巨大。所以 harness 这一层要提供两道防线：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnEDfXiNw3GPGplaFRKawbub"></a></span>
+<p><span>- </span><strong>隔离（Sandbox）</strong><span>：容器 / VM / devcontainer，给 agent 一个干净的、可丢弃的环境。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnX6LNNMzdQ3IGeUAeoAgQOc"></a></span>
+<p><span>- </span><strong>审批关卡（Guardrails）</strong><span>：三档放行</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnj3rTHh4M4VyGuIjJ9mAfMf"></a></span>
+<ul>
+<li><span>✅ 自动允许：读文件、跑测试、</span><span><span><span>git diff</span></span></span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4qux1k9fNnOewKNWpjfGZb"></a></span>
+<ul>
+<li><span>⚠️ 需要确认：写文件、安装依赖</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYHqG5V6MA3ghz2HMeidRVc"></a></span>
+<ul>
+<li><span>🛑 强制人工：</span><span><span><span>rm -rf</span></span></span><span>、</span><span><span><span>git push --force</span></span></span><span>、删分支、改共享配置</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnD5RdbyQqN7gpR6Xfazxs5b"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnflkjryS0GwQWA2GYd3BcCc"></a></span>
+<h4 id="section-14"><strong>4.4.3.3 最佳实践建议</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx0Y9X8PUPgVSp18n9xCHbh"></a></span>
+<p><span>按上面四个层面对应组织：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcneWonVBbxSm6kiLDQEzD9Vh"></a></span>
+<p><strong>1. 循环范式</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4k6RYk556hIGSXAiWwaODf"></a></span>
+<p><span>- </span><strong>能用"假设-验证"loop 就别用 Ralph Wiggum</strong><span>：明确让模型先说"我猜问题在 X，我要跑 Y 来验证"，再跑——比"失败重试 10 次"省 5–10x token。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnpNiktaLdqYdmc9NGn14jag"></a></span>
+<p><span>- </span><strong>任务 ≥ 3 步先要计划</strong><span>：复杂任务用"先 plan、再 execute、每步对照 plan"；简单一步任务不要强加 plan，反而拖慢。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnWJICO068gr2ev19f9SPrHb"></a></span>
+<p><span>- </span><strong>TDD 严格"先测试，后代码"</strong><span>：让 agent 先写测试并跑红，再写实现到绿；反过来会让测试为已有 bug 背书。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZAD0CEhmAQdEpqgLPvzGQf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkgeLHLvnDPmjZHP3oc5eDc"></a></span>
+<p><strong>2. 工具 I/O 卫生</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnS6zODDSViIccDwumnWCkMU"></a></span>
+<p><span>- </span><strong>所有工具输出加截断</strong><span>：默认保留尾部 2000 行 / 50KB；长 stack trace 只留报错块；命令输出 > 5MB 强制落盘成文件再让 agent 按需读。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnKsqtbuE76xmBBxJ9WIvhYU"></a></span>
+<p><span>- </span><strong>错误反馈要"短而准"</strong><span>：与其把整段 traceback 喂回去，不如让 harness 抽取 error type + 出错文件:行号 + 最近一帧 + 失败的测试名。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXdZhuRidIIuni4RFN09Wjd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnltt6hSujOu6kI1lgY8UEFe"></a></span>
+<p><strong>3. 结构性约束</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnG2j2hoQVvGVIaMT8qHv87y"></a></span>
+<p><span>- </span><strong>写死结构约束进 system prompt</strong><span>：例如"单文件 ≤ 200 行""函数 ≤ 50 行""新增依赖必须先问"——强制 agent 分解和确认。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcntHXAE1rhIqjcUJvG62ccGc"></a></span>
+<ul>
+<li><span>这条对应 OpenAI 那句"developer → manager"——你不再亲自写每一行，而是给系统定规则。</span></li>
+</ul>
+<span class="source-anchor-container"><a id="src-feishu-doxcnM9KDdrSULCOT4aUd2nm08f"></a></span>
+<p><strong>4. 安全护栏</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4cRkIZgoiyGCq7W1qk8nhg"></a></span>
+<p><span>- </span><strong>永远在 sandbox 跑陌生 agent</strong><span>：容器 / VM / devcontainer 三选一，宿主机上的 <code>~/.aws</code>、<code>~/.ssh</code>、浏览器 cookie 别暴露给 agent。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsVy20baGyoQ4fvgnz2SuCb"></a></span>
+<p><span>- </span><strong>三档权限白名单</strong><span>：✅ 读文件 / 跑测试 / git diff → 自动；⚠️ 写文件 / 安装依赖 → 确认；🛑 <code>rm -rf</code> / <code>git push --force</code> / 删分支 / 改共享配置 → 必须人工。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5ydk7ksapHTlelReiipETe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvK9bkbwtXrmI5xb4A0ObEb"></a></span>
+<h4 id="section-15"><strong>4.4.3.4 面试问题</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJp9FcPU27ZnJwO6uua4Prd"></a></span>
+<p><strong>Q：你能介绍一下你了解的 Harness 工程的最佳实践吗？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnURIc6ev9oJcFdWmCzPt4Sg"></a></span>
+<p><span>Harness 工程这个概念其实很大——业界有一种说法是 </span><strong>Agent = Model + Harness</strong><span>，所以围绕模型展开的一切（检索、记忆、循环、编排、安全……）都可以归到 harness 里。</span><strong>我从其中一个我体感最深的角度切入：Agent 的循环</strong><span>来讲解，这是 agent 区别于单次 LLM 调用的核心——给它时间反复跑工具、看反馈、再调整。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnwz33zbVDZonD0op5neRbHh"></a></span>
+<p><span>围绕"让这个循环跑得好"，我会从四个层面讲最佳实践：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkfRx8QNmisjSbRSQhHbZGd"></a></span>
+<p><strong>第一，循环本身要够聪明。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLICGHzR82ulVwxnXXTSm6e"></a></span>
+<p><span>循环范式有一条从弱到强的谱系：最朴素的是 Ralph Wiggum loop——失败就清空重来、什么也不学，能 work 但极耗 token；好一点的是 Plan-then-Execute，先规划再执行；当前性价比最高的是 </span><strong>Hypothesis → Verification loop</strong><span>，让模型先说"我猜问题在 X，我跑 Y 来验证"，再循环——比盲目重试省 5–10 倍 token。再进一步是 </span><strong>TDD for Agents</strong><span>：先写测试再写代码，让测试当作循环的成功判据；反过来会把已有 bug 也"橡皮图章"进测试，这是 Factory 团队的踩坑经验。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnqV3n5pxtuMqVX2A1mhz4Pc"></a></span>
+<p><strong>第二，工具 I/O 不能反过来污染循环。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnx0w7HcT90rvAk6mhKPC2Pf"></a></span>
+<p><span>循环每跑一轮，工具输出都会回灌进上下文。一条 20000 行的日志就能撑爆窗口，后面循环全废。所以 harness 必须替 agent 做三件事：</span><strong>截断</strong><span>（默认只保留尾部 2000 行）、</span><strong>抽帧</strong><span>（长 stack trace 只留报错那几帧 + 失败的测试名）、</span><strong>落盘</strong><span>（>5MB 的输出直接写文件让 agent 按需读）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnkIfiN63gYc8vvSgDu6x4c"></a></span>
+<p><strong>第三，给循环加结构性约束。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlx7G0e1oC3VXbNIm86rEXb"></a></span>
+<p><span>这是 OpenAI 反复强调的"developer → manager"思想——写代码不是瓶颈，</span><strong>给系统定规则</strong><span>才是。具体做法是把约束写死进 system prompt，比如"单文件 ≤ 200 行""函数 ≤ 50 行""新增依赖必须先问"。本质是用 harness 替你做了代码 review 里硬性的那一半，让模型不会沿着错误方向越跑越远。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnvWhOdhFfzwkbe2CXRPsFJf"></a></span>
+<p><strong>第四，给循环加安全护栏。</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnZoVHzGgSGXevdeHNKBbxkb"></a></span>
+<p><span>循环一旦失控代价巨大——宿主机上有 API key、<code>~/.ssh</code>、浏览器 cookie。所以两道防线必须配上：</span><strong>Sandbox 隔离</strong><span>（容器 / VM / devcontainer 三选一），以及</span><strong>三档审批白名单</strong><span>—— 读文件 / 跑测试自动放行， 写文件 / 装依赖要确认， <code>rm -rf</code> / <code>git push --force</code> 强制人工。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnRgn6IYDhNoVNx2vnI365mg"></a></span>
+<p><strong>总结</strong><span>：这四层背后其实是 SWE-bench 论文留下的同一条原则——</span><em>actions 简单紧凑、environmental feedback 信息量足且简洁、guardrails 抑制错误扩散</em><span>。Harness 工程的精髓不是模型有多强，而是</span><strong>你给循环周围配的这一圈基础设施有多稳</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXlUPuIqmB9kPwa7Ne0NNb2"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnubcTPrF7IFLugFJO89sFlb"></a></span>
+<h4 id="section-16"><strong>4.4.4 Orchestration（单 Agent vs 多 Agent）</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnX3WJ3gffSKdqQ0mhi1tcg"></a></span>
+<blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnkbPJPjXRGThqPcw4vNUQr9"></a></span>
+<p><span>其实这一章的内容和我们笔记里的</span><span><span><a href="/momomian/lessons/feishu-e37922f7a8/#src-feishu-doxcntuQVjJ2aMEP4HF4qje1X9b"><span>多Agent</span></a></span></span><span>部分非常像，这个博主讲的时候，引用的参考资料的论文都和我在笔记里推荐的论文一模一样。总体而言，这个博主说的内容和我们笔记里这个章节是一样的，如何选单Agent, 多Agent。值得一提的是，这个博主直接把parallel模式否掉了，他说这不是一种很好的模型，因为你极难管理不同Agent之间的通信以及协调税。虽然作为知识的总结部分，多Agent架构里肯定是有parallel这种模式的。另外笔记里解析了三个开源架构，CC,Openclaw,Hermes。他们确实也都用的是orchestrator模式，由此最少也可以看出来parallel模式很难驾驭，要慎用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnNpLDCrjL5cLjOcxArdRoTg"></a></span>
+<p><span>另外你会不会有疑问，单Agent/多Agent这个内容算什么Harness？但是按现在业界的定义，Harness = Agent - Model，所以这样想你应该不会觉得奇怪了吧。</span></p>
+</blockquote>
+<span class="source-anchor-container"><a id="src-feishu-doxcnXq1oGlhQYG9ucsPMlh7Ucc"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnBLaUQkCGxxJGxNLEwFAPbb"></a></span>
+<h4 id="section-17"><strong>4.4.4.1 背景 / 基础知识</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQlU9zSyqWPvSMAx97OMiDe"></a></span>
+<p><span>直觉是："上下文窗口不够大，那就拆给多个 agent 并行做。"听起来很对。但视频里 Raj 给的</span><strong>反直觉真相</strong><span>是：多 Agent 不是默认更好——多 benchmark 平均下来，</span><strong>Single Agent 表现优于 Multi-Agent</strong><span>。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnMEImHpWEA7ugfQGVbRuh4c"></a></span>
+<p><span>原因是</span><strong>协调税（coordination tax）</strong><span>：agent 之间要互相同步状态、互相理解输出、互相处理冲突，这一层开销往往把并行收益吃光。社交媒体上常见的"我同时开 100 个 agent 改 100 个 bug"在真实工程里几乎一定塌掉。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnd2JO0BTvcWGxq7yxyr9Cwc"></a></span>
+<p><span>多 Agent 真正有效的场景是结构化的：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5pL2VMHaFWdQsJxT8hcdvf"></a></span>
+<p><span>- </span><strong>Orchestrator-Worker</strong><span>：一个主 agent 派任务、若干 worker 干活、最后汇总。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn2TIlOUouFZSip28v4JBlLf"></a></span>
+<p><span>- </span><strong>明确可并行的子任务</strong><span>：比如对 50 个独立文件做格式化，子任务之间零依赖。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnThYGB6uPKglvFzwxgIfZ4e"></a></span>
+<p><span>- </span><strong>Reflection / Critic</strong><span>：一个 agent 写代码、另一个 agent 专门挑毛病。视频里 Raj 自己的工作流——</span><strong>Opus 写代码 + GPT 系列反思批评</strong><span>——就是这个模式；OpenHands 等 harness 已经内建。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnoYpI5rihH8i8hdx3AtTrYf"></a></span>
+<p><span>Factory 的实战结论也印证了这点：</span><strong>串行 Orchestrator → Worker → Validator</strong><span> 比"并行 swarm 一百个 agent"靠谱得多。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhHBjFV62xaag7SVfzAOl6e"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJv1YLZHDH2vwlVRNJzFY4g"></a></span>
+<h4 id="section-18"><strong>4.4.4.2 最佳实践建议</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcn7EJOCo7thINkmbHgrKyBSf"></a></span>
+<p><span>- </span><strong>默认就用 Single Agent</strong><span>：除非你能说清"我为什么需要并行"或"我需要一个独立 critic"，否则不要拆。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhsamWusOV974LTCnaXptPb"></a></span>
+<p><span>- </span><strong>要并行先验证"子任务零依赖"</strong><span>：能不能用一句 <code>for f in files: agent(f)</code> 描述清楚？不能就意味着有隐式依赖，并行会出乱子。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJin4uGAl036GuA8UNzpqoc"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-7" data-course-correction="7"><p><strong>更正：</strong>可采用经主控中转的通信方式降低协调复杂度；是否允许工作者通信取决于具体协议和依赖。</p><details><summary>查看解释与参考资料</summary><p>这是本节推荐的一种调度设计，不是所有 orchestrator-worker 架构的硬定义。</p></details></aside><p><span>- </span><strong>Orchestrator-Worker 模式的硬要求</strong><span>：worker 之间不能直接通信，只通过 orchestrator 中转；每个 worker 的输入输出必须是可序列化的明确契约（JSON / 文件路径），不要靠"共享内存"。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnskcKTNYnPm3erBdIrpQFoW"></a></span>
+<p><span>- </span><strong>强烈推荐 Reflection 模式</strong><span>：主写 + 副审 是 ROI 最高的多 agent 用法；建议主副用</span><strong>不同厂家的模型</strong><span>（如 Opus 写 + GPT 审），让盲区互补。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn1Ujdrb5jhDNTF5BWxa34Zf"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-8" data-course-correction="8"><p><strong>更正：</strong>依据任务拆分、通信量和实测协调成本限制并发，不设通用的五代理拐点。</p><details><summary>查看解释与参考资料</summary><p>未提供支持五个为拐点或指数增长的实验；成本依通信拓扑和任务耦合。</p></details></aside><p><span>- </span><strong>限制 agent 数量</strong><span>：一个 orchestration 内活跃 agent ≤ 5；超过这个数协调成本会指数上升。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnUzkd2SNsPW5TaloOKFbMle"></a></span>
+<p><span>- </span><strong>不要让多 agent 完全 event-driven</strong><span>：自由互相调用 = 死锁/无限循环高发；坚持</span><strong>有明确层级</strong><span>的调度。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnQ3uCm7fvTFVCjlPFBEtEwe"></a></span>
+<aside class="lesson-clarification" id="lesson-clarification-9" data-course-correction="9"><p><strong>更正：</strong>审查输出应包含明确问题、位置、依据和修复方向；需要并允许修改时再提供补丁。</p><details><summary>查看解释与参考资料</summary><p>补丁便于执行，但并不是审查的必要产物；未获修改授权时提供精确位置、触发条件和证据也可操作。</p></details></aside><p><span>- </span><strong>Reflection 的输出要可执行</strong><span>：让 critic 直接产出 diff 或 patch，而不是写"建议你考虑改进 X"——后者 main agent 不一定听得懂。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnug36lNqBjoPdD7ruxq4EAd"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn0I5GE0VIeDPxAqCCVYgsvh"></a></span>
+<h4 id="section-19"><strong>4.4.4.3 面试问题</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnTfbDWsPNpOVHtXTxHQvaB7"></a></span>
+<p><strong>Q：你会如何选择单 Agent 和多 Agent 的架构？</strong></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnhxwlI69kC0ilvfVIzRhlSd"></a></span>
+<p><span>我的总原则是 </span><strong>"默认 Single Agent，除非你能说清为什么必须多 Agent"</strong><span>。这听起来反直觉，但多个主流 benchmark 上平均下来，</span><strong>Single Agent 普遍优于 Multi-Agent</strong><span>——原因是</span><strong>协调税</strong><span>：agent 之间同步状态、互相理解、处理冲突的开销，往往把并行收益吃光。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnw8w0lln02YhtUVBCmSoB1d"></a></span>
+<p><span>多 Agent 真正有效的就三类场景：</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn02FNMtteNWIxgnjmlJirnf"></a></span>
+<p><span>1. </span><strong>并行子任务</strong><span>：必须"子任务零依赖"（能用 <code>for f in files: agent(f)</code> 描述清楚），比如 50 个独立文件做格式化；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLCo434nqI24gb2sSZcep4e"></a></span>
+<p><span>2. </span><strong>Orchestrator-Worker</strong><span>：worker 之间不能直接通信，只通过 orchestrator 中转，输入输出走可序列化的明确契约；</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnw286w1hDNQ1AxW8USMugme"></a></span>
+<p><span>3. </span><strong>Reflection / Critic</strong><span>：ROI 最高的多 agent 用法，主写 + 副审，建议主副用不同厂家的模型让盲区互补，critic 输出要可执行（直接给 diff/patch）。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcny5gCnS0DLhnAKeFdBSxAzb"></a></span>
+<p><span>外加两条防失控的硬规则：活跃 agent ≤ 5；不要完全 event-driven，坚持有明确层级的调度。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnLLak6ho4MLvegeJ7xYvKPe"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcn75FPCrMlNqFGgfER2by0Kc"></a></span>
+<p><strong>一句话总结</strong><span>：</span><strong>Single Agent + Reflection</strong><span> 是当前性价比最高的组合，其他多 Agent 形态都要有明确理由再上。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlktWqbhnzoAN4PMS2QZV1e"></a></span>
+<br>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcntfh81v9NzcQ1AtOLPMdhfd"></a></span>
+<h4 id="section-20"><strong>4.4.5 面试真题</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnL10JUm4KuH2zl92TISrr9b"></a></span>
+<p><span>上面其实展示了很多面试问题，就是想告诉大家，这一节的内容真的很实用。我在这里引用字节暑期实习真题，来告诉大家，确实你看了这个笔记，对你面试有直观的帮助。这个面试真题来自于：</span><span><span><a href="/momomian/lessons/feishu-eb349b3908/#src-feishu-doxcnobSTKPi3ZAKwTDxkqSHhEc"><span>2026/05字节跳动大模型开发暑期实习一面</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnxAAPBa4oc1zRUJTl4DiSDb"></a></span>
+<p><span>下面这三个问题，都是我根据上面2.4的知识部分手写的。只是做一个参考。更多的其实想告诉大家，你自己理解了上述的内容，很多问题就游刃有余，可以从各个方面和面试官去讲。而且也可以深入和他探讨。重点不在于背答案，而在于理解和灵活运用。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnJkhzPK9kcWVnQMHBJO19Sb"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnb2eA4gLEmrDGwUyhi9SkOc"></a></span>
+<p><span>8-4 如果让你用 harness 完成你的工程，你会怎么做？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnYSP2CwlhdQ2dy2jdMtNuvd"></a></span>
+<p><span>Harness这个概念其实很大，按照现在的定义，Agent除了模型以外的部分，都叫做Harness。假设我运用的是ClaudeCode来完成项目，我分享一下我是用CC完成项目的一些Harness思想。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnaMkx0PYDWXqIBqJluIHhig"></a></span>
+<p><span>1. </span><strong>从AI调用检索工具的角度。</strong><span>ClaudeCode默认使用Grep搜索，</span><strong>但是我会根据具体的任务和观测的效果，来修改模型使用的工具</strong><span>，比如文件太大，那我会使用BM25建立索引。如果搜索精度低，我会使用Agentic Rag或者embedding搜索提升模型的外部获取信息能力。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnP15P39C2HRrsHRjGNkzhrf"></a></span>
+<p><span>2. </span><strong>我会建立明确的验证机制。</strong><span>Agent本身去验证代码是否完成，它是主观的。我会明确测试机制，建立测试标准，指标，让Agent跑这些工具来完成代码阶段性的检验，并且反馈检测结果，创建一个生成 - 检测的循环，保证生成代码的质量。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnnHaf0fQIFYvypXmNRs4f9b"></a></span>
+<p><span>3. </span><strong>让Agent只做一件事，并且保持上下文简短。</strong><span>虽然现在模型的上下文很大，但是当模型上下文窗口变大，其实性能也会下降。我会参考OpenAI Harness工程的做法，让多个Agent来完成任务，每个Agent职责，目标保持简短，只做一件事，做完就销毁，保证Agent运行任务时处于最良好的状态。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn5U52WbeHZO4BqeH1N5cCph"></a></span>
+<p><span>      这里还有太多其他的角度可以回答了，都是上面2.4总结的内容，比如Agent.md最佳组织方式。Agent架构编排（使用主管模式，反思模式等。安全方面，比如建立隔离环境，sandbox）。这里就不展开了，都是上面重复的内容。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcn4xHZsdZ4zxmFUWQTyegnic"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnlvaP4cMc7Z5Vqy4G1gX52g"></a></span>
+<p><span>8-5 对 Claude Code 的了解？里面有哪些框架你认为真正给你的使用带来了便利？</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcngxBLnLw7mM7g8PnBqTK5Wb"></a></span>
+<p><span>CC的了解可以从多个方面，比如从它的记忆功能，架构方面，可以看我们的</span><span><span><a href="/momomian/lessons/feishu-39aa485705/#src-feishu-doxcneK3qVfDjLnKOQFCdsbYDmf"><span>CC代码解析</span></a></span></span><span>。它的</span><span><span><a href="/momomian/lessons/feishu-f08617ba83/#src-feishu-doxcnr3tAaTsvJ5ZSLRkVXrJ7b0"><span>最佳实践方面</span></a></span></span><span>。总之第四章讲了很多ClaudeCode，各个角度都可以回答。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcndmMFrCOBOWgwBkaVNsjLSK"></a></span>
+<p><span>框架哪些方面带来了便利性。可以结合本章内容，谈/rewind的使用，compact的使用，往主动管理上下文上去聊。也可以聊一下它的insight命令，可以参考</span><span><span><a href="/momomian/lessons/feishu-f08617ba83/#src-feishu-doxcnzoF6r5qL6j3q6q4XCpRcCh"><span>这里</span></a></span></span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnjq5agcgBKHXGQaKpQx9Rjf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcnCgPCtg0uLI5q8kgJ7YxUhh"></a></span>
+<p><span>8-6 这些内容怎么迁移？  </span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnayjsOirFziyJ3lAUCgi0Yg"></a></span>
+<p><span>其实2.4小节所有的内容都是在讲Harness工程的应用，也就是Harness工程怎么迁移到我们的实际工作中。这个问题又很宽泛，但是其实上面的各个原则，都是Harness工程迁移的最佳实践，都可以用来回答这个问题。</span></p>
+<span class="source-anchor-container"><a id="src-feishu-doxcnsEuiOe2A9sVwVuEroOvzsf"></a></span>
+<br>
+<span class="source-anchor-container"><a id="src-feishu-doxcne4SVIDKkVpeWoMYDxOGszc"></a></span>
+<h4 id="section-21"><strong>4.4.6 参考视频</strong></h4>
+<span class="source-anchor-container"><a id="src-feishu-doxcnyWy5CzpQ47MaA1WLCH2S5d"></a></span>
+<p><span><span><a href="https://www.youtube.com/watch?v=KijChx7q2nY&#x26;t=224s" target="_blank" rel="noopener noreferrer"></a><a href="https://www.youtube.com/watch?v=KijChx7q2nY&#x26;amp;t=224s" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=KijChx7q2nY&#x26;amp;t=224s</a></span></span></p>
+<hr>
+<span class="source-anchor-container"><a id="src-feishu-doxcnGuiUPQXIXih92YIeZ6uOhb"></a></span></div></section></article><div class="lesson-resource-collection" data-lesson-resources><aside id="lesson-resource-reading" class="lesson-resource-group" aria-label="Harness的记忆、检索与权限"><p class="lesson-resource-label">本课目标阅读（选读）</p><h3 class="lesson-resource-title">Harness的记忆、检索与权限</h3><p class="resource-scope">按逐课正文目标选择。中文站内阅读与官方接口文档分开核对；未因此审核外部视频全片或验证课程代码。</p><details class="chapter-readings"><summary>中文站内阅读 · 2 篇（按需）</summary><ul><li><a href="/momomian/lessons/feishu-e7e5bc32fa/">Harness Engineering：Harness 工程实践要点</a><p>对应本课当前目标的中文阅读；原文结论结合该课审校。</p></li><li><a href="/momomian/lessons/feishu-c5267203b4/">按需深入：后端与服务化：大模型前后端生命周期</a><p>对应本课当前目标的中文阅读；原文结论结合该课审校。</p></li></ul></details><details class="chapter-readings"><summary>延伸阅读 · 2 章（选读）</summary><ul><li><a href="https://adp.xindoo.xyz/chapters/Chapter%208_%20Memory%20Management/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 8 章：记忆管理 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 进阶</span><p>分清会话状态与长期记忆，关注保存、更新与读取的时机。</p></li><li><a href="https://adp.xindoo.xyz/chapters/Chapter%2018_%20Guardrails_Safety%20Patterns/" target="_blank" rel="noopener noreferrer">Agentic Design Patterns · 第 18 章：安全模式 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 社区译本 · 进阶</span><p>区分输入检查、输出检查和执行权限，资料里的命令不能自动获得权限。</p></li></ul></details></aside><aside id="lesson-resource-prerequisite" class="lesson-resource-group" aria-label="需要时补前置"><p class="lesson-resource-label">前置补习（按需）</p><h3 class="lesson-resource-title">需要时补前置</h3><p class="resource-scope">只补理解当前材料需要的基础；不是本课核心机制的替代教程。</p><details class="chapter-readings"><summary>延伸阅读 · 1 章（选读）</summary><ul><li><a href="https://docs.python.org/zh-cn/3/library/asyncio-task.html" target="_blank" rel="noopener noreferrer">Python 标准库 · asyncio：协程与任务 <span aria-hidden="true">↗</span></a><span class="reading-meta">中文 · 官方中文文档 · 入门</span><p>分清创建协程、等待结果和并发任务，注意取消与异常传播。</p></li></ul></details></aside></div><script type="module" src="/momomian/_astro/lesson-resources.astro_astro_type_script_index_0_lang.BiIdlPfh.js"></script><section class="lesson-course-quiz" id="lesson-course-quiz" data-course-quiz="feishu-87f52c1d95" data-course-mode="dedicated" aria-labelledby="lesson-course-quiz-title" data-pagefind-ignore><div class="section-heading"><div><h2 id="lesson-course-quiz-title">本课小测</h2><p class="small muted">3 道核心题。先选择，再统一提交；提交后看必答点、解析和错因。</p></div></div><p class="small muted">本课考点：检索工具选择与记忆分层。题目由本站根据本篇原文补充；解析中的假设场景用于帮助理解。</p><details data-legacy-reading hidden><summary>此前的阅读自检（已保留）</summary><p class="small muted">原自检仍保存在本机，与新增小测分别记录；不会自动换算为分数或掌握状态。</p><ul data-legacy-reading-list></ul></details><script type="application/json" data-course-questions>[{"id":"lx-feishu-87f52c1d95-1","version":1,"type":"single","stage":"lesson","concept":"feishu-87f52c1d95","prompt":"按本课建议，按明确函数名定位普通代码时应先尝试什么？","options":[{"id":"option-1","text":"grep 等轻量关键词搜索","reason":"精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度。"},{"id":"option-2","text":"不看需求就先搭完整向量数据库","reason":"精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度 这一选项把不同职责或执行阶段混在了一起。"},{"id":"option-3","text":"把代码库所有文件一次发给模型","reason":"精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度 这一选项把不同职责或执行阶段混在了一起。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"精确关键词与文件线索适合先用轻量文本搜索定位。","explanation":"精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度。 假设要找 get_user_profile 的定义，先按名称检索，再读取相关文件。","analysisSteps":["精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度。","假设要找 get_user_profile 的定义，先按名称检索，再读取相关文件。"],"workedExample":"假设要找 get_user_profile 的定义，先按名称检索，再读取相关文件。","evidence":{"quote":"默认 grep 起手","href":"/lessons/feishu-87f52c1d95/#src-feishu-doxcnV7yZ54vWKUGJxi0uNlQ1lc"},"misconception":"精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度 这一选项把不同职责或执行阶段混在了一起。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-87f52c1d95/#src-feishu-doxcnV7yZ54vWKUGJxi0uNlQ1lc"}]},{"id":"lx-feishu-87f52c1d95-2","version":1,"type":"single","stage":"lesson","concept":"feishu-87f52c1d95","prompt":"本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？","options":[{"id":"option-1","text":"需要考虑同义表达的语义检索","reason":"用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。"},{"id":"option-2","text":"只搜索“鉴权”原句，不尝试代码中的不同词汇","reason":"用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。 因此，“只搜索“鉴权”原句，不尝试代码中的不同词汇”不符合本题给出的对象或执行条件。"},{"id":"option-3","text":"只按修改时间筛文件，不检查语义相关性","reason":"用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。 因此，“只按修改时间筛文件，不检查语义相关性”不符合本题给出的对象或执行条件。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"需要理解同义表达时，可用语义检索补充关键词搜索。","explanation":"用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。 假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。","analysisSteps":["用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。","假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。"],"workedExample":"假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。","evidence":{"quote":"跨语言/跨同义词的查找才用 embedding","href":"/lessons/feishu-87f52c1d95/#src-feishu-doxcnwKN45SC2HEgYwg0BunSrUe"},"misconception":"用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。 因此，“只搜索“鉴权”原句，不尝试代码中的不同词汇”不符合本题给出的对象或执行条件。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-87f52c1d95/#src-feishu-doxcnwKN45SC2HEgYwg0BunSrUe"}]},{"id":"lx-feishu-87f52c1d95-3","version":1,"type":"single","stage":"lesson","concept":"feishu-87f52c1d95","prompt":"本课认为什么时候才值得考虑结构化索引或数据库？","options":[{"id":"option-1","text":"查询需要按作者过滤、提交时间排序等元数据组合","reason":"结构化字段组合有不同于纯文本搜索的需求，数据库可以支持过滤与排序；只查字面内容时未必需要这层架构。"},{"id":"option-2","text":"只要做一次纯文本关键词搜索就必须上数据库","reason":"结构化字段组合有不同于纯文本搜索的需求，数据库可以支持过滤与排序；只查字面内容时未必需要这层架构。 因此，“只要做一次纯文本关键词搜索就必须上数据库”不符合本题给出的对象或执行条件。"},{"id":"option-3","text":"只要代码库变大就无需考虑查询字段直接上数据库","reason":"结构化字段组合有不同于纯文本搜索的需求，数据库可以支持过滤与排序；只查字面内容时未必需要这层架构。 因此，“只要代码库变大就无需考虑查询字段直接上数据库”不符合本题给出的对象或执行条件。"},{"id":"unsure","text":"暂时不会，提交后看解析","reason":"先按解析中的输入和条件走一遍，再回到原文核对。"}],"correctIds":["option-1"],"keyPoint":"查询需要按作者过滤、提交时间排序等元数据组合","explanation":"结构化字段组合有不同于纯文本搜索的需求，数据库可以支持过滤与排序；只查字面内容时未必需要这层架构。 假设要找某作者最近一周改过的认证文件，需要作者、时间和路径条件共同生效。","analysisSteps":["结构化字段组合有不同于纯文本搜索的需求，数据库可以支持过滤与排序；只查字面内容时未必需要这层架构。","假设要找某作者最近一周改过的认证文件，需要作者、时间和路径条件共同生效。"],"workedExample":"假设要找某作者最近一周改过的认证文件，需要作者、时间和路径条件共同生效。","evidence":{"quote":"metadata join","href":"/lessons/feishu-87f52c1d95/#src-feishu-doxcnuXrV5z6eK1DWTflfZaeLPb"},"misconception":"结构化字段组合有不同于纯文本搜索的需求，数据库可以支持过滤与排序；只查字面内容时未必需要这层架构。 因此，“只要做一次纯文本关键词搜索就必须上数据库”不符合本题给出的对象或执行条件。","condition":"按本课原文与题目限定条件判断；演示和历史接口不代表当前生产环境已验证。","sources":[{"title":"回到本课对应原文","href":"/lessons/feishu-87f52c1d95/#src-feishu-doxcnuXrV5z6eK1DWTflfZaeLPb"}]}]</script><form data-course-form><fieldset class="lesson-choice" data-course-question="lx-feishu-87f52c1d95-1" disabled><legend><span class="quiet-tag">单选</span> 1. 按本课建议，按明确函数名定位普通代码时应先尝试什么？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-87f52c1d95-1" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-1" value="option-1"><span>grep 等轻量关键词搜索</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-1" value="option-2"><span>不看需求就先搭完整向量数据库</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-1" value="option-3"><span>把代码库所有文件一次发给模型</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-87f52c1d95-2" disabled><legend><span class="quiet-tag">单选</span> 2. 本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-2" value="option-1"><span>需要考虑同义表达的语义检索</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-87f52c1d95-2" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-2" value="option-3"><span>只按修改时间筛文件，不检查语义相关性</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-2" value="option-2"><span>只搜索“鉴权”原句，不尝试代码中的不同词汇</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><fieldset class="lesson-choice" data-course-question="lx-feishu-87f52c1d95-3" disabled><legend><span class="quiet-tag">单选</span> 3. 本课认为什么时候才值得考虑结构化索引或数据库？</legend><p data-course-history class="small muted"></p><div class="lesson-choice-options"><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-3" value="option-2"><span>只要做一次纯文本关键词搜索就必须上数据库</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-3" value="option-3"><span>只要代码库变大就无需考虑查询字段直接上数据库</span></label><label class="lesson-choice-option lesson-choice-unsure"><input type="radio" name="lx-feishu-87f52c1d95-3" value="unsure"><span>暂时不会，提交后看解析</span></label><label class="lesson-choice-option"><input type="radio" name="lx-feishu-87f52c1d95-3" value="option-1"><span>查询需要按作者过滤、提交时间排序等元数据组合</span></label></div><section data-course-feedback class="lesson-choice-feedback" hidden aria-live="polite"></section></fieldset><div class="lesson-quiz-actions"><button type="submit" class="button primary" data-course-submit disabled>提交本课答案</button><button type="button" class="button secondary" data-course-retry hidden>再做一遍</button><span class="small muted" data-course-status role="status">正在恢复本机作答记录…</span></div></form><p class="small muted">小测不自动标记“已掌握”，也不代替复习安排。<a href="/momomian/cards/?lesson=feishu-87f52c1d95">需要时再用本课卡片回忆</a>。</p><noscript><p>启用 JavaScript 后可以作答并保存记录；原文、例子与参考资料仍可直接阅读。</p></noscript></section><script type="module" src="/momomian/_astro/lesson-course-quiz.astro_astro_type_script_index_0_lang.CFc3XhzW.js"></script><details class="lesson-advanced-work lesson-optional" data-pagefind-ignore><summary>进阶选做：自己解释、改变条件和留下产物</summary><p class="small muted">原有回答和自检记录都保留在这里。完成本课小测不需要写长答案。</p><section class="lesson-learning-guide" id="lesson-learning" data-lesson-guide="feishu-87f52c1d95" data-pagefind-ignore aria-labelledby="lesson-guide-title"><div class="section-heading"><div><h2 id="lesson-guide-title">把这一课变成自己的理解</h2><p class="small muted">先解释，再做例子，最后改变条件。阅读、完成任务与真正掌握分别记录。</p></div><span class="quiet-tag" data-lesson-task-badge>尚未完成自检</span></div><p class="lesson-guide-provenance small muted">本站辅助学习结构已按本课原文与2026-10-29逐课审读修订；不是逐课人工验收，也不代表代码已运行或视频已全片审核。</p><details class="lesson-guide-level"><summary>入门：先知道在解决什么问题</summary><h3>这次阅读的目标</h3><ol><li>按查询形态选择词法、语义或结构化检索，并比较实际结果。</li><li>为长任务设计结果文件、反馈与检查门禁，记录预算和并发边界。</li></ol><h3>本课命中的术语参考</h3><p class="small muted">从全文匹配本站通用术语表，并摘录少量原文定义。未列出的专有词需继续查证。</p><dl class="lesson-term-list"><div><dt>Agent</dt><dd>围绕目标读取状态、选择动作、观察结果并判断是否继续的程序。行动权限与停止条件需要明确设计。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnDDeVoe39cnZZflKq1Y5Uef">回看本课上下文</a></span></dd></div><div><dt>记忆</dt><dd>为后续使用保留信息的机制。近期会话、跨会话偏好与操作审计的范围和用途应分开。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnDDeVoe39cnZZflKq1Y5Uef">回看本课上下文</a></span></dd></div><div><dt>评测集</dt><dd>用于检查系统行为的一组输入、预期或标注。需要覆盖正常、边界、失败和变化场景。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnDDeVoe39cnZZflKq1Y5Uef">回看本课上下文</a></span></dd></div><div><dt>精排与召回</dt><dd>先取回候选再筛选或排序的过程。需要区分候选覆盖与最终结果的适用性。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnSR9Qwkf5ULidX9Zv22Y3zg">回看本课上下文</a></span></dd></div><div><dt>LLM</dt><dd>通过训练学习语言规律、根据上下文生成内容的模型；输出可用性和事实正确性仍需要检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnMgk6FlyTZ1iMcx29wt60o8">回看本课上下文</a></span></dd></div><div><dt>Token</dt><dd>分词器处理文本得到的单位。它不固定等于一个汉字、一个单词或一个字符。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn4AihEzn7dBaMHl3vCK5Pob">回看本课上下文</a></span></dd></div><div><dt>Prompt</dt><dd>向模型提供任务、上下文、约束和输出要求的输入内容；提示本身不能代替程序权限校验。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnbNJXU7mt5KHpjbsDzDoocc">回看本课上下文</a></span></dd></div><div><dt>上下文窗口</dt><dd>单次模型处理所能容纳的信息范围。放进窗口的信息与存到外部数据库的信息不同。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnoVXwqXu7HjaT1FiQRY4Wnd">回看本课上下文</a></span></dd></div><div><dt>RAG</dt><dd>先从资料中取回相关内容，再将检索结果作为生成回答的上下文；检索与回答依据应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn4AihEzn7dBaMHl3vCK5Pob">回看本课上下文</a></span></dd></div><div><dt>Embedding</dt><dd>将文本等对象表示为数值向量的方法，用于比较或检索；向量相近不自动证明事实正确。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn2kKlQQ7jp4NXB3cuLK7qnh">回看本课上下文</a></span></dd></div><div><dt>Chunk</dt><dd>为索引和检索划分的内容片段。片段应保留必要上下文和来源，边界需要结合资料结构选择。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn4AihEzn7dBaMHl3vCK5Pob">回看本课上下文</a></span></dd></div><div><dt>重试</dt><dd>操作失败或结果未知后再次尝试。需要区分错误类型、限制次数，并先判断外部副作用是否已发生。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnL67qiB9SbPeQ2wRF4xplzg">回看本课上下文</a></span></dd></div><div><dt>摘要</dt><dd>压缩原始信息的表达。压缩会取舍细节，需要对照任务所需事实、纠正和约束检查遗漏。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcng3ZURRkiwyhYe58jsTI6Rb">回看本课上下文</a></span></dd></div><div><dt>LangChain</dt><dd>模型、消息、工具等应用组件的框架生态。具体接口以课程标注版本和官方文档为准。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnxJwog3KLCweV16k0tbvTae">回看本课上下文</a></span></dd></div><div><dt>JSON</dt><dd>以对象、数组、字符串、数值等组成的数据交换格式。合法格式、符合约定结构和事实正确应分别检查。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnJin4uGAl036GuA8UNzpqoc">回看本课上下文</a></span></dd></div><div><dt>HTTP</dt><dd>客户端与服务端交换请求和响应的协议；方法、状态码、响应体和业务结果分别提供信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnyWy5CzpQ47MaA1WLCH2S5d">回看本课上下文</a></span></dd></div><div><dt>API</dt><dd>程序之间约定的调用入口，包括输入、返回和错误处理。是否可用依赖具体实现、权限和环境。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcng3ZURRkiwyhYe58jsTI6Rb">回看本课上下文</a></span></dd></div><div><dt>函数</dt><dd>接收约定参数并执行一段逻辑的代码单元。需要明确返回值、异常与副作用。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnAQ5KsvsF1e3VkQGiIsqQbe">回看本课上下文</a></span></dd></div><div><dt>注意力</dt><dd>根据输入表示计算并汇总相关信息的机制。权重不是对模型所有行为的完整因果解释。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnMgk6FlyTZ1iMcx29wt60o8">回看本课上下文</a></span></dd></div><div><dt>Q/K/V</dt><dd>注意力计算中常用的查询、键和值表示；它们的含义依赖具体张量来源与计算位置。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn5We7Z9wELuOx5RK8Mihtzg">回看本课上下文</a></span></dd></div><div><dt>GPT</dt><dd>常用于生成任务的一类自回归语言模型家族；具体上下文、能力和接口取决于所用模型。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcn4AihEzn7dBaMHl3vCK5Pob">回看本课上下文</a></span></dd></div><div><dt>日志与追踪</dt><dd>记录一次处理的输入、状态、工具结果或耗时，帮助定位错误；记录时应控制敏感信息。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnB0AFnibjxSolWS0sLW6fsY">回看本课上下文</a></span></dd></div><div><dt>规划</dt><dd>把目标转成步骤或下一步选择的过程。计划需要根据实际结果调整并限制执行资源。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnzXtoC4vXRbUgNQ27L1YTnb">回看本课上下文</a></span></dd></div><div><dt>反思</dt><dd>对已有结果进行检查和修正的过程。自我检查不是独立验证，仍需外部标准或测试。<span class="small muted">本站通用释义；具体接口以适用版本为准。 <a href="#src-feishu-doxcnThYGB6uPKglvFzwxgIfZ4e">回看本课上下文</a></span></dd></div><div><dt>跨会话</dt><dd>跨会话留下来的知识，下次开新会话还能用。它的职责是管好&quot;这个项目/这个 agent&quot;——把经验沉淀下来不要每次重学。两种主流形态：<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnyC1GDnxpcLJILMtXH0zKzd">回看本课上下文</a></span></dd></div><div><dt>版本一（记忆管理视角）</dt><dd>版本一（记忆管理视角）：我想谈一下关于Agent记忆管理的一些心得，我把Agent的记忆分成三层：1.上下文窗口 2.临时工作文件 3.持久记忆。在使用它们的时候，谈一下我的心得：<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnIVpIcGqo4MzjwIXToeBVyh">回看本课上下文</a></span></dd></div><div><dt>版本二（AGENTS.md 管理视角）</dt><dd>版本二（AGENTS.md 管理视角）：最大启示是项目级知识要外化，但要克制。以前我习惯把所有约定写在 README 里靠人脑记，现在我会用 AGENTS.md 把&quot;项目特有的事实&quot;喂给 agent——构建命令、目录约定、踩过的坑。<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnPeavfrFvjg3n8NLKzyNlib">回看本课上下文</a></span></dd></div><div><dt>1. 循环范式</dt><dd>1. 循环范式（Loop Strategies）—— 让循环本身更聪明<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcndm01vDPFDQcCWdgCg0bULc">回看本课上下文</a></span></dd></div><div><dt>2. 工具 I/O 卫生</dt><dd>2. 工具 I/O 卫生（Tool Hygiene）—— 别让工具污染循环<span class="small muted">原文解释节选；未独立核验技术结论。 <a href="#src-feishu-doxcnrEhMIzn0sth7XZSCbVwGye">回看本课上下文</a></span></dd></div></dl></details><details class="lesson-guide-level"><summary>应用：读一个实际例子，再主动回忆</summary><h3>本课机制与检查方向</h3><p class="small muted">依据本课原文与就近审校整理的教学说明；原文代码和外部视频未因此获得运行或全片审核。 <a href="#lesson-source-body">打开完整来源段落</a></p><blockquote class="lesson-guide-excerpt">按本课建议，按明确函数名定位普通代码时应先尝试什么？
+结论：grep 等轻量关键词搜索。
+理由：精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度。
+配套示例：假设要找 get_user_profile 的定义，先按名称检索，再读取相关文件。
+
+本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？
+结论：需要考虑同义表达的语义检索。
+理由：用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。
+配套示例：假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。</blockquote><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-87f52c1d95-explain"><h3>1. Harness Engineering：Harness 思想的运用 · 机制回忆</h3><p>按本课建议，按明确函数名定位普通代码时应先尝试什么？</p><label class="lesson-task-field" for="task-lesson-card-feishu-87f52c1d95-explain">先写自己的回答<textarea id="task-lesson-card-feishu-87f52c1d95-explain" data-lesson-task-answer="lesson-card-feishu-87f52c1d95-explain" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-87f52c1d95-explain">给一点提示</button><p class="lesson-task-hint" hidden>按本课建议，按明确函数名定位普通代码时应先尝试什么？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">结论：grep 等轻量关键词搜索。
+理由：精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度。
+配套示例：假设要找 get_user_profile 的定义，先按名称检索，再读取相关文件。</p><ul><li>grep 等轻量关键词搜索</li><li>精确名字定位适合词法搜索，成本和路径都较直接；语义检索与结构化数据库应对应真实查询需求，而不是默认增加系统复杂度。</li><li>假设要找 get_user_profile 的定义，先按名称检索，再读取相关文件。</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-87f52c1d95-explain">主要错因<select id="task-error-lesson-card-feishu-87f52c1d95-explain" data-lesson-task-error="lesson-card-feishu-87f52c1d95-explain"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-87f52c1d95#lesson-card-feishu-87f52c1d95-explain" class="text-link">加入间隔回忆练习 →</a></div></section><section class="lesson-recall-task" data-lesson-recall="lesson-card-feishu-87f52c1d95-apply"><h3>2. Harness Engineering：Harness 思想的运用 · 条件判断</h3><p>本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？</p><label class="lesson-task-field" for="task-lesson-card-feishu-87f52c1d95-apply">先写自己的回答<textarea id="task-lesson-card-feishu-87f52c1d95-apply" data-lesson-task-answer="lesson-card-feishu-87f52c1d95-apply" rows="3" maxlength="12000" placeholder="合上原文，用自己的话回答。不会时也可以如实记下。"></textarea></label><button class="text-link" data-lesson-task-hint="lesson-card-feishu-87f52c1d95-apply">给一点提示</button><p class="lesson-task-hint" hidden>本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？</p><details class="lesson-task-answer"><summary>完成尝试后，对照教学参考与审校</summary><p class="lesson-task-reference">结论：需要考虑同义表达的语义检索。
+理由：用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。
+配套示例：假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。</p><ul><li>需要考虑同义表达的语义检索</li><li>用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。</li><li>假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。</li></ul><a href="#lesson-source-body">核对完整上下文</a></details><div class="lesson-task-links"><label for="task-error-lesson-card-feishu-87f52c1d95-apply">主要错因<select id="task-error-lesson-card-feishu-87f52c1d95-apply" data-lesson-task-error="lesson-card-feishu-87f52c1d95-apply"><option value="none">没有明显错误</option><option value="forgot">想不起来</option><option value="concept">概念混淆</option><option value="boundary">遗漏条件</option><option value="implementation">实现或验证不足</option><option value="expression">表达不清</option></select></label><a href="/momomian/cards/?lesson=feishu-87f52c1d95#lesson-card-feishu-87f52c1d95-apply" class="text-link">加入间隔回忆练习 →</a></div></section></details><details class="lesson-guide-level"><summary>进阶：处理失败，再换一个场景</summary><h3>改变一个条件</h3><p>本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？</p><details class="lesson-task-answer"><summary>查看教学参考与检查方向</summary><blockquote>结论：需要考虑同义表达的语义检索。
+理由：用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。
+配套示例：假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。</blockquote><ul><li>需要考虑同义表达的语义检索</li><li>用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。</li><li>假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。</li></ul><a href="#lesson-source-body">回到原文依据</a></details><label class="lesson-task-field" for="boundary-feishu-87f52c1d95">写下最小失败输入、预期和验证方法<textarea id="boundary-feishu-87f52c1d95" data-lesson-task-boundary rows="3" maxlength="12000" placeholder="原文没有实际结果时，不把假设写成已经跑通。"></textarea></label><h3>迁移到另一个问题</h3><p>换一组输入或一个版本，重新判断：本课把鉴权相关代码分散在 auth、login、session 等词下的查找归到哪类需求？</p><ul><li>需要考虑同义表达的语义检索</li><li>用户概念与代码词汇不同，单一关键词可能漏掉相关文件；语义表示或迭代改写查询有助于跨越词汇差异。</li><li>假设搜索“鉴权”没有结果，可进一步查 auth、session 或使用语义搜索。</li></ul><label class="lesson-task-field" for="transfer-feishu-87f52c1d95">解释哪些能复用，哪些要重新验证<textarea id="transfer-feishu-87f52c1d95" data-lesson-task-transfer rows="3" maxlength="12000"></textarea></label></details><details class="lesson-task-checkpoint"><summary>完整自检与学习产物（选做）</summary><h3>留下可复核的学习产物</h3><fieldset><legend>本课自检（自行判断，不是自动判分）</legend><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="0"><span>按查询形态选择词法、语义或结构化检索，并比较实际结果。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="1"><span>为长任务设计结果文件、反馈与检查门禁，记录预算和并发边界。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="2"><span>独立解释机制，并列出改变条件后需要重新核对的内容。</span></label><label class="lesson-task-check"><input type="checkbox" data-lesson-task-check="3"><span>区分资料说明、本站补充与自己的实际验证。</span></label></fieldset><label class="lesson-task-field" for="artifact-feishu-87f52c1d95">产物、实际验证与未决问题<textarea id="artifact-feishu-87f52c1d95" data-lesson-task-artifact rows="3" maxlength="12000" placeholder="例如：解释、画图或代码位置，测试输入和结果，以及仍需核实的内容。"></textarea></label><div class="lesson-task-actions"><button class="button secondary" data-save-lesson-task>保存本课练习</button><span class="small muted" data-lesson-task-state role="status">回答会自动保存；完整自检还需回答、边界分析、迁移和产物。</span></div></details></section><script type="module" src="/momomian/_astro/lesson-learning.astro_astro_type_script_index_0_lang.6qdYCNcu.js"></script></details><section class="lesson-optional lesson-more-practice" data-pagefind-ignore><h2>再动手试一次（选做）</h2><p>观察一次输入与结果，再回到本课核对理解。</p><a class="button secondary" href="/momomian/practice/?lesson=feishu-87f52c1d95#choices">做本课对应的选择题 →</a></section><section class="lesson-finish" id="lesson-finish" data-pagefind-ignore><h2>合上正文，回忆一句</h2><p>这课解决了什么问题？哪种条件下需要换一种做法？可以口述，也可以记在右侧笔记。</p><div class="today-actions"><button class="button secondary" data-complete-lesson>结束本课学习</button><a class="text-link" href="/momomian/cards/?lesson=feishu-87f52c1d95">用本课卡片安排回忆</a></div><p class="small muted" id="lesson-finish-state" role="status">读过、自检和掌握分别记录。</p></section><nav class="lesson-pagination" aria-label="课程翻页" data-pagefind-ignore><a href="/momomian/path/"><small>返回课程</small><span>查看教学顺序</span></a><a class="next-lesson" href="/momomian/path/"><small>本组阅读结束</small><span>回到课程，选择下一步</span></a></nav></div><aside class="reader-tools lesson-reader-tools" data-pagefind-ignore><details class="lesson-reader-panel" id="lesson-reader-panel" open><summary>本课目录与笔记</summary><div class="reader-tools-inner"><p class="nav-caption">本课目录</p><nav class="toc" aria-label="本课目录"><a href="#section-1" class="nested">4.4 Harness 思想的运用</a><a href="#section-2" class="nested">4.4.1 Retrieval（检索）</a><a href="#section-3" class="nested">4.4.1.1 背景 / 基础知识</a><a href="#section-4" class="nested">4.4.1.2 最佳实践建议</a><a href="#section-5" class="nested">4.4.1.3 面试问题</a><a href="#section-6" class="nested">4.4.2 Context &amp; Memory（上下文与记忆）</a><a href="#section-7" class="nested">4.4.2.1 背景</a><a href="#section-8" class="nested">4.4.2.2 基础知识：三层记忆分别干什么</a><a href="#section-9" class="nested">4.4.2.3 最佳实践建议</a><a href="#section-10" class="nested">4.4.2.4 面试问题</a><a href="#section-11" class="nested">4.4.3 Loops, Tool Use, and Feedback（循环、工具与反馈）</a><a href="#section-12" class="nested">4.4.3.1 背景</a><a href="#section-13" class="nested">4.4.3.2 基础知识</a><a href="#section-14" class="nested">4.4.3.3 最佳实践建议</a><a href="#section-15" class="nested">4.4.3.4 面试问题</a><a href="#section-16" class="nested">4.4.4 Orchestration（单 Agent vs 多 Agent）</a><a href="#section-17" class="nested">4.4.4.1 背景 / 基础知识</a><a href="#section-18" class="nested">4.4.4.2 最佳实践建议</a><a href="#section-19" class="nested">4.4.4.3 面试问题</a><a href="#section-20" class="nested">4.4.5 面试真题</a><a href="#section-21" class="nested">4.4.6 参考视频</a></nav><div class="study-controls"><label for="lesson-status">学习状态</label><select id="lesson-status"><option value="learning">学习中</option><option value="read">已读</option><option value="review">待复习</option><option value="mastered">已掌握</option></select><button class="button secondary" id="bookmark-toggle" aria-pressed="false">☆ 收藏本课</button><label for="lesson-note">我的笔记</label><textarea id="lesson-note" rows="6" placeholder="用自己的话解释，或记下一个疑问…"></textarea><p id="note-save-status" class="small muted" role="status">笔记自动保存到本机</p><a class="small text-link" href="/momomian/learning/#backup">备份学习记录</a></div></div></details></aside></div></main><dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">搜索知识点</h2><button class="icon-button" data-close-search aria-label="关闭搜索">×</button></div><label class="sr-only" for="knowledge-search">搜索中文、英文或代码术语</label><input id="knowledge-search" type="search" placeholder="试试 RAG、工具调用、上下文…" autocomplete="off"><p class="muted small">支持中文与英文术语，搜索范围为本站学习内容。</p><div id="search-results" aria-live="polite"><p class="empty-message">输入你想理解的问题或术语。</p></div></dialog><dialog id="image-dialog" aria-label="查看学习图示"><button class="icon-button" id="image-close" aria-label="关闭图片">×</button><img id="expanded-image" alt=""></dialog><div class="toast" id="toast" role="status" hidden></div><dialog id="reading-dialog" aria-labelledby="reading-title"><div class="dialog-top"><h2 id="reading-title">按自己的习惯阅读</h2><button class="icon-button" id="reading-close" aria-label="关闭阅读设置">×</button></div><p class="muted">调整后立即生效，保留本机副本。登录后也会同步到账户偏好。</p><div class="reading-setting-grid"><label>正文字号<select id="reading-size"><option value="16">16 px</option><option value="18">18 px · 标准</option><option value="20">20 px</option><option value="22">22 px</option></select></label><label>正文字体<select id="reading-font"><option value="sans">中文无衬线</option><option value="serif">书籍衬线</option><option value="system">跟随系统</option></select></label><label>显示主题<select id="reading-theme"><option value="light">浅色</option><option value="dark">深色</option><option value="system">跟随系统</option></select></label></div><details class="supplement-panel"><summary>调整行距、行宽与代码</summary><div class="reading-setting-grid"><label>行距<select id="reading-line"><option value="1.65">紧凑</option><option value="1.75">标准</option><option value="1.85">舒适</option><option value="2.05">宽松</option></select></label><label>行宽<select id="reading-width"><option value="32">窄</option><option value="38">标准</option><option value="44">宽</option></select></label><label>代码字号<select id="reading-code"><option value="14">14 px</option><option value="15">15 px</option><option value="16">16 px</option><option value="18">18 px</option></select></label></div><label class="checkbox-label"><input type="checkbox" id="reading-wrap">代码自动换行（保留缩进）</label></details><p class="reading-preview">用自己的话解释一个概念，再通过例子验证理解。Token、检索和工具调用都可以逐步学会。</p><button class="button secondary" id="reading-reset">恢复默认</button><p class="small muted" id="reading-save-state" role="status"></p></dialog><script type="module" src="/momomian/_astro/shell.astro_astro_type_script_index_0_lang.B-HHTIeV.js"></script></body></html>
