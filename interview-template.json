@@ -1,0 +1,185 @@
+[
+  {
+    "group": "technical",
+    "priority": {
+      "reason": "演示分层",
+      "tier": "high"
+    },
+    "id": "DEMO-001",
+    "sourceUrls": [],
+    "title": "GET 和 POST 有什么区别？",
+    "sourceNote": "虚构的通用技术示例，仅用于演示功能，不包含任何用户资料。",
+    "followups": [],
+    "status": "ready",
+    "key": "demo-http",
+    "practiceDeferred": true,
+    "content": {
+      "cloze": [],
+      "order": [],
+      "avoid": [
+        "不要把示例描述成个人项目经历"
+      ],
+      "pairs": [],
+      "why": {
+        "answer": "",
+        "prompt": ""
+      },
+      "short": "GET 用于读取资源，POST 用于提交数据或触发处理。请求是否安全与幂等，需要结合 HTTP 语义和实际接口实现判断。",
+      "hints": [
+        "先解释概念，再说边界"
+      ],
+      "outline": [
+        "用途与语义",
+        "安全性与幂等性",
+        "实际实现边界"
+      ],
+      "choice": {
+        "options": [],
+        "correct": 0,
+        "prompt": "",
+        "explanation": ""
+      },
+      "must": [
+        "用途与语义",
+        "安全性与幂等性",
+        "实际实现边界"
+      ],
+      "detail": [
+        "GET 用于读取资源，POST 用于提交数据或触发处理。请求是否安全与幂等，需要结合 HTTP 语义和实际接口实现判断。"
+      ],
+      "judgment": {
+        "statement": "",
+        "correct": false,
+        "explanation": ""
+      },
+      "error": {
+        "correction": "",
+        "statement": ""
+      }
+    },
+    "answerRevision": "1",
+    "section": "公开示例"
+  },
+  {
+    "group": "technical",
+    "priority": {
+      "reason": "演示分层",
+      "tier": "regular"
+    },
+    "id": "DEMO-002",
+    "sourceUrls": [],
+    "title": "数据库索引解决什么问题？",
+    "sourceNote": "虚构的通用技术示例，仅用于演示功能，不包含任何用户资料。",
+    "followups": [],
+    "status": "ready",
+    "key": "demo-index",
+    "practiceDeferred": true,
+    "content": {
+      "cloze": [],
+      "order": [],
+      "avoid": [
+        "不要把示例描述成个人项目经历"
+      ],
+      "pairs": [],
+      "why": {
+        "answer": "",
+        "prompt": ""
+      },
+      "short": "索引通过额外的数据结构减少查询扫描的数据量，代价是占用空间并增加写入维护成本。是否有效应结合执行计划和查询条件验证。",
+      "hints": [
+        "先解释概念，再说边界"
+      ],
+      "outline": [
+        "减少扫描",
+        "空间和写入成本",
+        "执行计划验证"
+      ],
+      "choice": {
+        "options": [],
+        "correct": 0,
+        "prompt": "",
+        "explanation": ""
+      },
+      "must": [
+        "减少扫描",
+        "空间和写入成本",
+        "执行计划验证"
+      ],
+      "detail": [
+        "索引通过额外的数据结构减少查询扫描的数据量，代价是占用空间并增加写入维护成本。是否有效应结合执行计划和查询条件验证。"
+      ],
+      "judgment": {
+        "statement": "",
+        "correct": false,
+        "explanation": ""
+      },
+      "error": {
+        "correction": "",
+        "statement": ""
+      }
+    },
+    "answerRevision": "1",
+    "section": "公开示例"
+  },
+  {
+    "group": "technical",
+    "priority": {
+      "reason": "演示分层",
+      "tier": "low"
+    },
+    "id": "DEMO-003",
+    "sourceUrls": [],
+    "title": "缓存失效后应该怎样处理？",
+    "sourceNote": "虚构的通用技术示例，仅用于演示功能，不包含任何用户资料。",
+    "followups": [],
+    "status": "ready",
+    "key": "demo-cache",
+    "practiceDeferred": true,
+    "content": {
+      "cloze": [],
+      "order": [],
+      "avoid": [
+        "不要把示例描述成个人项目经历"
+      ],
+      "pairs": [],
+      "why": {
+        "answer": "",
+        "prompt": ""
+      },
+      "short": "先从可信的数据源重新读取，并在需要时更新缓存。还要明确并发访问、超时、过期和异常时的处理方式，避免把缓存当作唯一数据源。",
+      "hints": [
+        "先解释概念，再说边界"
+      ],
+      "outline": [
+        "可信数据源",
+        "过期与并发",
+        "异常回退"
+      ],
+      "choice": {
+        "options": [],
+        "correct": 0,
+        "prompt": "",
+        "explanation": ""
+      },
+      "must": [
+        "可信数据源",
+        "过期与并发",
+        "异常回退"
+      ],
+      "detail": [
+        "先从可信的数据源重新读取，并在需要时更新缓存。还要明确并发访问、超时、过期和异常时的处理方式，避免把缓存当作唯一数据源。"
+      ],
+      "judgment": {
+        "statement": "",
+        "correct": false,
+        "explanation": ""
+      },
+      "error": {
+        "correction": "",
+        "statement": ""
+      }
+    },
+    "answerRevision": "1",
+    "section": "公开示例"
+  }
+]
