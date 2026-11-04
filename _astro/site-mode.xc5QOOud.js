@@ -1,0 +1,1 @@
+function e(e){if(e===void 0||e===``)return`account`;if(e===`local`||e===`account`)return e;throw Error(`PUBLIC_SITE_MODE 只能填写 local 或 account。`)}var t=e(`account`)===`local`;export{t};
