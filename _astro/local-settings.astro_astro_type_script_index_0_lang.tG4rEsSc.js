@@ -1,2 +1,0 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["_astro/memory-lab.B8T35ChE.js","_astro/storage.i2cI3qzl.js","_astro/cloud-client.BIAPngMS.js","_astro/site-mode.xc5QOOud.js","_astro/preload-helper.LPnf_3ev.js","_astro/personal-review.C1FRuNGa.js"])))=>i.map(i=>d[i]);
-import{t as e}from"./preload-helper.LPnf_3ev.js";document.querySelector(`#memory-status`)&&e(()=>import(`./memory-lab.B8T35ChE.js`),__vite__mapDeps([0,1,2,3,4,5]));
