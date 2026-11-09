@@ -1,1 +1,0 @@
-export{t as InterviewPaletteSettings}from"./interview-palette-settings.A1VwsJxx.js";

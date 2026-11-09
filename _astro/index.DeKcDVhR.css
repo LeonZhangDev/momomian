@@ -1,0 +1,1 @@
+html[data-home-intro-pending]:before{content:"";z-index:1000;background:var(--ui-home,var(--bg,#fdfcf9));pointer-events:auto;position:fixed;inset:0}html[data-home-intro-pending] body{overflow:hidden}
