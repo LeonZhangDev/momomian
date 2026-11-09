@@ -1,0 +1,1 @@
+import{p as e}from"./account-access.ldJL_UnY.js";import{t}from"./jsx-runtime.BZnA9PEq.js";import{t as n}from"./interview-portal.BITDlNxb.js";import{t as r}from"./local-interview-portal.hKTQlGtJ.js";var i=t();function a({review:t=!1}){return!e()||new URLSearchParams(location.search).get(`workspace`)===`local`?(0,i.jsx)(r,{review:t}):(0,i.jsx)(n,{review:t})}export{a as default};
