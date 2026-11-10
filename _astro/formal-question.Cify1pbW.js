@@ -1,0 +1,1 @@
+function e(e){let t={...e.content,detail:e.content.detail.filter(t=>t!==e.content.short)},n=e.followupReferences&&Object.fromEntries(Object.entries(e.followupReferences).map(([e,t])=>[e,{...t,content:{...t.content,detail:t.content.detail.filter(e=>e!==t.content.short)}}]));return{...e,content:t,...n?{followupReferences:n}:{}}}export{e as t};
