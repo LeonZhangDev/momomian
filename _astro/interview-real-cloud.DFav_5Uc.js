@@ -1,0 +1,1 @@
+import{a as e,l as t}from"./interview-real.C8o3CKuT.js";var n;function r(e){return n=e,()=>{n===e&&(n=void 0)}}function i(){return n}function a(n){return{...e(),questions:t(n).questions}}export{i as n,a as r,r as t};
